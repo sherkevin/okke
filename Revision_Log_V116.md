@@ -1,0 +1,7 @@
+# Revision_Log_V116
+- **Batched Inference & Latency Rigor:** Transformed the vague latency check into a strict split between Time-to-First-Token (TTFT) and Time-Per-Output-Token (TPOT). Added explicit tests for Batch Size 1, 8, and 32 to directly address the reviewer's concern regarding CPU-GPU sync overhead in Trie Masking.
+- **OOV Synonym Shift Audit:** Introduced the "OOV Hallucination Rate" metric into Chain A. Explicitly acknowledged the theoretical vulnerability where the model bypasses the $V_{noun}$ penalty by hallucinating outside the 4,500 word dictionary.
+- **Negation Granularity:** Subdivided the Negation Trap audit into Local Explicit, Distant Explicit, and Implicit negations, abandoning the defense of the Kill-Switch on distant structural dependencies.
+- **Ablation Enhancements:** Added `TLRA_static_k` to Table 3 to mathematically prove the necessity of Dynamic Activation Pooling over standard Top-k. Added a commitment to map the $\tau$ hyperparameter sensitivity.
+- **Retained Strengths:** Kept the explicit "Entity Verification" downgrade, the Manifold Preservation ($W_{out}$) architecture, the BPE collateral damage observation, and the 3-chain protocol structure praised by the reviewer.
+- **Unrun Experiments:** All protocol tables are marked as "(Planned)" and "TBF" (To Be Filled), structured strictly as falsifiable hypotheses.

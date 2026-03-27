@@ -1,0 +1,8 @@
+# Revision_Log_V110
+- **Addressed "Graceful Pivot Semantic Risk":** Acknowledged the risk of "Fluent Nonsense" (e.g., "opened the _realize"). Added SPICE and GPT-4 Judge to Table 1 to audit semantics, not just PPL. Pre-registered a specific qualitative "Failure Case Matrix" for this phenomenon.
+- **Addressed Context-Blindness in Targeted VQA:** Explicitly split Table 1 into "Global Existence" (POPE) and "Targeted Relevance" (Adversarial VQA) to map exactly where the history-independent pooling fails. Added heavy emphasis on this limitation in Intro and Section 5.
+- **Addressed Dynamic Syntax Floor Math Flaw:** Modified Section 3.3 to explicitly acknowledge that clamping to $L_{floor}$ might still leave the hallucinated noun as the argmax. Added "Argmax Retention Rate" and "Floor Trigger Rate" as tracked metrics in Section 4.2.
+- **Addressed Hardware/Latency Realities:** Clarified that the Trie must be mapped to GPU via batched tensor masking to prevent CPU-GPU sync bottlenecks. Updated Table 1 to require *Batched* Tokens/Sec evaluation, noting that branching logic degrades batched throughput.
+- **Addressed Layer 0 -> Layer N Justification:** Added theoretical grounding in Section 3.1 explaining that the residual stream preserves the dot-product manifold between input embeddings and the `lm_head`.
+- **Retained Highlights:** The Trie-Lookahead framing, the `TLRA_zero` vs. Layer 0 ablation, the VASM structural protection, and the rejection of the "spatial reasoner" bloat.
+- **Future Verification:** The adversarial VQA split, the $\alpha/\beta$ heatmap, and the Batched Tokens/Sec measurements remain strictly TBF (To Be Filled) pending hardware execution.

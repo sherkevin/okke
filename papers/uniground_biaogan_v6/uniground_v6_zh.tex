@@ -1,0 +1,72 @@
+%%
+%% UniGround 标杆 V6（中文稿）— ACM sigconf + XeLaTeX
+%%
+\documentclass[sigconf]{acmart}
+
+\usepackage{xeCJK}
+\setCJKmainfont{SimSun}
+
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    Bib\TeX}}}
+
+\usepackage{booktabs}
+
+\setcopyright{acmlicensed}
+\copyrightyear{2026}
+\acmYear{2026}
+\acmDOI{10.1145/XXXXXXX.XXXXXXX}
+
+\acmConference[MM '26]{ACM Multimedia 2026}{October 2026}{Location}
+
+\acmISBN{978-1-4503-XXXX-X/2026/10}
+
+\begin{document}
+
+\title{UniGround：基于候选驱动视觉共振的通用解码时接地控制}
+
+\author{匿名作者}
+\affiliation{%
+  \institution{匿名单位}
+  \city{匿名城市}
+  \country{中国}}
+\email{anonymous@example.com}
+
+\renewcommand{\shortauthors}{Anonymous et al.}
+
+\begin{abstract}
+\input{abstract_zh}
+\end{abstract}
+
+\begin{CCSXML}
+<ccs2012>
+ <concept>
+  <concept_id>10010147.10010178.10010224</concept_id>
+  <concept_desc>Computing methodologies~Computer vision</concept_desc>
+  <concept_significance>500</concept_significance>
+ </concept>
+ <concept>
+  <concept_id>10010147.10010257</concept_id>
+  <concept_desc>Computing methodologies~Machine learning</concept_desc>
+  <concept_significance>300</concept_significance>
+ </concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Computing methodologies~Computer vision}
+\ccsdesc[300]{Computing methodologies~Machine learning}
+
+\keywords{多模态大语言模型, 幻觉缓解, 解码时控制, 接地, 可移植性}
+
+\maketitle
+
+\input{body_zh}
+
+\begin{acks}
+本文结构遵循内部文稿基准“标杆 V6”的论断与实验合同。
+\end{acks}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{refs}
+
+\end{document}

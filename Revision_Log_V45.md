@@ -1,0 +1,8 @@
+# Revision_Log_V45
+- **Mathematical rigor for $\theta_{active}$:** Resolved the ambiguity of "text-prefix-derived" by explicitly formulating $\theta_{active}$ as the 85th percentile of the maximum vocabulary-projected logits of the visual tokens during the prefill stage.
+- **InfoNCE Negative Margin:** Added a strict requirement that InfoNCE negative patches must have an IoU < 0.1 spatial exclusion zone with the anchor to prevent punishing adjacent parts of the same object in dense images.
+- **Excised Pipeline Bloat:** Ruthlessly deleted the "Confidence-Conditioned Gating" module as mandated by the reviewer to streamline the method and avoid unnecessary complexity.
+- **Refined Baselines & `BRA_zero`:** Maintained the strict framing of DoLa/VCD/OPERA as orthogonal regularizers, and heavily toned down `BRA_zero` framing it as a "diagnostic null-hypothesis" rather than a functional tool for LLaVA-1.5.
+- **Evaluation Protocol Upgrades:** Added POPE FPR requirement to Chain A, defined the `Base + 5k LoRA` matching parameters perfectly, added a 100-sample dataset to quantify polysemy in Chain B, and explicitly partitioned TTFT vs ITL latency tracking in Chain C.
+- **Retained Highlights:** Kept the 2D-only scope, the VASM BPE Continuation logic, and the crucial OOV vs. Intervention Rate scatterplot (Inaction Conflation).
+- **Pending:** The actual execution of the 3-chain protocol, specifically proving the 3-5% gap of Top-$k$ over `MeanPool`.

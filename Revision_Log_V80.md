@@ -1,0 +1,6 @@
+# Revision_Log_V80
+- **Baseline Terminology Fixed**: Removed the word "global" when describing DoLa, VCD, and OPERA. Re-characterized them accurately as sequence-level or distribution-level language heuristics, ensuring they are not falsely portrayed as spatial methods.
+- **OCR Motivation Removed**: Scrubbed "dense document text (OCR)" from the Introduction bottlenecks. DocVQA is now strictly introduced as a structural negative control for lexical rigidity.
+- **Parity Focus Shifted**: Elevated the `TLRA_MeanPool` vs. `TLRA_AdaptiveTopK` showdown as the core scientific conclusion. Diminished the emphasis on beating DoLa/VCD with a calibrated model.
+- **Retained Core Strengths**: Maintained the VASM offline dictionary, the Fallback Clause, the AGL audit for truncation, and the separation of `TLRA_zero` vs. `TLRA_calib`. Video remains an appendix pilot.
+- **Future Validation**: All metrics in Table 1, 2, 3 and Figure 1 (TPOT Pareto) are locked as a protocol awaiting data population. The Fallback Clause stands ready if the Unseen split fails.

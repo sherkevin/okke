@@ -1,0 +1,46 @@
+
+=== sdtb attempt 1 start ===
+[reviewer] idea V1 бн
+[reviewer] wrote idea_review_v1.md score=1.0/5
+[scientist] V1 -> V2 (history_rounds=0) бн
+[scientist] wrote idea_v2.md
+[reviewer] idea V2 бн
+[reviewer] wrote idea_review_v2.md score=1.5/5
+[scientist] V2 -> V3 (history_rounds=1) бн
+[scientist] wrote idea_v3.md
+[reviewer] idea V3 бн
+[reviewer] wrote idea_review_v3.md score=2.0/5
+[scientist] V3 -> V4 (history_rounds=2) бн
+[scientist] wrote idea_v4.md
+[reviewer] idea V4 бн
+[reviewer] wrote idea_review_v4.md
+[scientist] V4 -> V5 (history_rounds=3) бн
+[scientist] wrote idea_v5.md
+[reviewer] idea V5 бн
+[reviewer] wrote idea_review_v5.md score=1.0/5
+[scientist] V5 -> V6 (history_rounds=3) бн
+[scientist] wrote idea_v6.md
+[reviewer] idea V6 бн
+[reviewer] wrote idea_review_v6.md score=2.0/5
+[scientist] V6 -> V7 (history_rounds=3) бн
+[scientist] wrote idea_v7.md
+[reviewer] idea V7 бн
+[reviewer] wrote idea_review_v7.md score=1.0/5
+[scientist] V7 -> V8 (history_rounds=3) бн
+[scientist] wrote idea_v8.md
+[reviewer] idea V8 бн
+[reviewer] wrote idea_review_v8.md score=1.0/5
+[scientist] V8 -> V9 (history_rounds=3) бн
+[scientist] wrote idea_v9.md
+[reviewer] idea V9 бн
+[reviewer] wrote idea_review_v9.md score=1.5/5
+[scientist] V9 -> V10 (history_rounds=3) бн
+[scientist] wrote idea_v10.md
+[reviewer] idea V10 бн
+[reviewer] wrote idea_review_v10.md score=1.5/5
+[scientist] V10 -> V11 (history_rounds=3) бн
+[scientist] wrote idea_v11.md
+[reviewer] idea V11 бн
+[reviewer] wrote idea_review_v11.md score=1.0/5
+Done.
+Last idea: D:\Shervin\OneDrive\Desktop\breaking\idea\sdtb\idea_v11.md

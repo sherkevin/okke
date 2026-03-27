@@ -1,0 +1,8 @@
+# Revision_Log_V76
+- **Review Adherence - Calibrator Blackbox:** Explicitly defined $\Phi_{calib}$ in Section 3.1 as a 2-layer MLP trained via contrastive loss on a bounded subset, with MLLM frozen, explicitly removing the "blackbox" ambiguity.
+- **Review Adherence - Logits Penalty:** Replaced the pure subtractive absolute penalty with a dynamically scaled penalty anchored to the candidate window's logit range ($\Delta_L$) in Section 3.3 to avoid skewing the base model's softmax temperature.
+- **Review Adherence - OCR Contradiction:** Scrubbed "rich-text" and "dense document reasoning" motivations from Introduction. Explicitly bounded motivation to "physical entities" and solidified `DocVQA` as a strict negative control in Sections 3.4 and 4.3.
+- **Review Adherence - RandomK Baseline:** Elevated `TLRA_RandomK` from an optional internal control to a **MANDATORY** baseline in Evidence Chain C (Section 4.4) to prove spatial locality outperforms mere subset regularization.
+- **Review Adherence - Table Structuring:** Formatted the Evaluation Protocol (Section 4) strictly according to the reviewer's requested Tables 1-3, including the AGL collapse check (>15%) and Pareto frontier plotting requirements.
+- **Preserved Highlights:** Retained the `TLRA_zero` vs. `TLRA_calib` boundary, VASM BPE inheritance mechanism, and the bounded secondary video pilot status.
+- **Future Validation Status:** All empirical claims are strictly framed as a pre-registered protocol ("Validation Criteria" / "Goal") pending real experimental execution.

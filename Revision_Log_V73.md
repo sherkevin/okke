@@ -1,0 +1,7 @@
+# Revision_Log_V73
+- **Mathematical Ambiguity Fixed:** Explicitly formalized $sim(\Phi_{calib}(v_j), c)$ in Section 3.2, defining vector dimensions, vocabulary indices, and clarifying that the function extracts the temperature-scaled logit from the projected pre-softmax vocabulary vector.
+- **Calibrator Pseudo-Labeling Detailed:** Expanded Section 3.1 to mechanically detail the pipeline (GroundingDINO -> spaCy -> CLIP-ViT-L/14 text embeddings -> cosine similarity over LM vocabulary -> softmax targets). Explicitly stated that only $\Phi_{calib}$ is updated.
+- **Entropy Prompt-Sensitivity Resolved:** Replaced raw Shannon entropy with a "Prompt-Agnostic Normalized Entropy" ($\hat{H}_{attn}$) divided by $\log(N_{active})$ to ensure the fallback threshold scales seamlessly across varying prompt structures (e.g., short dialogs vs. complex multiple-choice). Added a planned diagnostic histogram to prove this.
+- **Suffix Collapse Risk Addressed:** Acknowledged the theoretical risk of uncalibrated KV-cache states in Section 3.4 and Section 5. Added a specific "Suffix Collapse Case Study" to the Evaluation Protocol (Section 4.4) to visually map Top-5 logits at $t$ and $t+1$.
+- **Retained Core Strengths:** Maintained the "OCR Concession" negative control on DocVQA, the strict framing of `TLRA_MeanPool` parity, and the respectful treatment of DoLa/VCD as legitimate global trajectory baselines.
+- **Status of Experiments:** All unrun experiments remain strictly framed as an "evaluation protocol" and "blueprint."

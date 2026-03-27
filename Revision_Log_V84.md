@@ -1,0 +1,9 @@
+# Revision_Log_V84
+- **Clarified 50k TTA Dataset:** Explicitly noted in 3.1 that $\Phi_{calib}$ is trained on a subset of 50k simple conceptual captions (e.g., from MSCOCO) to prevent spatial leakage, framing "Unseen" as strictly *out-of-calibrator-distribution*.
+- **Quantified Polysemy Risk:** Added an estimation in 3.3 that ~3-5% of CHAIR/POPE targets (like "mouse", "monitor") might be misclassified due to primary-synset reliance, directly addressing reviewer concerns about grounding reality.
+- **Tokenizer Agnostic BPE:** Refined 3.3 to mention tokenizer-specific continuation markers instead of hardcoding Llama/Qwen specifics.
+- **Added VASM Trigger Rate:** Included a new metric logging in 4.1 to empirically prove the static dictionary fires selectively on physical reasoning tasks and stays dormant during OCR/abstract reasoning.
+- **Added Target Token Rank Histogram:** Supplemented the Out-of-Candidate failure mode audit (4.4) with a histogram to empirically justify the $M$ candidate window size.
+- **Standardized TPOT Measurement:** Strictly defined the hardware (A100 80GB), batch size (1), and visual token count ($N_v=576$) in 4.4 to ensure latency comparisons are reproducible.
+- **Maintained Core Strengths:** Kept the strict `TLRA_zero` vs `TLRA_calib` fairness boundary, the $\sigma_L$ standard deviation fix for stability, the AGL audit, the DocVQA negative control, and relegated video to an exploratory Appendix pilot.
+- **Note on Future Execution:** The entire experimental section remains written as a rigorous protocol/plan, awaiting actual execution without fabricating numbers.

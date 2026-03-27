@@ -1,0 +1,7 @@
+# Revision_Log_V104
+- **Reframed Core Identity (Existence Checker Fallacy):** Addressed the reviewer's major critique regarding Eq 1. Removed claims of "explicit spatial reasoning" and aggressively redefined the method as a "context-independent global existence verifier". Added explicit limitations acknowledging it will fail on relational/multi-instance queries.
+- **Clarified the "Lightweight" Parameter Illusion:** Added explicit parameter accounting ($D=4096, V=32000 \rightarrow \sim 131$M params). Redefined the LoRA baseline as a *high-rank* ($r \ge 256$) budget-matched adapter trained on identical *masked* loss.
+- **Fixed Data Leakage Vulnerability:** Added explicit guarantees in Section 4 that the 50k training subset is strictly disjoint from COCO validation sets (used in POPE/CHAIR) to ensure a fair comparison against zero-shot methods.
+- **Addressed VASM Brittleness:** Added an "OOD / Jargon Fallback Test" (Table 2) and formally listed offline dictionary reliance as a strict limitation preventing multilingual/tokenizer scalability.
+- **Added Missing Stress Tests:** Introduced the "Multi-Instance Stress Test" to Table 3 to explicitly measure the failure boundary of context-blind Top-k patch pooling. Added the "Logit Evolution & Probability Shift" test to Section 4.4 to track softmax denominator shifts.
+- **Preserved Strengths:** Retained the highly praised TTFT vs TPOT hardware bandwidth analysis, the MER / Subword Continuation Rule, and the strict parametric vs. zero-shot baseline contract.

@@ -1,0 +1,7 @@
+# Revision_Log_V3
+- **Mathematical Rigor (Reviewer Flaw #1):** Addressed the modality gap fallacy by redefining $S_{raw}$ with an explicit alignment mapping $\Phi$, and instituted "Protocol 0: Modality Alignment Probe" as a mandatory empirical prerequisite.
+- **Temporal differencing (Reviewer Flaw #2):** Replaced the mathematically fragile naive linear subtraction with a localized "Difference-of-Gaussians" equivalent feature (`Camera-Motion-Suppressed`), directly isolating spatial neighborhood deltas.
+- **Trigger Strategy (Reviewer Flaw #3):** Removed the absolute reliance on Shannon entropy ($\Delta E_t > \epsilon$). Shifted the default to a threshold-free continuous application, safeguarded by the SMI damping.
+- **Empirical Claims (Reviewer Flaw #4):** Converted Section 4 entirely from assumed conclusions to a rigorous 6-stage Evaluation Protocol (Protocols 0-5), matching the reviewer's exact requested Figures and Tables (e.g., Latency Scatter Plot, VisualWebBench Ablation, KDE Density Plot).
+- **Logit Formulation:** Upgraded the formulation from multiplicative scaling to Additive Shift ($\alpha, \beta$ constants) to resolve hyper-sensitivity.
+- **Retained Highlights:** The core "Pooling Paradox" critique and the zero-pooling logits-space paradigm (BRA) are preserved and amplified as the primary motivation. SMI is retained as a robust BPE solution.

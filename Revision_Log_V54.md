@@ -1,0 +1,6 @@
+# Revision_Log_V54
+- **Competitor Framing Fixed:** Explicitly separated DoLa, VCD, and OPERA into "Zero-Shot Regularizers" in the Introduction and Section 4.1. Stated clearly that `BRA_calib` is a "Trained/Hybrid Adapter" and does not claim zero-shot SOTA over them.
+- **Addressing Algorithmic Over-Engineering:** Added explicit acknowledgments in Section 3.1, 3.2, and Section 5 that the Dual-Veto InfoNCE and EMA mechanisms are algorithmically heavy. Committed to downgrading them if empirical ablations (Defense Line 3, Figure 2) do not justify their latency cost.
+- **The "Inaction" Vulnerability Exposed:** Mandated the reporting of a "VASM Trigger Rate (%)" in all evaluation tables (Chain A & B). Explicitly noted in Section 4.2 and Section 5 that if the trigger rate drops below 10% on MMMU, the method operates as an algorithmic placebo.
+- **Refined Experimental Protocols:** Specified that latency checks will be performed on a single A100 80GB with Batch Size = 1. Updated Chain C to extract visual heatmaps from the *exact autoregressive step* rather than post-hoc.
+- **Preserved Highlights:** Retained the 2D bounding restriction, the mathematical rigor of the Prefix-Trie BPE tracking, and the strict `Base + 5k LoRA` parity control.

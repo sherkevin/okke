@@ -1,0 +1,200 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand*\HyPL@Entry[1]{}
+\citation{liu2023llava,zhu2023minigpt,instructblip,bai2023qwen,zhang2023internlm,chen2023shikra,liu2023improvedllava,dong2024internlm}
+\citation{zhang2023gpt4roi,li2023llavamed,black2023training}
+\citation{lai2023lisa}
+\citation{brooks2023instructpix2pix,geng2023instructdiffusion}
+\HyPL@Entry{0<</S/D>>}
+\@writefile{toc}{\contentsline {section}{Abstract}{1}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\citation{liu2023aligning,zhou2023analyzing,yin2023woodpecker,wang2023vigc}
+\citation{liu2023aligning}
+\citation{wang2023label}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces OPERA's performance on reducing hallucinations. }}{2}{figure.caption.5}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:teaser}{{1}{2}{OPERA's performance on reducing hallucinations}{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces A case of relationship between hallucinations and knowledge aggregation patterns. Hallucinations are highlighted.}}{2}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:intro2attn}{{2}{2}{A case of relationship between hallucinations and knowledge aggregation patterns. Hallucinations are highlighted}{figure.caption.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Hallucinations often start within the first 10 tokens after knowledge aggregation patterns.}}{2}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:intro2hist}{{3}{2}{Hallucinations often start within the first 10 tokens after knowledge aggregation patterns}{figure.caption.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces (a) The aggregation pattern is consistent with recent `anchor token' observation. (b), (c) show the increasing CHAIR scores (more hallucinations) on 5,000 randomly selected MSCOCO images when more anchor tokens appear in the context.}}{2}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:evidence}{{4}{2}{(a) The aggregation pattern is consistent with recent `anchor token' observation. (b), (c) show the increasing CHAIR scores (more hallucinations) on 5,000 randomly selected MSCOCO images when more anchor tokens appear in the context}{figure.caption.8}{}}
+\citation{graves2012sequence,sutskever2014sequence,boulanger2013audio}
+\citation{touvron2023llama,touvron2023llama2}
+\citation{chiang2023vicuna}
+\citation{liu2023llava,zhu2023minigpt,instructblip,huang2021initiative,bai2023qwen,huang2023diversity,huang2022shape,chen2023sharegpt4v}
+\citation{liu2023llava}
+\citation{instructblip}
+\citation{zhu2023minigpt}
+\citation{chen2023shikra}
+\citation{ji2023survey,zhang2023language}
+\citation{lee2022factuality}
+\citation{du2023improving}
+\citation{peng2023check,manakul2023selfcheckgpt}
+\citation{liu2023aligning,zhou2023analyzing,yin2023woodpecker}
+\citation{graves2012sequence,sutskever2014sequence,boulanger2013audio}
+\citation{fan2018hierarchical}
+\citation{holtzman2019curious}
+\citation{chuang2023dola}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{3}{section.2}\protected@file@percent }
+\newlabel{sec:related_work}{{2}{3}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Multi-Modal Large Foundation Models}{3}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Hallucination in Large Foundation Models}{3}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Decoding Strategy in Language Models}{3}{subsection.2.3}\protected@file@percent }
+\citation{graves2012sequence,sutskever2014sequence,boulanger2013audio}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{4}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{4}{Method}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Formulation of MLLMs Generation}{4}{subsection.3.1}\protected@file@percent }
+\newlabel{mllm_gen}{{3.1}{4}{Formulation of MLLMs Generation}{subsection.3.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces The scheme of calculating the proposed over-trust penalty term. We first cut out a local window on the self-attention map, then we scale up the values and conduct the column-wise multiplication to get a score vector, finally we choose the maximum score as the penalty term.}}{4}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:method1}{{5}{4}{The scheme of calculating the proposed over-trust penalty term. We first cut out a local window on the self-attention map, then we scale up the values and conduct the column-wise multiplication to get a score vector, finally we choose the maximum score as the penalty term}{figure.caption.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Over-Trust Logit Penalty}{4}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:olp}{{3.2}{4}{Over-Trust Logit Penalty}{subsection.3.2}{}}
+\citation{instructblip}
+\citation{zhu2023minigpt}
+\citation{liu2023improvedllava}
+\citation{chen2023shikra}
+\citation{li2023blip}
+\citation{radford2021clip}
+\citation{fang2023eva}
+\citation{touvron2023llama}
+\citation{chiang2023vicuna}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces The scheme of the proposed Retrospection strategy. We compute the maximum value coordinates of the past several token's column-wise scores and check if the overlap time is larger than $r$. If yes, we retrospect the decoding procedure and reselect the next token $x_{s+1}$.}}{5}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:method2}{{6}{5}{The scheme of the proposed Retrospection strategy. We compute the maximum value coordinates of the past several token's column-wise scores and check if the overlap time is larger than $r$. If yes, we retrospect the decoding procedure and reselect the next token $x_{s+1}$}{figure.caption.10}{}}
+\newlabel{eq:4}{{5}{5}{Over-Trust Logit Penalty}{equation.3.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Retrospection-Allocation Strategy}{5}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:pas}{{3.3}{5}{Retrospection-Allocation Strategy}{subsection.3.3}{}}
+\citation{graves2012sequence,sutskever2014sequence,boulanger2013audio}
+\citation{holtzman2019curious}
+\citation{chuang2023dola}
+\citation{2023zhiyuan}
+\citation{2023zhiyuan}
+\citation{rohrbach2018object}
+\citation{lin2014microsoft}
+\citation{li2023pope}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiment}{6}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Setup}{6}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Quantitative Results}{6}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:chair_exp}{{4.2}{6}{Quantitative Results}{subsection.4.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces CHAIR hallucination evaluation results on four MLLM models (\textit  {max new tokens} is 512). Denote CHAIR$_S$ as $C_S$ and CHAIR$_I$ as $C_I$. Smaller values corresponds to less hallucinations.}}{6}{table.caption.12}\protected@file@percent }
+\newlabel{tab:chair_eval_512}{{1}{6}{CHAIR hallucination evaluation results on four MLLM models (\textit {max new tokens} is 512). Denote CHAIR$_S$ as $C_S$ and CHAIR$_I$ as $C_I$. Smaller values corresponds to less hallucinations}{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces CHAIR hallucination evaluation results on four MLLM models (\textit  {max new tokens} is 64). Denote CHAIR$_S$ as $C_S$ and CHAIR$_I$ as $C_I$. Smaller values corresponds to less hallucinations.}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:chair_eval_64}{{2}{6}{CHAIR hallucination evaluation results on four MLLM models (\textit {max new tokens} is 64). Denote CHAIR$_S$ as $C_S$ and CHAIR$_I$ as $C_I$. Smaller values corresponds to less hallucinations}{table.caption.13}{}}
+\citation{2023zhiyuan}
+\citation{krishna2017visual}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces GPT-4 assisted hallucination evaluation \citep  {2023zhiyuan} results on VG-100K dataset. Six aspects of values are analyzed, including the number of sentences per image (SPI), the number of words per image (WPI), the number of hallucinated sentences per image (HSPI), the number of hallucinated words per image (HWPI), the ratio of hallucinated sentences (HSR), and the ratio of hallucinated words (HWR). Note that larger SPI and WPI, smaller HSPI, HWPI, HSR and HWR are better. Larger radar indicates better performance.}}{7}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:radar}{{7}{7}{GPT-4 assisted hallucination evaluation \cite {2023zhiyuan} results on VG-100K dataset. Six aspects of values are analyzed, including the number of sentences per image (SPI), the number of words per image (WPI), the number of hallucinated sentences per image (HSPI), the number of hallucinated words per image (HWPI), the ratio of hallucinated sentences (HSR), and the ratio of hallucinated words (HWR). Note that larger SPI and WPI, smaller HSPI, HWPI, HSR and HWR are better. Larger radar indicates better performance}{figure.caption.11}{}}
+\citation{yin2023woodpecker}
+\citation{li2023pope}
+\citation{fu2023mme}
+\citation{liu2023mmbench}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces GPT-4V assisted hallucination evaluation results on MSCOCO. Two aspects are verified, \textit  {i.e.}\xspace  , correctness ($C$) and detailedness ($D$). Higher correctness indicates less hallucinations.}}{8}{table.caption.14}\protected@file@percent }
+\newlabel{tab:gpt_4v}{{3}{8}{GPT-4V assisted hallucination evaluation results on MSCOCO. Two aspects are verified, \ie , correctness ($C$) and detailedness ($D$). Higher correctness indicates less hallucinations}{table.caption.14}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces POPE hallucination evaluation results on four MLLM models. We report the average F1-score computed on \textit  {random}, \textit  {popular}, and \textit  {adversarial} splits of POPE.}}{8}{table.caption.15}\protected@file@percent }
+\newlabel{tab:pope_f1}{{4}{8}{POPE hallucination evaluation results on four MLLM models. We report the average F1-score computed on \textit {random}, \textit {popular}, and \textit {adversarial} splits of POPE}{table.caption.15}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces The evaluation results for the quality of generated text. We calculate PPL$_1$ and PPL$_2$ with \textit  {gpt2} and \textit  {gpt2-medium} in the \textit  {huggingface} model zoo respectively. Grm., Flu., Nat.\ denote GPT-4 ratings for grammar, fluency, and naturalness.}}{8}{table.caption.16}\protected@file@percent }
+\newlabel{tab:ppl}{{5}{8}{The evaluation results for the quality of generated text. We calculate PPL$_1$ and PPL$_2$ with \textit {gpt2} and \textit {gpt2-medium} in the \textit {huggingface} model zoo respectively. Grm., Flu., Nat.\ denote GPT-4 ratings for grammar, fluency, and naturalness}{table.caption.16}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces OPERA generally improves the MLLM's performance on popular MLLM benchmark.}}{8}{table.caption.17}\protected@file@percent }
+\newlabel{tab:mllm_bench}{{6}{8}{OPERA generally improves the MLLM's performance on popular MLLM benchmark}{table.caption.17}{}}
+\citation{graves2012sequence,sutskever2014sequence,boulanger2013audio}
+\citation{instructblip}
+\citation{liu2023improvedllava}
+\citation{zhu2023minigpt}
+\citation{chen2023shikra}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Ablation studies on the hyper-parameters used in our OPERA, including the number of candidates $N_{can}$, the scale factor $\mitsigma $, the penalty weight $\mitalpha $ and the rollback threshold $r$. Denote CHAIR$_S$ as $C_S$ and CHAIR$_I$ as $C_I$. Lower values mean less hallucinations.}}{9}{table.caption.18}\protected@file@percent }
+\newlabel{tab:abl_hp}{{7}{9}{Ablation studies on the hyper-parameters used in our OPERA, including the number of candidates $N_{can}$, the scale factor $\sigma $, the penalty weight $\alpha $ and the rollback threshold $r$. Denote CHAIR$_S$ as $C_S$ and CHAIR$_I$ as $C_I$. Lower values mean less hallucinations}{table.caption.18}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Ablation results on two components. ``P'' denotes the over-trust penalty, ``R'' denotes retrospection-reallocation strategy.}}{9}{table.caption.19}\protected@file@percent }
+\newlabel{tab:abl_components}{{8}{9}{Ablation results on two components. ``P'' denotes the over-trust penalty, ``R'' denotes retrospection-reallocation strategy}{table.caption.19}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Ablation Study on Hyper-parameters}{9}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:supp_2}{{4.3}{9}{Ablation Study on Hyper-parameters}{subsection.4.3}{}}
+\citation{2023zhiyuan}
+\citation{krishna2017visual}
+\citation{2023zhiyuan}
+\citation{yin2023woodpecker}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces The prompt used for GPT-4 evaluation.}}{10}{table.caption.20}\protected@file@percent }
+\newlabel{tab:gpt4_prompt}{{9}{10}{The prompt used for GPT-4 evaluation}{table.caption.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Details of GPT-4 Evaluation}{10}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:supp_4}{{4.4}{10}{Details of GPT-4 Evaluation}{subsection.4.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces The prompt used for GPT-4V(ision) evaluation.}}{11}{table.caption.21}\protected@file@percent }
+\newlabel{tab:gpt4v_prompt}{{10}{11}{The prompt used for GPT-4V(ision) evaluation}{table.caption.21}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Details of GPT-4v Evaluation}{11}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:supp_5}{{4.5}{11}{Details of GPT-4v Evaluation}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Potentials for Eliminating Repetition}{11}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:supp_6}{{4.6}{11}{Potentials for Eliminating Repetition}{subsection.4.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Qualitative Results}{11}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Limitation \& Social Impact}{11}{section.5}\protected@file@percent }
+\newlabel{sec:supp_1}{{5}{11}{Limitation \& Social Impact}{section.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces OPERA's potentials for eliminating repetition. }}{12}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:repetition_case}{{8}{12}{OPERA's potentials for eliminating repetition}{figure.caption.22}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces OPERA's performance on reducing hallucinations. }}{12}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:cases}{{9}{12}{OPERA's performance on reducing hallucinations}{figure.caption.23}{}}
+\bibstyle{ACM-Reference-Format}
+\bibdata{references}
+\bibcite{bai2023qwen}{{1}{2023}{{Bai et~al\mbox  {.}}}{{}}}
+\bibcite{black2023training}{{2}{2023}{{Black et~al\mbox  {.}}}{{}}}
+\bibcite{boulanger2013audio}{{3}{2013}{{Boulanger-Lewandowski et~al\mbox  {.}}}{{}}}
+\bibcite{brooks2023instructpix2pix}{{4}{2023}{{Brooks et~al\mbox  {.}}}{{}}}
+\bibcite{chen2023shikra}{{5}{2023b}{{Chen et~al\mbox  {.}}}{{}}}
+\bibcite{chen2023sharegpt4v}{{6}{2023a}{{Chen et~al\mbox  {.}}}{{}}}
+\bibcite{chiang2023vicuna}{{7}{2023}{{Chiang et~al\mbox  {.}}}{{}}}
+\bibcite{chuang2023dola}{{8}{2023}{{Chuang et~al\mbox  {.}}}{{}}}
+\bibcite{instructblip}{{9}{2023}{{Dai et~al\mbox  {.}}}{{}}}
+\bibcite{dong2024internlm}{{10}{2024}{{Dong et~al\mbox  {.}}}{{}}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces OPERA's performance on reducing hallucinations of LLaVA-1.5-7B. }}{13}{figure.caption.24}\protected@file@percent }
+\newlabel{fig:cases_1}{{10}{13}{OPERA's performance on reducing hallucinations of LLaVA-1.5-7B}{figure.caption.24}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{13}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{Acknowledgments}{13}{section*.28}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{References}{13}{section*.30}\protected@file@percent }
+\bibcite{du2023improving}{{11}{2023}{{Du et~al\mbox  {.}}}{{}}}
+\bibcite{fan2018hierarchical}{{12}{2018}{{Fan et~al\mbox  {.}}}{{}}}
+\bibcite{fang2023eva}{{13}{2023}{{Fang et~al\mbox  {.}}}{{}}}
+\bibcite{fu2023mme}{{14}{2023}{{Fu et~al\mbox  {.}}}{{}}}
+\bibcite{geng2023instructdiffusion}{{15}{2023}{{Geng et~al\mbox  {.}}}{{}}}
+\bibcite{graves2012sequence}{{16}{2012}{{Graves}}{{}}}
+\bibcite{holtzman2019curious}{{17}{2019}{{Holtzman et~al\mbox  {.}}}{{}}}
+\bibcite{huang2023diversity}{{18}{2023}{{Huang et~al\mbox  {.}}}{{}}}
+\bibcite{huang2022shape}{{19}{2022}{{Huang et~al\mbox  {.}}}{{}}}
+\bibcite{huang2021initiative}{{20}{2021}{{Huang et~al\mbox  {.}}}{{}}}
+\bibcite{ji2023survey}{{21}{2023}{{Ji et~al\mbox  {.}}}{{}}}
+\bibcite{krishna2017visual}{{22}{2017}{{Krishna et~al\mbox  {.}}}{{}}}
+\bibcite{lai2023lisa}{{23}{2023}{{Lai et~al\mbox  {.}}}{{}}}
+\bibcite{lee2022factuality}{{24}{2022}{{Lee et~al\mbox  {.}}}{{}}}
+\bibcite{li2023llavamed}{{25}{2023c}{{Li et~al\mbox  {.}}}{{}}}
+\bibcite{li2023blip}{{26}{2023b}{{Li et~al\mbox  {.}}}{{}}}
+\bibcite{li2023pope}{{27}{2023a}{{Li et~al\mbox  {.}}}{{}}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces OPERA's performance on reducing hallucinations of InstructBLIP-7B. }}{14}{figure.caption.25}\protected@file@percent }
+\newlabel{fig:cases_2}{{11}{14}{OPERA's performance on reducing hallucinations of InstructBLIP-7B}{figure.caption.25}{}}
+\bibcite{lin2014microsoft}{{28}{2014}{{Lin et~al\mbox  {.}}}{{}}}
+\bibcite{liu2023aligning}{{29}{2023d}{{Liu et~al\mbox  {.}}}{{}}}
+\bibcite{liu2023improvedllava}{{30}{2023b}{{Liu et~al\mbox  {.}}}{{}}}
+\bibcite{liu2023llava}{{31}{2023c}{{Liu et~al\mbox  {.}}}{{}}}
+\bibcite{liu2023mmbench}{{32}{2023a}{{Liu et~al\mbox  {.}}}{{}}}
+\bibcite{manakul2023selfcheckgpt}{{33}{2023}{{Manakul et~al\mbox  {.}}}{{}}}
+\bibcite{peng2023check}{{34}{2023}{{Peng et~al\mbox  {.}}}{{}}}
+\bibcite{radford2021clip}{{35}{2021}{{Radford et~al\mbox  {.}}}{{}}}
+\bibcite{rohrbach2018object}{{36}{2018}{{Rohrbach et~al\mbox  {.}}}{{}}}
+\bibcite{sutskever2014sequence}{{37}{2014}{{Sutskever et~al\mbox  {.}}}{{}}}
+\bibcite{touvron2023llama}{{38}{2023a}{{Touvron et~al\mbox  {.}}}{{}}}
+\bibcite{touvron2023llama2}{{39}{2023b}{{Touvron et~al\mbox  {.}}}{{}}}
+\bibcite{wang2023vigc}{{40}{2023b}{{Wang et~al\mbox  {.}}}{{}}}
+\bibcite{wang2023label}{{41}{2023a}{{Wang et~al\mbox  {.}}}{{}}}
+\bibcite{yin2023woodpecker}{{42}{2023}{{Yin et~al\mbox  {.}}}{{}}}
+\bibcite{zhang2023language}{{43}{2023a}{{Zhang et~al\mbox  {.}}}{{}}}
+\bibcite{zhang2023internlm}{{44}{2023c}{{Zhang et~al\mbox  {.}}}{{}}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces OPERA's performance on reducing hallucinations of Shikra-7B. }}{15}{figure.caption.26}\protected@file@percent }
+\newlabel{fig:cases_3}{{12}{15}{OPERA's performance on reducing hallucinations of Shikra-7B}{figure.caption.26}{}}
+\bibcite{zhang2023gpt4roi}{{45}{2023b}{{Zhang et~al\mbox  {.}}}{{}}}
+\bibcite{2023zhiyuan}{{46}{2023}{{Zhao et~al\mbox  {.}}}{{}}}
+\bibcite{zhou2023analyzing}{{47}{2023}{{Zhou et~al\mbox  {.}}}{{}}}
+\bibcite{zhu2023minigpt}{{48}{2023}{{Zhu et~al\mbox  {.}}}{{}}}
+\newlabel{tocindent-1}{0pt}
+\newlabel{tocindent0}{0pt}
+\newlabel{tocindent1}{4.185pt}
+\newlabel{tocindent2}{10.35pt}
+\newlabel{tocindent3}{0pt}
+\newlabel{tocindent4}{0pt}
+\newlabel{tocindent5}{0pt}
+\newlabel{TotPages}{{16}{16}{}{page.16}{}}
+\gdef \@abspage@last{16}

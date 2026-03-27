@@ -1,0 +1,22 @@
+\section{相关工作}
+\label{sec:related}
+
+\subsection{多模态幻觉评估与基准}
+
+视觉—语言模型中的幻觉评估已形成若干互补协议。\textbf{CHAIR}~\cite{rohrbach2018chair} 衡量生成描述中提及的物体是否被图像所支持，表明流畅文本仍可能视觉不成立。\textbf{POPE}~\cite{li2023pope} 将评估转化为平衡的物体存在性是非题，在受控提示下度量幻觉并揭示对语言先验的敏感。\textbf{AMBER}~\cite{amber2023} 将视角扩展到属性、关系等多类错误，避免将``仅物体级''分数等同于完整多模态忠实度。三者回答的问题不同：CHAIR 面向开放式描述；POPE 面向判别式探测；AMBER 强调多面失效模式，不宜互相替代。
+
+更大规模的判别套件在任务与上下文结构上进一步扩展。\textbf{PhD}~\cite{liu2025phd} 提供大规模 VQA 式基准，含多种识别任务与对抗式提问模式，用于检验 MLLM 在视觉误导或先验触发场景下的鲁棒性。本文以 CHAIR 与 POPE 为主要汇报轴（第~\ref{sec:exp} 节），并将此类更广评估脉络作为未来压力测试的背景。
+
+\subsection{解码期缓解与控制}
+
+一类重要方法在\textbf{不更新权重}的前提下于自回归解码过程中干预。\textbf{视觉对比解码（VCD）}~\cite{leng2024vcd} 对比完整视觉与扰动视觉条件下的 logit，以抑制语言先验驱动的物体。\textbf{OPERA}~\cite{huang2024opera} 利用注意力与回溯信号约束生成轨迹。\textbf{DoLa}~\cite{chuang2024dola} 源于纯文本 LM，通过对比浅层与深层 logit 提升事实性；迁移到 MLLM 后仍是强的\textbf{内部}层间基线，但本身并不在外部视觉空间中强制物体级接地。
+
+近期面向 MLLM 的解码改进仍主要\textbf{读取或重塑内部表示}。例如 \textbf{DeCo}~\cite{wang2024deco} 在浅层似乎仍保留视觉证据而深层被语言先验压制时，动态融合更早层的 logit。这类设计说明栈内仍存在有用视觉信号，但也继承了需访问宿主层输出与几何的可迁移性限制。
+
+\textbf{CHORD} 与第~\ref{sec:method} 节强调的两条轴线一致：（i）\textbf{不}消费宿主隐状态或注意力张量——仅使用短候选前沿上的 logit 与确定性分词器前瞻；（ii）在\textbf{冻结}的区域级视觉库与\textbf{冻结}的公开文本编码器上对\textbf{候选片段}打分，使干预信号定义于共享外部空间。其针对子词提议与物体级证据之间的\textbf{粒度}鸿沟，并以连续 Top-$1$ 监控控制片段级评分开销。
+
+\subsection{后处理、偏好优化及与 CHORD 的关系}
+
+互补路线在生成\textbf{之后}修改输出，或直接更新模型。\textbf{LURE}~\cite{zhou2024lure} 基于与物体幻觉相关的统计因素做轻量后修。\textbf{Woodpecker}~\cite{yin2024woodpecker} 通过多阶段工具流水线抽取主张、查询外部视觉模块并重写不一致文本。\textbf{Volcano}~\cite{lee2024volcano} 迭代自反馈与修订。\textbf{HA-DPO}~\cite{zhao2023hadpo} 通过偏好优化持久改变模型行为。正因不受逐步解码预算约束，它们才能使用更丰富验证或更强监督。
+
+\textbf{CHORD} 针对更窄设定：在 top-$K$ 前沿上\textbf{免训练}、\textbf{解码内}校准，依赖外部物体级证据与提升后片段上的闭式共振增量 $\Delta S$。时间轴上与解码基线~\cite{leng2024vcd,huang2024opera,chuang2024dola,wang2024deco} 最接近，证据形态上接近工具增强路线~\cite{yin2024woodpecker}，但避免完整后处理流水线且不做偏好更新~\cite{zhao2023hadpo}。第~\ref{sec:method} 节进一步说明该设计与可迁移性边界及抑制过度自信幻觉（不唯熵门控）的关系。

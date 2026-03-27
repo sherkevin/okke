@@ -1,0 +1,2 @@
+[anchor-cache] processed 50 samples
+{"output_jsonl": "smoke_runs/validation_random64/anchors.jsonl", "entries": 64, "box_threshold": 0.25, "text_threshold": 0.2, "max_boxes": 8}

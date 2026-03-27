@@ -1,0 +1,7 @@
+# Revision_Log_V85
+- **Formalized DocVQA Negative Control:** Explicitly added the $|\Delta \text{Accuracy}| < 1.5\%$ flat-line success criterion demanded by the reviewer to prevent erroneous OCR penalty masking.
+- **Clarified "Unseen" Split Definition:** Specified that the Unseen categories in Evidence Chain C are mathematically disjoint from the 50k MSCOCO captions, verified via exact WordNet synset exclusion, to address the data leakage audit request.
+- **BPE Fragility Example Added:** Inserted the concrete Llama-3 "refrigerator" (`_re` -> `friger` -> `ator`) subword inheritance example in Section 3.3 to clarify the $O(1)$ mechanism and its inherent fragility.
+- **Addressed the TPOT Reality:** Explicitly labeled the computational bandwidth cost as "The Severe TPOT Tax" in Introduction and Limitations, and added the requested Ablation on Candidate Window $M \in \{10, 50, 100\}$ to the evaluation protocol.
+- **Failure Case Analysis Protocol:** Added a planned analysis for specific visual failure/success cases, highlighting VASM saving a verb and failing on a polysemous word (e.g., "mouse").
+- **Preserved Core Highlights:** Maintained the TLRA_zero / TLRA_calib boundary, dynamic dispersion scaling ($\sigma_L$), and the strict contingency plan for Evidence Chain C.

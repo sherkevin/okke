@@ -1,0 +1,496 @@
+{
+  "route": "external_global_prior",
+  "dataset": "pope",
+  "pope_split": "random",
+  "method": "external_global_prior",
+  "host_model": "qwen3-vl-8b",
+  "host_model_family": "qwen3vl",
+  "same_psi_checkpoint_reused": null,
+  "uses_host_hidden_states": false,
+  "uses_lm_head_geometry": false,
+  "sample_count": 1,
+  "n_errors": 0,
+  "accuracy": 1.0,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1": 1.0,
+  "hallucination_primary_metric": "f1",
+  "hallucination_primary_value": 1.0,
+  "agl": 81.0,
+  "agl_stddev": 0.0,
+  "itl_ms_per_token": 76.16,
+  "tpot_ms_per_token": 76.16,
+  "tokens_per_second": 13.13,
+  "peak_vram_gb": 17.636,
+  "timestamp": "2026-03-22T14:31:57.630209",
+  "errors": [],
+  "intervention_coverage": 1.0,
+  "prefix_ambiguity_rate": 0.4321,
+  "span_collapse_errors": 67.0,
+  "suffix_stability_rate": 0.4198,
+  "abstention_rate": 0.0,
+  "abort_trigger_rate": 0.0,
+  "abort_backoff_verified_steps": 0.0,
+  "candidate_construction_ms": 0.7801,
+  "sidecar_scoring_ms": 42.6782,
+  "bridge_redistribution_ms": 0.1632,
+  "jitter_ms": 21.4303,
+  "avg_candidate_window": 32.8148,
+  "latency_split": {
+    "candidate_construction_ms": 0.7801,
+    "sidecar_scoring_ms": 42.6782,
+    "bridge_redistribution_ms": 0.1632,
+    "jitter_ms": 21.4303
+  },
+  "sample_audits": [
+    {
+      "sample_index": 0,
+      "prediction": "yes",
+      "label": "yes",
+      "audit": [
+        {
+          "candidates": [
+            {
+              "token_id": 9454,
+              "token_text": "Yes",
+              "span_text": "Yes",
+              "normalized_text": "yes",
+              "is_groundable": true
+            },
+            {
+              "token_id": 9693,
+              "token_text": "yes",
+              "span_text": "yes",
+              "normalized_text": "yes",
+              "is_groundable": true
+            },
+            {
+              "token_id": 28715,
+              "token_text": "Based",
+              "span_text": "Based",
+              "normalized_text": "based",
+              "is_groundable": true
+            },
+            {
+              "token_id": 2753,
+              "token_text": "No",
+              "span_text": "No",
+              "normalized_text": "no",
+              "is_groundable": true
+            },
+            {
+              "token_id": 7414,
+              "token_text": "ĠYes",
+              "span_text": "Yes",
+              "normalized_text": "yes",
+              "is_groundable": true
+            },
+            {
+              "token_id": 73594,
+              "token_text": "```",
+              "span_text": "```",
+              "normalized_text": "```",
+              "is_groundable": false
+            },
+            {
+              "token_id": 2124,
+              "token_text": "Of",
+              "span_text": "Of",
+              "normalized_text": "of",
+              "is_groundable": false
+            },
+            {
+              "token_id": 22464,
+              "token_text": "Looking",
+              "span_text": "Looking",
+              "normalized_text": "looking",
+              "is_groundable": true
+            },
+            {
+              "token_id": 9707,
+              "token_text": "Hello",
+              "span_text": "Hello",
+              "normalized_text": "hello",
+              "is_groundable": true
+            },
+            {
+              "token_id": 9834,
+              "token_text": "Ġyes",
+              "span_text": "yes",
+              "normalized_text": "yes",
+              "is_groundable": true
+            }
+          ],
+          "bias": [
+            0.037582,
+            0.037582,
+            0.037679,
+            0.038659,
+            0.037582,
+            0.0,
+            0.0,
+            0.042332,
+            0.043341,
+            0.037582
+          ]
+        },
+        {
+          "candidates": [
+            {
+              "token_id": 11,
+              "token_text": ",",
+              "span_text": ",",
+              "normalized_text": ",",
+              "is_groundable": false
+            },
+            {
+              "token_id": 13,
+              "token_text": ".",
+              "span_text": ".",
+              "normalized_text": ".",
+              "is_groundable": false
+            },
+            {
+              "token_id": 382,
+              "token_text": ".ĊĊ",
+              "span_text": ".ĊĊ",
+              "normalized_text": ".ċċ",
+              "is_groundable": true
+            },
+            {
+              "token_id": 271,
+              "token_text": "ĊĊ",
+              "span_text": "ĊĊ",
+              "normalized_text": "ċċ",
+              "is_groundable": true
+            },
+            {
+              "token_id": 151645,
+              "token_text": "<|im_end|>",
+              "span_text": "<|im_end|>",
+              "normalized_text": "<|im_end|>",
+              "is_groundable": true
+            },
+            {
+              "token_id": 624,
+              "token_text": ".Ċ",
+              "span_text": ".Ċ",
+              "normalized_text": ".ċ",
+              "is_groundable": true
+            },
+            {
+              "token_id": 3554,
+              "token_text": ",ĊĊ",
+              "span_text": ",ĊĊ",
+              "normalized_text": ",ċċ",
+              "is_groundable": true
+            },
+            {
+              "token_id": 198,
+              "token_text": "Ċ",
+              "span_text": "Ċ",
+              "normalized_text": "ċ",
+              "is_groundable": false
+            },
+            {
+              "token_id": 4192,
+              "token_text": ".ĊĊĊ",
+              "span_text": ".ĊĊĊ",
+              "normalized_text": ".ċċċ",
+              "is_groundable": true
+            },
+            {
+              "token_id": 345,
+              "token_text": ",Ċ",
+              "span_text": ",Ċ",
+              "normalized_text": ",ċ",
+              "is_groundable": true
+            }
+          ],
+          "bias": [
+            0.0,
+            0.0,
+            0.038115,
+            0.039113,
+            0.040022,
+            0.040931,
+            0.039578,
+            0.0,
+            0.039626,
+            0.042526
+          ]
+        },
+        {
+          "candidates": [
+            {
+              "token_id": 1052,
+              "token_text": "Ġthere",
+              "span_text": "there",
+              "normalized_text": "there",
+              "is_groundable": true
+            },
+            {
+              "token_id": 3118,
+              "token_text": "Ġbased",
+              "span_text": "based",
+              "normalized_text": "based",
+              "is_groundable": true
+            },
+            {
+              "token_id": 279,
+              "token_text": "Ġthe",
+              "span_text": "the",
+              "normalized_text": "the",
+              "is_groundable": false
+            },
+            {
+              "token_id": 264,
+              "token_text": "Ġa",
+              "span_text": "a",
+              "normalized_text": "a",
+              "is_groundable": false
+            },
+            {
+              "token_id": 304,
+              "token_text": "Ġin",
+              "span_text": "in",
+              "normalized_text": "in",
+              "is_groundable": false
+            },
+            {
+              "token_id": 18532,
+              "token_text": "there",
+              "span_text": "there",
+              "normalized_text": "there",
+              "is_groundable": true
+            },
+            {
+              "token_id": 432,
+              "token_text": "Ġit",
+              "span_text": "it",
+              "normalized_text": "it",
+              "is_groundable": false
+            },
+            {
+              "token_id": 7892,
+              "token_text": "Ġalthough",
+              "span_text": "although",
+              "normalized_text": "although",
+              "is_groundable": true
+            },
+            {
+              "token_id": 2303,
+              "token_text": "ĠĠĊ",
+              "span_text": "Ċ",
+              "normalized_text": "ċ",
+              "is_groundable": false
+            },
+            {
+              "token_id": 419,
+              "token_text": "Ġthis",
+              "span_text": "this",
+              "normalized_text": "this",
+              "is_groundable": true
+            }
+          ],
+          "bias": [
+            0.044782,
+            0.037679,
+            0.0,
+            0.0,
+            0.0,
+            0.044782,
+            0.0,
+            0.046295,
+            0.0,
+            0.043653
+          ]
+        },
+        {
+          "candidates": [
+            {
+              "token_id": 374,
+              "token_text": "Ġis",
+              "span_text": "is",
+              "normalized_text": "is",
+              "is_groundable": false
+            },
+            {
+              "token_id": 7952,
+              "token_text": "Ġappears",
+              "span_text": "appears",
+              "normalized_text": "appears",
+              "is_groundable": true
+            },
+            {
+              "token_id": 525,
+              "token_text": "Ġare",
+              "span_text": "are",
+              "normalized_text": "are",
+              "is_groundable": false
+            },
+            {
+              "token_id": 3070,
+              "token_text": "Ġ**",
+              "span_text": "**",
+              "normalized_text": "**",
+              "is_groundable": false
+            },
+            {
+              "token_id": 748,
+              "token_text": "âĢĻs",
+              "span_text": "âĢĻs",
+              "normalized_text": "âģļs",
+              "is_groundable": true
+            },
+            {
+              "token_id": 4363,
+              "token_text": "Ġlikely",
+              "span_text": "likely",
+              "normalized_text": "likely",
+              "is_groundable": true
+            },
+            {
+              "token_id": 4994,
+              "token_text": "Ġappear",
+              "span_text": "appear",
+              "normalized_text": "appear",
+              "is_groundable": true
+            },
+            {
+              "token_id": 8491,
+              "token_text": "Ġdefinitely",
+              "span_text": "definitely",
+              "normalized_text": "definitely",
+              "is_groundable": true
+            },
+            {
+              "token_id": 353,
+              "token_text": "Ġ*",
+              "span_text": "*",
+              "normalized_text": "*",
+              "is_groundable": false
+            },
+            {
+              "token_id": 594,
+              "token_text": "'s",
+              "span_text": "'s",
+              "normalized_text": "'s",
+              "is_groundable": true
+            }
+          ],
+          "bias": [
+            0.0,
+            0.048251,
+            0.0,
+            0.0,
+            0.04509,
+            0.037853,
+            0.045441,
+            0.036291,
+            0.0,
+            0.04505
+          ]
+        },
+        {
+          "candidates": [
+            {
+              "token_id": 264,
+              "token_text": "Ġa",
+              "span_text": "a",
+              "normalized_text": "a",
+              "is_groundable": false
+            },
+            {
+              "token_id": 4363,
+              "token_text": "Ġlikely",
+              "span_text": "likely",
+              "normalized_text": "likely",
+              "is_groundable": true
+            },
+            {
+              "token_id": 8491,
+              "token_text": "Ġdefinitely",
+              "span_text": "definitely",
+              "normalized_text": "definitely",
+              "is_groundable": true
+            },
+            {
+              "token_id": 11794,
+              "token_text": "Ġsnow",
+              "span_text": "snow",
+              "normalized_text": "snow",
+              "is_groundable": true
+            },
+            {
+              "token_id": 5904,
+              "token_text": "Ġevidence",
+              "span_text": "evidence",
+              "normalized_text": "evidence",
+              "is_groundable": true
+            },
+            {
+              "token_id": 9355,
+              "token_text": "Ġclearly",
+              "span_text": "clearly",
+              "normalized_text": "clearly",
+              "is_groundable": true
+            },
+            {
+              "token_id": 13,
+              "token_text": ".",
+              "span_text": ".",
+              "normalized_text": ".",
+              "is_groundable": false
+            },
+            {
+              "token_id": 825,
+              "token_text": "Ġone",
+              "span_text": "one",
+              "normalized_text": "one",
+              "is_groundable": true
+            },
+            {
+              "token_id": 458,
+              "token_text": "Ġan",
+              "span_text": "an",
+              "normalized_text": "an",
+              "is_groundable": false
+            },
+            {
+              "token_id": 518,
+              "token_text": "Ġat",
+              "span_text": "at",
+              "normalized_text": "at",
+              "is_groundable": false
+            }
+          ],
+          "bias": [
+            0.0,
+            0.037853,
+            0.036291,
+            0.058378,
+            0.048402,
+            0.035472,
+            0.0,
+            0.045241,
+            0.0,
+            0.0
+          ]
+        }
+      ]
+    }
+  ],
+  "external_encoder": "/root/autodl-tmp/BRA_Project/models/clip-vit-large-patch14",
+  "decode_time_intervention": true,
+  "final_token_generated_by_host_mllm": true,
+  "universal_claim_manifest": {
+    "method_route": "TLRA_univ",
+    "learned_module": "Psi_univ",
+    "uses_model_native_hidden_states": false,
+    "uses_lm_head_geometry": false,
+    "learned_per_model_adapter": false,
+    "parameter_free_tokenizer_bridge": true,
+    "abstention_controls_behavior": true
+  }
+}

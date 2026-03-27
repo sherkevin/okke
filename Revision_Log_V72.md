@@ -1,0 +1,7 @@
+# Revision_Log_V72
+- **Refined Calibrator Clarity:** Explicitly stated the Cross-Entropy loss objective for $\Phi_{calib}$ and added Domain/Spatial non-overlap to the Leakage Audit to counter the "stealth object detector" critique.
+- **Formalized BPE-CSR:** Replaced the brittle WordNet synonym matching for suffixes with a robust normalized character-level Levenshtein distance ($\ge 0.8$) to accurately track subword completion success.
+- **Relaxed Candidate Bound:** Updated the candidate bound from a strict $M=10$ to an exploratory Pareto frontier mapping $M \in \{10, 50, 100\}$ to address the risk of strong language priors hiding valid tokens.
+- **Downgraded Video Pilot:** Strictly relegated Video-MME to an exploratory Appendix, ensuring the main paper maintains sharp focus on token-local spatial resonance.
+- **Restructured Experimental Plan:** Implemented the exact Figure and Table mapping requested by the reviewer (Table 1 for Core Claim, Table 2 for Safety Audit, Figure 1 for Parity Ablation, Figure 2 for BPE Survival).
+- **Preserved Highlights:** Kept the OCR Concession (DocVQA as negative control), the Calibrator Parity Constraint (`TLRA_MeanPool`), and fair framing of VCD/DoLa.

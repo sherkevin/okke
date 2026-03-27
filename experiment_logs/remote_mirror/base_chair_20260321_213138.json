@@ -1,0 +1,19 @@
+{
+  "dataset": "chair",
+  "method": "base",
+  "model": "qwen3-vl-8b",
+  "n_samples": 50,
+  "n_errors": 0,
+  "chair_s": 0.1333,
+  "chair_i": 0.2879,
+  "agl": 128.0,
+  "itl_ms_per_token": 21.95,
+  "peak_vram_gb": 17.681,
+  "timestamp": "2026-03-21T21:31:38.328239",
+  "sample_captions": [
+    "This is a candid, slightly cluttered photograph taken from a high angle, looking down into a white wire shoe rack. The most prominent subject is a sma",
+    "This is a detailed, eye-level photograph of a vintage motorcycle, likely from the early 20th century, parked on an asphalt surface next to some green ",
+    "This is a serene and slightly melancholic street photograph capturing a quiet moment in an urban setting.\n\n**Foreground:**\nThe main subject is a small"
+  ],
+  "errors": []
+}

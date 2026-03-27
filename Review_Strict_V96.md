@@ -1,0 +1,39 @@
+# Review_Strict_V96
+## Overall Score
+Score: 3/5
+
+## Verdict
+The authors present a refreshingly honest and hyper-rigorous experimental protocol for a fundamentally limited method. You have proposed a context-blind, late-fusion visual logit bias (TLRA) and built an evaluation contract that actively seeks to expose its flaws (VASM reliance, distractor prompt failures, latency overhead). However, acknowledging a fatal flaw does not immunize the method from rejection. Your preemptive self-criticism reads like a pre-rebuttal and attempts to box the reviewer into accepting a brittle "Bag-of-Words" noun booster simply because it is well-audited. To secure acceptance, you must prove that these severe boundaries are inherent to *all* static late-fusion logit routing, rather than just a byproduct of your naive training objective. The experimental protocol is exceptional, but the algorithmic foundation is highly vulnerable. 
+
+## Summary
+The paper proposes Token-Local Resonance Anchoring (TLRA), a static late-fusion mechanism that directly adjusts LM decode-time logits using spatially localized intermediate visual states. To map these states to the LM head, a lightweight projector ($\Phi_{calib}$) is trained. Because this operation is context-agnostic, it induces "manifold bleeding" onto syntax tokens, requiring a hardcoded English-derived statistical dictionary (VASM) to prevent grammar collapse. The paper establishes a highly defensive evaluation contract, mandating objective-matched baselines (`Base + LoRA`), a zero-initialized continuous integration baseline, and explicitly tests where the method theoretically breaks (negative constraints, multilingual prompts).
+
+## WhatShouldBeKept
+1. **The Fairness Boundary (Objective Matching):** Mandating a parameter-and-data-matched `Base + LoRA` control is spectacular. This should be a standard in the field. 
+2. **The `Continuous_Gated_XAttn` Baseline:** Auditing discrete logit routing against a mathematically rigorous continuous injection baseline completely eliminates the standard "strawman" comparisons found in similar literature.
+3. **The Hijacking CDF:** Plotting the cumulative distribution of ground-truth token ranks to establish the theoretical Top-$M$ ceiling is a brilliant and necessary analytical tool. Keep this exactly as planned.
+4. **The Distractor Prompt Test:** Openly auditing the structural context-blindness of the method via negative constraints ("Do not mention the Cat") is excellent scientific practice.
+
+## MajorWeaknesses
+1. **Self-Absolution via Confession is Not a Scientific Fix:** You explicitly label VASM a "fatal heuristic" and state it mathematically guarantees multilingual breakdown. Admitting your method is brittle does not make the brittleness acceptable for a top-tier conference. The necessity of VASM implies that your training objective for $\Phi_{calib}$ (simple localized Next-Token Prediction) is far too naive. You made no attempt to regularize $\Phi_{calib}$ during training to natively suppress functional/syntax tokens (e.g., via contrastive loss or a negative penalty on stop-words). You must prove whether VASM is an *architectural inevitability* or just a symptom of lazy calibration training.
+2. **The "Bag-of-Words" Identity is Too Narrow:** If TLRA systematically fails the Distractor Prompt Test and MMHal (as you hypothesize it will), it is not a general MLLM enhancement. It is strictly an object-detector masquerading in the logit space. If the method explicitly destroys instruction-following (negative constraints), the utility of the method in modern instruction-tuned MLLMs is highly questionable.
+3. **Unproven Scaling to High-Res Encoders:** You acknowledge the $O(M \cdot N_v)$ dot product compute. Modern MLLMs (e.g., LLaVA-NeXT, InternVL) use dynamic high-resolution patching where $N_v$ can exceed 3000 to 4000 tokens per image. If native PyTorch overhead is already a bottleneck at standard resolutions, testing this on high-res regimes might reveal that the latency makes the method entirely dead on arrival.
+
+## SectionBySectionComments
+*   **Abstract & Intro:** The tone is aggressively defensive ("strictly auditing," "unforgiving evaluation contract," "fatal heuristic"). Drop the manifesto rhetoric. Present the method and the rigorous boundaries objectively. Let the experimental design speak for itself without telling the reviewer how "unforgiving" it is.
+*   **Section 3.1:** The formulation of `Continuous_Gated_XAttn` is conceptually sound, but ensure the gating scalar $\gamma$ actually escapes zero during your calibration. If the gradients to $\gamma$ are vanishingly small due to the frozen LLM blocks, the baseline might fail artificially. You must verify and report the magnitude of $\gamma$ post-training.
+*   **Section 3.2:** Bounding context-agnostic scoring to Top-$M=50$ is a massive assumption. You must mathematically justify why 50 is the magic number across different vocabulary sizes (e.g., Llama's 32k vs. Qwen's 151k). A fixed $M$ behaves very differently depending on vocabulary density.
+*   **Section 3.4:** The VASM section is fatalistic. As a reviewer, if I see an English C4-derived $\{0,1\}$ mask applied to a multimodal model, I immediately question its real-world applicability. You are artificially handicapping your own method.
+
+## RequiredRevisions
+1. **Contrastive Objective Ablation for $\Phi_{calib}$:** You must attempt to train $\Phi_{calib}$ with an objective that penalizes high cosine similarity with functional vocabulary tokens (e.g., unlikelihood training on stop-words). If this removes the need for VASM, you have a much stronger paper. If it fails, you have mathematically proven that VASM is an unavoidable consequence of late-fusion static mapping, elevating the paper's theoretical contribution.
+2. **Vocabulary Density Sensitivity Test:** If evaluating on Qwen-VL (151k vocab) or LLaVA (32k vocab), analyze how the Top-$50$ constraint impacts the "Hijacking Problem."
+3. **Gating Scalar Verification:** In the `Continuous_Gated_XAttn` baseline, explicitly report the final learned weights of the projection/gating mechanism to prove it did not just collapse to a no-op during training.
+
+## SuggestedFiguresTablesExperiments
+*   **Experiment - The VASM-Free Training Attempt:** Add a row to Table 1: `TLRA (Contrastive Calib, No VASM)`. Show whether algorithmic tuning can replace the hardcoded dictionary.
+*   **Figure - Latency vs. Vision Tokens ($N_v$):** Create a line chart plotting Decode Latency (ms/tok) against $N_v \in \{256, 576, 1024, 4096\}$. This will immediately reveal the scalability limit of your un-fused PyTorch implementation.
+*   **Table 1 Addition:** Add a metric for "Instruction Following Degradation" alongside the Distractor Prompt Test to quantify how much collateral damage the noun-boosting inflicts on general conversational abilities (e.g., MME-Cognition or specific instruction-following subsets).
+
+## AcceptanceOutlook
+The planned experimental protocol is one of the most intellectually honest designs I have seen recently, but the method itself relies on a highly brittle hack (VASM) and destroys negative constraints. If you complete the TBF tables and the results merely confirm that this is a fast, hacky noun-booster with severe collateral damage, it will be a Weak Reject. To achieve an Accept, you must either (A) fix the $\Phi_{calib}$ training objective so VASM is no longer needed, or (B) prove unequivocally through the continuous baseline and LoRA parity that *all* local grounding mechanisms face this exact tradeoff, making your paper a foundational impossibility result for context-free late fusion. Execution of these audits will determine the final verdict.

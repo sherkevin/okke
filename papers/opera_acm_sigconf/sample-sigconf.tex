@@ -1,0 +1,135 @@
+%%
+%% This is file `sample-sigconf.tex',
+%% generated with the docstrip utility.
+%%
+%% EKKO paper: front matter and preamble filled per ACM template;
+%% body is in opera_body.tex; bibliography is references.bib.
+%%
+%% The first command in your LaTeX source must be the \documentclass
+%% command.
+%%
+\PassOptionsToPackage{table}{xcolor}
+\documentclass[sigconf]{acmart}
+%%
+%% \BibTeX command to typeset BibTeX logo in the docs
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    Bib\TeX}}}
+
+%% Extra packages required by opera_body.tex (acmart already loads amsmath and booktabs; do not load amssymb---conflicts with newtxmath/\Bbbk).
+\usepackage{multirow}
+\usepackage{bbm}
+\usepackage{bm}
+\usepackage{array}
+\usepackage{diagbox}
+\usepackage{bbding}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\usepackage{xspace}
+\usepackage{pifont}
+
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+
+\newcommand{\ie}{\textit{i.e.}\xspace}
+\newcommand{\eg}{\textit{e.g.}\xspace}
+\newcommand{\etc}{\textit{etc.}\xspace}
+\newcommand{\Fref}[1]{Figure~\ref{#1}}
+\newcommand{\Eref}[1]{Equation~(\ref{#1})}
+\newcommand{\eref}[1]{\Eref{#1}}
+\newcommand{\Tref}[1]{Table~\ref{#1}}
+\newcommand{\Sref}[1]{Section~\ref{#1}}
+\newcommand{\sref}[1]{\Sref{#1}}
+
+\graphicspath{{figures/}}
+
+%% Rights and conference metadata (replace with values from your rights form when final).
+\setcopyright{none}
+\copyrightyear{2026}
+\acmYear{2026}
+\acmDOI{10.1145/XXXXXXX.XXXXXXX}
+\acmConference[MM '26]{Proceedings of ACM Multimedia 2026}{TBD}{TBD}
+\acmISBN{978-1-4503-XXXX-X/2026/XX}
+
+%%
+%% end of the preamble, start of the body of the document source.
+\begin{document}
+
+\title[EKKO]{EKKO: Mitigating Hallucinations in Multimodal Large Language Models via Evaluative Knowledge-Kernel Oracles}
+
+\author{Kaiwen Deng}
+\email{dkw24@mails.tsinghua.edu.cn}
+\affiliation{%
+  \institution{Tsinghua Shenzhen International Graduate School, Tsinghua University}
+  \city{Shenzhen}
+  \country{China}}
+
+\author{Wenming Yang}
+\authornote{Corresponding author.}
+\email{yang.wenming@sz.tsinghua.edu.cn}
+\affiliation{%
+  \institution{Shenzhen International Graduate School \& Department of Electronic Engineering, Tsinghua University}
+  \city{Shenzhen}
+  \country{China}}
+
+\renewcommand{\shortauthors}{Deng and Yang}
+
+\begin{abstract}
+Multimodal Large Language Models (MLLMs) often hallucinate because autoregressive decoding can favor locally plausible tokens that are insufficiently grounded in visual evidence. Existing decode-time mitigation methods mainly address historical failures through retrospective penalties, but they do not explicitly evaluate whether a candidate token is supported by query-relevant visual regions and whether its short-horizon continuation will remain visually grounded. In this paper, we propose EKKO, a novel inference-time decoding framework with Evaluative Knowledge-Kernel Oracles, for mitigating hallucinations in vision-language generation. EKKO evaluates candidate tokens through three coordinated signals: a past signal that preserves rollback-based protection against historical textual inertia, a current signal that measures query-conditioned visual support via anchor-aware region weighting, and a future signal that probes short-horizon continuation tendency through prospective rollout. This design enables EKKO to suppress risky candidates that appear locally plausible at the current step but are likely to trigger text-dominated continuation. To keep the method practical, EKKO performs anchor generation before autoregressive decoding and uses shared-KV batched rollout during candidate evaluation. Experiments on multiple MLLM benchmarks, including POPE, CHAIR, and MMBench, demonstrate that EKKO improves visual grounding and reduces hallucination across diverse multimodal generation settings.
+
+% Konwledge-Kernel Anchor：对应看现在（present）的区域视觉授权
+% Evaluative Oracle Rollout：想将来（Future）的轨迹沙盘推演
+
+% Hallucination, posed as a pervasive challenge of multi-modal large language models (MLLMs), has significantly impeded their real-world usage that demands precise judgment.
+% Existing methods mitigate this issue with either training with specific designed data or inferencing with external knowledge from other sources, incurring inevitable additional costs.
+% In this paper, we present \textbf{OPERA}, a novel MLLM decoding method grounded in an \textbf{O}ver-trust \textbf{Pe}nalty and a \textbf{R}etrospection-\textbf{A}llocation strategy, serving as a nearly \textbf{free lunch} to alleviate the hallucination issue without additional data, knowledge, or training.
+% Our approach begins with an interesting observation that, most hallucinations are closely tied to the knowledge aggregation patterns manifested in the self-attention matrix, \ie, MLLMs tend to generate new tokens by focusing on a few summary tokens, but not all the previous tokens.
+% Such partial over-trust inclination results in the neglecting of image tokens and describes the image content with hallucination.
+% Based on the observation, OPERA introduces a penalty term on the model logits during the beam-search decoding to mitigate the over-trust issue, along with a rollback strategy that retrospects the presence of summary tokens in the previously generated tokens, and re-allocate the token selection if necessary.
+% With extensive experiments, OPERA shows significant hallucination-mitigating performance on different MLLMs and metrics, proving its effectiveness and generality.
+% Our code is available at: \url{https://github.com/shikiw/OPERA}.
+\end{abstract}
+
+\begin{CCSXML}
+<ccs2012>
+ <concept>
+  <concept_id>10010147.10010257</concept_id>
+  <concept_desc>Computing methodologies~Machine learning</concept_desc>
+  <concept_significance>500</concept_significance>
+ </concept>
+ <concept>
+  <concept_id>10010405.10010444</concept_id>
+  <concept_desc>Applied computing~Computer vision</concept_desc>
+  <concept_significance>300</concept_significance>
+ </concept>
+ <concept>
+  <concept_id>10010147.10010178.10010179</concept_id>
+  <concept_desc>Computing methodologies~Natural language processing</concept_desc>
+  <concept_significance>300</concept_significance>
+ </concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Computing methodologies~Machine learning}
+\ccsdesc[300]{Applied computing~Computer vision}
+\ccsdesc[300]{Computing methodologies~Natural language processing}
+
+\keywords{multimodal large language models, hallucination mitigation, decoding, beam search, self-attention, OPERA}
+
+%%
+%% Figures omitted in opera_body.tex (stub labels only) to avoid float/bibliography interleaving.
+%%
+\maketitle
+
+\input{opera_body}
+
+\begin{acks}
+This work is supported in part by the Natural Science Foundation of China under Grant 62121002, U20B2047, U2336206, 62372423, and 62102386.
+This work is partially supported by the National Key R\&D Program of China (2022ZD0160201), and Shanghai Artificial Intelligence Laboratory.
+\end{acks}
+
+\clearpage
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+
+\end{document}

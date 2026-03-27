@@ -1,0 +1,20 @@
+\section{Discussion and Scope of Claims}
+\label{sec:discussion}
+
+The principal scientific contribution of UniGround is not that a universal controller must dominate every model-coupled method on every host model. Rather, it is that decode-time grounding control can be externalized into a shared semantic space and still remain operationally useful across heterogeneous MLLM families. The discussion must therefore interpret the empirical results through two coupled lenses: whether the controller is genuinely portable, and what level of grounded benefit it delivers under that portability constraint.
+
+\subsection{When the universal claim is warranted}
+
+A strong universal claim is warranted only when four conditions hold simultaneously. First, the same \texttt{Psi\_univ} checkpoint must be reused across multiple host models. Second, no learned per-model adapter may be introduced. Third, the universal route must improve grounding quality, or abstain often enough in uncertain cases, to justify its computational footprint. Fourth, when the paper claims candidate-aware local control, the full method must materially outperform simpler external global-prior alternatives. Without this combination of portability, utility, and comparative necessity, the contribution should be stated more narrowly.
+
+\subsection{Portability and ceiling should not be collapsed}
+
+If \texttt{TLRA\_internal\_calib} achieves stronger results on a particular host model, this should not be treated as a failure of the universal formulation. It instead reveals the expected portability-ceiling tradeoff: model-coupled calibration may enjoy a higher host-specific ceiling because it is permitted to exploit internal geometry, whereas UniGround pursues a broader and more transferable control interface. The paper should therefore report the tradeoff directly rather than forcing both routes into a single notion of superiority.
+
+In this regime, the contribution contracts to a more precise statement: UniGround provides a principled universality framework, an explicit portability-ceiling analysis, and a reusable decode-time controller that remains useful even when a model-coupled internal method retains a higher per-host upper bound.
+
+\subsection{When the claim must contract further}
+
+Two outcomes require stronger claim contraction. If the full universal controller is matched by \texttt{External\_Global\_Prior} or by \texttt{TLRA\_univ\_global\_only}, then the candidate-aware resonance story is not yet justified as the source of the gain; the paper should then emphasize universal control through frozen external evidence, but not a strong token-local claim. If the method requires learned per-model adaptation at attachment time, the strict universality claim fails altogether and must be withdrawn.
+
+These contraction rules are not rhetorical safeguards appended after the fact. They are part of the scientific framing of the paper itself: the method is designed to make the universal claim falsifiable, and the paper should preserve that falsifiability in how it interprets the final results.

@@ -1,0 +1,19 @@
+{
+  "dataset": "chair",
+  "method": "bra_v1",
+  "model": "qwen3-vl-2b",
+  "n_samples": 20,
+  "n_errors": 0,
+  "chair_s": 0.1171,
+  "chair_i": 0.2407,
+  "agl": 128.0,
+  "itl_ms_per_token": 20.36,
+  "peak_vram_gb": 4.348,
+  "timestamp": "2026-03-21T22:07:26.485557",
+  "sample_captions": [
+    "This is a detailed, close-up photograph of a cluttered shoe rack, filled with various footwear and a small, fluffy dog.\n\nThe central focus is a small,",
+    "This is a detailed, eye-level photograph of two vintage motorcycles parked on a paved surface, likely a street or a parking area. The image is a close",
+    "This is a low-angle, wide shot of a quiet, sunlit cobblestone street in an urban setting, likely a European city. The scene is composed with a shallow"
+  ],
+  "errors": []
+}

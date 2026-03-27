@@ -1,0 +1,6 @@
+# Revision_Log_V17
+- **Fixed Embedding Asymmetry (Fatal Risk):** Replaced the flawed $W_{vocab} \cdot \Phi(h_{input})$ logic with a mathematically sound final-layer projection. `BRA_zero` now applies the model's native `lm_head` directly to the contextualized final-layer visual hidden states ($h_L^{(v_j)}$).
+- **Fixed VASM Static Prior:** Added the "BPE Continuation Inheritance" mechanism explicitly to the methodology, explaining how `_` or `##` subwords inherit the $\gamma$ penalty of their root token to survive context-dependent fragmentation.
+- **Addressed Spatio-Temporal Dilution:** Modified the video section from an assumed success to a strict "Spatio-Temporal Audit" using the newly defined `Frame Hit Rate` metric. Acknowledged that if it fails, video will be downgraded.
+- **Enhanced Experimental Protocol:** Explicitly added the reviewer-demanded constraints: `AGL` in Table 1, `BRA_no_VASM` in Table 2, `BRA_MeanPool` in Table 3, and the Tokens/Sec vs $N_v$ scaling curve.
+- **Retained Strengths:** Kept the positive framing, the `BRA_zero` vs `BRA_calib` boundary, and the three-chain structure exactly as requested.

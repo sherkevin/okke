@@ -1,0 +1,353 @@
+\section{引言}
+\label{sec:intro}
+
+多模态大语言模型（MLLM）已在视觉问答、图像描述与开放式多模态推理上取得快速进展。然而，即便较强模型仍易受幻觉影响：可能生成流畅但接地薄弱陈述、虚构图像中不存在的物体，或在强语言先验下自信地选择缺乏视觉支持的实体。当正确证据稀疏、局部，或被语义无关视觉上下文淹没时，这类失败尤其有害。
+
+近期幻觉缓解工作表明，推理期干预是替代重训宿主模型的有希望路径。对比解码方法如 VCD~\cite{leng2024vcd}、基于注意力的控制如 OPERA~\cite{huang2024opera}、以及层级对比方法 DoLa~\cite{chuang2024dola} 均说明“解码”本身是可干预表面。但这些工作尚未回答一个更苛刻的设计问题：
+
+\begin{quote}
+\textbf{能否构建一种学习的接地控制机制，在解码时附着，并可在异构 MLLM 家族间复用，而无需针对具体模型再训练？}
+\end{quote}
+
+该问题不同于“把单一宿主模型做得更好”。若学习模块的语义继承自宿主架构，则即便体量很轻也可能不可移植：任何消费模型专属多模态隐状态、并直接在模型专属词表几何中输出修正的组件，都会与宿主耦合——即便骨干冻结亦然。在此标准下，早先 \texttt{Phi\_calib} 路线在科学上有价值，但不满足严格的通用性要求。
+
+因此，本文的核心论断是一个\textbf{通用性边界}：当学习模块驻留在模型原生的隐空间、logit 或注意力机制内部时，严格意义上的可热插拔不可能成立。为使“通用性”成为可证伪的科学命题而非松散工程直觉，学习组件必须在由冻结公开视觉嵌入、冻结公开文本嵌入、解码候选片段与确定性附着逻辑构成的标准化外部空间中运行。由此得到 \textbf{UniGround}：其学习核心 $\Psi_{\mathrm{univ}}$ 外置于宿主 MLLM，运行时接口无额外可学习参数。
+
+UniGround 的动机比“通用解码时矫正”更具体：当宿主即将发出与视觉物体相关的 token 时，关键问题不是未完成前缀与图像的全局相似度，而是\textbf{候选本身}能否从图像中唤醒正确的局部证据，以及该证据是否足以支持干预。我们称该行为为\textbf{候选驱动的视觉共振}：将幻觉缓解重构为选择性的外部证据激活——控制器仅当存在可视觉接地的风险候选时才介入，且只使用该候选所唤醒的证据，而非无关区域或纯文本延续偏置。
+
+由此得到两点直接推论。第一，除缓解效果外，还必须检验\textbf{同一检查点}能否在无学习式适配的情况下跨宿主迁移。第二，自称 token 局部化的通用方法必须优于简单的静态全局视觉先验；否则额外机制缺乏依据。
+
+本文贡献如下：
+\begin{enumerate}
+  \item 形式化\textbf{通用性边界}，说明为何隐状态到词表空间的对齐器无法支撑严格的通用插件命题。
+  \item 提出 \textbf{UniGround}：在共享语义空间中执行候选驱动视觉共振与保守物体级接地控制的外部通用外挂。
+  \item 引入\textbf{无参数分词桥}：解码时将同一学习外挂附着到异构 MLLM，而不触碰宿主内部注意力。
+  \item 定义\textbf{评测协议}：区分模块级验证与系统级热插拔结果，并审计全局先验基线、结构保持、可移植性—代价权衡与显式失效边界。
+\end{enumerate}
+
+后文结构如下：第~\ref{sec:related} 节将 UniGround 置于当代文献脉络；第~\ref{sec:positioning} 节相对早先 TLRA 工作定位并形式化通用性边界；第~\ref{sec:method} 节给出通用控制器；第~\ref{sec:eval} 节规定评测协议；第~\ref{sec:tables}、\ref{sec:discussion} 节整理图表与论断范围。
+
+\section{相关工作}
+\label{sec:related}
+
+\subsection{多模态幻觉评测与基准设计}
+
+多模态幻觉研究建立在两条互补传统之上。第一条以 CHAIR~\cite{rohrbach2018chair} 为代表，强调生成物体是否真正由图像授权，而非仅获语言重叠奖励。第二条以 POPE~\cite{li2023pope} 为代表，将测量重构为受控的是/否物体存在探测，并揭示开放式生成对物体共现偏置的敏感性。AMBER~\cite{wang2023amber} 等进一步将范围扩展到存在、属性与关系等多维幻觉。
+
+这些基准不可互换。CHAIR 更适于描述生成中的物体级忠实度；POPE 更适于共享提示模板下的受控探测；AMBER 覆盖更广。UniGround 的设计正视这一“基准生态”：核心论断不绑定单一指标，但最强证据应来自可在显式接地敏感协议下测量幻觉的设置，而非仅依赖通用答题质量分数。
+
+\subsection{解码时缓解与控制}
+
+与 UniGround 最相近的是生成过程中干预、而非重训宿主的方法。VCD~\cite{leng2024vcd} 对比干净与扰动视觉输入诱导的分布以抑制语言先验物体；OPERA~\cite{huang2024opera} 通过注意力与回溯信号监控生成动力学；DoLa~\cite{chuang2024dola} 在 LLM 侧展示层级 logit 对比可在无参数更新下提升事实性，迁移到多模态时常作为强基线而非本文意义上的接地控制器。
+
+这些方法的共性是“解码可干预”，但优化目标不同：现有方法多通过对比输入、注意力惩罚或宿主内部分布比较改变生成；UniGround 追问\textbf{单一学习控制器}能否在\textbf{不进入模型原生隐几何}的前提下跨宿主复用。
+
+\subsection{后验修正、模型更新式缓解与 UniGround 的位置}
+
+另一大类在生成后修改回复，或直接更新模型参数。LURE~\cite{zhou2024lure}、Woodpecker~\cite{yin2023woodpecker}、Volcano~\cite{lee2024volcano}、HA-DPO~\cite{zhao2023hadpo} 等分别代表统计驱动修订、多阶段验证、自反馈迭代与偏好优化训练。文本侧自检脉络可见 SelfCheckGPT~\cite{manakul2023selfcheckgpt}。
+
+它们解决的是不同问题：后验方法不受逐步解码预算约束；训练方法可永久改变行为。UniGround 聚焦更窄但更尖锐的\textbf{可移植解码时接地控制}：同一学习外挂跨宿主复用；禁止学习的逐模型附着；宿主相关部分仅限于确定性接口逻辑。
+
+\section{定位与设计原则}
+\label{sec:positioning}
+
+\subsection{与早先 TLRA 的连续性}
+
+TLRA 路线确立的三条原则仍为核心：第一，缓解应发生在\textbf{生成过程中}；第二，控制单元应\textbf{以候选为局部单位}；第三，解码时干预须保持语言结构，而非无差别压制弱视觉 token。
+
+UniGround 在保留原则的同时改变学习组件的位置与角色：表述为解码时接地控制接口，而非宿主 MLLM 内部证据路径理论。
+
+\subsection{为何内部词表对齐不是通用的}
+
+若输入或输出宿主相关，则严格通用性不成立。更精确地，当
+\begin{enumerate}
+  \item 模块消费语义依赖宿主架构的隐状态；或
+  \item 模块输出直接在宿主词表空间中解释，
+\end{enumerate}
+通用性即被破坏。
+
+设宿主 $m$ 的隐空间为 $\mathcal{H}_m$，词表为 $\mathcal{V}_m$，反嵌入为 $U_m$。若学习控制器 $f_\theta$ 消费 $h_t \in \mathcal{H}_m$ 并在 $\mathbb{R}^{|\mathcal{V}_m|}$ 中输出修正，且不存在同时对齐 $\mathcal{H}_m,\mathcal{H}_{m'},\mathcal{V}_m,\mathcal{V}_{m'}$ 的模型无关同构，则同一 $\theta$ 无法在两宿主上保持语义等价。
+
+\texttt{Phi\_calib} 正是该宿主耦合模式：读取模型原生多模态隐状态并投影到当前模型的词表几何。
+
+\subsection{通过标准化观测—动作空间实现通用性}
+
+学习插件必须在模型无关的观测与动作空间中定义：
+\begin{itemize}
+  \item \textbf{观测空间：} 像素、冻结图像嵌入、冻结文本嵌入、解码字符串、可选冻结区域提议。
+  \item \textbf{动作空间：} 对视觉支持、矛盾与弃权的片段级估计。
+\end{itemize}
+
+在此设计下，学习插件不消费模型原生隐状态，不读取 \texttt{lm\_head.weight}，不依赖学习的模型专属桥接。
+
+\section{方法}
+\label{sec:method}
+
+\subsection{问题设定与活跃解码前沿}
+
+设宿主 $m$ 的词表为 $\mathcal{V}_m$。给定图像 $I$ 与前缀 $y_{<t}$，宿主输出下一 token logit
+\[
+L_t^{(m)} \in \mathbb{R}^{|\mathcal{V}_m|}.
+\]
+UniGround 不试图用外部模型替换全词表分布，而是作用于\textbf{活跃语义前沿}
+\[
+\mathcal{F}_t^{(m)} = \mathrm{Top}\text{-}M\!\left(L_t^{(m)}\right),
+\]
+其中 $M$ 固定以便可比。对 $\mathcal{F}_t^{(m)}$ 的作用使其成为真正的解码时控制器。
+
+全文对比 \textbf{\texttt{TLRA\_internal}}（含 \texttt{TLRA\_zero}、\texttt{TLRA\_calib}）与由 UniGround 实例化的 \textbf{\texttt{TLRA\_univ}}。
+
+\subsection{通用观测空间}
+
+观测空间模型无关且\textbf{以候选为条件}。对图像 $I$、上下文草图 $c_t$、候选片段 $s$ 与区域库 $\mathcal{R}(I)=\{r_i\}_{i=1}^N$，
+\[
+\mathcal{O}_{\mathrm{univ}}(I, c_t, s)
+= \{E_v(I), E_t(c_t), E_t(s), E_v(r_1), \dots, E_v(r_N)\},
+\]
+其中 $E_v$、$E_t$ 为冻结公开编码器，$c_t=C(y_{<t})$ 为确定性短上下文草图。记
+\[
+z_I = E_v(I), \qquad z_c = E_t(c_t), \qquad z_s = E_t(s), \qquad Z_R = \{z_{R_i}\}_{i=1}^N.
+\]
+
+\subsection{无参数分词桥接的片段提议}
+
+令 $B_m$ 为宿主 $m$ 的分词桥。对每个候选 token $c \in \mathcal{F}_t^{(m)}$，
+\[
+s = B_m(c, y_{<t}),
+\]
+经确定性步骤得到归一化片段假设；片段集合为
+\[
+\mathcal{S}_t^{(m)} = \{ B_m(c, y_{<t}) \mid c \in \mathcal{F}_t^{(m)} \}.
+\]
+
+\subsection{候选驱动的视觉共振}
+
+评分前构造\textbf{以候选为条件的证据摘要}。给定 $s$，用 $z_s$ 对区域加权：
+\[
+a_{t,i}(s)
+:=
+\frac{\exp(\cos(z_s, z_{R_i}) / \tau_r)}
+{\sum_{j=1}^{N} \exp(\cos(z_s, z_{R_j}) / \tau_r)},
+\qquad
+\bar z_R(s) = \sum_{i=1}^{N} a_{t,i}(s)\, z_{R_i}.
+\]
+进而 $\Psi_{\mathrm{univ}}$ 输出
+\[
+\mathbf{q}_t(s) = \Psi_{\mathrm{univ}}(z_I, \bar z_R(s), z_c, z_s)
+:= \big[\sigma_{\mathrm{sup}}(s), \sigma_{\mathrm{con}}(s), \sigma_{\mathrm{abs}}(s)\big].
+\]
+定义\textbf{接地共振能量}
+\[
+\mathcal{R}_t(s)
+:= g_t(s)\,\big(1-\sigma_{\mathrm{abs}}(s)\big)\,
+\big(\sigma_{\mathrm{sup}}(s) - \lambda_{\mathrm{con}}\sigma_{\mathrm{con}}(s)\big),
+\]
+$g_t(s)\in[0,1]$ 为确定性结构门控。
+
+\subsection{风险感知激活}
+
+定义\textbf{风险感知激活分数}
+\[
+\rho_t(s)
+:=
+\pi_t^{\mathrm{host}}(s)\,\bigl(1-q_t^{\mathrm{coarse}}(s)\bigr).
+\]
+当
+\[
+\max_{s \in \mathcal{S}_{t,\mathrm{obj}}^{(m)}} \rho_t(s) > \tau_{\mathrm{risk}}
+\]
+时触发控制，其中 $\mathcal{S}_{t,\mathrm{obj}}^{(m)}$ 为桥与结构门产生的物体候选子集。
+
+\subsection{保守重分配与弃权触发的回退}
+
+令 $\Gamma_t \in \{0,1\}$ 表示第 $t$ 步风险门是否触发，即 $\max_{s \in \mathcal{S}_{t,\mathrm{obj}}^{(m)}} \rho_t(s) > \tau_{\mathrm{risk}}$。当 $\Gamma_t=1$ 时施加有界偏置：
+\[
+b_t(s) = \alpha \, \Gamma_t \, \tanh\!\big(\mathcal{R}_t(s) / \tau_b\big),
+\]
+\[
+\Delta L_t^{(m)}(v)
+:=
+\sum_{s \in \mathcal{S}_t^{(m)}} A_m(v,s)\, b_t(s),
+\qquad
+\widetilde{L}_t^{(m)}(v) = L_t^{(m)}(v) + \Delta L_t^{(m)}(v),
+\]
+$A_m(v,s)$ 为桥诱导的确定性归因图。
+
+若 $\max_{s \in \mathcal{S}_t^{(m)}} \sigma_{\mathrm{abs}}(s) \ge \tau_{\mathrm{abs}}$，UniGround 回退并保持宿主 logit 不变。
+
+\subsection{机制为何仍保持通用}
+
+$\Psi_{\mathrm{univ}}$ 仅在外部编码器空间运行；$B_m$ 与 $A_m$ 无参数；宿主仅提供前沿与最终解码。
+
+\subsection{对照与方法论范围}
+
+需与\textbf{外部全局先验}（无候选局部验证的冻结图像级偏置）及 \texttt{TLRA\_internal} 对照（\texttt{TLRA\_zero}、\texttt{TLRA\_calib}、\texttt{Base + LoRA}）区分。核心命题为：
+
+\begin{quote}
+单一学习外挂，在共享外部语义空间中定义并通过无参数模型接口附着，可在异构 MLLM 家族上提供有用的解码时接地控制，而无需针对具体模型再训练。
+\end{quote}
+
+\section{评测协议}
+\label{sec:eval}
+
+\subsection{通用热插拔有效性（H1）}
+
+同一 $\Psi_{\mathrm{univ}}$ 检查点跨 MLLM 迁移：禁止逐模型重训；禁止学习的逐模型适配器；仅允许无参数分词或接口逻辑变化。
+
+\subsection{模块级验证（H2）}
+
+比较 \texttt{Psi\_univ}、\texttt{Hardcoded\_Scorer}、\texttt{Zero\_Scorer}；报告宏 F1、逐类准确率、弃权行为与检查点元数据。
+
+\subsection{系统级幻觉缓解（H3）}
+
+比较 Base、VCD、DoLa、\texttt{TLRA\_internal\_zero}、\texttt{TLRA\_internal\_calib}、\texttt{TLRA\_univ}；报告幻觉指标、长度保持、干预覆盖率、时延与显存。
+
+\subsection{结构保持（H4）}
+
+比较 Base、\texttt{TLRA\_univ}、\texttt{TLRA\_univ\_no\_gate}、\texttt{TLRA\_internal\_calib}；审计功能词破坏、延续稳定性与推理保持。
+
+\subsection{可移植性与内部上限（H5）}
+
+若内部校准在单宿主上更强而通用路线保持热插拔，应直接报告折中而非强行单一“优越性”叙事。
+
+\subsection{外部全局先验（H6）}
+
+比较 \texttt{External\_Global\_Prior}、\texttt{TLRA\_univ\_global\_only} 与完整 \texttt{TLRA\_univ}。
+
+\subsection{必需消融}
+
+\texttt{TLRA\_univ\_no\_gate}、\texttt{TLRA\_univ\_global\_only}、\texttt{TLRA\_univ\_region\_only}、\texttt{TLRA\_univ\_no\_abstain}、\texttt{External\_Global\_Prior}、\texttt{TLRA\_internal\_calib}、\texttt{Base + LoRA}（内部公平对照）。
+
+\subsection{失效边界审计（H7）}
+
+审计 Top-$M$ 上界、前缀歧义、片段坍缩、后缀稳定性、弃权与中止触发，以及候选构造/外挂评分/logit 重分配/抖动的时延分解。
+
+\section{主文图表}
+\label{sec:tables}
+
+目标版式：正文约 8 页；方法节后或本节开头设置一张主图；图 2--3 紧凑信息密集。
+
+\subsection{图占位}
+
+图~\ref{fig:hero}（占位）应展示宿主前沿、无参数分词桥、共享 $\Psi_{\mathrm{univ}}$、共振能量 $\mathcal{R}_t(s)$、门控与前沿重分配——而非全词表重排序。
+
+\begin{figure*}[t]
+  \centering
+  \fbox{\begin{minipage}{0.95\textwidth}\centering\vspace{36pt}
+  \textit{占位：图 1 — 从解码前沿到共振控制的流水线（详见源标杆中的绘图说明）。}\vspace{36pt}
+  \end{minipage}}
+  \caption{UniGround 仅读取宿主活跃语义前沿，经无参数分词桥提升到共享外部空间，用可复用的 $\Psi_{\mathrm{univ}}$ 评分，并在结构门控与弃权触发回退下重分配前沿质量。}
+  \Description{UniGround 流水线占位图。}
+  \label{fig:hero}
+\end{figure*}
+
+\begin{figure}[t]
+  \centering
+  \fbox{\begin{minipage}{0.92\columnwidth}\centering\vspace{28pt}
+  \textit{占位：图 2 — 可移植性与内部上限折中。}\vspace{28pt}
+  \end{minipage}}
+  \caption{内部校准可能在单宿主上获得更高上限；UniGround 通过共享外部控制器追求更强的可移植性命题。}
+  \Description{折中示意图占位。}
+  \label{fig:tradeoff}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+  \fbox{\begin{minipage}{0.92\columnwidth}\centering\vspace{28pt}
+  \textit{占位：图 3 — 候选感知共振 vs.\ 全局先验。}\vspace{28pt}
+  \end{minipage}}
+  \caption{候选感知共振应在同一图像证据下区分竞争前沿片段，超越静态全局先验；否则局部控制论断需收缩。}
+  \Description{对比示意图占位。}
+  \label{fig:global}
+\end{figure}
+
+\subsection{表格}
+
+\begin{table*}[t]
+  \caption{通用热插拔接地结果（占位）。}
+  \label{tab:hotswap}
+  \centering
+  \small
+  \begin{tabular}{@{}lccccccc@{}}
+    \toprule
+    Method & Shared ckpt. & Learned re-attach & Host A & Host B & Host C & Mean & Status \\
+    \midrule
+    Base & N/A & N/A & TBF & TBF & TBF & TBF & placeholder \\
+    VCD & N/A & N/A & TBF & TBF & TBF & TBF & placeholder \\
+    DoLa & N/A & N/A & TBF & TBF & TBF & TBF & placeholder \\
+    External\_Global\_Prior & N/A & N/A & TBF & TBF & TBF & TBF & placeholder \\
+    TLRA\_internal\_zero & N/A & N/A & TBF & TBF & TBF & TBF & placeholder \\
+    TLRA\_internal\_calib & no & yes & TBF & TBF & TBF & TBF & placeholder \\
+    TLRA\_univ & yes & no & TBF & TBF & TBF & TBF & placeholder \\
+    \bottomrule
+  \end{tabular}
+\end{table*}
+
+\begin{table*}[t]
+  \caption{内部对齐与通用控制对照（占位）。}
+  \label{tab:internal}
+  \centering
+  \footnotesize
+  \begin{tabular}{@{}lcccccccc@{}}
+    \toprule
+    Method & Coupling & Hidden & Lexical & Struct.~prot. & Back-off & Ground. & Capab. & ITL \\
+    \midrule
+    TLRA\_internal\_zero & internal & yes & yes & vocab-side & N/A & TBF & TBF & TBF \\
+    TLRA\_internal\_calib & internal & yes & yes & vocab-side & N/A & TBF & TBF & TBF \\
+    TLRA\_univ & univ.\ sidecar & no & no & string-side & yes & TBF & TBF & TBF \\
+    TLRA\_univ\_no\_gate & univ.\ sidecar & no & no & none & yes & TBF & TBF & TBF \\
+    \bottomrule
+  \end{tabular}
+\end{table*}
+
+\begin{table}[t]
+  \caption{分词桥与前缀稳定性审计（占位）。}
+  \label{tab:bridge}
+  \centering
+  \scriptsize
+  \begin{tabular}{@{}lccccccc@{}}
+    \toprule
+    Method & Tok.\ A & Tok.\ B & Pref.\ amb. & Span coll. & Suf.\ stab. & Abst. & Abort \\
+    \midrule
+    TLRA\_univ & TBF & TBF & TBF & TBF & TBF & TBF & TBF \\
+    TLRA\_univ\_no\_gate & TBF & TBF & TBF & TBF & TBF & TBF & TBF \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{讨论与论断范围}
+\label{sec:discussion}
+
+主要贡献在于：在显式可移植合同下，解码时接地控制可外化到共享语义空间并在异构 MLLM 上保持可用——而非要求通用控制器在每个宿主上压倒所有模型耦合方法。
+
+\subsection{何时通用命题成立}
+
+需同时满足：（i）跨宿主复用同一 $\Psi_{\mathrm{univ}}$ 检查点；（ii）无学习式逐模型适配器；（iii）在成本约束下获得接地收益或合理弃权；（iv）若主张候选局部控制，则须相对外部全局先验基线有实质优势。
+
+\subsection{可移植性与上限}
+
+\texttt{TLRA\_internal\_calib} 在单宿主上更强，体现可移植性—上限折中，而非否定通用表述。
+
+\subsection{何时需收缩论断}
+
+若完整 UniGround 与 \texttt{External\_Global\_Prior} 或 \texttt{TLRA\_univ\_global\_only} 相当，则候选感知叙事需弱化。若附着阶段需要学习式逐模型适配，则严格通用性命题失败。
+
+\appendix
+
+\section{通用性边界证明纲要}
+占位：隐状态输入；词表空间输出；无参数分词桥可接受性。
+
+\section{\texttt{Psi\_univ} 架构与训练合同}
+占位：冻结编码器、维度、打分器架构、目标函数。
+
+\section{分词桥与前缀歧义}
+占位：片段规则、规范化、歧义与失败案例。
+
+\section{内部控制路径}
+占位：\texttt{TLRA\_zero}、\texttt{TLRA\_calib}、\texttt{Phi\_calib} 作为对照的理由。
+
+\section{结构门控审计}
+占位：受保护类别、假阳/假阴、延续稳定性。
+
+\section{代价与失效边界}
+占位：Top-$M$、时延分解、弃权分布、全局先验对照。

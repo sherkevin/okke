@@ -1,0 +1,51 @@
+Cursor usage aggregate: D:\chromedown\usage-events-2026-03-23.csv
+Rows: 1185
+
+=== By Model (sorted by total_tokens desc) ===
+gpt-5.4-medium	requests=348	total_tokens=535,003,815	cache_read=499,970,560	input_nc=31,389,874	cache_write=0	output=3,643,381
+claude-4.6-opus-high-thinking	requests=326	total_tokens=163,235,440	cache_read=149,227,568	input_nc=1,473,199	cache_write=11,476,936	output=1,057,737
+claude-4.6-sonnet-medium-thinking	requests=164	total_tokens=160,430,249	cache_read=146,939,150	input_nc=1,363,163	cache_write=11,054,758	output=1,073,178
+composer-2	requests=107	total_tokens=43,606,097	cache_read=39,809,312	input_nc=3,421,224	cache_write=0	output=375,561
+auto	requests=70	total_tokens=34,554,953	cache_read=31,880,352	input_nc=2,422,245	cache_write=0	output=252,356
+gemini-3.1-pro-preview	requests=87	total_tokens=30,012,549	cache_read=25,276,644	input_nc=4,545,210	cache_write=0	output=190,695
+composer-1.5	requests=78	total_tokens=14,289,661	cache_read=12,604,288	input_nc=1,594,293	cache_write=0	output=91,080
+composer-2-fast	requests=4	total_tokens=1,022,817	cache_read=883,712	input_nc=124,203	cache_write=0	output=14,902
+claude-4.6-sonnet-medium	requests=1	total_tokens=72,974	cache_read=0	input_nc=4	cache_write=72,065	output=905
+
+=== By Day UTC (sorted by date) ===
+2026-03-19	requests=506	total_tokens=221,520,258	cache_read=203,225,675
+2026-03-20	requests=86	total_tokens=77,057,623	cache_read=67,255,982
+2026-03-21	requests=270	total_tokens=244,629,067	cache_read=226,957,310
+2026-03-22	requests=199	total_tokens=334,730,454	cache_read=312,506,380
+2026-03-23	requests=124	total_tokens=104,291,153	cache_read=96,646,239
+
+=== Top 25 requests by Total Tokens ===
+Total	CacheRead	InNoCache	Model	MaxMode	Kind	Date
+20,750,120	19,859,705	71,672	claude-4.6-opus-high-thinking	No	Included	2026-03-21T11:40:39.673Z
+19,677,251	19,286,784	278,120	gpt-5.4-medium	No	Included	2026-03-22T10:32:56.894Z
+17,688,057	16,755,328	854,443	gpt-5.4-medium	No	Included	2026-03-21T15:16:38.086Z
+14,275,441	14,112,640	115,684	gpt-5.4-medium	No	Included	2026-03-22T08:57:16.102Z
+12,007,936	11,241,728	711,861	gpt-5.4-medium	No	Included	2026-03-22T01:31:22.846Z
+11,958,643	11,382,507	144,858	claude-4.6-sonnet-medium-thinking	No	Included	2026-03-19T13:34:49.129Z
+11,267,592	10,821,339	107,674	claude-4.6-opus-high-thinking	No	Included	2026-03-19T02:47:00.299Z
+11,012,888	10,780,288	201,222	gpt-5.4-medium	No	Included	2026-03-22T01:59:10.631Z
+10,479,195	9,926,144	507,518	gpt-5.4-medium	No	Included	2026-03-22T09:27:42.119Z
+9,990,500	9,477,504	421,676	gpt-5.4-medium	No	Included	2026-03-22T15:46:22.121Z
+9,221,191	8,711,074	62	claude-4.6-opus-high-thinking	No	Included	2026-03-19T02:46:07.621Z
+8,983,654	8,566,528	371,897	gpt-5.4-medium	No	Included	2026-03-21T17:59:14.414Z
+8,937,402	8,302,208	593,153	gpt-5.4-medium	No	Included	2026-03-22T01:59:04.088Z
+8,079,353	7,700,158	149,376	claude-4.6-sonnet-medium-thinking	No	Errored, No Charge	2026-03-19T11:59:38.707Z
+8,034,478	7,937,792	83,322	gpt-5.4-medium	No	Included	2026-03-22T06:16:10.611Z
+7,850,926	7,705,839	7,312	claude-4.6-sonnet-medium-thinking	No	Included	2026-03-19T15:26:04.974Z
+7,791,717	7,349,209	153,481	claude-4.6-opus-high-thinking	No	Included	2026-03-21T10:43:34.913Z
+7,461,860	7,268,864	176,934	composer-2	No	Included	2026-03-21T07:21:08.568Z
+7,460,822	7,262,080	182,121	gpt-5.4-medium	No	Included	2026-03-22T09:46:20.316Z
+7,157,627	6,581,120	542,600	gpt-5.4-medium	No	Included	2026-03-21T15:59:19.129Z
+6,711,348	6,531,956	52	claude-4.6-sonnet-medium-thinking	No	Included	2026-03-19T15:25:18.243Z
+6,398,251	6,325,237	43	claude-4.6-sonnet-medium-thinking	No	Included	2026-03-21T11:08:05.113Z
+6,227,014	5,690,240	487,438	gpt-5.4-medium	No	Included	2026-03-22T10:01:08.616Z
+6,063,825	5,729,920	295,249	gpt-5.4-medium	No	Included	2026-03-22T07:07:16.519Z
+6,038,142	5,965,056	49,937	gpt-5.4-medium	No	Included	2026-03-22T05:59:13.737Z
+
+Max Mode Yes count: 0 / 1185
+Pattern note: large Total with large Cache Read => long thread / repeated context; large Input_nc => big fresh prompt or tool payload in that turn.

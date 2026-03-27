@@ -1,0 +1,17 @@
+{
+  "dataset": "pope",
+  "pope_split": "random",
+  "method": "bra_v1",
+  "model": "qwen3-vl-2b",
+  "n_samples": 20,
+  "n_errors": 0,
+  "accuracy": 0.9,
+  "precision": 1.0,
+  "recall": 0.8,
+  "f1": 0.8889,
+  "agl": 76.2,
+  "itl_ms_per_token": 19.77,
+  "peak_vram_gb": 4.329,
+  "timestamp": "2026-03-21T22:04:49.032524",
+  "errors": []
+}

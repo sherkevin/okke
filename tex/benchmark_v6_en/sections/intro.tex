@@ -1,0 +1,28 @@
+\section{Introduction}
+\label{sec:intro}
+
+Multimodal large language models (MLLMs) have rapidly advanced visual question answering, captioning, and open-ended multimodal reasoning. Yet even strong models remain vulnerable to hallucination: they may generate fluent but weakly grounded statements, invent objects absent from the image, or confidently choose visually unsupported entities under strong language priors. These failures are particularly damaging when the correct evidence is sparse, local, or easily drowned out by semantically irrelevant visual context.
+
+Recent hallucination-mitigation work shows that inference-time intervention is a strong alternative to retraining the host model. Contrastive decoding (e.g., VCD), attention-based control (e.g., OPERA), and layer-contrast decoding (e.g., DoLa) all treat autoregressive decoding as an actionable surface. Yet they leave open a stricter question:
+
+\begin{quote}
+\textbf{Can decode-time mitigation remain portable across heterogeneous MLLM families without per-model training and without relying on host-internal hidden states, logits, or attention?}
+\end{quote}
+
+This goal differs from improving a single backbone. Any method that consumes model-specific multimodal activations and writes corrections directly in the host's native geometry remains \textbf{host-coupled}, even if the vision--language weights are frozen. Prior \textbf{hidden-state calibration} illustrates the phenomenon but does not meet a strict plug-in portability requirement.
+
+We therefore articulate a \textbf{universality boundary}: strict hot-swappability is not achievable for mechanisms that live entirely inside model-native hidden, logit, or attention spaces. A falsifiable alternative is to restrict all scoring to a \textbf{shared external space} built from frozen public vision features, frozen public text encoders, candidate spans obtained during decoding, and \textbf{deterministic} tokenizer bridging---without learned adapters tied to a specific host.
+
+\textbf{CHORD} (Calibrating Hallucinations via Object-Resonant Decoding) instantiates this principle. It performs \textbf{candidate-driven visual resonance}: the relevant signal is not global similarity of the unfinished prefix to the image, but whether the \textbf{current candidate span} activates consistent local visual evidence and whether that evidence supports an intervention. Mitigation becomes selective activation of external, object-level evidence tied to the candidate, rather than wholesale redistribution from unrelated regions or pure language continuation bias.
+
+Two implications follow. First, CHORD should be judged not only by raw hallucination reduction but by \textbf{stable behavior across host families} when the external encoders and region bank are held fixed and only the tokenizer bridge varies deterministically with the host. Second, span-level resonance with a dense region bank should materially outperform a simplistic global-image prior; otherwise the added machinery is hard to justify.
+
+The paper makes four contributions:
+\begin{enumerate}
+  \item It formalizes the \textbf{universality boundary} that limits strictly portable control for host-internal decoders.
+  \item It proposes \textbf{CHORD}, a \textbf{training-free} decode-time framework that calibrates the active logit frontier using object-resonant evidence and a closed-form resonance delta in external embedding space.
+  \item It introduces a \textbf{parameter-free tokenizer bridge} plus \textbf{continuous Top-$1$ monitoring} (with full-$K$ backoff) so that resonance checks stay lightweight and address overconfident hallucinations without naive entropy-only gating.
+  \item It reports an \textbf{evaluation protocol} on POPE and CHAIR with decode-time baselines, ablations, and efficiency analysis.
+\end{enumerate}
+
+The remainder of the paper is organized as follows. Section~\ref{sec:related} reviews related work. Section~\ref{sec:method} formalizes the universality boundary and presents CHORD. Section~\ref{sec:exp} describes experiments. Section~\ref{sec:conclusion} concludes.

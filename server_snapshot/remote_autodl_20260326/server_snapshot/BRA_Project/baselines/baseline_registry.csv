@@ -1,0 +1,109 @@
+Dataset,Metric,Value,Model,Method,Venue_Year,Source_URL,Protocol_Note,Integrity_Status,Citation_Conflict_Note
+# ============================================================
+# BRA Project — Baseline Matrix (Node 5 Input)
+# Compiled: 2026-03-20 | Zero hallucination policy enforced
+# Every number below has a direct verbatim proof in baseline_evidence_log.md
+# ============================================================
+# ─────────────────────────────────────────────────────────────
+# SECTION A: BASE MODEL REFERENCE (LLaVA-1.5-7B)
+# Source: ONLY ICCV 2025 paper Table 1+2 (verbatim)
+# URL: https://openaccess.thecvf.com/content/ICCV2025/papers/Wan_ONLY_One-Layer_Intervention_Sufficiently_Mitigates_Hallucinations_in_Large_Vision-Language_Models_ICCV_2025_paper.pdf
+# ─────────────────────────────────────────────────────────────
+POPE (MS-COCO Random),F1,83.44,LLaVA-1.5-7B,Base (Regular),—,https://openaccess.thecvf.com/content/ICCV2025/papers/Wan_ONLY_One-Layer_Intervention_Sufficiently_Mitigates_Hallucinations_in_Large_Vision-Language_Models_ICCV_2025_paper.pdf,Sampling decoding; ONLY paper Table 1 row 'Regular'; n=9000 COCO,VERIFIED_VERBATIM,—
+POPE (MS-COCO Popular),F1,82.08,LLaVA-1.5-7B,Base (Regular),—,https://openaccess.thecvf.com/content/ICCV2025/papers/Wan_ONLY_One-Layer_Intervention_Sufficiently_Mitigates_Hallucinations_in_Large_Vision-Language_Models_ICCV_2025_paper.pdf,Sampling decoding; ONLY paper Table 1 row 'Regular',VERIFIED_VERBATIM,—
+POPE (MS-COCO Adversarial),F1,79.26,LLaVA-1.5-7B,Base (Regular),—,https://openaccess.thecvf.com/content/ICCV2025/papers/Wan_ONLY_One-Layer_Intervention_Sufficiently_Mitigates_Hallucinations_in_Large_Vision-Language_Models_ICCV_2025_paper.pdf,Sampling decoding; ONLY paper Table 1 row 'Regular'; Adversarial section,VERIFIED_VERBATIM,—
+CHAIR_s (max_tok=64),Score,26.2,LLaVA-1.5-7B,Base (Regular),—,https://openaccess.thecvf.com/content/ICCV2025/papers/Wan_ONLY_One-Layer_Intervention_Sufficiently_Mitigates_Hallucinations_in_Large_Vision-Language_Models_ICCV_2025_paper.pdf,ONLY paper Table 2 row 'Regular' col 'CHAIRS/max64'; 500 COCO val images,VERIFIED_VERBATIM,—
+CHAIR_s (max_tok=128),Score,55.0,LLaVA-1.5-7B,Base (Regular),—,https://openaccess.thecvf.com/content/ICCV2025/papers/Wan_ONLY_One-Layer_Intervention_Sufficiently_Mitigates_Hallucinations_in_Large_Vision-Language_Models_ICCV_2025_paper.pdf,ONLY paper Table 2 row 'Regular' col 'CHAIRS/max128',VERIFIED_VERBATIM,—
+CHAIR_i (max_tok=64),Score,9.4,LLaVA-1.5-7B,Base (Regular),—,https://openaccess.thecvf.com/content/ICCV2025/papers/Wan_ONLY_One-Layer_Intervention_Sufficiently_Mitigates_Hallucinations_in_Large_Vision-Language_Models_ICCV_2025_paper.pdf,ONLY paper Table 2 row 'Regular' col 'CHAIRI/max64',VERIFIED_VERBATIM,—
+CHAIR_i (max_tok=128),Score,16.3,LLaVA-1.5-7B,Base (Regular),—,https://openaccess.thecvf.com/content/ICCV2025/papers/Wan_ONLY_One-Layer_Intervention_Sufficiently_Mitigates_Hallucinations_in_Large_Vision-Language_Models_ICCV_2025_paper.pdf,ONLY paper Table 2 row 'Regular' col 'CHAIRI/max128',VERIFIED_VERBATIM,—
+HallusionBench,Question Pair Acc (%),9.45,LLaVA-1.5-7B,Base (Regular),CVPR 2024,https://github.com/tianyi-lab/HallusionBench,Human Eval; original paper leaderboard,VERIFIED_VERBATIM,GPT-Eval gives 10.55; use Human Eval 9.45 as primary
+HallusionBench,Figure Acc (%),25.43,LLaVA-1.5-7B,Base (Regular),CVPR 2024,https://github.com/tianyi-lab/HallusionBench,Human Eval; original paper leaderboard,VERIFIED_VERBATIM,—
+HallusionBench,Hard Q Acc (%),29.07,LLaVA-1.5-7B,Base (Regular),CVPR 2024,https://github.com/tianyi-lab/HallusionBench,Human Eval; original paper leaderboard,VERIFIED_VERBATIM,—
+# ─────────────────────────────────────────────────────────────
+# SECTION B: VCD (Visual Contrastive Decoding, CVPR 2024)
+# arXiv:2311.16922 | Primary source: ONLY paper Table 1+2+5 (verbatim cross-check)
+# ─────────────────────────────────────────────────────────────
+POPE (MS-COCO Random),F1,87.15,LLaVA-1.5-7B,VCD,CVPR 2024,https://arxiv.org/abs/2311.16922,ONLY Table 1 + ONLY Table 5 double-confirmed; sampling decoding; n=9000,VERIFIED_VERBATIM,Confirmed ×2 sources within ONLY paper
+POPE (MS-COCO Popular),F1,83.94,LLaVA-1.5-7B,VCD,CVPR 2024,https://arxiv.org/abs/2311.16922,ONLY Table 1 row 'VCD' Popular section,VERIFIED_VERBATIM,—
+POPE (MS-COCO Adversarial),F1,79.47,LLaVA-1.5-7B,VCD,CVPR 2024,https://arxiv.org/abs/2311.16922,ONLY Table 1 row 'VCD' Adversarial section; Acc=77.17 Prec=72.18 Rec=88.40 F1=79.47,VERIFIED_VERBATIM,VCD marginally worse than Regular on Adversarial (79.47 vs 79.26); see conflict note
+CHAIR_s (max_tok=64),Score,24.4,LLaVA-1.5-7B,VCD,CVPR 2024,https://arxiv.org/abs/2311.16922,ONLY Table 2 row 'VCD' col 'CHAIRS/max64'; vs baseline 26.2 (−1.8),VERIFIED_VERBATIM,—
+CHAIR_s (max_tok=128),Score,54.4,LLaVA-1.5-7B,VCD,CVPR 2024,https://arxiv.org/abs/2311.16922,ONLY Table 2 + ONLY Table 5; vs baseline 55.0 (−0.6); marginal at max_tok=128,VERIFIED_VERBATIM,Marginal improvement at max_tok=128; strong at max_tok=64
+CHAIR_i (max_tok=64),Score,7.9,LLaVA-1.5-7B,VCD,CVPR 2024,https://arxiv.org/abs/2311.16922,ONLY Table 2 row 'VCD' col 'CHAIRI/max64',VERIFIED_VERBATIM,—
+CHAIR_i (max_tok=128),Score,16.6,LLaVA-1.5-7B,VCD,CVPR 2024,https://arxiv.org/abs/2311.16922,ONLY Table 2 row 'VCD' col 'CHAIRI/max128'; slightly worse than baseline 16.3,VERIFIED_VERBATIM,⚠️ CITATION CONFLICT: VCD CHAIR_s SLIGHTLY DEGRADES at max_tok=128. VCD own paper (arXiv:2311.16922 Sec4) reports improvement; ONLY's cross-eval shows marginal degradation at this token limit. Use ONLY's number as the standardized protocol.
+Latency Overhead,Relative (%),+101,LLaVA-1.5-7B,VCD,CVPR 2024,https://openaccess.thecvf.com/content/ICCV2025/papers/Wan_ONLY_One-Layer_Intervention_Sufficiently_Mitigates_Hallucinations_in_Large_Vision-Language_Models_ICCV_2025_paper.pdf,ONLY Table 5: 'VCD 6.97s (×2.01)'; ×2.01 ≡ +101% vs base,VERIFIED_VERBATIM,—
+GPU Memory Overhead,Relative (%),+5,LLaVA-1.5-7B,VCD,CVPR 2024,https://openaccess.thecvf.com/content/ICCV2025/papers/Wan_ONLY_One-Layer_Intervention_Sufficiently_Mitigates_Hallucinations_in_Large_Vision-Language_Models_ICCV_2025_paper.pdf,ONLY Table 5: 'VCD 15749MB (×1.05)'; ×1.05 ≡ +5% vs base,VERIFIED_VERBATIM,—
+# ─────────────────────────────────────────────────────────────
+# SECTION C: OPERA (Over-Trust Penalty, CVPR 2024)
+# arXiv:2311.17911 | Primary source: ONLY Table 5 + OPERA own paper Table 1
+# Note: OPERA uses Beam Search (n_beam=5); NOT comparable to greedy/sampling baselines
+# ─────────────────────────────────────────────────────────────
+POPE (MS-COCO Random),F1,88.85,LLaVA-1.5-7B,OPERA,CVPR 2024,https://arxiv.org/abs/2311.17911,ONLY Table 5 row 'OPERA'; column 'POPE'; split is Random (consistent with Table 5 context),VERIFIED_VERBATIM,⚠️ PROTOCOL CONFLICT: OPERA uses Beam Search (n=5); all other methods use greedy/sampling. Direct comparison to VCD/Regular requires asterisk.
+POPE (MS-COCO Adversarial),F1,NOT_REPORTED,LLaVA-1.5-7B,OPERA,CVPR 2024,https://arxiv.org/abs/2311.17911,OPERA paper and ONLY paper Table 5 only report Random POPE for OPERA,NOT_FOUND,—
+CHAIR_s (max_tok=512),Score,44.6,LLaVA-1.5-7B,OPERA,CVPR 2024,https://arxiv.org/abs/2311.17911,OPERA paper Table 1 row 'OPERA'; LLaVA-1.5 column; max_tokens=512 Beam Search,VERIFIED_VERBATIM,⚠️ CITATION CONFLICT: OPERA own paper (max512)=44.6 vs ONLY Table 5 (max128)=52.6. Different token limits. Use 52.6 for comparison vs methods at max128; use 44.6 for OPERA's own protocol.
+CHAIR_s (max_tok=128),Score,52.6,LLaVA-1.5-7B,OPERA,CVPR 2024,https://openaccess.thecvf.com/content/ICCV2025/papers/Wan_ONLY_One-Layer_Intervention_Sufficiently_Mitigates_Hallucinations_in_Large_Vision-Language_Models_ICCV_2025_paper.pdf,ONLY Table 5 row 'OPERA' col 'CHAIRS' (max128 context from Table 2 comparison),VERIFIED_VERBATIM,—
+CHAIR_i (max_tok=512),Score,12.8,LLaVA-1.5-7B,OPERA,CVPR 2024,https://arxiv.org/abs/2311.17911,OPERA paper Table 1 LLaVA-1.5 column CHAIRI,VERIFIED_VERBATIM,—
+Latency Overhead,Relative (%),+612,LLaVA-1.5-7B,OPERA,CVPR 2024,https://openaccess.thecvf.com/content/ICCV2025/papers/Wan_ONLY_One-Layer_Intervention_Sufficiently_Mitigates_Hallucinations_in_Large_Vision-Language_Models_ICCV_2025_paper.pdf,ONLY Table 5: 'OPERA 24.70s (×7.12)'; ×7.12 ≡ +612% vs base,VERIFIED_VERBATIM,—
+GPU Memory Overhead,Relative (%),+52,LLaVA-1.5-7B,OPERA,CVPR 2024,https://openaccess.thecvf.com/content/ICCV2025/papers/Wan_ONLY_One-Layer_Intervention_Sufficiently_Mitigates_Hallucinations_in_Large_Vision-Language_Models_ICCV_2025_paper.pdf,ONLY Table 5: 'OPERA 22706MB (×1.52)'; ×1.52 ≡ +52% vs base,VERIFIED_VERBATIM,—
+# ─────────────────────────────────────────────────────────────
+# SECTION D: DoLa (Decoding by Contrasting Layers, ICLR 2024)
+# arXiv:2309.03883 | NOTE: DoLa was designed for text LLMs. MLLM adaptation DEGRADES.
+# ─────────────────────────────────────────────────────────────
+POPE (MS-COCO Adversarial),F1,NOT_REPORTED,LLaVA-1.5-7B,DoLa,ICLR 2024,https://arxiv.org/abs/2309.03883,DoLa POPE scores not reported in original paper or ONLY paper Table 1 (DoLa excluded from POPE comparison). See MME-Hallucination instead.,NOT_FOUND,—
+CHAIR_s,Score,NOT_REPORTED,LLaVA-1.5-7B,DoLa,ICLR 2024,https://arxiv.org/abs/2309.03883,DoLa CHAIR scores not reported in ONLY Table 2. Excluded from that comparison.,NOT_FOUND,—
+MME-Hallucination,Total Score,522.22,LLaVA-1.5-7B,DoLa,ICLR 2024,https://openaccess.thecvf.com/content/ICCV2025/papers/Wan_ONLY_One-Layer_Intervention_Sufficiently_Mitigates_Hallucinations_in_Large_Vision-Language_Models_ICCV_2025_paper.pdf,ONLY Table 3 row 'DoLa'; vs Regular=562.50 — DoLa WORSE than baseline on MLLM task,VERIFIED_VERBATIM,⚠️ CRITICAL: DoLa MME=522 LOWER than Regular=562. DoLa was designed for text LLMs; VLM adaptation HURTS performance on MLLM benchmarks. Do NOT use DoLa as a positive baseline for MLLM hallucination.
+# ─────────────────────────────────────────────────────────────
+# SECTION E: 2025-2026 SOTA CONCURRENT METHODS
+# Already fully verified in A-OSP baseline mining session (see baseline_evidence_log.md §A for verbatim quotes)
+# ─────────────────────────────────────────────────────────────
+POPE (MS-COCO Random),F1,89.10,LLaVA-1.5-7B,ONLY,ICCV 2025,https://openaccess.thecvf.com/content/ICCV2025/papers/Wan_ONLY_One-Layer_Intervention_Sufficiently_Mitigates_Hallucinations_in_Large_Vision-Language_Models_ICCV_2025_paper.pdf,ONLY paper Table 1 row 'Ours' Random section; Acc=89.70 Prec=89.95 Rec=88.27 F1=89.10,VERIFIED_VERBATIM,—
+POPE (MS-COCO Adversarial),F1,81.07,LLaVA-1.5-7B,ONLY,ICCV 2025,https://openaccess.thecvf.com/content/ICCV2025/papers/Wan_ONLY_One-Layer_Intervention_Sufficiently_Mitigates_Hallucinations_in_Large_Vision-Language_Models_ICCV_2025_paper.pdf,ONLY paper Table 1 row 'Ours' Adversarial section; Acc=79.40 Prec=75.00 Rec=88.20 F1=81.07,VERIFIED_VERBATIM,—
+CHAIR_s (max_tok=128),Score,49.8,LLaVA-1.5-7B,ONLY,ICCV 2025,https://openaccess.thecvf.com/content/ICCV2025/papers/Wan_ONLY_One-Layer_Intervention_Sufficiently_Mitigates_Hallucinations_in_Large_Vision-Language_Models_ICCV_2025_paper.pdf,ONLY Table 2+5 (confirmed ×2); vs baseline 55.0 (−5.2),VERIFIED_VERBATIM,—
+Latency Overhead,Relative (%),+7,LLaVA-1.5-7B,ONLY,ICCV 2025,https://openaccess.thecvf.com/content/ICCV2025/papers/Wan_ONLY_One-Layer_Intervention_Sufficiently_Mitigates_Hallucinations_in_Large_Vision-Language_Models_ICCV_2025_paper.pdf,ONLY Table 5: '3.70s (×1.07)'; ×1.07 ≡ +7% vs base,VERIFIED_VERBATIM,—
+POPE (MS-COCO Random),POPE-R Accuracy (not F1),90.5,LLaVA-1.5-7B,FarSight,CVPR 2025,https://openaccess.thecvf.com/content/CVPR2025/papers/Tang_Seeing_Far_and_Clearly_Mitigating_Hallucinations_in_MLLMs_with_Attention_CVPR_2025_paper.pdf,FarSight Table 2: '+ FarSight(Ours) 90.5(+3.5)' vs baseline 87.0; ⚠️ Reports ACCURACY not F1,VERIFIED_VERBATIM,⚠️ FarSight reports POPE accuracy (not F1). Not directly comparable to F1-based methods. Also FarSight baseline CHAIRS=48.0 uses different max_tok protocol than ONLY baseline 55.0.
+CHAIR_s,Score,41.6,LLaVA-1.5-7B,FarSight,CVPR 2025,https://openaccess.thecvf.com/content/CVPR2025/papers/Tang_Seeing_Far_and_Clearly_Mitigating_Hallucinations_in_MLLMs_with_Attention_CVPR_2025_paper.pdf,FarSight Table 2: '41.6(+6.4)' vs baseline 48.0; different max_tok protocol than ONLY,VERIFIED_VERBATIM,⚠️ CITATION CONFLICT (Protocol): FarSight baseline CHAIRS=48.0 vs ONLY baseline=55.0. Discrepancy attributable to different max_token setting. FarSight's value appears to be at ~64-token limit.
+POPE (MS-COCO),AMBER-Disc F1 (POPE substitute),89.2,LLaVA-v1.6-7B,SCPO,ICLR 2026,https://arxiv.org/abs/2509.24491,SCPO Table 1 '+SCPO-7B(ours) 89.2(↑1.8)'; POPE NOT reported — SCPO uses AMBER-Disc F1 instead,VERIFIED_VERBATIM,⚠️ POPE NOT REPORTED. SCPO substitutes AMBER-Discriminative F1 as their primary hallucination classification metric. Do NOT compare directly with POPE F1 values.
+CHAIR_s (v1.6-7B best),Score,7.0,LLaVA-v1.6-7B,SCPO,ICLR 2026,https://arxiv.org/abs/2509.24491,SCPO Table 1 '+SCPO-7B(ours) 7.0(↓6.6)' vs baseline 12.0; arithmetic 6.6/12.0=55% ≠ abstract's 62.9% (which applies to v1.5-7B),VERIFIED_VERBATIM,—
+CHAIR_s (v1.5-7B),Score,20.3,LLaVA-v1.5-7B,SCPO,ICLR 2026,https://arxiv.org/abs/2509.24491,SCPO Table 2 '+Hard(ours) 20.3(↓34.4)' vs baseline 54.7; 34.4/54.7=62.9% ≡ abstract claim,VERIFIED_VERBATIM,—
+# ─────────────────────────────────────────────────────────────
+# SECTION F: QWEN ARCHITECTURE OFFICIAL SCORES
+# ─────────────────────────────────────────────────────────────
+POPE (Adversarial),F1,NOT_REPORTED,Qwen3-VL-8B-Instruct,Base,arXiv:2511.21631,https://arxiv.org/abs/2511.21631,POPE absent from Qwen3-VL tech report (Table 3). Report evaluates MM-MT-Bench / HallusionBench / MIA-Bench for hallucination instead.,NOT_FOUND,—
+MMBench-EN,Accuracy (%),87.6,Qwen3-VL-32B-Instruct,Base,arXiv:2511.21631,https://arxiv.org/abs/2511.21631,Table 3 col '32B-Instruct',VERIFIED_VERBATIM,—
+MMMU,Accuracy (%),76.0,Qwen3-VL-32B-Instruct,Base,arXiv:2511.21631,https://arxiv.org/abs/2511.21631,Table 3 col '32B-Instruct',VERIFIED_VERBATIM,—
+ChartQA,Accuracy (%),88.5,Qwen3-VL-32B-Instruct,Base,arXiv:2511.21631,https://arxiv.org/abs/2511.21631,Table 3 col '32B-Instruct'; test split,VERIFIED_VERBATIM,—
+HallusionBench,qAcc (%),43.95,Qwen2-VL-7B-Instruct,Base,—,https://github.com/open-compass/VLMEvalKit,VLMEvalKit evaluation (Mar 2025); aAcc=67.92 / fAcc=37.86 / qAcc=43.95; avg=(67.92+37.86+43.95)/3=49.91,VERIFIED (VLMEvalKit),⚠️ Uses qAcc/fAcc/aAcc naming (VLMEvalKit) not original leaderboard (qPairAcc/figAcc/QAcc). Functionally equivalent.
+HallusionBench,qAcc (%),47.25,Qwen2.5-VL-7B-Instruct,Base,—,https://github.com/open-compass/VLMEvalKit,VLMEvalKit evaluation (Mar 2025); aAcc=71.81 / fAcc=47.97 / qAcc=47.25,VERIFIED (VLMEvalKit),—
+HallusionBench,qAcc (%),NOT_REPORTED,Qwen3-VL-8B-Instruct,Base,arXiv:2511.21631,https://arxiv.org/abs/2511.21631,Qwen3-VL tech report does not publish HallusionBench breakdown by VD/VS for 8B model,NOT_FOUND,—
+HallusionBench (VD — Vision Dependent),All metrics,Visual Dependent (VD) measures hallucinations requiring image comprehension — equiv. to 'Vision-Bind' in BRA terminology,—,—,CVPR 2024,https://github.com/tianyi-lab/HallusionBench,TERMINOLOGY NOTE: HallusionBench uses 'VD' (Visual Dependent) and 'VS' (Visual Supplement) — NOT 'Language-Bind/Vision-Bind'. VD ≡ Vision-Bind; VS ≡ Language-Bind.,TERMINOLOGY_CLARIFICATION,—
+# ─────────────────────────────────────────────────────────────
+# SECTION G: VIDHALLUC BENCHMARK (CVPR 2025)
+# Primary source: vid-halluc.github.io (official project page)
+# URL: https://arxiv.org/abs/2412.03735
+# ─────────────────────────────────────────────────────────────
+VidHalluc (Action Binary QA),Accuracy (%),23.88,Video-LLaVA-7B,Base,CVPR 2025,https://vid-halluc.github.io/,Official project leaderboard table; Action Hallucination task,VERIFIED_VERBATIM,—
+VidHalluc (Action MCQ),Accuracy (%),65.18,Video-LLaVA-7B,Base,CVPR 2025,https://vid-halluc.github.io/,Official project leaderboard table; MCQ task,VERIFIED_VERBATIM,—
+VidHalluc (TSH),Accuracy (%),28.83,Video-LLaVA-7B,Base,CVPR 2025,https://vid-halluc.github.io/,Official project leaderboard; Temporal Sequence Hallucination task,VERIFIED_VERBATIM,—
+VidHalluc (STH),Accuracy (%),30.12,Video-LLaVA-7B,Base,CVPR 2025,https://vid-halluc.github.io/,Official project leaderboard; Scene Transition Hallucination task,VERIFIED_VERBATIM,—
+VidHalluc (Avg),Accuracy (%),37.00,Video-LLaVA-7B,Base,CVPR 2025,https://vid-halluc.github.io/,Official project leaderboard; Average across all 4 tasks,VERIFIED_VERBATIM,—
+VidHalluc (Avg),Accuracy (%),60.90,VILA-1.5-13B,Base,CVPR 2025,https://vid-halluc.github.io/,Official project leaderboard; 13B anchor for scaling reference,VERIFIED_VERBATIM,—
+VidHalluc (Avg),Accuracy (%),82.43,GPT-4o,Base (ceiling),CVPR 2025,https://vid-halluc.github.io/,Official project leaderboard; proprietary model ceiling,VERIFIED_VERBATIM,—
+VidHalluc (Avg),Accuracy (%),NOT_REPORTED,Qwen3-VL-8B-Instruct,Base,—,—,VidHalluc official leaderboard does not include Qwen3-VL series. Benchmark evaluates video models; Qwen3-VL video performance not tested on this benchmark publicly.,NOT_FOUND,—
+# ─────────────────────────────────────────────────────────────
+# SECTION H: FREAK BENCHMARK (ICLR 2026)
+# arXiv:2501.xxxxx | GitHub: https://github.com/Hans-M-Yin/FREAK
+# ─────────────────────────────────────────────────────────────
+FREAK (Detection),Accuracy (%),NOT_RELEASED,ALL,Base,ICLR 2026,https://openreview.net/forum?id=YeagC09j2K,Per-model scores NOT yet publicly available. Paper accepted ICLR 2026. GitHub repo states 'leaderboard reported in paper will be released soon'. VLMEvalKit integration planned but incomplete as of 2026-03-20.,NOT_FOUND,—
+FREAK (Counting),Accuracy (%),NOT_RELEASED,ALL,Base,ICLR 2026,https://github.com/Hans-M-Yin/FREAK,Same as Detection — awaiting official release,NOT_FOUND,—
+FREAK (Attribute),Accuracy (%),NOT_RELEASED,ALL,Base,ICLR 2026,https://github.com/Hans-M-Yin/FREAK,Same,NOT_FOUND,—
+FREAK (OCR),Accuracy (%),NOT_RELEASED,ALL,Base,ICLR 2026,https://github.com/Hans-M-Yin/FREAK,Same,NOT_FOUND,—
+FREAK (Position),Accuracy (%),NOT_RELEASED,ALL,Base,ICLR 2026,https://github.com/Hans-M-Yin/FREAK,Same,NOT_FOUND,—
+FREAK (Analysis),Accuracy (%),NOT_RELEASED,ALL,Base,ICLR 2026,https://github.com/Hans-M-Yin/FREAK,Same,NOT_FOUND,—
+# ─────────────────────────────────────────────────────────────
+# SECTION I: HALLUSIONBENCH LEGACY REFERENCE (VD/VS split, 2023-model era)
+# Source: https://github.com/tianyi-lab/HallusionBench (official README leaderboard)
+# ─────────────────────────────────────────────────────────────
+HallusionBench,Question Pair Acc (%),31.42,GPT-4V (Sep 2023),Base (ceiling),CVPR 2024,https://github.com/tianyi-lab/HallusionBench,Official leaderboard; Human Eval,VERIFIED_VERBATIM,—
+HallusionBench,Question Pair Acc (%),9.45,LLaVA-1.5-7B,Base,CVPR 2024,https://github.com/tianyi-lab/HallusionBench,Official leaderboard; Human Eval,VERIFIED_VERBATIM,—
+HallusionBench,Question Pair Acc (%),5.93,Qwen-VL (2023),Base,CVPR 2024,https://github.com/tianyi-lab/HallusionBench,Official leaderboard; GPT Eval; Note: Qwen-VL (2023) NOT Qwen3-VL,VERIFIED_VERBATIM,Qwen-VL 2023 ≠ Qwen3-VL. Cross-arch note required.
+HallusionBench,Hard Question Acc (%),38.37,GPT-4V (Sep 2023),Base (ceiling),CVPR 2024,https://github.com/tianyi-lab/HallusionBench,Hard = Visual Dependent (VD) subset ≡ 'Vision-Bind'; official leaderboard,VERIFIED_VERBATIM,—
+HallusionBench,Hard Question Acc (%),29.07,LLaVA-1.5-7B,Base,CVPR 2024,https://github.com/tianyi-lab/HallusionBench,Hard = VD questions; official leaderboard Human Eval,VERIFIED_VERBATIM,—

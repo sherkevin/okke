@@ -1,0 +1,142 @@
+{
+  "qwen3vl2b": [
+    {
+      "dataset": "pope_adversarial",
+      "n_samples": 50,
+      "baseline": {
+        "accuracy": 0.8,
+        "precision": 0.8260869565217391,
+        "recall": 0.76,
+        "f1": 0.7916666666666667
+      },
+      "bra": {
+        "accuracy": 0.8,
+        "precision": 0.8260869565217391,
+        "recall": 0.76,
+        "f1": 0.7916666666666667
+      }
+    },
+    {
+      "dataset": "pope_popular",
+      "n_samples": 50,
+      "baseline": {
+        "accuracy": 0.8,
+        "precision": 0.8260869565217391,
+        "recall": 0.76,
+        "f1": 0.7916666666666667
+      },
+      "bra": {
+        "accuracy": 0.82,
+        "precision": 0.8636363636363636,
+        "recall": 0.76,
+        "f1": 0.8085106382978724
+      }
+    },
+    {
+      "dataset": "pope_random",
+      "n_samples": 50,
+      "baseline": {
+        "accuracy": 0.88,
+        "precision": 1.0,
+        "recall": 0.76,
+        "f1": 0.8636363636363636
+      },
+      "bra": {
+        "accuracy": 0.88,
+        "precision": 1.0,
+        "recall": 0.76,
+        "f1": 0.8636363636363636
+      }
+    },
+    {
+      "dataset": "chair",
+      "n_samples": 50,
+      "baseline": {
+        "chair_s": 0.034482758620689655,
+        "chair_i": 0.0898876404494382,
+        "agl": 82.28
+      },
+      "bra": {
+        "chair_s": 0.030042918454935622,
+        "chair_i": 0.08974358974358974,
+        "agl": 82.08
+      }
+    },
+    {
+      "dataset": "mmbench",
+      "n_samples": 50,
+      "baseline": {
+        "accuracy": 0.88
+      },
+      "bra": {
+        "accuracy": 0.92
+      }
+    },
+    {
+      "dataset": "mme",
+      "n_samples": 50,
+      "baseline": {
+        "perception_score": 150.0,
+        "accuracy": 0.66
+      },
+      "bra": {
+        "perception_score": 145.0,
+        "accuracy": 0.68
+      }
+    },
+    {
+      "dataset": "hallusionbench",
+      "n_samples": 50,
+      "baseline": {
+        "accuracy": 0.6
+      },
+      "bra": {
+        "accuracy": 0.56
+      }
+    },
+    {
+      "dataset": "mmmu",
+      "n_samples": 30,
+      "baseline": {
+        "accuracy": 0.3333333333333333
+      },
+      "bra": {
+        "accuracy": 0.26666666666666666
+      }
+    }
+  ],
+  "llava7b": [
+    {
+      "dataset": "mmbench",
+      "n_samples": 50,
+      "baseline": {
+        "accuracy": 0.74
+      },
+      "bra": {
+        "accuracy": 0.74
+      }
+    },
+    {
+      "dataset": "mme",
+      "n_samples": 50,
+      "baseline": {
+        "perception_score": 122.5,
+        "accuracy": 0.56
+      },
+      "bra": {
+        "perception_score": 122.5,
+        "accuracy": 0.56
+      }
+    },
+    {
+      "dataset": "hallusionbench",
+      "n_samples": 50,
+      "baseline": {
+        "accuracy": 0.44
+      },
+      "bra": {
+        "accuracy": 0.44
+      }
+    }
+  ]
+}

@@ -1,0 +1,310 @@
+2026-03-22 01:53:05,284 [INFO] Pipeline: method=base  dataset=pope  model=qwen3-vl-8b  mini_test=200
+2026-03-22 01:53:08,898 [INFO] Loading model from /root/autodl-tmp/BRA_Project/models/Qwen3-VL-8B-Instruct ...
+Loading weights:   0%|          | 0/750 [00:00<?, ?it/s]Loading weights:   0%|          | 1/750 [00:00<08:22,  1.49it/s]Loading weights:   1%|          | 6/750 [00:00<01:15,  9.79it/s]Loading weights:   2%|▏         | 17/750 [00:00<00:26, 28.07it/s]Loading weights:   4%|▎         | 28/750 [00:01<00:16, 44.52it/s]Loading weights:   5%|▌         | 39/750 [00:01<00:12, 55.92it/s]Loading weights:   7%|▋         | 49/750 [00:01<00:10, 65.61it/s]Loading weights:   8%|▊         | 60/750 [00:01<00:09, 71.19it/s]Loading weights:   9%|▉         | 71/750 [00:01<00:09, 74.77it/s]Loading weights:  11%|█         | 82/750 [00:01<00:08, 77.16it/s]Loading weights:  12%|█▏        | 92/750 [00:01<00:08, 81.52it/s]Loading weights:  13%|█▎        | 101/750 [00:01<00:08, 81.05it/s]Loading weights:  15%|█▍        | 110/750 [00:02<00:08, 73.13it/s]Loading weights:  16%|█▌        | 118/750 [00:02<00:09, 65.79it/s]Loading weights:  17%|█▋        | 126/750 [00:02<00:09, 66.20it/s]Loading weights:  18%|█▊        | 136/750 [00:02<00:08, 69.26it/s]Loading weights:  19%|█▉        | 144/750 [00:02<00:08, 69.09it/s]Loading weights:  20%|██        | 152/750 [00:02<00:09, 65.51it/s]Loading weights:  21%|██        | 159/750 [00:02<00:09, 62.96it/s]Loading weights:  23%|██▎       | 169/750 [00:02<00:08, 68.71it/s]Loading weights:  23%|██▎       | 176/750 [00:03<00:08, 67.44it/s]Loading weights:  25%|██▍       | 186/750 [00:03<00:07, 73.57it/s]Loading weights:  26%|██▌       | 194/750 [00:03<00:07, 70.66it/s]Loading weights:  27%|██▋       | 203/750 [00:03<00:07, 74.09it/s]Loading weights:  28%|██▊       | 213/750 [00:03<00:06, 79.57it/s]Loading weights:  30%|██▉       | 222/750 [00:03<00:06, 79.62it/s]Loading weights:  31%|███       | 231/750 [00:03<00:07, 74.03it/s]Loading weights:  32%|███▏      | 239/750 [00:03<00:07, 65.88it/s]Loading weights:  33%|███▎      | 247/750 [00:04<00:07, 65.84it/s]Loading weights:  34%|███▍      | 257/750 [00:04<00:07, 69.07it/s]Loading weights:  35%|███▌      | 265/750 [00:04<00:07, 67.30it/s]Loading weights:  36%|███▋      | 272/750 [00:04<00:07, 63.37it/s]Loading weights:  37%|███▋      | 280/750 [00:04<00:07, 63.30it/s]Loading weights:  39%|███▊      | 290/750 [00:04<00:06, 68.51it/s]Loading weights:  40%|███▉      | 297/750 [00:04<00:06, 66.82it/s]Loading weights:  41%|████      | 304/750 [00:04<00:07, 61.04it/s]Loading weights:  42%|████▏     | 313/750 [00:05<00:06, 63.33it/s]Loading weights:  43%|████▎     | 323/750 [00:05<00:06, 70.07it/s]Loading weights:  44%|████▍     | 331/750 [00:05<00:06, 67.64it/s]Loading weights:  45%|████▌     | 338/750 [00:05<00:06, 60.83it/s]Loading weights:  46%|████▌     | 346/750 [00:05<00:06, 62.62it/s]Loading weights:  47%|████▋     | 356/750 [00:05<00:05, 67.29it/s]Loading weights:  49%|████▊     | 364/750 [00:05<00:05, 68.62it/s]Loading weights:  49%|████▉     | 371/750 [00:05<00:05, 63.61it/s]Loading weights:  51%|█████     | 379/750 [00:06<00:05, 62.86it/s]Loading weights:  52%|█████▏    | 389/750 [00:06<00:05, 71.87it/s]Loading weights:  53%|█████▎    | 397/750 [00:06<00:04, 71.36it/s]Loading weights:  64%|██████▍   | 483/750 [00:06<00:00, 281.12it/s]Loading weights:  78%|███████▊  | 583/750 [00:06<00:00, 477.19it/s]Loading weights:  89%|████████▉ | 669/750 [00:06<00:00, 578.65it/s]Loading weights:  97%|█████████▋| 731/750 [00:06<00:00, 588.64it/s]Loading weights: 100%|██████████| 750/750 [00:06<00:00, 110.70it/s]
+2026-03-22 01:53:19,249 [INFO] POPE split: /root/autodl-tmp/BRA_Project/datasets/POPE/output/coco/coco_pope_random.json
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+2026-03-22 01:53:21,526 [INFO]   [1/200] pred=yes label=yes len=66  Yes, there is a snowboard in the image.
+
+The image shows a p
+2026-03-22 01:53:23,435 [INFO]   [2/200] pred=no label=no len=78  No, there is no car in the image.
+
+The image shows a person 
+2026-03-22 01:53:25,397 [INFO]   [3/200] pred=yes label=yes len=88  Yes, there is a person in the image.
+
+The person is a snowbo
+2026-03-22 01:53:26,490 [INFO]   [4/200] pred=no label=no len=48  No, there is no sandwich in the image. The image shows a per
+2026-03-22 01:53:28,629 [INFO]   [5/200] pred=no label=yes len=93  Based on the visual evidence in the image, there are no skis
+2026-03-22 01:53:35,280 [INFO]   [10/200] pred=no label=no len=66  No, there is no sink in the image. The image shows a woman a
+2026-03-22 01:53:54,978 [INFO]   [20/200] pred=no label=no len=128  Based on a careful examination of the image provided, there 
+2026-03-22 01:54:14,850 [INFO]   [30/200] pred=no label=no len=59  No, there is no kite in the image. The image shows the inter
+2026-03-22 01:54:43,418 [INFO]   [40/200] pred=no label=no len=127  Based on a thorough examination of the image provided, there
+2026-03-22 01:55:04,698 [INFO]   [50/200] pred=no label=no len=107  Based on a careful examination of the image, there is no vis
+2026-03-22 01:55:22,891 [INFO]   [60/200] pred=no label=no len=115  Based on a thorough examination of the image provided, there
+2026-03-22 01:55:43,334 [INFO]   [70/200] pred=no label=no len=35  No, there is no wine glass in the image. The image shows a g
+2026-03-22 01:55:59,411 [INFO]   [80/200] pred=no label=no len=66  No, there is no zebra in the image. The image shows a young 
+2026-03-22 01:56:15,095 [INFO]   [90/200] pred=no label=no len=2  no
+2026-03-22 01:56:37,633 [INFO]   [100/200] pred=no label=no len=70  No, there is no frisbee in the image. The image shows a woma
+2026-03-22 01:56:57,206 [INFO]   [110/200] pred=no label=no len=47  No, there is no cow in the image. The image shows a modern b
+2026-03-22 01:57:20,443 [INFO]   [120/200] pred=no label=no len=128  No, there is no mouse in the image.
+
+The image shows:
+- A cl
+2026-03-22 01:57:39,097 [INFO]   [130/200] pred=no label=no len=110  Based on a careful examination of the image provided, there 
+2026-03-22 01:57:53,686 [INFO]   [140/200] pred=no label=no len=50  No, there is no giraffe in the image. The image shows a bath
+2026-03-22 01:58:10,560 [INFO]   [150/200] pred=no label=no len=53  No, there is no microwave in the image.
+
+The image shows a W
+2026-03-22 01:58:23,687 [INFO]   [160/200] pred=no label=no len=128  Based on a careful examination of the image, there is no don
+2026-03-22 01:58:47,956 [INFO]   [170/200] pred=no label=no len=53  No, there is no elephant in the image. The image shows a dog
+2026-03-22 01:59:10,650 [INFO]   [180/200] pred=no label=no len=69  No, there is no horse in the image. The image shows a cat dr
+2026-03-22 01:59:33,322 [INFO]   [190/200] pred=no label=no len=56  No, there is no horse in the image. The scene depicts a skat
+2026-03-22 01:59:50,634 [INFO]   [200/200] pred=no label=no len=42  No, there is no stop sign in the image. The image shows a pe
+2026-03-22 01:59:50,635 [INFO] 
+============================================================
+2026-03-22 01:59:50,635 [INFO]   Results -> /root/autodl-tmp/BRA_Project/logs/minitest/base_pope_20260322_015950.json
+2026-03-22 01:59:50,635 [INFO] ============================================================
+2026-03-22 01:59:50,635 [INFO]   dataset                   = pope
+2026-03-22 01:59:50,635 [INFO]   pope_split                = random
+2026-03-22 01:59:50,635 [INFO]   method                    = base
+2026-03-22 01:59:50,635 [INFO]   model                     = qwen3-vl-8b
+2026-03-22 01:59:50,635 [INFO]   model_family              = qwen3vl
+2026-03-22 01:59:50,635 [INFO]   n_samples                 = 200
+2026-03-22 01:59:50,635 [INFO]   sample_count              = 200
+2026-03-22 01:59:50,635 [INFO]   n_errors                  = 0
+2026-03-22 01:59:50,635 [INFO]   accuracy                  = 0.925
+2026-03-22 01:59:50,635 [INFO]   precision                 = 1.0
+2026-03-22 01:59:50,635 [INFO]   recall                    = 0.8485
+2026-03-22 01:59:50,635 [INFO]   f1                        = 0.918
+2026-03-22 01:59:50,635 [INFO]   agl                       = 78.55
+2026-03-22 01:59:50,635 [INFO]   itl_ms_per_token          = 25.74
+2026-03-22 01:59:50,635 [INFO]   tokens_per_second         = 38.854
+2026-03-22 01:59:50,635 [INFO]   peak_vram_gb              = 17.681
+2026-03-22 01:59:50,635 [INFO]   notes                     = []
+2026-03-22 01:59:50,635 [INFO] ============================================================
+
+2026-03-22 01:59:53,072 [INFO] Pipeline: method=vcd  dataset=pope  model=qwen3-vl-8b  mini_test=200
+2026-03-22 01:59:56,585 [INFO] Loading model from /root/autodl-tmp/BRA_Project/models/Qwen3-VL-8B-Instruct ...
+Loading weights:   0%|          | 0/750 [00:00<?, ?it/s]Loading weights:   0%|          | 1/750 [00:00<03:37,  3.45it/s]Loading weights:   0%|          | 2/750 [00:00<04:17,  2.91it/s]Loading weights:   1%|▏         | 10/750 [00:00<00:41, 17.80it/s]Loading weights:   2%|▏         | 15/750 [00:00<00:31, 23.62it/s]Loading weights:   3%|▎         | 26/750 [00:01<00:17, 41.93it/s]Loading weights:   4%|▍         | 32/750 [00:01<00:15, 45.25it/s]Loading weights:   5%|▌         | 38/750 [00:01<00:14, 47.97it/s]Loading weights:   6%|▋         | 47/750 [00:01<00:12, 54.96it/s]Loading weights:   7%|▋         | 54/750 [00:01<00:12, 57.28it/s]Loading weights:   8%|▊         | 61/750 [00:01<00:12, 53.03it/s]Loading weights:   9%|▉         | 71/750 [00:01<00:11, 60.68it/s]Loading weights:  11%|█         | 80/750 [00:01<00:10, 63.59it/s]Loading weights:  12%|█▏        | 87/750 [00:01<00:10, 63.89it/s]Loading weights:  13%|█▎        | 94/750 [00:02<00:11, 57.48it/s]Loading weights:  14%|█▍        | 104/750 [00:02<00:10, 63.83it/s]Loading weights:  15%|█▌        | 114/750 [00:02<00:09, 67.92it/s]Loading weights:  16%|█▌        | 121/750 [00:02<00:09, 66.96it/s]Loading weights:  17%|█▋        | 128/750 [00:02<00:10, 59.60it/s]Loading weights:  18%|█▊        | 137/750 [00:02<00:09, 62.75it/s]Loading weights:  20%|█▉        | 147/750 [00:02<00:08, 67.30it/s]Loading weights:  21%|██        | 154/750 [00:03<00:09, 63.45it/s]Loading weights:  21%|██▏       | 161/750 [00:03<00:10, 58.21it/s]Loading weights:  23%|██▎       | 170/750 [00:03<00:09, 61.58it/s]Loading weights:  24%|██▍       | 180/750 [00:03<00:08, 66.67it/s]Loading weights:  25%|██▍       | 187/750 [00:03<00:08, 63.56it/s]Loading weights:  26%|██▌       | 194/750 [00:03<00:09, 59.41it/s]Loading weights:  27%|██▋       | 203/750 [00:03<00:08, 62.95it/s]Loading weights:  28%|██▊       | 213/750 [00:03<00:07, 67.65it/s]Loading weights:  29%|██▉       | 220/750 [00:04<00:07, 66.76it/s]Loading weights:  30%|███       | 227/750 [00:04<00:08, 59.85it/s]Loading weights:  31%|███▏      | 236/750 [00:04<00:08, 63.18it/s]Loading weights:  33%|███▎      | 246/750 [00:04<00:07, 67.68it/s]Loading weights:  34%|███▍      | 254/750 [00:04<00:07, 68.52it/s]Loading weights:  35%|███▍      | 261/750 [00:04<00:07, 61.83it/s]Loading weights:  36%|███▌      | 269/750 [00:04<00:07, 62.94it/s]Loading weights:  37%|███▋      | 279/750 [00:04<00:07, 66.56it/s]Loading weights:  38%|███▊      | 286/750 [00:05<00:07, 63.77it/s]Loading weights:  39%|███▉      | 293/750 [00:05<00:07, 58.42it/s]Loading weights:  40%|████      | 302/750 [00:05<00:07, 60.77it/s]Loading weights:  42%|████▏     | 312/750 [00:05<00:06, 64.14it/s]Loading weights:  43%|████▎     | 319/750 [00:05<00:06, 61.84it/s]Loading weights:  43%|████▎     | 326/750 [00:05<00:07, 58.54it/s]Loading weights:  45%|████▍     | 335/750 [00:05<00:06, 60.75it/s]Loading weights:  46%|████▌     | 345/750 [00:06<00:06, 67.00it/s]Loading weights:  47%|████▋     | 352/750 [00:06<00:06, 63.08it/s]Loading weights:  48%|████▊     | 359/750 [00:06<00:06, 59.18it/s]Loading weights:  49%|████▉     | 368/750 [00:06<00:06, 63.43it/s]Loading weights:  50%|█████     | 378/750 [00:06<00:05, 68.86it/s]Loading weights:  51%|█████▏    | 385/750 [00:06<00:05, 65.23it/s]Loading weights:  52%|█████▏    | 392/750 [00:06<00:05, 60.73it/s]Loading weights:  59%|█████▉    | 443/750 [00:06<00:01, 171.51it/s]Loading weights:  67%|██████▋   | 503/750 [00:07<00:00, 272.31it/s]Loading weights:  78%|███████▊  | 587/750 [00:07<00:00, 419.51it/s]Loading weights:  89%|████████▉ | 671/750 [00:07<00:00, 531.22it/s]Loading weights:  97%|█████████▋| 728/750 [00:07<00:00, 528.60it/s]Loading weights: 100%|██████████| 750/750 [00:07<00:00, 100.35it/s]
+2026-03-22 02:00:07,060 [INFO] POPE split: /root/autodl-tmp/BRA_Project/datasets/POPE/output/coco/coco_pope_random.json
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+2026-03-22 02:00:12,677 [INFO]   [1/200] pred=yes label=yes len=105  Yes, there is a snowboard in the image.
+
+The image shows a p
+2026-03-22 02:00:14,968 [INFO]   [2/200] pred=no label=no len=49  No, there is no car in the image. The image shows a snowboar
+2026-03-22 02:00:18,072 [INFO]   [3/200] pred=yes label=yes len=67  Yes, there is a person in the image.
+
+The person is visible 
+2026-03-22 02:00:22,814 [INFO]   [4/200] pred=no label=no len=103  Based on a thorough examination of the image provided, there
+2026-03-22 02:00:27,292 [INFO]   [5/200] pred=no label=yes len=100  Based on the visual evidence in the image, the person is not
+2026-03-22 02:00:39,122 [INFO]   [10/200] pred=no label=no len=53  No, there is no sink in the image. The image shows a woman a
+2026-03-22 02:01:08,619 [INFO]   [20/200] pred=no label=no len=128  Based on a thorough examination of the image provided, there
+2026-03-22 02:01:45,096 [INFO]   [30/200] pred=no label=no len=67  No, there is no kite in the image. The image shows the inter
+2026-03-22 02:02:23,819 [INFO]   [40/200] pred=no label=no len=80  Based on a thorough examination of the image provided, there
+2026-03-22 02:02:59,897 [INFO]   [50/200] pred=no label=no len=91  Based on a thorough examination of the image, there is no vi
+2026-03-22 02:03:40,746 [INFO]   [60/200] pred=no label=no len=119  Based on a thorough examination of the image provided, there
+2026-03-22 02:04:17,213 [INFO]   [70/200] pred=no label=no len=95  Based on a thorough examination of the image provided, there
+2026-03-22 02:04:39,979 [INFO]   [80/200] pred=no label=no len=79  No, there is no zebra in the image. The image shows a young 
+2026-03-22 02:05:00,500 [INFO]   [90/200] pred=no label=no len=2  no
+2026-03-22 02:05:33,233 [INFO]   [100/200] pred=no label=no len=105  Based on a careful examination of the image provided, there 
+2026-03-22 02:06:06,152 [INFO]   [110/200] pred=no label=no len=46  No, there is no cow in the image. The image shows a modern b
+2026-03-22 02:06:44,455 [INFO]   [120/200] pred=no label=no len=128  No, there is no mouse in the image.
+
+The image contains:
+- A
+2026-03-22 02:07:23,918 [INFO]   [130/200] pred=no label=no len=105  Based on a thorough examination of the image provided, there
+2026-03-22 02:07:39,234 [INFO]   [140/200] pred=no label=no len=48  No, there is no giraffe in the image. The image shows a bath
+2026-03-22 02:08:10,355 [INFO]   [150/200] pred=no label=no len=111  Based on a thorough examination of the image provided, there
+2026-03-22 02:08:35,226 [INFO]   [160/200] pred=no label=no len=128  Based on a thorough examination of the image provided, there
+2026-03-22 02:09:14,581 [INFO]   [170/200] pred=no label=no len=47  No, there is no elephant in the image. The image shows a dog
+2026-03-22 02:09:51,953 [INFO]   [180/200] pred=no label=no len=24  No, there is no horse in the image. The image shows a cat dr
+2026-03-22 02:10:18,898 [INFO]   [190/200] pred=no label=no len=62  No, there is no horse in the image. The scene depicts a skat
+2026-03-22 02:10:57,791 [INFO]   [200/200] pred=no label=no len=57  No, there is no stop sign in the image. The image shows a pe
+2026-03-22 02:10:57,792 [INFO] 
+============================================================
+2026-03-22 02:10:57,792 [INFO]   Results -> /root/autodl-tmp/BRA_Project/logs/minitest/vcd_pope_20260322_021057.json
+2026-03-22 02:10:57,792 [INFO] ============================================================
+2026-03-22 02:10:57,792 [INFO]   dataset                   = pope
+2026-03-22 02:10:57,792 [INFO]   pope_split                = random
+2026-03-22 02:10:57,792 [INFO]   method                    = vcd
+2026-03-22 02:10:57,792 [INFO]   model                     = qwen3-vl-8b
+2026-03-22 02:10:57,792 [INFO]   model_family              = qwen3vl
+2026-03-22 02:10:57,792 [INFO]   n_samples                 = 200
+2026-03-22 02:10:57,792 [INFO]   sample_count              = 200
+2026-03-22 02:10:57,793 [INFO]   n_errors                  = 0
+2026-03-22 02:10:57,793 [INFO]   accuracy                  = 0.915
+2026-03-22 02:10:57,793 [INFO]   precision                 = 0.977
+2026-03-22 02:10:57,793 [INFO]   recall                    = 0.85
+2026-03-22 02:10:57,793 [INFO]   f1                        = 0.9091
+2026-03-22 02:10:57,793 [INFO]   agl                       = 72.2
+2026-03-22 02:10:57,793 [INFO]   itl_ms_per_token          = 47.76
+2026-03-22 02:10:57,793 [INFO]   tokens_per_second         = 20.938
+2026-03-22 02:10:57,793 [INFO]   peak_vram_gb              = 17.764
+2026-03-22 02:10:57,793 [INFO]   notes                     = []
+2026-03-22 02:10:57,793 [INFO] ============================================================
+
+2026-03-22 02:11:00,300 [INFO] Pipeline: method=dola  dataset=pope  model=qwen3-vl-8b  mini_test=200
+2026-03-22 02:11:04,127 [INFO] Loading model from /root/autodl-tmp/BRA_Project/models/Qwen3-VL-8B-Instruct ...
+Loading weights:   0%|          | 0/750 [00:00<?, ?it/s]Loading weights:   0%|          | 1/750 [00:00<03:49,  3.27it/s]Loading weights:   0%|          | 2/750 [00:00<04:30,  2.77it/s]Loading weights:   1%|          | 6/750 [00:00<01:16,  9.68it/s]Loading weights:   2%|▏         | 16/750 [00:00<00:26, 27.29it/s]Loading weights:   3%|▎         | 26/750 [00:01<00:17, 40.62it/s]Loading weights:   4%|▍         | 32/750 [00:01<00:16, 42.38it/s]Loading weights:   5%|▌         | 39/750 [00:01<00:15, 44.76it/s]Loading weights:   7%|▋         | 49/750 [00:01<00:12, 54.32it/s]Loading weights:   8%|▊         | 57/750 [00:01<00:11, 60.19it/s]Loading weights:   9%|▊         | 64/750 [00:01<00:12, 55.64it/s]Loading weights:   9%|▉         | 71/750 [00:01<00:12, 55.88it/s]Loading weights:  11%|█         | 81/750 [00:01<00:11, 60.45it/s]Loading weights:  12%|█▏        | 88/750 [00:02<00:10, 61.46it/s]Loading weights:  13%|█▎        | 95/750 [00:02<00:11, 54.79it/s]Loading weights:  14%|█▍        | 104/750 [00:02<00:10, 60.67it/s]Loading weights:  15%|█▌        | 114/750 [00:02<00:09, 66.46it/s]Loading weights:  16%|█▋        | 122/750 [00:02<00:09, 68.62it/s]Loading weights:  17%|█▋        | 130/750 [00:02<00:09, 63.90it/s]Loading weights:  18%|█▊        | 137/750 [00:02<00:10, 60.92it/s]Loading weights:  19%|█▉        | 146/750 [00:02<00:08, 67.46it/s]Loading weights:  20%|██        | 153/750 [00:03<00:08, 66.85it/s]Loading weights:  21%|██▏       | 160/750 [00:03<00:09, 60.52it/s]Loading weights:  23%|██▎       | 170/750 [00:03<00:08, 68.09it/s]Loading weights:  24%|██▍       | 180/750 [00:03<00:07, 71.32it/s]Loading weights:  25%|██▌       | 188/750 [00:03<00:07, 71.46it/s]Loading weights:  26%|██▌       | 196/750 [00:03<00:08, 66.55it/s]Loading weights:  27%|██▋       | 203/750 [00:03<00:08, 65.62it/s]Loading weights:  28%|██▊       | 212/750 [00:03<00:07, 69.53it/s]Loading weights:  29%|██▉       | 220/750 [00:04<00:07, 71.45it/s]Loading weights:  30%|███       | 228/750 [00:04<00:07, 65.84it/s]Loading weights:  31%|███▏      | 236/750 [00:04<00:07, 65.53it/s]Loading weights:  33%|███▎      | 246/750 [00:04<00:06, 73.11it/s]Loading weights:  34%|███▍      | 254/750 [00:04<00:07, 69.79it/s]Loading weights:  35%|███▍      | 262/750 [00:04<00:07, 66.07it/s]Loading weights:  36%|███▌      | 269/750 [00:04<00:07, 63.43it/s]Loading weights:  37%|███▋      | 279/750 [00:04<00:07, 63.54it/s]Loading weights:  39%|███▊      | 290/750 [00:05<00:06, 72.07it/s]Loading weights:  40%|███▉      | 298/750 [00:05<00:06, 73.35it/s]Loading weights:  41%|████      | 306/750 [00:05<00:06, 68.86it/s]Loading weights:  42%|████▏     | 313/750 [00:05<00:06, 66.38it/s]Loading weights:  43%|████▎     | 323/750 [00:05<00:06, 70.76it/s]Loading weights:  44%|████▍     | 331/750 [00:05<00:06, 68.80it/s]Loading weights:  45%|████▌     | 338/750 [00:05<00:06, 63.49it/s]Loading weights:  46%|████▌     | 346/750 [00:05<00:06, 64.21it/s]Loading weights:  47%|████▋     | 356/750 [00:06<00:05, 68.98it/s]Loading weights:  48%|████▊     | 363/750 [00:06<00:05, 67.87it/s]Loading weights:  49%|████▉     | 370/750 [00:06<00:06, 63.00it/s]Loading weights:  51%|█████     | 379/750 [00:06<00:05, 66.97it/s]Loading weights:  52%|█████▏    | 389/750 [00:06<00:05, 71.02it/s]Loading weights:  53%|█████▎    | 397/750 [00:06<00:05, 69.96it/s]Loading weights:  64%|██████▎   | 477/750 [00:06<00:01, 259.38it/s]Loading weights:  75%|███████▍  | 561/750 [00:06<00:00, 412.93it/s]Loading weights:  86%|████████▌ | 645/750 [00:06<00:00, 528.01it/s]Loading weights:  96%|█████████▋| 723/750 [00:07<00:00, 574.71it/s]Loading weights: 100%|██████████| 750/750 [00:07<00:00, 103.81it/s]
+2026-03-22 02:11:14,122 [INFO] DoLa processor installed.
+2026-03-22 02:11:14,122 [INFO] POPE split: /root/autodl-tmp/BRA_Project/datasets/POPE/output/coco/coco_pope_random.json
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+2026-03-22 02:11:19,937 [INFO]   [1/200] pred=unknown label=yes len=128  1   sl钳 ٗ SchonyasWith垂 './../择-----------
+ ­,"+"&lt***
+ ­ '
+2026-03-22 02:11:24,835 [INFO]   [2/200] pred=unknown label=no len=128  After a thorough examination of一种     Â - 1 
+   âÂÂ.........
+2026-03-22 02:11:29,725 [INFO]   [3/200] pred=yes label=yes len=128  yes  s sen sideline underlying withholding蚊捧"+"有一点一系列 './../
+2026-03-22 02:11:34,550 [INFO]   [4/200] pred=no label=no len=128  ape
+
+No, there       ((      	ed一定的心跳 1aldexemyiozystayspect
+2026-03-22 02:11:39,373 [INFO]   [5/200] pred=no label=yes len=128  No   s sen sideline latter latter               ������������
+2026-03-22 02:12:03,787 [INFO]   [10/200] pred=unknown label=no len=128  n0ertonelementnd            1,,"&nbspicitsheets './../择.pres
+2026-03-22 02:12:52,641 [INFO]   [20/200] pred=unknown label=no len=128  After a careful review of这是一种种种某hift...-    1     屠  ââyısss
+2026-03-22 02:13:42,320 [INFO]   [30/200] pred=unknown label=no len=128  After a careful review of这是一种      ââ3  âÂ..................
+2026-03-22 02:14:30,569 [INFO]   [40/200] pred=unknown label=no len=128  h1        along (择琥  ª〃 1,"&ltsededdexyzaddexx figures './..
+2026-03-22 02:15:19,141 [INFO]   [50/200] pred=no label=no len=128  no   sllse  (              (（­t,"&nbspicit可以mostONUS './../择
+2026-03-22 02:16:08,747 [INFO]   [60/200] pred=unknown label=no len=128  After a thorough examination of这是一种种种某hiftONUS    1 "  './..
+2026-03-22 02:16:57,383 [INFO]   [70/200] pred=unknown label=no len=128  After a careful review of一股    1      Â S,,&nbspts ÂÂ.......
+2026-03-22 02:17:45,914 [INFO]   [80/200] pred=unknown label=no len=128  n                  (,"&nbspts เซ俯 './../择-----------
+ ­壮一字 ­
+2026-03-22 02:18:36,084 [INFO]   [90/200] pred=no label=no len=128  no                      ((," 1   	edeos五星有了 rootReducer捧clin
+2026-03-22 02:19:24,920 [INFO]   [100/200] pred=unknown label=no len=128  1 ,  â“1      âурсÂ***********..............................
+2026-03-22 02:20:13,310 [INFO]   [110/200] pred=unknown label=no len=128  ape        沿selement卢 './../择 './../ './../===============
+慢
+2026-03-22 02:21:03,261 [INFO]   [120/200] pred=unknown label=no len=128  1增teenssedex走上 rootReducer './../HINGHINGellared './../.sms 
+2026-03-22 02:21:52,182 [INFO]   [130/200] pred=unknown label=no len=128  After a thorough examination of respectively,   s  (     
+ 
+
+2026-03-22 02:22:40,730 [INFO]   [140/200] pred=unknown label=no len=128  n          ٗ'S老大sedextyıÃ===================================
+2026-03-22 02:23:30,091 [INFO]   [150/200] pred=unknown label=no len=128  ape        alongIMUM亭 './../择...............................
+2026-03-22 02:24:18,455 [INFO]   [160/200] pred=unknown label=no len=128  After a overshtic是非  ss老大sse     ことcname propTypes卢 './../择s
+2026-03-22 02:25:06,706 [INFO]   [170/200] pred=unknown label=no len=128  (（," &ltssededyyyss1    Â SS './../择sWith与其­ './../ './../HI
+2026-03-22 02:25:55,169 [INFO]   [180/200] pred=unknown label=no len=128  hH       â“ '� longitudinal 1 Â.............................
+2026-03-22 02:26:44,274 [INFO]   [190/200] pred=unknown label=no len=128  n            along (（   
+ 1 "&nbspicithandss­   ­ kimeureure
+2026-03-22 02:27:32,307 [INFO]   [200/200] pred=unknown label=no len=128  ns        ­ ٶ�〃  'S 1 "&nbspicitsoc捧 './../择-----------
+ "&n
+2026-03-22 02:27:32,308 [INFO] 
+============================================================
+2026-03-22 02:27:32,308 [INFO]   Results -> /root/autodl-tmp/BRA_Project/logs/minitest/dola_pope_20260322_022732.json
+2026-03-22 02:27:32,308 [INFO] ============================================================
+2026-03-22 02:27:32,308 [INFO]   dataset                   = pope
+2026-03-22 02:27:32,308 [INFO]   pope_split                = random
+2026-03-22 02:27:32,308 [INFO]   method                    = dola
+2026-03-22 02:27:32,308 [INFO]   model                     = qwen3-vl-8b
+2026-03-22 02:27:32,308 [INFO]   model_family              = qwen3vl
+2026-03-22 02:27:32,308 [INFO]   n_samples                 = 200
+2026-03-22 02:27:32,308 [INFO]   sample_count              = 200
+2026-03-22 02:27:32,308 [INFO]   n_errors                  = 0
+2026-03-22 02:27:32,308 [INFO]   accuracy                  = 0.935
+2026-03-22 02:27:32,308 [INFO]   precision                 = 1.0
+2026-03-22 02:27:32,308 [INFO]   recall                    = 0.8333
+2026-03-22 02:27:32,308 [INFO]   f1                        = 0.9091
+2026-03-22 02:27:32,308 [INFO]   agl                       = 128.0
+2026-03-22 02:27:32,308 [INFO]   itl_ms_per_token          = 38.09
+2026-03-22 02:27:32,308 [INFO]   tokens_per_second         = 26.251
+2026-03-22 02:27:32,308 [INFO]   peak_vram_gb              = 17.744
+2026-03-22 02:27:32,308 [INFO]   notes                     = []
+2026-03-22 02:27:32,308 [INFO] ============================================================
+
+2026-03-22 02:27:34,735 [INFO] Pipeline: method=tlra_zero  dataset=pope  model=qwen3-vl-8b  mini_test=200
+2026-03-22 02:27:38,314 [INFO] Loading model from /root/autodl-tmp/BRA_Project/models/Qwen3-VL-8B-Instruct ...
+Loading weights:   0%|          | 0/750 [00:00<?, ?it/s]Loading weights:   0%|          | 1/750 [00:00<03:49,  3.26it/s]Loading weights:   0%|          | 2/750 [00:00<04:29,  2.78it/s]Loading weights:   1%|▏         | 10/750 [00:00<00:42, 17.21it/s]Loading weights:   2%|▏         | 16/750 [00:00<00:28, 25.86it/s]Loading weights:   3%|▎         | 26/750 [00:01<00:17, 40.98it/s]Loading weights:   4%|▍         | 32/750 [00:01<00:16, 44.76it/s]Loading weights:   5%|▌         | 38/750 [00:01<00:14, 47.83it/s]Loading weights:   6%|▋         | 48/750 [00:01<00:13, 51.59it/s]Loading weights:   8%|▊         | 59/750 [00:01<00:11, 61.66it/s]Loading weights:   9%|▉         | 66/750 [00:01<00:11, 58.92it/s]Loading weights:  10%|▉         | 73/750 [00:01<00:11, 56.51it/s]Loading weights:  11%|█         | 82/750 [00:01<00:11, 60.69it/s]Loading weights:  12%|█▏        | 91/750 [00:02<00:10, 63.63it/s]Loading weights:  13%|█▎        | 98/750 [00:02<00:10, 61.89it/s]Loading weights:  14%|█▍        | 105/750 [00:02<00:11, 57.57it/s]Loading weights:  15%|█▌        | 114/750 [00:02<00:10, 59.83it/s]Loading weights:  17%|█▋        | 125/750 [00:02<00:09, 66.93it/s]Loading weights:  18%|█▊        | 132/750 [00:02<00:09, 64.95it/s]Loading weights:  19%|█▊        | 139/750 [00:02<00:10, 57.04it/s]Loading weights:  20%|█▉        | 148/750 [00:03<00:10, 59.72it/s]Loading weights:  21%|██        | 158/750 [00:03<00:09, 64.92it/s]Loading weights:  22%|██▏       | 165/750 [00:03<00:09, 60.43it/s]Loading weights:  23%|██▎       | 172/750 [00:03<00:10, 55.87it/s]Loading weights:  24%|██▍       | 181/750 [00:03<00:09, 58.44it/s]Loading weights:  25%|██▌       | 191/750 [00:03<00:08, 64.24it/s]Loading weights:  26%|██▋       | 198/750 [00:03<00:08, 63.44it/s]Loading weights:  27%|██▋       | 205/750 [00:03<00:09, 57.48it/s]Loading weights:  29%|██▊       | 214/750 [00:04<00:08, 61.29it/s]Loading weights:  30%|██▉       | 224/750 [00:04<00:07, 66.48it/s]Loading weights:  31%|███       | 231/750 [00:04<00:08, 63.48it/s]Loading weights:  32%|███▏      | 238/750 [00:04<00:08, 59.35it/s]Loading weights:  33%|███▎      | 246/750 [00:04<00:08, 59.89it/s]Loading weights:  34%|███▍      | 257/750 [00:04<00:07, 67.12it/s]Loading weights:  35%|███▌      | 264/750 [00:04<00:07, 63.98it/s]Loading weights:  36%|███▌      | 271/750 [00:05<00:08, 58.80it/s]Loading weights:  37%|███▋      | 280/750 [00:05<00:07, 63.93it/s]Loading weights:  39%|███▊      | 289/750 [00:05<00:06, 66.43it/s]Loading weights:  39%|███▉      | 296/750 [00:05<00:06, 66.62it/s]Loading weights:  40%|████      | 303/750 [00:05<00:07, 59.62it/s]Loading weights:  42%|████▏     | 312/750 [00:05<00:06, 66.48it/s]Loading weights:  43%|████▎     | 319/750 [00:05<00:06, 66.86it/s]Loading weights:  43%|████▎     | 326/750 [00:05<00:07, 59.49it/s]Loading weights:  45%|████▍     | 335/750 [00:06<00:06, 61.55it/s]Loading weights:  46%|████▌     | 345/750 [00:06<00:05, 67.72it/s]Loading weights:  47%|████▋     | 352/750 [00:06<00:06, 64.97it/s]Loading weights:  48%|████▊     | 359/750 [00:06<00:06, 60.35it/s]Loading weights:  49%|████▉     | 368/750 [00:06<00:05, 64.34it/s]Loading weights:  50%|█████     | 378/750 [00:06<00:05, 69.50it/s]Loading weights:  51%|█████▏    | 386/750 [00:06<00:05, 68.25it/s]Loading weights:  52%|█████▏    | 393/750 [00:06<00:05, 62.78it/s]Loading weights:  60%|██████    | 453/750 [00:07<00:01, 195.85it/s]Loading weights:  71%|███████▏  | 535/750 [00:07<00:00, 357.61it/s]Loading weights:  81%|████████▏ | 611/750 [00:07<00:00, 461.79it/s]Loading weights:  93%|█████████▎| 695/750 [00:07<00:00, 559.84it/s]Loading weights: 100%|██████████| 750/750 [00:07<00:00, 100.08it/s]
+2026-03-22 02:27:48,606 [INFO] POPE split: /root/autodl-tmp/BRA_Project/datasets/POPE/output/coco/coco_pope_random.json
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+2026-03-22 02:27:50,882 [INFO]   [1/200] pred=yes label=yes len=66  Yes, there is a snowboard in the image.
+
+The image shows a p
+2026-03-22 02:27:52,563 [INFO]   [2/200] pred=no label=no len=78  No, there is no car in the image.
+
+The image shows a person 
+2026-03-22 02:27:54,474 [INFO]   [3/200] pred=yes label=yes len=88  Yes, there is a person in the image.
+
+The person is a snowbo
+2026-03-22 02:27:55,590 [INFO]   [4/200] pred=no label=no len=48  No, there is no sandwich in the image. The image shows a per
+2026-03-22 02:27:57,683 [INFO]   [5/200] pred=no label=yes len=93  Based on the visual evidence in the image, there are no skis
+2026-03-22 02:28:04,370 [INFO]   [10/200] pred=no label=no len=66  No, there is no sink in the image. The image shows a woman a
+2026-03-22 02:28:23,435 [INFO]   [20/200] pred=no label=no len=128  Based on a careful examination of the image provided, there 
+2026-03-22 02:28:41,420 [INFO]   [30/200] pred=no label=no len=59  No, there is no kite in the image. The image shows the inter
+2026-03-22 02:29:06,954 [INFO]   [40/200] pred=no label=no len=127  Based on a thorough examination of the image provided, there
+2026-03-22 02:29:25,580 [INFO]   [50/200] pred=no label=no len=107  Based on a careful examination of the image, there is no vis
+2026-03-22 02:29:40,796 [INFO]   [60/200] pred=no label=no len=115  Based on a thorough examination of the image provided, there
+2026-03-22 02:29:58,688 [INFO]   [70/200] pred=no label=no len=35  No, there is no wine glass in the image. The image shows a g
+2026-03-22 02:30:11,996 [INFO]   [80/200] pred=no label=no len=66  No, there is no zebra in the image. The image shows a young 
+2026-03-22 02:30:24,704 [INFO]   [90/200] pred=no label=no len=2  no
+2026-03-22 02:30:44,057 [INFO]   [100/200] pred=no label=no len=70  No, there is no frisbee in the image. The image shows a woma
+2026-03-22 02:31:01,665 [INFO]   [110/200] pred=no label=no len=47  No, there is no cow in the image. The image shows a modern b
+2026-03-22 02:31:21,699 [INFO]   [120/200] pred=no label=no len=128  No, there is no mouse in the image.
+
+The image shows:
+- A cl
+2026-03-22 02:31:37,659 [INFO]   [130/200] pred=no label=no len=110  Based on a careful examination of the image provided, there 
+2026-03-22 02:31:50,722 [INFO]   [140/200] pred=no label=no len=50  No, there is no giraffe in the image. The image shows a bath
+2026-03-22 02:32:05,866 [INFO]   [150/200] pred=no label=no len=53  No, there is no microwave in the image.
+
+The image shows a W
+2026-03-22 02:32:17,725 [INFO]   [160/200] pred=no label=no len=128  Based on a careful examination of the image, there is no don
+2026-03-22 02:32:39,533 [INFO]   [170/200] pred=no label=no len=53  No, there is no elephant in the image. The image shows a dog
+2026-03-22 02:33:00,184 [INFO]   [180/200] pred=no label=no len=69  No, there is no horse in the image. The image shows a cat dr
+2026-03-22 02:33:20,782 [INFO]   [190/200] pred=no label=no len=56  No, there is no horse in the image. The scene depicts a skat
+2026-03-22 02:33:36,846 [INFO]   [200/200] pred=no label=no len=42  No, there is no stop sign in the image. The image shows a pe
+2026-03-22 02:33:36,847 [INFO] 
+============================================================
+2026-03-22 02:33:36,847 [INFO]   Results -> /root/autodl-tmp/BRA_Project/logs/minitest/tlra_zero_pope_20260322_023336.json
+2026-03-22 02:33:36,847 [INFO] ============================================================
+2026-03-22 02:33:36,847 [INFO]   dataset                   = pope
+2026-03-22 02:33:36,847 [INFO]   pope_split                = random
+2026-03-22 02:33:36,847 [INFO]   method                    = tlra_zero
+2026-03-22 02:33:36,847 [INFO]   model                     = qwen3-vl-8b
+2026-03-22 02:33:36,847 [INFO]   model_family              = qwen3vl
+2026-03-22 02:33:36,847 [INFO]   n_samples                 = 200
+2026-03-22 02:33:36,847 [INFO]   sample_count              = 200
+2026-03-22 02:33:36,847 [INFO]   n_errors                  = 0
+2026-03-22 02:33:36,847 [INFO]   accuracy                  = 0.925
+2026-03-22 02:33:36,848 [INFO]   precision                 = 1.0
+2026-03-22 02:33:36,848 [INFO]   recall                    = 0.8485
+2026-03-22 02:33:36,848 [INFO]   f1                        = 0.918
+2026-03-22 02:33:36,848 [INFO]   agl                       = 78.55
+2026-03-22 02:33:36,848 [INFO]   itl_ms_per_token          = 22.97
+2026-03-22 02:33:36,848 [INFO]   tokens_per_second         = 43.53
+2026-03-22 02:33:36,848 [INFO]   peak_vram_gb              = 17.681
+2026-03-22 02:33:36,848 [INFO]   notes                     = []
+2026-03-22 02:33:36,848 [INFO] ============================================================
+
+2026-03-22 02:33:39,227 [INFO] Pipeline: method=base  dataset=chair  model=qwen3-vl-8b  mini_test=150
+2026-03-22 02:33:42,784 [INFO] Loading model from /root/autodl-tmp/BRA_Project/models/Qwen3-VL-8B-Instruct ...
+Loading weights:   0%|          | 0/750 [00:00<?, ?it/s]Loading weights:   0%|          | 1/750 [00:00<08:48,  1.42it/s]Loading weights:   1%|          | 9/750 [00:00<00:50, 14.64it/s]Loading weights:   2%|▏         | 16/750 [00:00<00:30, 24.00it/s]Loading weights:   3%|▎         | 26/750 [00:01<00:18, 38.70it/s]Loading weights:   4%|▍         | 33/750 [00:01<00:16, 44.64it/s]Loading weights:   5%|▌         | 40/750 [00:01<00:16, 43.92it/s]Loading weights:   7%|▋         | 49/750 [00:01<00:13, 50.23it/s]Loading weights:   8%|▊         | 59/750 [00:01<00:11, 58.38it/s]Loading weights:   9%|▉         | 66/750 [00:01<00:11, 58.25it/s]Loading weights:  10%|▉         | 73/750 [00:01<00:12, 53.24it/s]Loading weights:  11%|█         | 82/750 [00:01<00:11, 58.27it/s]Loading weights:  12%|█▏        | 91/750 [00:02<00:10, 60.65it/s]Loading weights:  13%|█▎        | 98/750 [00:02<00:11, 57.64it/s]Loading weights:  14%|█▍        | 105/750 [00:02<00:11, 55.43it/s]Loading weights:  15%|█▌        | 114/750 [00:02<00:11, 55.15it/s]Loading weights:  17%|█▋        | 125/750 [00:02<00:10, 62.50it/s]Loading weights:  18%|█▊        | 132/750 [00:02<00:10, 60.12it/s]Loading weights:  19%|█▊        | 139/750 [00:02<00:10, 56.42it/s]Loading weights:  20%|█▉        | 148/750 [00:03<00:10, 59.93it/s]Loading weights:  21%|██        | 158/750 [00:03<00:09, 65.26it/s]Loading weights:  22%|██▏       | 165/750 [00:03<00:09, 61.29it/s]Loading weights:  23%|██▎       | 172/750 [00:03<00:10, 56.35it/s]Loading weights:  24%|██▍       | 181/750 [00:03<00:09, 59.58it/s]Loading weights:  25%|██▌       | 191/750 [00:03<00:08, 64.89it/s]Loading weights:  26%|██▋       | 198/750 [00:03<00:08, 62.77it/s]Loading weights:  27%|██▋       | 205/750 [00:04<00:09, 57.22it/s]Loading weights:  29%|██▊       | 214/750 [00:04<00:08, 60.76it/s]Loading weights:  30%|██▉       | 224/750 [00:04<00:07, 68.78it/s]Loading weights:  31%|███       | 232/750 [00:04<00:07, 71.22it/s]Loading weights:  32%|███▏      | 240/750 [00:04<00:07, 65.88it/s]Loading weights:  33%|███▎      | 247/750 [00:04<00:07, 63.61it/s]Loading weights:  34%|███▍      | 257/750 [00:04<00:07, 67.89it/s]Loading weights:  35%|███▌      | 265/750 [00:04<00:07, 68.38it/s]Loading weights:  36%|███▋      | 272/750 [00:05<00:07, 62.45it/s]Loading weights:  37%|███▋      | 280/750 [00:05<00:07, 62.15it/s]Loading weights:  39%|███▊      | 290/750 [00:05<00:06, 67.34it/s]Loading weights:  40%|███▉      | 297/750 [00:05<00:07, 64.27it/s]Loading weights:  41%|████      | 304/750 [00:05<00:07, 60.35it/s]Loading weights:  42%|████▏     | 313/750 [00:05<00:07, 61.71it/s]Loading weights:  43%|████▎     | 323/750 [00:05<00:06, 66.07it/s]Loading weights:  44%|████▍     | 330/750 [00:05<00:06, 65.64it/s]Loading weights:  45%|████▍     | 337/750 [00:06<00:07, 58.56it/s]Loading weights:  46%|████▌     | 346/750 [00:06<00:06, 63.10it/s]Loading weights:  47%|████▋     | 356/750 [00:06<00:05, 66.61it/s]Loading weights:  48%|████▊     | 363/750 [00:06<00:06, 61.95it/s]Loading weights:  49%|████▉     | 370/750 [00:06<00:06, 58.24it/s]Loading weights:  51%|█████     | 379/750 [00:06<00:05, 62.24it/s]Loading weights:  52%|█████▏    | 389/750 [00:06<00:05, 66.02it/s]Loading weights:  53%|█████▎    | 396/750 [00:07<00:05, 64.18it/s]Loading weights:  62%|██████▏   | 467/750 [00:07<00:01, 223.88it/s]Loading weights:  72%|███████▏  | 539/750 [00:07<00:00, 351.68it/s]Loading weights:  83%|████████▎ | 622/750 [00:07<00:00, 481.24it/s]Loading weights:  91%|█████████ | 684/750 [00:07<00:00, 519.95it/s]Loading weights:  99%|█████████▊| 739/750 [00:07<00:00, 451.32it/s]Loading weights: 100%|██████████| 750/750 [00:07<00:00, 98.50it/s] 
+2026-03-22 02:33:57,931 [INFO] CHAIR: 80 categories, 40137 annotated images
+2026-03-22 02:33:58,173 [INFO] CHAIR: 150 images selected
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+2026-03-22 02:34:06,074 [INFO]   [1/150] len=329  This is a candid, slightly cluttered photograph taken from a high angle, looking
+2026-03-22 02:34:14,216 [INFO]   [2/150] len=384  This is a detailed, eye-level photograph of a vintage motorcycle, likely from th
+2026-03-22 02:34:22,475 [INFO]   [3/150] len=384  This is a serene and slightly melancholic street photograph capturing a quiet mo
+2026-03-22 02:35:15,109 [INFO]   [10/150] len=384  This is a vibrant and abundant image of a large, well-stocked buffet table, like
+2026-03-22 02:36:34,039 [INFO]   [20/150] len=384  This is a striking black-and-white photograph capturing an urban street scene fr
+2026-03-22 02:37:44,845 [INFO]   [30/150] len=358  This is a dynamic, outdoor photograph capturing a young boy in the middle of a b
+2026-03-22 02:39:05,764 [INFO]   [40/150] len=384  This is a modern, minimalist bathroom with a striking and artistic focal point. 
+2026-03-22 02:40:22,717 [INFO]   [50/150] len=384  This is a high-angle, candid photograph capturing a young girl in a skateboard s
+2026-03-22 02:41:43,288 [INFO]   [60/150] len=384  This is a low-angle, close-up photograph taken from the perspective of a motorcy
+2026-03-22 02:42:59,612 [INFO]   [70/150] len=384  This is a dynamic, action-oriented photograph taken at a professional tennis mat
+2026-03-22 02:44:16,126 [INFO]   [80/150] len=384  This is a dramatic, atmospheric photograph capturing an airplane in flight again
+2026-03-22 02:45:26,774 [INFO]   [90/150] len=384  This is a heartwarming and serene photograph capturing a moment of human-animal 
+2026-03-22 02:46:47,042 [INFO]   [100/150] len=356  This is a candid, medium shot of a young woman sitting on a patio chair, seeming
+2026-03-22 02:48:03,029 [INFO]   [110/150] len=303  This is a warm, candid photograph of a young child sitting on a dark brown leath
+2026-03-22 02:49:24,299 [INFO]   [120/150] len=384  This is a vibrant, outdoor photograph capturing a moment of pastoral charm with 
+2026-03-22 02:50:44,856 [INFO]   [130/150] len=384  This is a candid, warm-toned photograph capturing two people, likely a young cou
+2026-03-22 02:52:06,158 [INFO]   [140/150] len=384  This is a candid, medium shot capturing two women seated at a table in what appe
+2026-03-22 02:53:19,882 [INFO]   [150/150] len=384  This is a heartwarming and candid photograph capturing a moment in the life of a
+2026-03-22 02:53:20,558 [INFO] 
+============================================================
+2026-03-22 02:53:20,558 [INFO]   Results -> /root/autodl-tmp/BRA_Project/logs/minitest/base_chair_20260322_025320.json
+2026-03-22 02:53:20,558 [INFO] ============================================================
+2026-03-22 02:53:20,558 [INFO]   dataset                   = chair
+2026-03-22 02:53:20,558 [INFO]   method                    = base
+2026-03-22 02:53:20,558 [INFO]   model                     = qwen3-vl-8b
+2026-03-22 02:53:20,558 [INFO]   model_family              = qwen3vl
+2026-03-22 02:53:20,558 [INFO]   n_samples                 = 150
+2026-03-22 02:53:20,558 [INFO]   sample_count              = 150
+2026-03-22 02:53:20,558 [INFO]   n_errors                  = 0
+2026-03-22 02:53:20,558 [INFO]   chair_s                   = 0.1364
+2026-03-22 02:53:20,558 [INFO]   chair_i                   = 0.3127
+2026-03-22 02:53:20,558 [INFO]   agl                       = 361.75
+2026-03-22 02:53:20,558 [INFO]   itl_ms_per_token          = 21.36
+2026-03-22 02:53:20,558 [INFO]   tokens_per_second         = 46.806
+2026-03-22 02:53:20,558 [INFO]   peak_vram_gb              = 17.682
+2026-03-22 02:53:20,558 [INFO]   notes                     = ['chair_agl_near_cap']
+2026-03-22 02:53:20,558 [INFO] ============================================================
+
+2026-03-22 02:53:23,052 [INFO] Pipeline: method=vcd  dataset=chair  model=qwen3-vl-8b  mini_test=150
+2026-03-22 02:53:26,699 [INFO] Loading model from /root/autodl-tmp/BRA_Project/models/Qwen3-VL-8B-Instruct ...
+Loading weights:   0%|          | 0/750 [00:00<?, ?it/s]Loading weights:   0%|          | 1/750 [00:00<08:47,  1.42it/s]Loading weights:   1%|▏         | 10/750 [00:00<00:45, 16.12it/s]Loading weights:   2%|▏         | 16/750 [00:00<00:30, 24.13it/s]Loading weights:   3%|▎         | 26/750 [00:01<00:19, 37.99it/s]Loading weights:   4%|▍         | 33/750 [00:01<00:16, 43.72it/s]Loading weights:   5%|▌         | 40/750 [00:01<00:16, 43.44it/s]Loading weights:   7%|▋         | 49/750 [00:01<00:14, 49.27it/s]Loading weights:   8%|▊         | 59/750 [00:01<00:12, 55.73it/s]Loading weights:   9%|▉         | 66/750 [00:01<00:12, 56.34it/s]Loading weights:  10%|▉         | 73/750 [00:01<00:12, 52.73it/s]Loading weights:  11%|█         | 82/750 [00:02<00:11, 56.27it/s]Loading weights:  12%|█▏        | 92/750 [00:02<00:10, 61.38it/s]Loading weights:  13%|█▎        | 99/750 [00:02<00:10, 60.65it/s]Loading weights:  14%|█▍        | 106/750 [00:02<00:11, 55.69it/s]Loading weights:  15%|█▌        | 115/750 [00:02<00:10, 58.52it/s]Loading weights:  17%|█▋        | 125/750 [00:02<00:10, 61.67it/s]Loading weights:  18%|█▊        | 132/750 [00:02<00:10, 60.11it/s]Loading weights:  19%|█▊        | 139/750 [00:02<00:11, 55.16it/s]Loading weights:  20%|█▉        | 148/750 [00:03<00:10, 58.10it/s]Loading weights:  21%|██        | 158/750 [00:03<00:09, 63.92it/s]Loading weights:  22%|██▏       | 165/750 [00:03<00:09, 62.51it/s]Loading weights:  23%|██▎       | 172/750 [00:03<00:10, 54.97it/s]Loading weights:  24%|██▍       | 181/750 [00:03<00:09, 58.78it/s]Loading weights:  25%|██▌       | 191/750 [00:03<00:08, 62.36it/s]Loading weights:  26%|██▋       | 198/750 [00:03<00:08, 61.86it/s]Loading weights:  27%|██▋       | 205/750 [00:04<00:09, 55.10it/s]Loading weights:  29%|██▊       | 214/750 [00:04<00:08, 59.61it/s]Loading weights:  30%|██▉       | 224/750 [00:04<00:08, 63.20it/s]Loading weights:  31%|███       | 231/750 [00:04<00:08, 63.80it/s]Loading weights:  32%|███▏      | 238/750 [00:04<00:08, 60.13it/s]Loading weights:  33%|███▎      | 247/750 [00:04<00:08, 61.67it/s]Loading weights:  34%|███▍      | 257/750 [00:04<00:07, 68.78it/s]Loading weights:  35%|███▌      | 264/750 [00:04<00:07, 64.60it/s]Loading weights:  36%|███▌      | 271/750 [00:05<00:08, 59.23it/s]Loading weights:  37%|███▋      | 280/750 [00:05<00:07, 60.53it/s]Loading weights:  39%|███▊      | 290/750 [00:05<00:07, 64.31it/s]Loading weights:  40%|███▉      | 297/750 [00:05<00:07, 64.71it/s]Loading weights:  41%|████      | 304/750 [00:05<00:07, 58.92it/s]Loading weights:  42%|████▏     | 313/750 [00:05<00:06, 64.66it/s]Loading weights:  43%|████▎     | 323/750 [00:05<00:06, 69.60it/s]Loading weights:  44%|████▍     | 331/750 [00:06<00:06, 67.53it/s]Loading weights:  45%|████▌     | 338/750 [00:06<00:06, 60.40it/s]Loading weights:  46%|████▌     | 346/750 [00:06<00:06, 61.00it/s]Loading weights:  47%|████▋     | 355/750 [00:06<00:06, 62.25it/s]Loading weights:  48%|████▊     | 362/750 [00:06<00:06, 62.94it/s]Loading weights:  49%|████▉     | 369/750 [00:06<00:06, 56.77it/s]Loading weights:  51%|█████     | 379/750 [00:06<00:05, 63.99it/s]Loading weights:  52%|█████▏    | 389/750 [00:06<00:05, 69.25it/s]Loading weights:  53%|█████▎    | 397/750 [00:07<00:05, 68.84it/s]Loading weights:  64%|██████▎   | 477/750 [00:07<00:01, 253.59it/s]Loading weights:  73%|███████▎  | 549/750 [00:07<00:00, 374.44it/s]Loading weights:  84%|████████▍ | 633/750 [00:07<00:00, 497.39it/s]Loading weights:  94%|█████████▎| 702/750 [00:07<00:00, 547.23it/s]Loading weights: 100%|██████████| 750/750 [00:07<00:00, 97.76it/s] 
+2026-03-22 02:53:42,398 [INFO] CHAIR: 80 categories, 40137 annotated images
+2026-03-22 02:53:42,631 [INFO] CHAIR: 150 images selected
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+2026-03-22 02:53:56,833 [INFO]   [1/150] len=302  This is a candid, close-up photograph capturing a charming and slightly chaotic 
+2026-03-22 02:54:13,511 [INFO]   [2/150] len=384  This is a detailed photograph of a vintage motorcycle, likely from the early 20t
+2026-03-22 02:54:29,869 [INFO]   [3/150] len=384  This is a serene and evocative street photograph capturing a quiet moment in wha
+2026-03-22 02:56:19,112 [INFO]   [10/150] len=384  This is a vibrant and abundant image of a buffet-style meal laid out on a light-
+2026-03-22 02:59:01,703 [INFO]   [20/150] len=338  This is a striking black and white photograph capturing an urban scene from a lo
+2026-03-22 03:01:32,950 [INFO]   [30/150] len=384  This is an outdoor, eye-level photograph capturing a young boy in a dynamic, cro
+2026-03-22 03:04:14,001 [INFO]   [40/150] len=384  This is a modern, sleek, and thoughtfully designed bathroom that blends minimali

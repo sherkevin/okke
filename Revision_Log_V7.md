@@ -1,0 +1,7 @@
+# Revision_Log_V7
+- **Resolved $\Phi$ Training Ambiguity:** Explicitly formulated the InfoNCE contrastive loss for $\Phi$ in Section 3.1, using visual grounding data (bounding box patches mapped to noun tokens). Added the crucial "No $\Phi$" (Zero-Shot Identity) baseline to Protocol 0. Dropped the absolute "training-free" claims.
+- **Fixed VASM Contextual Blindness:** Upgraded VASM to "Probabilistic VASM" in Section 3.4. Replaced binary $\{0,1\}$ tagging with expected values $\mathbb{E}[\gamma(c)]$ based on POS probability distributions in a corpus, resolving polysemy issues. Explicitly added a rule-based fallback to handle BPE tokens.
+- **Addressed Dynamic Resolution:** Modified the Localized Top-$k$ formula to "Adaptive Top-$k$" in Section 3.2, scaling $k$ proportionally to the fluctuating visual sequence length $N_v$ to support dynamic models like InternVL. Added temperature scaling to $S_{raw}(c)$.
+- **Expanded Experimental Blueprint:** Formalized the mandatory tables and figures requested by the reviewer (Main Result Table, Protocol 1 Ablation Table, Figure 1 Heatmap, Figure 2 Pareto).
+- **Preserved Core Pillars:** The "Pooling Paradox", "Entropy Trap", and BRA's overall logits-space logic were rigorously maintained as the central narrative.
+- **Pending Empirical Validation:** All protocols (Recall@K, DocVQA ablations, false-positive metrics) are strictly framed as hypotheses requiring empirical execution.

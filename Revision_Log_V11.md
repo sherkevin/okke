@@ -1,0 +1,6 @@
+# Revision_Log_V11
+- **Architectural Ambiguity Resolved:** Addressed the reviewer's concern regarding offline extraction of $\Phi_{calib}$ by explicitly defining the use of a neutral dummy-prompt (Section 3.1) to stabilize post-LLM states prior to InfoNCE training. Specified $\Phi$ as a lightweight single linear layer.
+- **Hardware/Bandwidth Honesty:** Shifted the complexity discussion beyond just FLOPs to explicitly address the VRAM memory bandwidth wall. Introduced "Pre-fill Contiguous Caching" (Section 3.2) and updated the evaluation protocol to explicitly track TPOT vs. $N_v$.
+- **Hyperparameter & Baseline Fairness:** Ensured baselines in Defense Line 1 mandate best-known temporal adaptations. Added an Appendix plan for a Hyperparameter Heatmap ($\rho$ vs $\alpha$) to prove robustness.
+- **Failure Case Analysis:** Integrated the reviewer's excellent suggestion regarding $k_{min}$ failures (tiny objects) directly into Defense Line 5 and the Limitations section, strengthening the academic transparency of the paper.
+- **Retained Core Strengths:** Maintained the full Image+Video dual storyline, the "Pooling Paradox" framing, VASM BPE Continuation logic, and strictly enforced AGL / Frame Hit Rate metrics.

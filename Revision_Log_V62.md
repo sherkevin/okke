@@ -1,0 +1,6 @@
+# Revision_Log_V62
+- **Fixed VASM Mechanistic Brittleness:** Addressed the reviewer's concern about subword (BPE) POS-tagging by redefining VASM as a *conservative fail-safe*. It now defaults to masking ($\gamma=0$) for any ambiguous subwords, strictly intervening only on unambiguous visual root BPEs. Added a "Grammar/Fluency Score (Perplexity)" ablation requirement to Chain B.
+- **Clarified Calibrator Footprint & Domain Shift:** Specified that $\Phi_{calib}$ is a single linear layer trained via token-to-patch InfoNCE on CC3M in < 2 hours on 1 A100. Added domain shift (e.g., failing on abstract diagrams in MMMU) to Limitations.
+- **Resolved High-Resolution Efficiency Contradiction:** Introduced "Pre-decoding Background Pruning" to reduce $N_v$ to $N_{active}$, formally bounding the scaling complexity at $N_v=4096$ to satisfy the 50% speed-drop limit.
+- **Downgraded Video Pilot:** Removed the unformulated video pilot from the main evaluation blueprint (Chain C) and correctly relegated it to an exploratory appendix/future work scope in the Limitations section, as explicitly demanded by the reviewer.
+- **Maintained Strengths:** Retained the framing of baselines, the 3-chain structure, the OCR paradox concession, and the mandatory AGL control metric.

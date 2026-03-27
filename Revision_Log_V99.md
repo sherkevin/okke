@@ -1,0 +1,6 @@
+# Revision_Log_V99
+- **Fixed `TLRA_zero` fatal flaw**: Redefined `TLRA_zero` from applying the `lm_head` to Layer 0 visual states (a mathematical impossibility) to computing cosine similarity between visual states and the LLM's untied input embedding matrix $E_{in} \in \mathbb{R}^{V \times d}$. 
+- **De-black-boxed VASM**: Added a clear, deterministic pipeline in Section 3.4 detailing how English WordNet synsets are mapped to string arrays, then BPE-tokenized, with subwords inheriting binary mask $\gamma$ from their roots.
+- **Acknowledged Latency Bottleneck reality**: Shifted the narrative from "FLOP-efficient" to explicitly identifying the memory bandwidth gather operation on a ~250MB matrix as the true system bottleneck. Added Memory Bandwidth to Table 1.
+- **Adopted "Hybrid" framing**: Adjusted the Abstract and Introduction to openly state `TLRA_calib` is a hybrid (train-time calibration + decode-time routing) method, rather than a purely inference-time mitigation strategy.
+- **Retained all reviewer-praised core highlights**: Maintained the AGL tracking, Top-M Hijacking CDF metric, matched-budget LoRA parity baseline, and the Oracle VASM ablation.

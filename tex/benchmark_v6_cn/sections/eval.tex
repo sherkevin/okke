@@ -1,0 +1,36 @@
+\section{实验}
+\label{sec:exp}
+
+为验证 CHORD，实验围绕四个研究问题展开：
+
+\textbf{RQ1（有效性与可迁移性）：} CHORD 能否在\textbf{无模型特异重训}的前提下，在异构 MLLM 家族上一致缓解物体幻觉？
+
+\textbf{RQ2（泛化性）：} CHORD 能否推广到开放式生成，而不损害宿主的结构与语言能力？
+
+\textbf{RQ3（机制消融）：} 分词器桥接、共振增量 $\Delta S$ 等各组件如何贡献最终性能？
+
+\textbf{RQ4（系统效率）：} 连续 Top-$1$ 监控能否将额外计算控制在可忽略水平？
+
+\subsection{实验设置}
+
+\textbf{模型与基线。} 我们在 Qwen-VL（如 Qwen-VL-Chat）、LLaVA-1.5、InstructBLIP 三类家族上评估。对比基线包括标准自回归解码（Base）及三种免训练解码基线：\textbf{DoLa}、\textbf{OPERA}、\textbf{VCD}。
+
+\textbf{基准。} 使用 \textbf{POPE}（random / popular / adversarial 划分）做系统物体幻觉评估，\textbf{CHAIR} 评估开放式图像描述中的幻觉率。
+
+\textbf{实现细节。} CHORD 无参数更新。区域缓存使用 Grounding DINO 与冻结 CLIP ViT-L/14；共振探针使用 CLIP 文本编码器。
+
+\subsection{主结果：幻觉缓解（RQ1）}
+
+表~\ref{tab:pope} 汇总 POPE（random 划分）主结果。CHORD 相对 Base 一致提升；在外部、与宿主内部几何解耦的语义空间中计算 $\Delta S$，可抑制语言先验驱动错误。POPE 的 popular 与 adversarial 划分及扩展结果见补充材料，CHORD 保持稳定收益。
+
+\subsection{泛化与结构保持（RQ2）}
+
+仅在判别任务（如 POPE）上降幻觉不足；若破坏流畅描述能力则不可取。表~\ref{tab:chair} 报告 CHAIR-s（句级）与 CHAIR-i（实例级）。有界 logit 校准旨在仅惩罚与视觉矛盾实体，尽量保留宿主句法与推理习惯。
+
+\subsection{消融实验（RQ3）}
+
+表~\ref{tab:ablation} 在 Qwen-VL（POPE）上消融。\textbf{去掉分词器桥接、}直接对原始子词做共振会导致性能崩溃，说明弥合粒度失配是外部评估的前提。\textbf{用绝对相似度替代 $\Delta S$} 易产生空间错配（前缀与候选对齐到不同区域），F1 下降。\textbf{仅用全局图像特征、}不用稠密区域库则损失细粒度证据，缓解效果减弱。
+
+\subsection{系统效率（RQ4）}
+
+表~\ref{tab:efficiency} 在 Qwen-VL 上审计开销。每步全 $K$ 共振代价高；\textbf{连续 Top-$1$ 监控}在 Top-$1$ 假设通过检验时以 $O(1)$ 过滤安全或非视觉 token，仅在未通过时回退全 $K$。结合文本编码器 KV 缓存，每步额外延迟相对宿主 MLLM 总体推理保持较小。

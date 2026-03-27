@@ -1,0 +1,17 @@
+dataset,method,model_family,sample_count,accuracy,f1,chair_s,chair_i,agl,itl_ms_per_token,tokens_per_second,peak_vram_gb,intervention_rate,notes
+pope,base,qwen3vl,2,1.0,1.0,,,89.0,20.86,47.948,4.329,,
+pope,bra_zero,qwen3vl,2,1.0,1.0,,,101.0,22.57,44.302,4.329,1.0,high_trigger_rate
+pope,bra_meanpool,qwen3vl,2,1.0,1.0,,,101.0,22.39,44.656,4.329,1.0,high_trigger_rate
+pope,bra_no_vasm,qwen3vl,2,1.0,1.0,,,89.0,22.3,44.835,4.329,1.0,high_trigger_rate
+chair,base,qwen3vl,2,,,0.2083,0.3846,256.0,18.49,54.086,4.366,,chair_agl_near_cap
+chair,bra_zero,qwen3vl,2,,,0.16,0.3333,256.0,19.3,51.815,4.372,1.0,chair_agl_near_cap|high_trigger_rate
+chair,bra_meanpool,qwen3vl,2,,,0.0625,0.25,256.0,19.37,51.619,4.372,1.0,chair_agl_near_cap|high_trigger_rate
+chair,bra_no_vasm,qwen3vl,2,,,0.2174,0.4167,256.0,19.08,52.408,4.372,1.0,chair_agl_near_cap|high_trigger_rate
+freak,base,qwen3_vl,2,0.0,,,,6.5,111.50585114955902,8.968139247318366,,,high_trigger_rate
+freak,bra_zero,qwen3_vl,2,0.0,,,,6.5,30.36816120147705,32.929224570612526,,1.0,high_trigger_rate
+freak,bra_meanpool,qwen3_vl,2,0.0,,,,6.5,30.104729533195496,33.217372004532805,,1.0,high_trigger_rate
+freak,bra_no_vasm,qwen3_vl,2,0.0,,,,6.5,30.548390746116638,32.734948570969216,,1.0,high_trigger_rate
+docvqa,base,,,,,,,,,,,,no_samples
+docvqa,bra_zero,,,,,,,,,,,,no_samples
+docvqa,bra_meanpool,,,,,,,,,,,,no_samples
+docvqa,bra_no_vasm,,,,,,,,,,,,no_samples

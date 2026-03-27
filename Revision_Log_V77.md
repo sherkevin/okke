@@ -1,0 +1,7 @@
+# Revision_Log_V77
+- **Reviewer Fix (VASM Generation):** Removed references to "manual heuristics" or "precomputed table". Explicitly formalized VASM as an automated algorithmic pipeline using WordNet synsets and POS tagging.
+- **Reviewer Fix (Hyperparameter Locking):** Added strict, explicit clauses across Sections 3 and 4 mandating that $\tau_{sim}, \tau_{evidence}, \alpha$, and $M$ are permanently locked on a single validation set, prohibiting per-dataset manipulation.
+- **Reviewer Fix (Data Leakage Audit):** Implemented a mandatory "Seen vs. Unseen" category split in Evidence Chain C to ensure $\Phi_{calib}$ isn't just memorizing object co-occurrences.
+- **Reviewer Fix (Truncation/AGL Check):** Inserted Average Generation Length (AGL) into Evidence Chain A's validation criteria to explicitly detect and penalize artificial hallucination reductions caused by response truncation.
+- **Reviewer Fix ($\Phi_{calib}$ Definition):** Clarified the contrastive loss as InfoNCE with in-batch negatives on a 50k subset.
+- **Preserved Strengths:** Retained the OCR/DocVQA negative control, the strict separation of `TLRA_zero` vs `TLRA_calib`, and the respectful, accurate framing of `DoLa`/`VCD`/`OPERA` baselines. Bounded video strictly to the appendix.

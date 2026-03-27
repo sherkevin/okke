@@ -1,0 +1,991 @@
+{
+  "model": "llava-1.5",
+  "pope_type": "random",
+  "pope_path": "smoke_runs/validation_random64/random_64.json",
+  "metrics": {
+    "accuracy": 0.859375,
+    "precision": 0.9032258064516129,
+    "recall": 0.8235294117647058,
+    "f1": 0.8615384615384616,
+    "yes_ratio": 0.484375,
+    "tp": 28,
+    "tn": 27,
+    "fp": 3,
+    "fn": 6
+  },
+  "outputs": [
+    {
+      "batch_idx": 0,
+      "query": [
+        "Is there a snowboard in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a snowboard in the image"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 1,
+      "query": [
+        "Is there a car in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no car in the image."
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 2,
+      "query": [
+        "Is there a person in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a person in the image."
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 3,
+      "query": [
+        "Is there a sandwich in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no sandwich in the image"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 4,
+      "query": [
+        "Is there a skis in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there are skis in the image,"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 5,
+      "query": [
+        "Is there a couch in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no couch in the image"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 6,
+      "query": [
+        "Is there a truck in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a truck in the image"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 7,
+      "query": [
+        "Is there a pizza in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no pizza in the image"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 8,
+      "query": [
+        "Is there a person in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a person in the image,"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 9,
+      "query": [
+        "Is there a sink in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no sink in the image."
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 10,
+      "query": [
+        "Is there an umbrella in the imange?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is an umbrella in the"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 11,
+      "query": [
+        "Is there a cell phone in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no cell phone in the image"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 12,
+      "query": [
+        "Is there a person in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a person in the image,"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 13,
+      "query": [
+        "Is there a sheep in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no sheep in the image."
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 14,
+      "query": [
+        "Is there a bicycle in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a bicycle in the"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 15,
+      "query": [
+        "Is there a broccoli in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no broccoli in the"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 16,
+      "query": [
+        "Is there a car in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "No, there is no car in the image."
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 17,
+      "query": [
+        "Is there a person in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a person in the image,"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 18,
+      "query": [
+        "Is there a teddy bear in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no teddy bear in the"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 19,
+      "query": [
+        "Is there a potted plant in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "No, there is no potted plant in the"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 20,
+      "query": [
+        "Is there a broccoli in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no broccoli in the"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 21,
+      "query": [
+        "Is there a car in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "No, there is no car in the image."
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 22,
+      "query": [
+        "Is there an orange in the imange?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no orange in the image."
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 23,
+      "query": [
+        "Is there a traffic light in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a traffic light in the image"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 24,
+      "query": [
+        "Is there a train in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no train in the image."
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 25,
+      "query": [
+        "Is there a person in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a person in the image,"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 26,
+      "query": [
+        "Is there a surfboard in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no surfboard in the"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 27,
+      "query": [
+        "Is there a car in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a car in the image,"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 28,
+      "query": [
+        "Is there a kite in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "Yes, there is a kite in the image"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 29,
+      "query": [
+        "Is there a dog in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a small white dog in the"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 30,
+      "query": [
+        "Is there a toaster in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no toaster in the image"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 31,
+      "query": [
+        "Is there a dining table in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a dining table in the"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 32,
+      "query": [
+        "Is there a sports ball in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no sports ball in the image"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 33,
+      "query": [
+        "Is there a bed in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "No, there is no bed in the image."
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 34,
+      "query": [
+        "Is there a book in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "Yes, there is a book in the image,"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 35,
+      "query": [
+        "Is there a person in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a person in the image,"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 36,
+      "query": [
+        "Is there a traffic light in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no traffic light in the image"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 37,
+      "query": [
+        "Is there a spoon in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a spoon in the image"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 38,
+      "query": [
+        "Is there a fork in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a fork in the image,"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 39,
+      "query": [
+        "Is there a truck in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no truck in the image"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 40,
+      "query": [
+        "Is there a tv in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "No, there is no TV in the image."
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 41,
+      "query": [
+        "Is there a bowl in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no bowl in the image"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 42,
+      "query": [
+        "Is there a toaster in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a toaster in the image"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 43,
+      "query": [
+        "Is there a cow in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no cow in the image."
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 44,
+      "query": [
+        "Is there a microwave in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a microwave in the"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 45,
+      "query": [
+        "Is there a laptop in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no laptop in the image."
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 46,
+      "query": [
+        "Is there a backpack in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a backpack in the image"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 47,
+      "query": [
+        "Is there a cell phone in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "Yes, there is a cell phone in the image"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 48,
+      "query": [
+        "Is there a person in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a person in the image,"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 49,
+      "query": [
+        "Is there a couch in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no couch in the image"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 50,
+      "query": [
+        "Is there a skis in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there are skis in the image,"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 51,
+      "query": [
+        "Is there a tennis racket in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no tennis racket in the"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 52,
+      "query": [
+        "Is there a bird in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a bird in the image,"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 53,
+      "query": [
+        "Is there a fire hydrant in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no fire hydrant in the"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 54,
+      "query": [
+        "Is there a person in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a person in the image,"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 55,
+      "query": [
+        "Is there a bed in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no bed in the image."
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 56,
+      "query": [
+        "Is there a boat in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a boat in the image,"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 57,
+      "query": [
+        "Is there a bench in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no bench in the image"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 58,
+      "query": [
+        "Is there a person in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a person in the image,"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 59,
+      "query": [
+        "Is there an orange in the imange?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is an orange in the image."
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 60,
+      "query": [
+        "Is there a cow in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no cow in the image."
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 61,
+      "query": [
+        "Is there a bottle in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes, there is a bottle in the image"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 62,
+      "query": [
+        "Is there a bed in the image?"
+      ],
+      "label": [
+        0
+      ],
+      "answer": [
+        "No, there is no bed in the image."
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    },
+    {
+      "batch_idx": 63,
+      "query": [
+        "Is there a backpack in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "No, there is no backpack in the image"
+      ],
+      "chord_enabled": false,
+      "anchor_diagnostics": null,
+      "decode_diagnostics": []
+    }
+  ],
+  "chord": {
+    "enabled": false,
+    "anchor_cache_jsonl": null,
+    "alpha_anchor": 0.5,
+    "lambda_cur": 0.0,
+    "lambda_fut": 0.0,
+    "lambda_txt": 1.0,
+    "future_horizon": 0,
+    "future_topk": 0,
+    "detector_box_threshold": 0.25,
+    "detector_text_threshold": 0.2,
+    "max_boxes": 8
+  }
+}

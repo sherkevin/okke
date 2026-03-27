@@ -1,0 +1,6 @@
+# Revision_Log_V63
+- **Fixed the "Pre-decoding Background Pruning" Fallacy:** Addressed the reviewer's major concern regarding noisy, unconditioned ViT average attention. Replaced it with "Prompt-Conditioned Pre-decoding Pruning" using prefill-stage attention from text prompt tokens to visual sequence, ensuring safe background removal without deleting local evidence.
+- **Resolved VASM Whitelist Ambiguity:** Completely removed pseudo-code ambiguities by defining VASM algorithmically using specific WordNet synsets (`physical_entity.n.01`, `color.n.01`). This makes Chain B mathematically reproducible.
+- **Added Hyperparameter Sensitivity:** Updated the experimental protocol (Section 4.4, Figure 2) to mandate sensitivity analyses for $M$, $\alpha$, and $k_{min}$, directly closing a reviewer blindspot.
+- **Clarified TLRA_calib Injection Point:** Explicitly stated in Section 3.1 that the projection occurs *after* the MLLM's native vision-language connector, mapping from the LLM's hidden space to the LM head's vocabulary space.
+- **Retained Core Strengths:** Maintained the highly disciplined baseline framing, the OCR paradox concession, the strict 3-chain evidence structure (including `TLRA_zero` vs. `TLRA_MeanPool` and the `AGL` check), and kept video relegated to the appendix.

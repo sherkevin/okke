@@ -1,0 +1,7 @@
+# Revision_Log_V44
+- **Simplified Terminology:** Removed theatrical jargon and overly grandiose acronym framing. Unified the core method description to "Dictionary-Gated Token-Local Intervention" where appropriate, while retaining the VASM/BRA identifiers requested for continuity.
+- **Clarified the `BRA_calib` Paradox:** Explicitly reframed `BRA_calib` in the Abstract, Intro, and Discussion as a *hybrid test-time adaptation* requiring a 5k-sample prior, ceasing to mask it as a purely training-free decode-time method. Added clear asterisks/footnotes comparing it fairly against zero-shot methods (DoLa/VCD/OPERA).
+- **Fixed the Moving Median Issue in Spatial Pooling:** Replaced the brittle moving median with $\theta_{active}$ derived from the text-prefix 85th percentile, fixing the vulnerability in sparse images where background tokens suppress the median to noise levels.
+- **Addressed VASM Implementation & Brittleness:** Explicitly acknowledged modern proper nouns (e.g., "Cybertruck") bypassing intervention, and detailed how VASM handles dynamic LLaMA-2/3 prefix spaces (`_` or `Ġ`).
+- **Enhanced Experimental Metrics:** Added RefCOCO zero-shot bounding box accuracy to Chain A (Table 1) to definitively prove spatial grounding capability. Modified Table 2 to strictly isolate `BRA_zero` vs `BRA_MeanPool` vs `BRA_calib`.
+- **Latency & Failure Case Upgrades:** Added standard deviation error bars to latency plots to capture kernel launch jitter. Added a 2x2 Failure Case grid to Appendix D (Polysemy False Positives vs. Density Bleeding in crowded scenes).

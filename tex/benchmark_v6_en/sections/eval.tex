@@ -1,0 +1,36 @@
+\section{Experiments}
+\label{sec:exp}
+
+To rigorously validate the CHORD framework, our experiments are designed to answer four research questions:
+
+\textbf{RQ1 (Effectiveness \& Universality):} Does CHORD consistently mitigate object hallucinations across heterogeneous MLLM families without any model-specific retraining?
+
+\textbf{RQ2 (Generalization):} Does CHORD generalize to open-ended generation tasks without degrading the host model's structural and linguistic capabilities?
+
+\textbf{RQ3 (Mechanism Ablation):} How do individual components of CHORD (e.g., tokenizer bridge, resonance delta $\Delta S$) contribute to final performance?
+
+\textbf{RQ4 (System Efficiency):} Does continuous Top-$1$ monitoring effectively reduce computational overhead to negligible levels?
+
+\subsection{Experimental setup}
+
+\textbf{Models and baselines.} To assess portability of CHORD, we evaluate across three MLLM families: Qwen-VL (e.g., Qwen-VL-Chat), LLaVA-1.5, and InstructBLIP. We compare CHORD against standard autoregressive decoding (Base) and three training-free decode-time baselines: \textbf{DoLa}, \textbf{OPERA}, and \textbf{VCD}.
+
+\textbf{Benchmarks.} We use \textbf{POPE} (random, popular, and adversarial splits) for systematic object hallucination evaluation, and \textbf{CHAIR} for hallucination rates in open-ended image captioning.
+
+\textbf{Implementation details.} CHORD requires zero parameter updates. We use Grounding DINO and frozen CLIP ViT-L/14 for offline region caching, and the CLIP text encoder for resonance probing.
+
+\subsection{Main results: hallucination mitigation (RQ1)}
+
+Table~\ref{tab:pope} summarizes main quantitative results on the POPE benchmark (random split). CHORD consistently improves over the base decoding strategy. By evaluating the resonance delta $\Delta S$ in an external, model-agnostic semantic space, CHORD curbs language-prior-driven errors while keeping the intervention defined outside host-internal geometry. Extended results for POPE popular and adversarial splits appear in the supplementary material, where CHORD maintains stable gains.
+
+\subsection{Generalization and structure preservation (RQ2)}
+
+Mitigating hallucinations on discriminative tasks (e.g., POPE) is insufficient if the method destroys fluent open-ended description. Table~\ref{tab:chair} reports CHAIR-s (sentence-level) and CHAIR-i (instance-level) rates. Bounded logit calibration aims to penalize only visually contradicted entities and preserve native syntax and reasoning.
+
+\subsection{Ablation study (RQ3)}
+
+Table~\ref{tab:ablation} ablates CHORD on Qwen-VL (POPE). \textbf{Without the tokenizer bridge,} applying resonance to raw sub-word tokens collapses performance, showing that bridging the granularity mismatch is prerequisite. \textbf{Absolute similarity instead of $\Delta S$} suffers from spatial misalignment (prefix and candidate aligning to different regions), reducing F1. \textbf{Global feature only} (no dense region bank) loses fine-grained evidence and reduces mitigation efficacy.
+
+\subsection{System efficiency analysis (RQ4)}
+
+Table~\ref{tab:efficiency} audits operational cost on Qwen-VL. Full-$K$ resonance at every step is expensive; \textbf{continuous Top-$1$ monitoring} filters visually safe or non-visual tokens in $O(1)$ time per step when the top hypothesis passes the resonance check, and falls back to full-$K$ only when necessary. Combined with KV-cache reuse in the text encoder, extra latency per step is kept small relative to the host MLLM.

@@ -1,0 +1,8 @@
+# Revision_Log_V28
+- **Fixed InfoNCE Multi-Token Ambiguity:** Updated Section 3.1 to explicitly define $W_{vocab}[c^+]$ as the L2-normalized mean of subword embeddings for multi-token labels, resolving the mathematically impossible single-row assumption.
+- **Fixed Forced Probability (Softmax vs Sigmoid):** Replaced the strict $\text{Softmax}$ over the candidate set in Section 3.2 with a threshold-gated $\text{Sigmoid}$. This allows background patches to mathematically "abstain" rather than casting forced votes for irrelevant candidates.
+- **Separated Evaluation Boundaries:** Updated Table 1 protocol in Section 4.2 to explicitly include a "Training Images" column, visually and categorically separating 0-shot methods (VCD, OPERA, DoLa) from calibrated (`BRA_calib`) methods.
+- **Added BPE Ablation:** Added `BRA_no_BPE_Inherit` to Table 2 (Section 4.3) to isolate and empirically prove the necessity of BPE continuation inheritance, exactly as requested by the reviewer.
+- **Clarified VASM Coverage:** Explicitly stated in Section 3.3 and Limitations (Section 5) that VASM has a closed-vocabulary ceiling (though $>95\%$ empirical coverage on COCO/LVIS) and that esoteric words default to $\gamma=0$.
+- **Enhanced Visual Protocols:** Added the requirement for 2D grid plots of $\tilde{P}^{(v_j)}$ before pooling in Figure 1, and added a CDF plot of L2 norms in the Appendix plan.
+- **Retained Highlights:** Kept the strong Framing of Baselines, BPE Continuation Inheritance, `BRA_zero` vs `calib` boundary, AGL guardrail, and 2D spatial scoping.

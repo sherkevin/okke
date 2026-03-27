@@ -1,0 +1,7 @@
+# Revision_Log_V95
+- **Redefined Method Identity**: Fully embraced the reviewer's critique that TLRA is a context-agnostic "Bag-of-Words" noun booster. Updated Abstract, Intro, and Methodology to explicitly define $c$ as the static LM-head vocabulary embedding $W_{head}[c]$, transparently admitting its blindness to dynamic prefixes.
+- **Relational Benchmarks Added**: Added MMHal to Evidence Chain A and Table 1 to rigorously test and report the anticipated failure modes in relational/compositional grounding, correcting the POPE/CHAIR bias.
+- **VASM Ablation Mandated**: Added `TLRA w/o VASM` to Table 1 to expose the catastrophic grammar/PPL explosion, treating VASM as a fatal structural bottleneck rather than just an engineering crutch.
+- **Temperature & Top-M Sweeps**: Fixed the $T \to 0$ math explosion by clamping the denominator to $\max(T, 1.0)$ and added a dedicated Temperature sweep protocol. Expanded Table 2 to jointly measure Top-$M$ latency and POPE F1 sensitivity.
+- **Qualitative Failure Analysis**: Committed to a specific qualitative figure demonstrating a spatial/relational mismatch caused by TLRA's context-blindness.
+- **Preserved Highlights**: Retained the strict Objective Matching (`Base + LoRA`), the `ContinuousAdd_Gated` baseline (clarified $\gamma$ gradient tracking), the "Hijacking" CDF, and the highly praised self-skeptical tone.

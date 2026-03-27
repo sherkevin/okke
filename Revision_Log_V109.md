@@ -1,0 +1,8 @@
+# Revision_Log_V109
+- **Fixed Fatal BPE Collision Threat:** Replaced the fundamentally flawed "First-Subword Fallback" with the "Subword-Trie Lookahead Verification". Explicitly addressed the `_re` (refrigerator vs. red) collision and introduced the "Graceful Pivot" mechanism to protect linguistic fluency.
+- **Addressed Syntax Floor & Stuttering:** Added Perplexity (PPL on WikiText) to Table 1 to quantitatively audit for grammatical collapse/stuttering, and added a qualitative Failure Case analysis section (4.5) to examine forced structural pivots.
+- **Added `TLRA_zero` Baseline:** Fully integrated the untrained Layer 0 cosine similarity baseline into Tables 1 and 2 to prove the necessity of the 50k contrastive BCE training, as demanded.
+- **Addressed Latency Obfuscation:** Pivoted hardware claims. Added a strict Tokens/Second metric (Table 1) to measure the true decode-time memory bandwidth bottleneck, removing the VRAM/parameter count shell-game from the core performance narrative.
+- **Strengthened Heatmap Protocol:** Added the strict requirement for a "Negative Control Heatmap" (mapping objects *not* in the image) in Section 4.3 to ensure the existence checker isn't just defaulting to dataset-prior saliency.
+- **Refined Tone:** Removed all absolute "mathematically guarantees/cannot" phrasing regarding probabilistic neural generation, substituting with structural bounds and algorithmic framing.
+- **Retained Highlights:** Kept the "Global Visual Existence Checker" framing, Layer 0 Geometric Initialization, and the Contrastive Negative Sampling BCE, all of which were praised.

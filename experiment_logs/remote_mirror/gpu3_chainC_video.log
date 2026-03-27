@@ -1,0 +1,140 @@
+======================================================================
+BRA EVALUATION MATRIX
+GPU: NVIDIA GeForce RTX 5090
+PyTorch: 2.7.0+cu128
+Transformers: 5.3.0
+N samples: 200
+======================================================================
+
+══════════════════════════════════════════════════════════════════════
+  Loading model: qwen3vl2b
+══════════════════════════════════════════════════════════════════════
+Loading weights:   0%|          | 0/625 [00:00<?, ?it/s]Loading weights: 100%|██████████| 625/625 [00:00<00:00, 6633.57it/s]
+  Model loaded in 6.0s
+  Adapter: qwen3_vl
+
+────────────────────────────────────────────────────────────
+  Evaluating: freak (N=200)
+────────────────────────────────────────────────────────────
+  Loaded 200 samples
+  [1/200] 2.1s  base='B. 4....'  bra='B. 4....'
+  [2/200] 0.6s  base='C. 5....'  bra='B. 6....'
+  [3/200] 0.5s  base='A...'  bra='B...'
+  [10/200] 0.7s  base='A. Square  
+B. Rectangular  
+C. Circular...'  bra='A. Rectangular
+B. Square...'
+  [20/200] 0.4s  base='C. 4....'  bra='C. 4....'
+  [30/200] 0.6s  base='A. Not visible / Can't see....'  bra='A. Not visible / Can't see....'
+  [40/200] 0.3s  base='C...'  bra='D...'
+  [50/200] 0.3s  base='A...'  bra='A...'
+  [60/200] 0.7s  base='A tall, cylindrical shape with a slightl...'  bra='A tall, narrow, rectangular shape with a...'
+  [70/200] 1.3s  base='A. Not visible / Can't see. There is no ...'  bra='A. Not visible / Can't see. There is no ...'
+  [80/200] 0.4s  base='B...'  bra='B...'
+  [90/200] 1.7s  base='Yes, the suspension lines are clearly vi...'  bra='Yes, the suspension lines are clearly vi...'
+  [100/200] 0.9s  base='A...'  bra='A. Yes, the object resembling a streetli...'
+  [110/200] 1.4s  base='Yes, the qipao has frog (pankou) buttons...'  bra='Yes, the qipao in the image has frog (pa...'
+  [120/200] 0.6s  base='C...'  bra='A. Visible on the top....'
+  [130/200] 0.6s  base='B. 2....'  bra='B. 2....'
+  [140/200] 0.7s  base='A. Square / Rectangle....'  bra='A. Square / Rectangle....'
+  [150/200] 0.6s  base='C. 2....'  bra='C. 2....'
+  [160/200] 0.5s  base='C...'  bra='C...'
+  [170/200] 0.5s  base='A. 3....'  bra='A. 3....'
+  [180/200] 0.6s  base='B...'  bra='A. An inverted cone....'
+  [190/200] 0.4s  base='B. 4....'  bra='B. 4....'
+  [200/200] 0.8s  base='A. Not visible / Can't see....'  bra='A. Not visible / Can't see....'
+
+======================================================================
+  EVALUATION REPORT: qwen3vl2b
+======================================================================
+
+  === freak (N=200, bra=ablation_meanpool) ===
+  Metric                 Baseline        BRA        Delta
+  ──────────────────────────────────────────────────────
+  accuracy                 0.2200     0.2350    +0.0150 (+1.5pp)
+  agl                         7.5        6.9       -0.6
+  itl_ms_per_token        40.0320    38.3601    -1.6720 (-167.2pp)
+  tokens_per_second       24.9800    26.0688    +1.0888 (+108.9pp)
+
+Results saved to /root/autodl-tmp/BRA_Project/logs/night_v2/gpu3_freak_tlra_meanpool.json
+======================================================================
+BRA EVALUATION MATRIX
+GPU: NVIDIA GeForce RTX 5090
+PyTorch: 2.7.0+cu128
+Transformers: 5.3.0
+N samples: 200
+======================================================================
+
+══════════════════════════════════════════════════════════════════════
+  Loading model: qwen3vl2b
+══════════════════════════════════════════════════════════════════════
+Loading weights:   0%|          | 0/625 [00:00<?, ?it/s]Loading weights:  63%|██████▎   | 394/625 [00:00<00:00, 3923.11it/s]Loading weights: 100%|██████████| 625/625 [00:00<00:00, 4525.47it/s]
+  Model loaded in 6.2s
+  Adapter: qwen3_vl
+
+────────────────────────────────────────────────────────────
+  Evaluating: freak (N=200)
+────────────────────────────────────────────────────────────
+  Loaded 200 samples
+  [1/200] 2.1s  base='A. 5....'  bra='B. 4....'
+  [2/200] 0.6s  base='C. 5....'  bra='B. 6....'
+  [3/200] 0.5s  base='A...'  bra='A...'
+  [10/200] 0.3s  base='C...'  bra='A...'
+  [20/200] 0.5s  base='C. 4....'  bra='C. 4....'
+  [30/200] 0.6s  base='A. Not visible / Can't see....'  bra='A. Not visible / Can't see....'
+  [40/200] 0.3s  base='B...'  bra='B...'
+  [50/200] 0.3s  base='B...'  bra='A...'
+  [60/200] 0.9s  base='A tall, narrow, vertical shape with a sl...'  bra='A tall, thin, vertical shape....'
+  [70/200] 1.2s  base='A. Not visible / Can't see. There is no ...'  bra='A. Not visible / Can't see. There is no ...'
+  [80/200] 0.6s  base='B. Yes, at the top end....'  bra='B...'
+  [90/200] 2.0s  base='Yes, the suspension lines are visible ha...'  bra='Yes, the suspension lines are clearly vi...'
+  [100/200] 0.9s  base='A...'  bra='A. Yes, the object resembling a streetli...'
+  [110/200] 1.7s  base='Yes, the qipao (cheongsam) in the image ...'  bra='Yes, the qipao has frog (pankou) buttons...'
+  [120/200] 0.5s  base='C...'  bra='C...'
+  [130/200] 0.6s  base='B. 2....'  bra='B. 2....'
+  [140/200] 0.7s  base='A. Square / Rectangle....'  bra='A. Square / Rectangle....'
+  [150/200] 0.6s  base='C. 2....'  bra='C. 2....'
+  [160/200] 0.6s  base='C. Square / Rectangle....'  bra='C...'
+  [170/200] 0.4s  base='A. 3....'  bra='A. 3....'
+  [180/200] 0.7s  base='A. An inverted cone....'  bra='A. An inverted cone....'
+  [190/200] 0.4s  base='B. 4....'  bra='B. 4....'
+  [200/200] 0.8s  base='A. Not visible / Can't see....'  bra='A. Not visible / Can't see....'
+
+======================================================================
+  EVALUATION REPORT: qwen3vl2b
+======================================================================
+
+  === freak (N=200, bra=bra_zero) ===
+  Metric                 Baseline        BRA        Delta
+  ──────────────────────────────────────────────────────
+  accuracy                 0.2300     0.2250    -0.0050 (-0.5pp)
+  agl                         7.0        7.3       +0.3
+  itl_ms_per_token        38.6447    38.6979    +0.0532 (+5.3pp)
+  tokens_per_second       25.8768    25.8412    -0.0356 (-3.6pp)
+
+Results saved to /root/autodl-tmp/BRA_Project/logs/night_v2/gpu3_freak_tlra_adaptivetopk.json
+======================================================================
+BRA EVALUATION MATRIX
+GPU: NVIDIA GeForce RTX 5090
+PyTorch: 2.7.0+cu128
+Transformers: 5.3.0
+N samples: 80
+======================================================================
+
+══════════════════════════════════════════════════════════════════════
+  Loading model: qwen3vl2b
+══════════════════════════════════════════════════════════════════════
+Loading weights:   0%|          | 0/625 [00:00<?, ?it/s]Loading weights:  69%|██████▉   | 433/625 [00:00<00:00, 4328.31it/s]Loading weights: 100%|██████████| 625/625 [00:00<00:00, 4035.71it/s]
+  Model loaded in 6.0s
+  Adapter: qwen3_vl
+
+────────────────────────────────────────────────────────────
+  Evaluating: vidhalluc (N=80)
+────────────────────────────────────────────────────────────
+  Loaded 0 samples
+
+======================================================================
+  EVALUATION REPORT: qwen3vl2b
+======================================================================
+
+Results saved to /root/autodl-tmp/BRA_Project/logs/night_v2/gpu3_vidhalluc_tlra_adaptivetopk.json

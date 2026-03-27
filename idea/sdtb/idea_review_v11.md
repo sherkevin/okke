@@ -1,0 +1,21 @@
+**Review Assessment**
+
+**1. Cosmetic and Pseudoscientific Formulation of Causality**
+The paper attempts to dress up standard image-to-image editing techniques (DDIM inversion + masking + classifier guidance) in the language of Pearl’s do-calculus. Calling DDIM inversion "Abduction" and masked cross-attention "Action" does not constitute a rigorous Structural Causal Model (SCM). Furthermore, diffusion latents are highly entangled; the assumption that exogenous variables (background, pose) remain strictly independent under your so-called $do(o_{tgt})$ operator is mathematically unfounded and empirically false in standard UNet architectures. This is a buzzword-driven formulation lacking genuine causal rigor.
+
+**2. Glaring Contradiction in "Semantic-Affinity Attention Modulation"**
+You claim to extract dense feature maps from "intermediate UNet layers" while simultaneously citing a "frozen foundation model (e.g., DINOv2)". DINOv2 is a Vision Transformer trained on clean RGB images; it is not a diffusion UNet. If you are extracting features from the UNet, it is not DINOv2. If you are applying DINOv2 to intermediate noisy latents ($0.4T \le t \le 0.7T$), the features will be completely garbage because DINOv2 is highly sensitive to noise and domain shifts. Furthermore, applying an unnormalized Hadamard modulation $(1 + \gamma W)$ to self-attention matrices will inevitably disrupt the softmax distribution, leading to saturated attention weights and severe grid artifacts in the generated output.
+
+**3. Mathematically Flawed "Latent Poisson Harmonization"**
+Applying spatial Laplacian smoothing $\nabla^2(\cdot)$ directly to Stable Diffusion latents reveals a fundamental misunderstanding of the VAE latent space. Diffusion latents ($H/8 \times W/8 \times 4$) are highly compressed, abstract representations where channels encode complex semantic and high-frequency data, not 1:1 spatial RGB gradients. Solving a continuous spatial Poisson equation in this non-linear, non-spatial domain does absolutely nothing to "preserve ambient occlusion and global lighting distributions" in the pixel space. It will merely blur the latent channels, resulting in localized decoding corruption and boundary artifacts when passed through the VAE decoder. 
+
+**4. Naive and Fragile "Programmatic Geometric Grounding"**
+Your solution to MLLM hallucination is to run RANSAC on a monocular depth map to find dominant planes, and feed this to an LLM. First, monocular depth estimators (which you paradoxically criticize earlier) are notoriously inaccurate at interaction boundaries. Second, most complex human-object interactions (e.g., a hand grasping a mug, swinging a tennis racket) have absolutely nothing to do with dominant 3D planes (like the ground). Your deterministic pruning is an over-engineered, narrow heuristic that will fail entirely for dynamic or suspended object interactions.
+
+**5. Computationally Prohibitive and Ineffective Reward Guidance**
+You criticize post-hoc verification as "computationally fragile," yet your proposed solution requires passing $\hat{z}_0$ through a VAE decoder (even a Tiny AutoEncoder) and a Vision-Language Reward Model (like ImageReward), and then backpropagating the gradients through the reward model, the decoder, and the UNet at every single sampling step between $0.2T$ and $0.6T$. This is computationally massive. Moreover, approximating the decoding with a Tiny AutoEncoder produces blurry, artifact-heavy RGB predictions; evaluating fine-grained physical interactions (e.g., "hands grasping") on these blurry approximations will yield noisy, meaningless gradients, completely destroying the generation trajectory.
+
+**6. Flawed Spatial Anchoring**
+Bounding target object expansion strictly to $1/D_{src}$ and the source centroid ($\mu_{tgt}$) assumes the target object is morphologically identical to the source. If the interaction substitutes a small object (a cellphone) with a large one (a laptop), your depth-anchored energy field will artificially crush the target object into the spatial footprint of the source, violating the very geometric realism you claim to preserve.
+
+**Score: 1 / 5 (Strong Reject)**

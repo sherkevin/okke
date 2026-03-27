@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "D:\Shervin\OneDrive\Desktop\breaking\scripts\monitor_idea_batch.py", line 140, in <module>
+    main()
+  File "D:\Shervin\OneDrive\Desktop\breaking\scripts\monitor_idea_batch.py", line 126, in main
+    log(f"Active workspace: {active[0]}\n{active_log_tail(active[0])}")
+  File "D:\Shervin\OneDrive\Desktop\breaking\scripts\monitor_idea_batch.py", line 92, in log
+    print(line, flush=True)
+UnicodeEncodeError: 'gbk' codec can't encode character '\ufffd' in position 88: illegal multibyte sequence

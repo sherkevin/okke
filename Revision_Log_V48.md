@@ -1,0 +1,7 @@
+# Revision_Log_V48
+- **Reframed "Decode-Time" Claim:** Explicitly admitted that `Local_Calib` is a *hybrid test-time adaptation* requiring a 5k-sample prior, removing the illusion that it is a purely training-free method.
+- **Toned Down Acronyms:** Replaced heavy branding (TLVI, VASM, Threshold-Gated Adaptive Top-k) with functional descriptors (Token-Local Visual Intervention, Dictionary-Gated Semantic Masking, Entropy-Scaled Adaptive Top-k) to prevent over-claiming.
+- **Corrected Baselines Framing:** Removed the negative framing of DoLa, VCD, and OPERA. They are now explicitly praised as successful, orthogonal regularizers of global token probabilities/attention, ensuring baseline fairness.
+- **Enhanced Threshold Mechanism:** Replaced the vulnerable "static 85th percentile" threshold with an *Entropy-Scaled Dynamic Threshold* (calculated via visual hidden-state entropy) to adapt to dense vs. sparse images dynamically.
+- **Methodological Justification:** Clarified the `IoU > 0.15` Washout Threshold as a standard proxy for coarse object localization in low-res feature maps.
+- **New Experimental Protocols Added:** Added a specific Dictionary Size vs. TTFT ablation (10k, 50k, 85k) and an Appendix failure-case deep dive for regex masking on heavily formatted tables, directly addressing reviewer concerns.

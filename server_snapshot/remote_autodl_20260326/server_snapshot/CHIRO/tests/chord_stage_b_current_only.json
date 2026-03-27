@@ -1,0 +1,154 @@
+{
+  "model": "llava-1.5",
+  "pope_type": "mini",
+  "metrics": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "yes_ratio": 1.0,
+    "tp": 1,
+    "tn": 0,
+    "fp": 0,
+    "fn": 0
+  },
+  "outputs": [
+    {
+      "batch_idx": 0,
+      "query": [
+        "Is there a snowboard in the image?"
+      ],
+      "label": [
+        1
+      ],
+      "answer": [
+        "Yes"
+      ],
+      "chord_enabled": true,
+      "anchor_diagnostics": {
+        "image_path": "/root/autodl-tmp/BRA_Project/datasets/coco2014/val2014/COCO_val2014_000000310196.jpg",
+        "image_size": [
+          427,
+          640
+        ],
+        "anchors": [
+          {
+            "box": [
+              316.6874084472656,
+              234.7303009033203,
+              329.2812805175781,
+              247.819091796875
+            ],
+            "confidence": 0.5259119272232056,
+            "phrase": "snowboard"
+          }
+        ],
+        "relevance": [
+          1.0
+        ],
+        "token_weight_stats": {
+          "min": 1.0,
+          "max": 1.0,
+          "mean": 1.0
+        },
+        "used_fallback": false
+      },
+      "decode_diagnostics": [
+        {
+          "llava_generate_called": true
+        },
+        {
+          "entered_opera_beam_search": true
+        },
+        {
+          "step_index": 50,
+          "rollback_triggered": false,
+          "candidate_token_ids_before": [
+            [
+              3869
+            ],
+            [
+              3869
+            ]
+          ],
+          "candidate_token_ids_after": [
+            [
+              3869
+            ],
+            [
+              3869
+            ]
+          ],
+          "v_anchor": [
+            [
+              0.2921701669692993
+            ],
+            [
+              0.2921701669692993
+            ]
+          ],
+          "sum_v_tau": [
+            [
+              0.0
+            ],
+            [
+              0.0
+            ]
+          ],
+          "sum_t_tau": [
+            [
+              0.0
+            ],
+            [
+              0.0
+            ]
+          ],
+          "f_future": [
+            [
+              0.0
+            ],
+            [
+              0.0
+            ]
+          ],
+          "r_future": [
+            [
+              0.0
+            ],
+            [
+              0.0
+            ]
+          ],
+          "candidate_tokens_before": [
+            [
+              "Yes"
+            ],
+            [
+              "Yes"
+            ]
+          ],
+          "candidate_tokens_after": [
+            [
+              "Yes"
+            ],
+            [
+              "Yes"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "chord": {
+    "enabled": true,
+    "alpha_anchor": 0.5,
+    "lambda_cur": 0.25,
+    "lambda_fut": 0.0,
+    "lambda_txt": 1.0,
+    "future_horizon": 4,
+    "future_topk": 1,
+    "detector_box_threshold": 0.25,
+    "detector_text_threshold": 0.25,
+    "max_boxes": 10
+  }
+}

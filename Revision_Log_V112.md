@@ -1,0 +1,7 @@
+# Revision_Log_V112
+- **Fixed Layer 0/N Manifold Fragility:** Replaced the vulnerable "Layer 0 Initialization" assumption with "Unembedding Matrix ($W_{out}$) Initialization." This directly addresses the reviewer's harshest critique by mathematically guaranteeing geometric alignment with Layer N output logits, completely sidestepping residual stream distortion (e.g., LLaMA-3 RMSNorms).
+- **Added Grounding DINO Baseline:** Introduced the "Prompt-Injected Object Detection" baseline to Table 1 to directly prove the necessity of late-fusion architecture over simple text prompting.
+- **Addressed Dynamic Floor Grammar Collapse:** Added the "Forced Syntactic Error Rate (PoS Audit)" to Evidence Chain B and "Grammatical Validity %" to Table 1. This openly measures the risk of forcing structurally invalid tokens (like commas) when heavily penalizing nouns.
+- **Introduced Beam Search Rollback:** Formally split the evaluation of the Subword-Trie into "Greedy Pivot" (high latency optimized, high semantic risk) vs. "Beam Search Rollback" (theoretical upper bound, slow) to provide a complete picture of the BPE prefix collision solution.
+- **Retained Highlights:** Maintained strict context-blind framing, the MMHal-Relations exacerbated hallucination audit, and the Pivot Survival Rate protocol.
+- **Future Verification Required:** Execution of the PoS audit script, extracting LLaMA-3 untied unembedding weights for $W_{calib}$ initialization, and running the Grounding DINO comparative baseline.

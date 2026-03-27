@@ -1,0 +1,23 @@
+{
+  "dataset": "chair",
+  "method": "base",
+  "model": "qwen3-vl-2b",
+  "model_family": "qwen3vl",
+  "n_samples": 1,
+  "sample_count": 1,
+  "n_errors": 0,
+  "chair_s": 0.1667,
+  "chair_i": 0.5,
+  "agl": 372.0,
+  "itl_ms_per_token": 19.1,
+  "tokens_per_second": 52.366,
+  "peak_vram_gb": 4.363,
+  "timestamp": "2026-03-22T00:11:01.381512",
+  "sample_captions": [
+    "This is a detailed, close-up photograph of a cluttered shoe rack, likely situated in a home or a small shop. The image captures a mix of footwear and "
+  ],
+  "errors": [],
+  "notes": [
+    "chair_agl_near_cap"
+  ]
+}

@@ -1,0 +1,7 @@
+# Revision_Log_V113
+- **Fixed Top-$k$ Pooling Naivety:** Completely replaced static Top-$k$ with *Dynamic Activation Thresholding* ($\theta_{pool}$) to accommodate both small (1 patch) and large (20 patch) objects without signal dilution, adding a specific experimental audit for "Small Objects" in Table 2.
+- **Fixed Grammatical Suicide (Syntax Floor):** Introduced the *Intervention Abort Threshold ($\tau$)*. Mathematically defined the fallback logic so that if the entropy gap between the hallucinated noun and the syntax floor is too large ($> \tau$), the intervention aborts to save the sentence structure.
+- **Clarified Connector Locus:** Explicitly specified that $X_v$ must be extracted *post-connector* (e.g., LLaVA MLP) to geometrically align with the $D$-dimensional Unembedding Matrix ($W_{out}$). Added a Pre-MLP vs. Post-MLP row in Table 2.
+- **Addressed Semantic Collisions in BCE Loss:** Added a *Semantic Margin ($\phi_{sim}$)* using frozen CLIP text-text similarity to prevent synonymous hard negatives (e.g., "cup" vs "mug") from shattering the visual manifold during training.
+- **Addressed Top-$p$ / Nucleus Sampling:** Added explicit text in Section 3.4 confirming the logit penalty occurs *pre-softmax*, making it seamlessly compatible with Nucleus/Top-$p$ sampling by organically elevating valid syntax into the truncation boundary.
+- **Retained Highlights:** Kept the $W_{out}$ manifold alignment narrative, the Grounding DINO prompt-injection baseline, and the Beam Rollback vs Greedy Pivot audit.

@@ -1,0 +1,670 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{48}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{} and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showURL}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showURL #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[Bai et~al\mbox{.}(2023)]%
+        {bai2023qwen}
+\bibfield{author}{\bibinfo{person}{Jinze Bai}, \bibinfo{person}{Shuai Bai},
+  \bibinfo{person}{Shusheng Yang}, \bibinfo{person}{Shijie Wang},
+  \bibinfo{person}{Sinan Tan}, \bibinfo{person}{Peng Wang},
+  \bibinfo{person}{Junyang Lin}, \bibinfo{person}{Chang Zhou}, {and}
+  \bibinfo{person}{Jingren Zhou}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Qwen-vl: A frontier large vision-language model
+  with versatile abilities}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2308.12966}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Black et~al\mbox{.}(2023)]%
+        {black2023training}
+\bibfield{author}{\bibinfo{person}{Kevin Black}, \bibinfo{person}{Michael
+  Janner}, \bibinfo{person}{Yilun Du}, \bibinfo{person}{Ilya Kostrikov}, {and}
+  \bibinfo{person}{Sergey Levine}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Training diffusion models with reinforcement
+  learning}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2305.13301}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Boulanger-Lewandowski et~al\mbox{.}(2013)]%
+        {boulanger2013audio}
+\bibfield{author}{\bibinfo{person}{Nicolas Boulanger-Lewandowski},
+  \bibinfo{person}{Yoshua Bengio}, {and} \bibinfo{person}{Pascal Vincent}.}
+  \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{Audio Chord Recognition with Recurrent Neural
+  Networks.}. In \bibinfo{booktitle}{\emph{ISMIR}}. Curitiba,
+  \bibinfo{pages}{335--340}.
+\newblock
+
+
+\bibitem[Brooks et~al\mbox{.}(2023)]%
+        {brooks2023instructpix2pix}
+\bibfield{author}{\bibinfo{person}{Tim Brooks}, \bibinfo{person}{Aleksander
+  Holynski}, {and} \bibinfo{person}{Alexei~A Efros}.}
+  \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Instructpix2pix: Learning to follow image editing
+  instructions}. In \bibinfo{booktitle}{\emph{Proceedings of the IEEE/CVF
+  Conference on Computer Vision and Pattern Recognition}}.
+  \bibinfo{pages}{18392--18402}.
+\newblock
+
+
+\bibitem[Chen et~al\mbox{.}(2023b)]%
+        {chen2023shikra}
+\bibfield{author}{\bibinfo{person}{Keqin Chen}, \bibinfo{person}{Zhao Zhang},
+  \bibinfo{person}{Weili Zeng}, \bibinfo{person}{Richong Zhang},
+  \bibinfo{person}{Feng Zhu}, {and} \bibinfo{person}{Rui Zhao}.}
+  \bibinfo{year}{2023}\natexlab{b}.
+\newblock \showarticletitle{Shikra: Unleashing Multimodal LLM's Referential
+  Dialogue Magic}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2306.15195}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Chen et~al\mbox{.}(2023a)]%
+        {chen2023sharegpt4v}
+\bibfield{author}{\bibinfo{person}{Lin Chen}, \bibinfo{person}{Jisong Li},
+  \bibinfo{person}{Xiaoyi Dong}, \bibinfo{person}{Pan Zhang},
+  \bibinfo{person}{Conghui He}, \bibinfo{person}{Jiaqi Wang},
+  \bibinfo{person}{Feng Zhao}, {and} \bibinfo{person}{Dahua Lin}.}
+  \bibinfo{year}{2023}\natexlab{a}.
+\newblock \showarticletitle{Sharegpt4v: Improving large multi-modal models with
+  better captions}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2311.12793}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Chiang et~al\mbox{.}(2023)]%
+        {chiang2023vicuna}
+\bibfield{author}{\bibinfo{person}{Wei-Lin Chiang}, \bibinfo{person}{Zhuohan
+  Li}, \bibinfo{person}{Zi Lin}, \bibinfo{person}{Ying Sheng},
+  \bibinfo{person}{Zhanghao Wu}, \bibinfo{person}{Hao Zhang},
+  \bibinfo{person}{Lianmin Zheng}, \bibinfo{person}{Siyuan Zhuang},
+  \bibinfo{person}{Yonghao Zhuang}, \bibinfo{person}{Joseph~E Gonzalez},
+  {et~al\mbox{.}}} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Vicuna: An open-source chatbot impressing gpt-4
+  with 90\%* chatgpt quality}.
+\newblock \bibinfo{journal}{\emph{See https://vicuna. lmsys. org (accessed 14
+  April 2023)}} (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Chuang et~al\mbox{.}(2023)]%
+        {chuang2023dola}
+\bibfield{author}{\bibinfo{person}{Yung-Sung Chuang}, \bibinfo{person}{Yujia
+  Xie}, \bibinfo{person}{Hongyin Luo}, \bibinfo{person}{Yoon Kim},
+  \bibinfo{person}{James Glass}, {and} \bibinfo{person}{Pengcheng He}.}
+  \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Dola: Decoding by contrasting layers improves
+  factuality in large language models}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2309.03883}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Dai et~al\mbox{.}(2023)]%
+        {instructblip}
+\bibfield{author}{\bibinfo{person}{Wenliang Dai}, \bibinfo{person}{Junnan Li},
+  \bibinfo{person}{Dongxu Li}, \bibinfo{person}{Anthony Meng~Huat Tiong},
+  \bibinfo{person}{Junqi Zhao}, \bibinfo{person}{Weisheng Wang},
+  \bibinfo{person}{Boyang Li}, \bibinfo{person}{Pascale Fung}, {and}
+  \bibinfo{person}{Steven Hoi}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \bibinfo{title}{InstructBLIP: Towards General-purpose Vision-Language
+  Models with Instruction Tuning}.
+\newblock
+\showeprint[arxiv]{2305.06500}~[cs.CV]
+
+
+\bibitem[Dong et~al\mbox{.}(2024)]%
+        {dong2024internlm}
+\bibfield{author}{\bibinfo{person}{Xiaoyi Dong}, \bibinfo{person}{Pan Zhang},
+  \bibinfo{person}{Yuhang Zang}, \bibinfo{person}{Yuhang Cao},
+  \bibinfo{person}{Bin Wang}, \bibinfo{person}{Linke Ouyang},
+  \bibinfo{person}{Xilin Wei}, \bibinfo{person}{Songyang Zhang},
+  \bibinfo{person}{Haodong Duan}, \bibinfo{person}{Maosong Cao},
+  {et~al\mbox{.}}} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{InternLM-XComposer2: Mastering Free-form Text-Image
+  Composition and Comprehension in Vision-Language Large Model}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2401.16420}}
+  (\bibinfo{year}{2024}).
+\newblock
+
+
+\bibitem[Du et~al\mbox{.}(2023)]%
+        {du2023improving}
+\bibfield{author}{\bibinfo{person}{Yilun Du}, \bibinfo{person}{Shuang Li},
+  \bibinfo{person}{Antonio Torralba}, \bibinfo{person}{Joshua~B Tenenbaum},
+  {and} \bibinfo{person}{Igor Mordatch}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Improving Factuality and Reasoning in Language
+  Models through Multiagent Debate}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2305.14325}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Fan et~al\mbox{.}(2018)]%
+        {fan2018hierarchical}
+\bibfield{author}{\bibinfo{person}{Angela Fan}, \bibinfo{person}{Mike Lewis},
+  {and} \bibinfo{person}{Yann Dauphin}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Hierarchical Neural Story Generation}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 56th Annual Meeting of the
+  Association for Computational Linguistics (Volume 1: Long Papers)}}.
+  Association for Computational Linguistics.
+\newblock
+
+
+\bibitem[Fang et~al\mbox{.}(2023)]%
+        {fang2023eva}
+\bibfield{author}{\bibinfo{person}{Yuxin Fang}, \bibinfo{person}{Wen Wang},
+  \bibinfo{person}{Binhui Xie}, \bibinfo{person}{Quan Sun},
+  \bibinfo{person}{Ledell Wu}, \bibinfo{person}{Xinggang Wang},
+  \bibinfo{person}{Tiejun Huang}, \bibinfo{person}{Xinlong Wang}, {and}
+  \bibinfo{person}{Yue Cao}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Eva: Exploring the limits of masked visual
+  representation learning at scale}. In \bibinfo{booktitle}{\emph{Proceedings
+  of the IEEE/CVF Conference on Computer Vision and Pattern Recognition}}.
+  \bibinfo{pages}{19358--19369}.
+\newblock
+
+
+\bibitem[Fu et~al\mbox{.}(2023)]%
+        {fu2023mme}
+\bibfield{author}{\bibinfo{person}{Chaoyou Fu}, \bibinfo{person}{Peixian Chen},
+  \bibinfo{person}{Yunhang Shen}, \bibinfo{person}{Yulei Qin},
+  \bibinfo{person}{Mengdan Zhang}, \bibinfo{person}{Xu Lin},
+  \bibinfo{person}{Jinrui Yang}, \bibinfo{person}{Xiawu Zheng},
+  \bibinfo{person}{Ke Li}, \bibinfo{person}{Xing Sun},
+  \bibinfo{person}{Yunsheng Wu}, {and} \bibinfo{person}{Rongrong Ji}.}
+  \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{MME: A Comprehensive Evaluation Benchmark for
+  Multimodal Large Language Models}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2306.13394}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Geng et~al\mbox{.}(2023)]%
+        {geng2023instructdiffusion}
+\bibfield{author}{\bibinfo{person}{Zigang Geng}, \bibinfo{person}{Binxin Yang},
+  \bibinfo{person}{Tiankai Hang}, \bibinfo{person}{Chen Li},
+  \bibinfo{person}{Shuyang Gu}, \bibinfo{person}{Ting Zhang},
+  \bibinfo{person}{Jianmin Bao}, \bibinfo{person}{Zheng Zhang},
+  \bibinfo{person}{Han Hu}, \bibinfo{person}{Dong Chen}, {et~al\mbox{.}}}
+  \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Instructdiffusion: A generalist modeling interface
+  for vision tasks}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2309.03895}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Graves(2012)]%
+        {graves2012sequence}
+\bibfield{author}{\bibinfo{person}{Alex Graves}.}
+  \bibinfo{year}{2012}\natexlab{}.
+\newblock \showarticletitle{Sequence transduction with recurrent neural
+  networks}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1211.3711}}
+  (\bibinfo{year}{2012}).
+\newblock
+
+
+\bibitem[Holtzman et~al\mbox{.}(2019)]%
+        {holtzman2019curious}
+\bibfield{author}{\bibinfo{person}{Ari Holtzman}, \bibinfo{person}{Jan Buys},
+  \bibinfo{person}{Li Du}, \bibinfo{person}{Maxwell Forbes}, {and}
+  \bibinfo{person}{Yejin Choi}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{The Curious Case of Neural Text Degeneration}. In
+  \bibinfo{booktitle}{\emph{International Conference on Learning
+  Representations}}.
+\newblock
+
+
+\bibitem[Huang et~al\mbox{.}(2023)]%
+        {huang2023diversity}
+\bibfield{author}{\bibinfo{person}{Qidong Huang}, \bibinfo{person}{Xiaoyi
+  Dong}, \bibinfo{person}{Dongdong Chen}, \bibinfo{person}{Weiming Zhang},
+  \bibinfo{person}{Feifei Wang}, \bibinfo{person}{Gang Hua}, {and}
+  \bibinfo{person}{Nenghai Yu}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Diversity-Aware Meta Visual Prompting}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the IEEE/CVF Conference on Computer
+  Vision and Pattern Recognition}}. \bibinfo{pages}{10878--10887}.
+\newblock
+
+
+\bibitem[Huang et~al\mbox{.}(2022)]%
+        {huang2022shape}
+\bibfield{author}{\bibinfo{person}{Qidong Huang}, \bibinfo{person}{Xiaoyi
+  Dong}, \bibinfo{person}{Dongdong Chen}, \bibinfo{person}{Hang Zhou},
+  \bibinfo{person}{Weiming Zhang}, {and} \bibinfo{person}{Nenghai Yu}.}
+  \bibinfo{year}{2022}\natexlab{}.
+\newblock \showarticletitle{Shape-invariant 3D Adversarial Point Clouds}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2203.04041}}
+  (\bibinfo{year}{2022}).
+\newblock
+
+
+\bibitem[Huang et~al\mbox{.}(2021)]%
+        {huang2021initiative}
+\bibfield{author}{\bibinfo{person}{Qidong Huang}, \bibinfo{person}{Jie Zhang},
+  \bibinfo{person}{Wenbo Zhou}, \bibinfo{person}{Nenghai Yu}, {et~al\mbox{.}}}
+  \bibinfo{year}{2021}\natexlab{}.
+\newblock \showarticletitle{Initiative Defense against Facial Manipulation}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2112.10098}}
+  (\bibinfo{year}{2021}).
+\newblock
+
+
+\bibitem[Ji et~al\mbox{.}(2023)]%
+        {ji2023survey}
+\bibfield{author}{\bibinfo{person}{Ziwei Ji}, \bibinfo{person}{Nayeon Lee},
+  \bibinfo{person}{Rita Frieske}, \bibinfo{person}{Tiezheng Yu},
+  \bibinfo{person}{Dan Su}, \bibinfo{person}{Yan Xu}, \bibinfo{person}{Etsuko
+  Ishii}, \bibinfo{person}{Ye~Jin Bang}, \bibinfo{person}{Andrea Madotto},
+  {and} \bibinfo{person}{Pascale Fung}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Survey of hallucination in natural language
+  generation}.
+\newblock \bibinfo{journal}{\emph{Comput. Surveys}} \bibinfo{volume}{55},
+  \bibinfo{number}{12} (\bibinfo{year}{2023}), \bibinfo{pages}{1--38}.
+\newblock
+
+
+\bibitem[Krishna et~al\mbox{.}(2017)]%
+        {krishna2017visual}
+\bibfield{author}{\bibinfo{person}{Ranjay Krishna}, \bibinfo{person}{Yuke Zhu},
+  \bibinfo{person}{Oliver Groth}, \bibinfo{person}{Justin Johnson},
+  \bibinfo{person}{Kenji Hata}, \bibinfo{person}{Joshua Kravitz},
+  \bibinfo{person}{Stephanie Chen}, \bibinfo{person}{Yannis Kalantidis},
+  \bibinfo{person}{Li-Jia Li}, \bibinfo{person}{David~A Shamma},
+  {et~al\mbox{.}}} \bibinfo{year}{2017}\natexlab{}.
+\newblock \showarticletitle{Visual genome: Connecting language and vision using
+  crowdsourced dense image annotations}.
+\newblock \bibinfo{journal}{\emph{International journal of computer vision}}
+  \bibinfo{volume}{123} (\bibinfo{year}{2017}), \bibinfo{pages}{32--73}.
+\newblock
+
+
+\bibitem[Lai et~al\mbox{.}(2023)]%
+        {lai2023lisa}
+\bibfield{author}{\bibinfo{person}{Xin Lai}, \bibinfo{person}{Zhuotao Tian},
+  \bibinfo{person}{Yukang Chen}, \bibinfo{person}{Yanwei Li},
+  \bibinfo{person}{Yuhui Yuan}, \bibinfo{person}{Shu Liu}, {and}
+  \bibinfo{person}{Jiaya Jia}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Lisa: Reasoning segmentation via large language
+  model}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2308.00692}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Lee et~al\mbox{.}(2022)]%
+        {lee2022factuality}
+\bibfield{author}{\bibinfo{person}{Nayeon Lee}, \bibinfo{person}{Wei Ping},
+  \bibinfo{person}{Peng Xu}, \bibinfo{person}{Mostofa Patwary},
+  \bibinfo{person}{Pascale~N Fung}, \bibinfo{person}{Mohammad Shoeybi}, {and}
+  \bibinfo{person}{Bryan Catanzaro}.} \bibinfo{year}{2022}\natexlab{}.
+\newblock \showarticletitle{Factuality enhanced language models for open-ended
+  text generation}.
+\newblock \bibinfo{journal}{\emph{Advances in Neural Information Processing
+  Systems}}  \bibinfo{volume}{35} (\bibinfo{year}{2022}),
+  \bibinfo{pages}{34586--34599}.
+\newblock
+
+
+\bibitem[Li et~al\mbox{.}(2023c)]%
+        {li2023llavamed}
+\bibfield{author}{\bibinfo{person}{Chunyuan Li}, \bibinfo{person}{Cliff Wong},
+  \bibinfo{person}{Sheng Zhang}, \bibinfo{person}{Naoto Usuyama},
+  \bibinfo{person}{Haotian Liu}, \bibinfo{person}{Jianwei Yang},
+  \bibinfo{person}{Tristan Naumann}, \bibinfo{person}{Hoifung Poon}, {and}
+  \bibinfo{person}{Jianfeng Gao}.} \bibinfo{year}{2023}\natexlab{c}.
+\newblock \showarticletitle{Llava-med: Training a large language-and-vision
+  assistant for biomedicine in one day}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2306.00890}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Li et~al\mbox{.}(2023b)]%
+        {li2023blip}
+\bibfield{author}{\bibinfo{person}{Junnan Li}, \bibinfo{person}{Dongxu Li},
+  \bibinfo{person}{Silvio Savarese}, {and} \bibinfo{person}{Steven Hoi}.}
+  \bibinfo{year}{2023}\natexlab{b}.
+\newblock \showarticletitle{Blip-2: Bootstrapping language-image pre-training
+  with frozen image encoders and large language models}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2301.12597}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Li et~al\mbox{.}(2023a)]%
+        {li2023pope}
+\bibfield{author}{\bibinfo{person}{Yifan Li}, \bibinfo{person}{Yifan Du},
+  \bibinfo{person}{Kun Zhou}, \bibinfo{person}{Jinpeng Wang},
+  \bibinfo{person}{Wayne~Xin Zhao}, {and} \bibinfo{person}{Ji-Rong Wen}.}
+  \bibinfo{year}{2023}\natexlab{a}.
+\newblock \showarticletitle{Evaluating object hallucination in large
+  vision-language models}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2305.10355}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Lin et~al\mbox{.}(2014)]%
+        {lin2014microsoft}
+\bibfield{author}{\bibinfo{person}{Tsung-Yi Lin}, \bibinfo{person}{Michael
+  Maire}, \bibinfo{person}{Serge Belongie}, \bibinfo{person}{James Hays},
+  \bibinfo{person}{Pietro Perona}, \bibinfo{person}{Deva Ramanan},
+  \bibinfo{person}{Piotr Doll{\'a}r}, {and} \bibinfo{person}{C~Lawrence
+  Zitnick}.} \bibinfo{year}{2014}\natexlab{}.
+\newblock \showarticletitle{Microsoft coco: Common objects in context}. In
+  \bibinfo{booktitle}{\emph{Computer Vision--ECCV 2014: 13th European
+  Conference, Zurich, Switzerland, September 6-12, 2014, Proceedings, Part V
+  13}}. Springer, \bibinfo{pages}{740--755}.
+\newblock
+
+
+\bibitem[Liu et~al\mbox{.}(2023d)]%
+        {liu2023aligning}
+\bibfield{author}{\bibinfo{person}{Fuxiao Liu}, \bibinfo{person}{Kevin Lin},
+  \bibinfo{person}{Linjie Li}, \bibinfo{person}{Jianfeng Wang},
+  \bibinfo{person}{Yaser Yacoob}, {and} \bibinfo{person}{Lijuan Wang}.}
+  \bibinfo{year}{2023}\natexlab{d}.
+\newblock \showarticletitle{Aligning Large Multi-Modal Model with Robust
+  Instruction Tuning}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2306.14565}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Liu et~al\mbox{.}(2023b)]%
+        {liu2023improvedllava}
+\bibfield{author}{\bibinfo{person}{Haotian Liu}, \bibinfo{person}{Chunyuan Li},
+  \bibinfo{person}{Yuheng Li}, {and} \bibinfo{person}{Yong~Jae Lee}.}
+  \bibinfo{year}{2023}\natexlab{b}.
+\newblock \bibinfo{title}{Improved Baselines with Visual Instruction Tuning}.
+\newblock
+
+
+\bibitem[Liu et~al\mbox{.}(2023c)]%
+        {liu2023llava}
+\bibfield{author}{\bibinfo{person}{Haotian Liu}, \bibinfo{person}{Chunyuan Li},
+  \bibinfo{person}{Qingyang Wu}, {and} \bibinfo{person}{Yong~Jae Lee}.}
+  \bibinfo{year}{2023}\natexlab{c}.
+\newblock \showarticletitle{Visual instruction tuning}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2304.08485}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Liu et~al\mbox{.}(2023a)]%
+        {liu2023mmbench}
+\bibfield{author}{\bibinfo{person}{Yuan Liu}, \bibinfo{person}{Haodong Duan},
+  \bibinfo{person}{Yuanhan Zhang}, \bibinfo{person}{Bo Li},
+  \bibinfo{person}{Songyang Zhang}, \bibinfo{person}{Wangbo Zhao},
+  \bibinfo{person}{Yike Yuan}, \bibinfo{person}{Jiaqi Wang},
+  \bibinfo{person}{Conghui He}, \bibinfo{person}{Ziwei Liu}, {et~al\mbox{.}}}
+  \bibinfo{year}{2023}\natexlab{a}.
+\newblock \showarticletitle{Mmbench: Is your multi-modal model an all-around
+  player?}
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2307.06281}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Manakul et~al\mbox{.}(2023)]%
+        {manakul2023selfcheckgpt}
+\bibfield{author}{\bibinfo{person}{Potsawee Manakul}, \bibinfo{person}{Adian
+  Liusie}, {and} \bibinfo{person}{Mark~JF Gales}.}
+  \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Selfcheckgpt: Zero-resource black-box hallucination
+  detection for generative large language models}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2303.08896}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Peng et~al\mbox{.}(2023)]%
+        {peng2023check}
+\bibfield{author}{\bibinfo{person}{Baolin Peng}, \bibinfo{person}{Michel
+  Galley}, \bibinfo{person}{Pengcheng He}, \bibinfo{person}{Hao Cheng},
+  \bibinfo{person}{Yujia Xie}, \bibinfo{person}{Yu Hu},
+  \bibinfo{person}{Qiuyuan Huang}, \bibinfo{person}{Lars Liden},
+  \bibinfo{person}{Zhou Yu}, \bibinfo{person}{Weizhu Chen}, {et~al\mbox{.}}}
+  \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Check your facts and try again: Improving large
+  language models with external knowledge and automated feedback}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2302.12813}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Radford et~al\mbox{.}(2021)]%
+        {radford2021clip}
+\bibfield{author}{\bibinfo{person}{Alec Radford}, \bibinfo{person}{Jong~Wook
+  Kim}, \bibinfo{person}{Chris Hallacy}, \bibinfo{person}{Aditya Ramesh},
+  \bibinfo{person}{Gabriel Goh}, \bibinfo{person}{Sandhini Agarwal},
+  \bibinfo{person}{Girish Sastry}, \bibinfo{person}{Amanda Askell},
+  \bibinfo{person}{Pamela Mishkin}, \bibinfo{person}{Jack Clark},
+  {et~al\mbox{.}}} \bibinfo{year}{2021}\natexlab{}.
+\newblock \showarticletitle{Learning transferable visual models from natural
+  language supervision}. In \bibinfo{booktitle}{\emph{International conference
+  on machine learning}}. PMLR, \bibinfo{pages}{8748--8763}.
+\newblock
+
+
+\bibitem[Rohrbach et~al\mbox{.}(2018)]%
+        {rohrbach2018object}
+\bibfield{author}{\bibinfo{person}{Anna Rohrbach}, \bibinfo{person}{Lisa~Anne
+  Hendricks}, \bibinfo{person}{Kaylee Burns}, \bibinfo{person}{Trevor Darrell},
+  {and} \bibinfo{person}{Kate Saenko}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Object Hallucination in Image Captioning}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 2018 Conference on Empirical
+  Methods in Natural Language Processing}}. \bibinfo{pages}{4035--4045}.
+\newblock
+
+
+\bibitem[Sutskever et~al\mbox{.}(2014)]%
+        {sutskever2014sequence}
+\bibfield{author}{\bibinfo{person}{Ilya Sutskever}, \bibinfo{person}{Oriol
+  Vinyals}, {and} \bibinfo{person}{Quoc~V Le}.}
+  \bibinfo{year}{2014}\natexlab{}.
+\newblock \showarticletitle{Sequence to sequence learning with neural
+  networks}.
+\newblock \bibinfo{journal}{\emph{Advances in neural information processing
+  systems}}  \bibinfo{volume}{27} (\bibinfo{year}{2014}).
+\newblock
+
+
+\bibitem[Touvron et~al\mbox{.}(2023a)]%
+        {touvron2023llama}
+\bibfield{author}{\bibinfo{person}{Hugo Touvron}, \bibinfo{person}{Thibaut
+  Lavril}, \bibinfo{person}{Gautier Izacard}, \bibinfo{person}{Xavier
+  Martinet}, \bibinfo{person}{Marie-Anne Lachaux},
+  \bibinfo{person}{Timoth{\'e}e Lacroix}, \bibinfo{person}{Baptiste
+  Rozi{\`e}re}, \bibinfo{person}{Naman Goyal}, \bibinfo{person}{Eric Hambro},
+  \bibinfo{person}{Faisal Azhar}, {et~al\mbox{.}}}
+  \bibinfo{year}{2023}\natexlab{a}.
+\newblock \showarticletitle{Llama: Open and efficient foundation language
+  models}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2302.13971}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Touvron et~al\mbox{.}(2023b)]%
+        {touvron2023llama2}
+\bibfield{author}{\bibinfo{person}{Hugo Touvron}, \bibinfo{person}{Louis
+  Martin}, \bibinfo{person}{Kevin Stone}, \bibinfo{person}{Peter Albert},
+  \bibinfo{person}{Amjad Almahairi}, \bibinfo{person}{Yasmine Babaei},
+  \bibinfo{person}{Nikolay Bashlykov}, \bibinfo{person}{Soumya Batra},
+  \bibinfo{person}{Prajjwal Bhargava}, \bibinfo{person}{Shruti Bhosale},
+  {et~al\mbox{.}}} \bibinfo{year}{2023}\natexlab{b}.
+\newblock \showarticletitle{Llama 2: Open foundation and fine-tuned chat
+  models}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2307.09288}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Wang et~al\mbox{.}(2023b)]%
+        {wang2023vigc}
+\bibfield{author}{\bibinfo{person}{Bin Wang}, \bibinfo{person}{Fan Wu},
+  \bibinfo{person}{Xiao Han}, \bibinfo{person}{Jiahui Peng},
+  \bibinfo{person}{Huaping Zhong}, \bibinfo{person}{Pan Zhang},
+  \bibinfo{person}{Xiaoyi Dong}, \bibinfo{person}{Weijia Li},
+  \bibinfo{person}{Wei Li}, \bibinfo{person}{Jiaqi Wang}, {et~al\mbox{.}}}
+  \bibinfo{year}{2023}\natexlab{b}.
+\newblock \showarticletitle{VIGC: Visual Instruction Generation and
+  Correction}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2308.12714}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Wang et~al\mbox{.}(2023a)]%
+        {wang2023label}
+\bibfield{author}{\bibinfo{person}{Lean Wang}, \bibinfo{person}{Lei Li},
+  \bibinfo{person}{Damai Dai}, \bibinfo{person}{Deli Chen},
+  \bibinfo{person}{Hao Zhou}, \bibinfo{person}{Fandong Meng},
+  \bibinfo{person}{Jie Zhou}, {and} \bibinfo{person}{Xu Sun}.}
+  \bibinfo{year}{2023}\natexlab{a}.
+\newblock \showarticletitle{Label Words are Anchors: An Information Flow
+  Perspective for Understanding In-Context Learning}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 2023 Conference on Empirical
+  Methods in Natural Language Processing}}. \bibinfo{pages}{9840--9855}.
+\newblock
+
+
+\bibitem[Yin et~al\mbox{.}(2023)]%
+        {yin2023woodpecker}
+\bibfield{author}{\bibinfo{person}{Shukang Yin}, \bibinfo{person}{Chaoyou Fu},
+  \bibinfo{person}{Sirui Zhao}, \bibinfo{person}{Tong Xu}, \bibinfo{person}{Hao
+  Wang}, \bibinfo{person}{Dianbo Sui}, \bibinfo{person}{Yunhang Shen},
+  \bibinfo{person}{Ke Li}, \bibinfo{person}{Xing Sun}, {and}
+  \bibinfo{person}{Enhong Chen}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Woodpecker: Hallucination Correction for Multimodal
+  Large Language Models}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2310.16045}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Zhang et~al\mbox{.}(2023a)]%
+        {zhang2023language}
+\bibfield{author}{\bibinfo{person}{Muru Zhang}, \bibinfo{person}{Ofir Press},
+  \bibinfo{person}{William Merrill}, \bibinfo{person}{Alisa Liu}, {and}
+  \bibinfo{person}{Noah~A Smith}.} \bibinfo{year}{2023}\natexlab{a}.
+\newblock \showarticletitle{How language model hallucinations can snowball}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2305.13534}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Zhang et~al\mbox{.}(2023c)]%
+        {zhang2023internlm}
+\bibfield{author}{\bibinfo{person}{Pan Zhang}, \bibinfo{person}{Xiaoyi Dong~Bin
+  Wang}, \bibinfo{person}{Yuhang Cao}, \bibinfo{person}{Chao Xu},
+  \bibinfo{person}{Linke Ouyang}, \bibinfo{person}{Zhiyuan Zhao},
+  \bibinfo{person}{Shuangrui Ding}, \bibinfo{person}{Songyang Zhang},
+  \bibinfo{person}{Haodong Duan}, \bibinfo{person}{Hang Yan}, {et~al\mbox{.}}}
+  \bibinfo{year}{2023}\natexlab{c}.
+\newblock \showarticletitle{Internlm-xcomposer: A vision-language large model
+  for advanced text-image comprehension and composition}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2309.15112}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Zhang et~al\mbox{.}(2023b)]%
+        {zhang2023gpt4roi}
+\bibfield{author}{\bibinfo{person}{Shilong Zhang}, \bibinfo{person}{Peize Sun},
+  \bibinfo{person}{Shoufa Chen}, \bibinfo{person}{Min Xiao},
+  \bibinfo{person}{Wenqi Shao}, \bibinfo{person}{Wenwei Zhang},
+  \bibinfo{person}{Kai Chen}, {and} \bibinfo{person}{Ping Luo}.}
+  \bibinfo{year}{2023}\natexlab{b}.
+\newblock \showarticletitle{Gpt4roi: Instruction tuning large language model on
+  region-of-interest}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2307.03601}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Zhao et~al\mbox{.}(2023)]%
+        {2023zhiyuan}
+\bibfield{author}{\bibinfo{person}{Zhiyuan Zhao}, \bibinfo{person}{Bin Wang},
+  \bibinfo{person}{Linke Ouyang}, \bibinfo{person}{Xiaoyi Dong},
+  \bibinfo{person}{Jiaqi Wang}, {and} \bibinfo{person}{Conghui He}.}
+  \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Beyond hallucinations: Enhancing lvlms through
+  hallucination-aware direct preference optimization}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2311.16839}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Zhou et~al\mbox{.}(2023)]%
+        {zhou2023analyzing}
+\bibfield{author}{\bibinfo{person}{Yiyang Zhou}, \bibinfo{person}{Chenhang
+  Cui}, \bibinfo{person}{Jaehong Yoon}, \bibinfo{person}{Linjun Zhang},
+  \bibinfo{person}{Zhun Deng}, \bibinfo{person}{Chelsea Finn},
+  \bibinfo{person}{Mohit Bansal}, {and} \bibinfo{person}{Huaxiu Yao}.}
+  \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Analyzing and Mitigating Object Hallucination in
+  Large Vision-Language Models}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2310.00754}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\bibitem[Zhu et~al\mbox{.}(2023)]%
+        {zhu2023minigpt}
+\bibfield{author}{\bibinfo{person}{Deyao Zhu}, \bibinfo{person}{Jun Chen},
+  \bibinfo{person}{Xiaoqian Shen}, \bibinfo{person}{Xiang Li}, {and}
+  \bibinfo{person}{Mohamed Elhoseiny}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Minigpt-4: Enhancing vision-language understanding
+  with advanced large language models}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:2304.10592}}
+  (\bibinfo{year}{2023}).
+\newblock
+
+
+\end{thebibliography}

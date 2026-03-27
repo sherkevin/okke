@@ -1,0 +1,66 @@
+% !TeX program = xelatex
+\documentclass[sigconf, screen, review, anonymous]{acmart}
+
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\setcopyright{none}
+\copyrightyear{2026}
+\acmYear{2026}
+\acmDOI{10.1145/XXXXXXX.XXXXXXX}
+\acmConference[MM '26]{ACM Multimedia 2026}{TBD}{TBD}
+\acmISBN{978-1-4503-XXXX-X/2026/XX}
+
+\AtBeginDocument{%
+  \providecommand\BibTeX{{Bib\TeX}}}
+
+\begin{document}
+
+\title[CHORD]{CHORD: Calibrating Hallucinations via Object-Resonant Decoding in Multimodal Large Language Models}
+
+\author{Placeholder Author}
+\affiliation{%
+  \institution{Anonymized for review}
+  \country{USA}}
+
+\begin{abstract}
+\input{sections/abstract}
+\end{abstract}
+
+\begin{CCSXML}
+<ccs2012>
+ <concept>
+  <concept_id>10010147.10010178.10010224</concept_id>
+  <concept_desc>Computing methodologies~Artificial intelligence</concept_desc>
+  <concept_significance>500</concept_significance>
+ </concept>
+ <concept>
+  <concept_id>10010147.10010178</concept_id>
+  <concept_desc>Computing methodologies~Machine learning</concept_desc>
+  <concept_significance>300</concept_significance>
+ </concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Computing methodologies~Artificial intelligence}
+\ccsdesc[300]{Computing methodologies~Machine learning}
+
+\keywords{multimodal large language models, hallucination mitigation, decode-time intervention, object-resonant decoding, CHORD, grounding}
+
+\maketitle
+
+\input{sections/intro}
+\input{sections/related_work}
+\input{sections/method}
+\input{sections/eval}
+\input{sections/tables_figures}
+\input{sections/conclusion}
+
+\appendix
+\input{sections/appendix}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,60 @@
+# ===== 模型权重（大文件，不推送）=====
+models/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+*.gguf
+
+# ===== 数据集图片（大文件，不推送）=====
+data/coco_val2014/
+data/coco_val2014_cache/
+data/coco_cache/
+data/blurred_calibration/blur/
+data/blurred_calibration/solid/
+data/micro_features/coco_img_cache/
+data/mmhal_bench_raw/
+data/mmhal_bench/images/
+data/mmhal_bench/_hf_cache/
+
+# 实验大纲扩展基准（大图，不推送）
+data/benchmarks/textvqa/images/
+data/benchmarks/refcoco/images/
+data/benchmarks/mmmu/images/
+data/benchmarks/visualwebbench/images/
+data/benchmarks/chartqa/images/
+data/benchmarks/mmbench/images/
+data/mvbench/*.mp4
+data/mvbench/**/*.mp4
+
+# ===== 日志中的安装包（大文件）=====
+logs/*.whl
+logs/*.tar.gz
+logs/*.log
+
+# ===== Python 缓存 =====
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+
+# ===== Jupyter =====
+.ipynb_checkpoints/
+*.ipynb
+
+# ===== 环境 =====
+.env
+*.egg-info/
+dist/
+build/
+
+# ===== 编辑器 =====
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ===== 系统文件 =====
+.DS_Store
+Thumbs.db

@@ -1,0 +1,31 @@
+{
+  "qwen3vl2b": [
+    {
+      "dataset": "mme",
+      "n_samples": 200,
+      "baseline": {
+        "perception_score": 138.75,
+        "accuracy": 0.75,
+        "agl": 2.0,
+        "itl_ms_per_token": 43.265570402145386,
+        "tokens_per_second": 23.113066364436825
+      },
+      "bra": {
+        "perception_score": 133.75,
+        "accuracy": 0.725,
+        "avg_candidate_window": 0.0,
+        "avg_visual_topk": 0.0,
+        "avg_resonance_time_ms": 0.0,
+        "intervention_rate": 0.0,
+        "agl": 2.0,
+        "itl_ms_per_token": 40.45468211174011,
+        "tokens_per_second": 24.719017621690714
+      },
+      "bra_method": "bra_zero",
+      "sample_count": 200,
+      "model_family": "qwen3_vl",
+      "notes": [],
+      "sample_audits": []
+    }
+  ]
+}

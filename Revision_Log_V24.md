@@ -1,0 +1,8 @@
+# Revision_Log_V24
+- **Addressed Reviewer's Loss Ambiguity:** Explicitly formulated the InfoNCE loss for `BRA_calib` in Section 3.1, defining $E_{txt}^+$ (matching text) and $E_{txt}^-$ (non-overlapping intra-image patches and in-batch negatives).
+- **Addressed LLaVA 1D Reshaping:** Clarified in Section 3.1 and 4.1 that LLaVA's 1D sequence is deterministically reshaped to a $\sqrt{N} \times \sqrt{N}$ spatial grid for bounding-box intersection calculations.
+- **Defined $\tau_{sim}$:** Added definition and range ($[0.1, 0.5]$) for the temperature hyperparameter in Section 3.2, explaining its role in sharpening visual resonance.
+- **Addressed Dictionary Brittleness:** Explicitly committed to quantifying the exact VASM lexical collision/polysemy rate using WordNet analysis, moving this from a hidden flaw to a documented, accepted boundary limitation (Section 3.3, Section 5, Appendix B).
+- **Enforced Evaluation Structure:** Reorganized Section 4 to explicitly state the 3 Evidence Chains (Chain A: Hallucination Reduction, Chain B: Structure & Reasoning, Chain C: Local Evidence) requested by the prompt, mapping directly to the 5 defense lines.
+- **Maintained Core Claims:** Kept the strong focus on token-local visual evidence, decode-time logits adjustment, VASM BPE inheritance, and the strict fairness boundary of `BRA_zero` vs. `BRA_calib`.
+- **Note on Results:** All experiments remain explicitly framed as an evaluation protocol pending execution, strictly adhering to the constraint against fabricating data.

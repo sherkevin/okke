@@ -1,0 +1,371 @@
+======================================================================
+BRA EVALUATION MATRIX
+GPU: NVIDIA GeForce RTX 5090
+PyTorch: 2.7.0+cu128
+Transformers: 5.3.0
+N samples: 200
+======================================================================
+
+══════════════════════════════════════════════════════════════════════
+  Loading model: qwen3vl2b
+══════════════════════════════════════════════════════════════════════
+Loading weights:   0%|          | 0/625 [00:00<?, ?it/s]Loading weights:  84%|████████▍ | 527/625 [00:00<00:00, 5194.50it/s]Loading weights: 100%|██████████| 625/625 [00:00<00:00, 5044.07it/s]
+  Model loaded in 6.7s
+  Adapter: qwen3_vl
+
+────────────────────────────────────────────────────────────
+  Evaluating: mmmu (N=200)
+────────────────────────────────────────────────────────────
+  Loaded 30 samples
+  [1/30] 1.5s  base='C....'  bra='C....'
+  [2/30] 0.2s  base='A...'  bra='A...'
+  [3/30] 0.4s  base='H. Stern...'  bra='H. Stern...'
+  [10/30] 0.5s  base='A...'  bra='B...'
+  [20/30] 0.3s  base='B...'  bra='C....'
+  [30/30] 0.6s  base='C....'  bra='B....'
+
+======================================================================
+  EVALUATION REPORT: qwen3vl2b
+======================================================================
+
+  === mmmu (N=30, bra=bra_zero) ===
+  Metric                 Baseline        BRA        Delta
+  ──────────────────────────────────────────────────────
+  accuracy                 0.2000     0.2333    +0.0333 (+3.3pp)
+  agl                         2.3        2.5       +0.3
+  itl_ms_per_token        52.2670    44.2496    -8.0174 (-801.7pp)
+  tokens_per_second       19.1325    22.5991    +3.4665 (+346.7pp)
+
+Results saved to /root/autodl-tmp/BRA_Project/logs/v3_engineer_a/mmmu_tlra_no_vasm.json
+  Model loaded in 6.6s
+  Adapter: qwen3_vl
+
+────────────────────────────────────────────────────────────
+  Evaluating: mmbench (N=300)
+────────────────────────────────────────────────────────────
+  Loaded 300 samples
+  [1/300] 2.1s  base='B...'  bra='B...'
+  [2/300] 0.2s  base='B...'  bra='B...'
+  [3/300] 0.3s  base='A...'  bra='A...'
+  [10/300] 0.2s  base='A...'  bra='A...'
+  [20/300] 0.3s  base='A...'  bra='A...'
+  [30/300] 0.4s  base='B...'  bra='B...'
+  [40/300] 0.2s  base='A...'  bra='A...'
+  [50/300] 0.3s  base='A...'  bra='A...'
+  [60/300] 0.2s  base='A...'  bra='A...'
+  [70/300] 0.2s  base='A...'  bra='A...'
+  [80/300] 0.3s  base='B...'  bra='B...'
+  [90/300] 0.2s  base='A...'  bra='A...'
+  [100/300] 0.3s  base='A...'  bra='A...'
+  [110/300] 0.2s  base='C...'  bra='C...'
+  [120/300] 0.2s  base='A...'  bra='A...'
+  [130/300] 0.2s  base='C...'  bra='C...'
+  [140/300] 0.2s  base='A...'  bra='A...'
+  [150/300] 0.2s  base='B...'  bra='B...'
+  [160/300] 0.2s  base='B...'  bra='B...'
+  [170/300] 0.2s  base='B...'  bra='B...'
+  [180/300] 0.1s  base='B...'  bra='B...'
+  [190/300] 0.1s  base='A...'  bra='A...'
+  [200/300] 0.2s  base='D...'  bra='C...'
+  [210/300] 0.3s  base='D...'  bra='D...'
+  [220/300] 0.3s  base='A...'  bra='A...'
+  [230/300] 0.2s  base='C...'  bra='C...'
+  [240/300] 0.2s  base='D...'  bra='D...'
+  [250/300] 0.2s  base='D...'  bra='D...'
+  [260/300] 0.2s  base='D...'  bra='D...'
+  [270/300] 0.2s  base='B...'  bra='B...'
+  [280/300] 0.2s  base='D...'  bra='D...'
+  [290/300] 0.2s  base='B...'  bra='B...'
+  [300/300] 0.4s  base='A...'  bra='A...'
+
+======================================================================
+  EVALUATION REPORT: qwen3vl2b
+======================================================================
+
+  === mmbench (N=300, bra=bra_zero) ===
+  Metric                 Baseline        BRA        Delta
+  ──────────────────────────────────────────────────────
+  accuracy                 0.8100     0.8100    +0.0000 (+0.0pp)
+  agl                         2.0        2.0       -0.0
+  itl_ms_per_token        38.3493    34.5329    -3.8164 (-381.6pp)
+  tokens_per_second       26.0761    28.9579    +2.8818 (+288.2pp)
+
+Results saved to /root/autodl-tmp/BRA_Project/logs/v3_engineer_a/mmbench_tlra_full.json
+======================================================================
+BRA EVALUATION MATRIX
+GPU: NVIDIA GeForce RTX 5090
+PyTorch: 2.7.0+cu128
+Transformers: 5.3.0
+N samples: 300
+======================================================================
+
+══════════════════════════════════════════════════════════════════════
+  Loading model: qwen3vl2b
+══════════════════════════════════════════════════════════════════════
+Loading weights:   0%|          | 0/625 [00:00<?, ?it/s]Loading weights: 100%|██████████| 625/625 [00:00<00:00, 6753.24it/s]
+  Model loaded in 6.2s
+  Adapter: qwen3_vl
+
+────────────────────────────────────────────────────────────
+  Evaluating: mmbench (N=300)
+────────────────────────────────────────────────────────────
+  Loaded 300 samples
+  [1/300] 1.2s  base='B...'  bra='B...'
+  [2/300] 0.1s  base='B...'  bra='B...'
+  [3/300] 0.4s  base='A. the temperature of the soda...'  bra='A. the temperature of the soda...'
+  [10/300] 0.1s  base='A...'  bra='A...'
+  [20/300] 0.1s  base='A...'  bra='A...'
+  [30/300] 0.1s  base='B...'  bra='B...'
+  [40/300] 0.4s  base='A...'  bra='A...'
+  [50/300] 0.1s  base='A...'  bra='A...'
+  [60/300] 0.1s  base='A...'  bra='A...'
+  [70/300] 0.1s  base='A...'  bra='A...'
+  [80/300] 0.1s  base='B...'  bra='B...'
+  [90/300] 0.1s  base='A...'  bra='A...'
+  [100/300] 0.1s  base='A...'  bra='A...'
+  [110/300] 0.1s  base='C...'  bra='C...'
+  [120/300] 0.1s  base='A...'  bra='A...'
+  [130/300] 0.1s  base='C...'  bra='C...'
+  [140/300] 0.1s  base='A...'  bra='A...'
+  [150/300] 0.1s  base='B...'  bra='B...'
+  [160/300] 0.1s  base='B...'  bra='B...'
+  [170/300] 0.1s  base='B...'  bra='B...'
+  [180/300] 0.1s  base='B...'  bra='B...'
+  [190/300] 0.1s  base='A...'  bra='A...'
+  [200/300] 0.1s  base='C...'  bra='D...'
+  [210/300] 0.1s  base='D...'  bra='D...'
+  [220/300] 0.1s  base='A...'  bra='A...'
+  [230/300] 0.2s  base='C...'  bra='C...'
+  [240/300] 0.1s  base='D...'  bra='D...'
+  [250/300] 0.1s  base='D...'  bra='D...'
+  [260/300] 0.1s  base='D...'  bra='D...'
+  [270/300] 0.1s  base='B...'  bra='B...'
+  [280/300] 0.2s  base='D...'  bra='D...'
+  [290/300] 0.1s  base='B...'  bra='B...'
+  [300/300] 0.1s  base='A...'  bra='A...'
+
+======================================================================
+  EVALUATION REPORT: qwen3vl2b
+======================================================================
+
+  === mmbench (N=300, bra=bra_zero) ===
+  Metric                 Baseline        BRA        Delta
+  ──────────────────────────────────────────────────────
+  accuracy                 0.8100     0.8100    +0.0000 (+0.0pp)
+  agl                         2.0        2.0       -0.0
+  itl_ms_per_token        29.1482    28.5101    -0.6380 (-63.8pp)
+  tokens_per_second       34.3075    35.0752    +0.7678 (+76.8pp)
+
+Results saved to /root/autodl-tmp/BRA_Project/logs/v3_engineer_a/mmbench_tlra_no_vasm.json
+======================================================================
+BRA EVALUATION MATRIX
+GPU: NVIDIA GeForce RTX 5090
+PyTorch: 2.7.0+cu128
+Transformers: 5.3.0
+N samples: 300
+======================================================================
+
+══════════════════════════════════════════════════════════════════════
+  Loading model: qwen3vl2b
+══════════════════════════════════════════════════════════════════════
+Loading weights:   0%|          | 0/625 [00:00<?, ?it/s]Loading weights:  89%|████████▉ | 557/625 [00:00<00:00, 5548.31it/s]Loading weights: 100%|██████████| 625/625 [00:00<00:00, 5587.45it/s]
+  Model loaded in 6.2s
+  Adapter: qwen3_vl
+
+────────────────────────────────────────────────────────────
+  Evaluating: mme (N=300)
+────────────────────────────────────────────────────────────
+  Loaded 300 samples
+  [1/300] 2.0s  base='no...'  bra='no...'
+  [2/300] 0.2s  base='yes...'  bra='yes...'
+  [3/300] 0.2s  base='yes...'  bra='Yes...'
+  [10/300] 0.1s  base='Yes...'  bra='yes...'
+  [20/300] 0.1s  base='Yes...'  bra='Yes...'
+  [30/300] 0.2s  base='no...'  bra='No...'
+  [40/300] 0.1s  base='Yes...'  bra='Yes...'
+  [50/300] 0.5s  base='no...'  bra='no...'
+  [60/300] 0.3s  base='no...'  bra='no...'
+  [70/300] 0.3s  base='yes...'  bra='yes...'
+  [80/300] 0.4s  base='no...'  bra='no...'
+  [90/300] 0.4s  base='yes...'  bra='yes...'
+  [100/300] 0.2s  base='no...'  bra='no...'
+  [110/300] 0.4s  base='no...'  bra='no...'
+  [120/300] 0.2s  base='Yes...'  bra='yes...'
+  [130/300] 0.4s  base='no...'  bra='no...'
+  [140/300] 0.2s  base='yes...'  bra='yes...'
+  [150/300] 0.2s  base='no...'  bra='no...'
+  [160/300] 0.3s  base='no...'  bra='yes...'
+  [170/300] 0.3s  base='no...'  bra='no...'
+  [180/300] 0.3s  base='yes...'  bra='yes...'
+  [190/300] 0.3s  base='no...'  bra='no...'
+  [200/300] 0.2s  base='no...'  bra='no...'
+  [210/300] 0.2s  base='yes...'  bra='yes...'
+  [220/300] 0.3s  base='no...'  bra='no...'
+  [230/300] 0.3s  base='no...'  bra='no...'
+  [240/300] 0.3s  base='yes...'  bra='no...'
+  [250/300] 0.3s  base='no...'  bra='no...'
+  [260/300] 0.2s  base='no...'  bra='yes...'
+  [270/300] 0.3s  base='no...'  bra='yes...'
+  [280/300] 0.3s  base='no...'  bra='no...'
+  [290/300] 0.3s  base='no...'  bra='no...'
+  [300/300] 0.2s  base='no...'  bra='no...'
+
+======================================================================
+  EVALUATION REPORT: qwen3vl2b
+======================================================================
+
+  === mme (N=300, bra=bra_zero) ===
+  Metric                 Baseline        BRA        Delta
+  ──────────────────────────────────────────────────────
+  perception_score          136.2      144.8       +8.7
+  accuracy                 0.7400     0.7600    +0.0200 (+2.0pp)
+  agl                         2.0        2.0       +0.0
+  itl_ms_per_token        42.5924    40.8729    -1.7196 (-172.0pp)
+  tokens_per_second       23.4784    24.4661    +0.9878 (+98.8pp)
+
+Results saved to /root/autodl-tmp/BRA_Project/logs/v3_engineer_a/mme_tlra_full.json
+======================================================================
+BRA EVALUATION MATRIX
+GPU: NVIDIA GeForce RTX 5090
+PyTorch: 2.7.0+cu128
+Transformers: 5.3.0
+N samples: 300
+======================================================================
+
+══════════════════════════════════════════════════════════════════════
+  Loading model: qwen3vl2b
+══════════════════════════════════════════════════════════════════════
+Loading weights:   0%|          | 0/625 [00:00<?, ?it/s]Loading weights:  95%|█████████▍| 593/625 [00:00<00:00, 5887.52it/s]Loading weights: 100%|██████████| 625/625 [00:00<00:00, 5803.13it/s]
+  Model loaded in 6.2s
+  Adapter: qwen3_vl
+
+────────────────────────────────────────────────────────────
+  Evaluating: mme (N=300)
+────────────────────────────────────────────────────────────
+  Loaded 300 samples
+  [1/300] 1.1s  base='no...'  bra='no...'
+  [2/300] 0.1s  base='yes...'  bra='yes...'
+  [3/300] 0.1s  base='Yes...'  bra='Yes...'
+  [10/300] 0.1s  base='Yes...'  bra='Yes...'
+  [20/300] 0.1s  base='Yes...'  bra='Yes...'
+  [30/300] 0.1s  base='no...'  bra='No...'
+  [40/300] 0.1s  base='Yes...'  bra='Yes...'
+  [50/300] 0.4s  base='no...'  bra='no...'
+  [60/300] 0.2s  base='no...'  bra='no...'
+  [70/300] 0.3s  base='yes...'  bra='yes...'
+  [80/300] 0.3s  base='no...'  bra='no...'
+  [90/300] 0.3s  base='yes...'  bra='yes...'
+  [100/300] 0.2s  base='no...'  bra='no...'
+  [110/300] 0.3s  base='no...'  bra='no...'
+  [120/300] 0.1s  base='yes...'  bra='yes...'
+  [130/300] 0.4s  base='no...'  bra='no...'
+  [140/300] 0.2s  base='yes...'  bra='yes...'
+  [150/300] 0.2s  base='no...'  bra='no...'
+  [160/300] 0.3s  base='yes...'  bra='yes...'
+  [170/300] 0.2s  base='no...'  bra='no...'
+  [180/300] 0.2s  base='yes...'  bra='yes...'
+  [190/300] 0.3s  base='no...'  bra='no...'
+  [200/300] 0.2s  base='no...'  bra='no...'
+  [210/300] 0.2s  base='yes...'  bra='yes...'
+  [220/300] 0.2s  base='no...'  bra='no...'
+  [230/300] 0.2s  base='no...'  bra='no...'
+  [240/300] 0.3s  base='yes...'  bra='yes...'
+  [250/300] 0.2s  base='no...'  bra='no...'
+  [260/300] 0.1s  base='yes...'  bra='yes...'
+  [270/300] 0.3s  base='no...'  bra='no...'
+  [280/300] 0.2s  base='no...'  bra='no...'
+  [290/300] 0.3s  base='no...'  bra='no...'
+  [300/300] 0.2s  base='no...'  bra='no...'
+
+======================================================================
+  EVALUATION REPORT: qwen3vl2b
+======================================================================
+
+  === mme (N=300, bra=bra_zero) ===
+  Metric                 Baseline        BRA        Delta
+  ──────────────────────────────────────────────────────
+  perception_score          131.9      134.8       +2.9
+  accuracy                 0.7400     0.7467    +0.0067 (+0.7pp)
+  agl                         2.0        2.0       +0.0
+  itl_ms_per_token        43.5030    41.6897    -1.8133 (-181.3pp)
+  tokens_per_second       22.9869    23.9867    +0.9998 (+100.0pp)
+
+Results saved to /root/autodl-tmp/BRA_Project/logs/v3_engineer_a/mme_tlra_no_vasm.json
+======================================================================
+BRA EVALUATION MATRIX
+GPU: NVIDIA GeForce RTX 5090
+PyTorch: 2.7.0+cu128
+Transformers: 5.3.0
+N samples: 200
+======================================================================
+
+══════════════════════════════════════════════════════════════════════
+  Loading model: qwen3vl2b
+══════════════════════════════════════════════════════════════════════
+Loading weights:   0%|          | 0/625 [00:00<?, ?it/s]Loading weights: 100%|██████████| 625/625 [00:00<00:00, 6290.92it/s]
+  Model loaded in 5.9s
+  Adapter: qwen3_vl
+
+────────────────────────────────────────────────────────────
+  Evaluating: mmmu (N=200)
+────────────────────────────────────────────────────────────
+  Loaded 30 samples
+  [1/30] 2.0s  base='Cimmon...'  bra='Cimone...'
+  [2/30] 0.3s  base='A...'  bra='A...'
+  [3/30] 0.3s  base='H. Stern...'  bra='H. Stern...'
+  [10/30] 0.2s  base='C...'  bra='A...'
+  [20/30] 0.3s  base='B...'  bra='A...'
+  [30/30] 0.3s  base='B....'  bra='A...'
+
+======================================================================
+  EVALUATION REPORT: qwen3vl2b
+======================================================================
+
+  === mmmu (N=30, bra=bra_zero) ===
+  Metric                 Baseline        BRA        Delta
+  ──────────────────────────────────────────────────────
+  accuracy                 0.2333     0.2667    +0.0333 (+3.3pp)
+  agl                         2.5        2.6       +0.1
+  itl_ms_per_token        41.0329    31.1269    -9.9060 (-990.6pp)
+  tokens_per_second       24.3707    32.1266    +7.7559 (+775.6pp)
+
+Results saved to /root/autodl-tmp/BRA_Project/logs/v3_engineer_a/mmmu_tlra_full.json
+======================================================================
+BRA EVALUATION MATRIX
+GPU: NVIDIA GeForce RTX 5090
+PyTorch: 2.7.0+cu128
+Transformers: 5.3.0
+N samples: 200
+======================================================================
+
+══════════════════════════════════════════════════════════════════════
+  Loading model: qwen3vl2b
+══════════════════════════════════════════════════════════════════════
+Loading weights:   0%|          | 0/625 [00:00<?, ?it/s]Loading weights: 100%|██████████| 625/625 [00:00<00:00, 7981.17it/s]
+  Model loaded in 5.9s
+  Adapter: qwen3_vl
+
+────────────────────────────────────────────────────────────
+  Evaluating: mmmu (N=200)
+────────────────────────────────────────────────────────────
+  Loaded 30 samples
+  [1/30] 1.2s  base='Cimone...'  bra='C....'
+  [2/30] 0.2s  base='B....'  bra='A...'
+  [3/30] 0.3s  base='H. Stern...'  bra='H. Stern...'
+  [10/30] 0.2s  base='C....'  bra='C....'
+  [20/30] 0.4s  base='C....'  bra='G. F. Watts...'
+  [30/30] 0.3s  base='A...'  bra='B....'
+
+======================================================================
+  EVALUATION REPORT: qwen3vl2b
+======================================================================
+
+  === mmmu (N=30, bra=bra_zero) ===
+  Metric                 Baseline        BRA        Delta
+  ──────────────────────────────────────────────────────
+  accuracy                 0.2667     0.1667    -0.1000 (-10.0pp)
+  agl                         2.7        2.5       -0.3
+  itl_ms_per_token        38.4980    31.2555    -7.2425 (-724.3pp)
+  tokens_per_second       25.9754    31.9944    +6.0190 (+601.9pp)
+
+Results saved to /root/autodl-tmp/BRA_Project/logs/v3_engineer_a/mmmu_tlra_no_vasm.json

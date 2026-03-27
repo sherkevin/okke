@@ -1,0 +1,7 @@
+# Revision_Log_V12
+- **Clarified $\Phi_{calib}$ Extraction:** Addressed mathematical ambiguity by explicitly detailing the offline extraction pipeline using Visual Genome ground-truth bounding boxes, preventing reliance on inference-time detectors. Defined negative samples as hard negatives (co-occurring scene objects) + random vocabulary.
+- **Addressed Compute Overhead:** Acknowledged the ~10.2 GFLOPs/step decode overhead and explicitly defined "Pre-fill Contiguous Caching" as a PagedAttention-inspired, batched GEMV operation rather than naive PyTorch `.contiguous()`, satisfying the systems-level systems critique. Added a formal Complexity Analysis Table in Section 4.1.
+- **Upgraded Evaluation Baselines:** Mandated the inclusion of explicitly adapted video-specific baselines (e.g., Temporal-DoLa, Video-VCD) in Defense Line 4 to fairly validate the spatio-temporal claims.
+- **Strengthened Figure Definitions:** Explicitly outlined the required visualizations for FREAK (side-by-side blurry vs. sharp heatmaps) and VIDHALLUC (temporal histogram with shaded GT region) as requested by the reviewer.
+- **Global Penalty Ablation:** Added an explicit grid-search requirement for $\alpha$ and $\rho$ in Section 4.1 to prove parameter robustness without per-image tuning.
+- **Retained Core Strengths:** Maintained the Dual-Track (Image+Video) narrative, the exact mathematical formulation of the BPE-aware VASM, and the rigorous AGL tracking in the 5-line defense protocol.

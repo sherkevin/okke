@@ -1,0 +1,7 @@
+# Revision_Log_V87
+- **Baseline Fairness Addressed:** Mandated the inclusion of a `Base + LoRA (Phi_calib data)` baseline across all primary tables to fix the reviewer's structural category error. `TLRA_calib` is now correctly classified as a "hybrid projection-routing method".
+- **Visual State Definition Clarified:** Explicitly defined $h_L^{(v_j)}$ as the final-layer LLM hidden states at the visual token positions, heavily contextualized by the text prefix, resolving the reviewer's circular-logic concern.
+- **VASM Reality Addressed:** Explicitly defined VASM as a static, offline, pre-computed boolean mask ($O(1)$ lookup). Completely removed any implication of an online POS tagger. Polysemy is formally logged as an inherent limitation.
+- **System Cost Modeling:** Added explicit $O(M \times H \times W)$ complexity notation and added `Relative Latency Multiplier (xBase)` columns to all tables. Updated Figure 1 to use Relative Latency Overhead as the X-axis.
+- **Retained Strengths:** Kept the Evidence Chain structure, the DocVQA OCR negative control, and the strict `TLRA_MeanPool` parity ablation as they were praised by the reviewer.
+- **Pending Verification:** The most critical pending test is whether `TLRA_AdaptiveTopK` can actually beat the new `Base+LoRA` baseline on the Pareto frontier in Figure 1.

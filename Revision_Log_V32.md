@@ -1,0 +1,7 @@
+# Revision_Log_V32
+- **Terminology Update:** Completely removed the grandiose "Bounded Resonance Anchoring" (BRA) terminology, replacing it with the grounded, descriptive "Thresholded Spatial Logits Intervention" (TSLI) per the reviewer's strong recommendation.
+- **Baseline Framing Correction:** Explicitly corrected the text to clarify that DoLa, VCD, and OPERA are *not* global visual pooling mechanisms, but rather orthogonal language/attention regularizers. Framed `TSLI_MeanPool` accurately as our internal ablation for global pooling.
+- **Architectural Specification ($\Phi_{calib}$):** Explicitly bounded $\Phi_{calib}$ to a single linear layer (zero hidden layers) to ensure it acts as a simple projector and not an implicit memory bank. Confirmed its parameter budget is strictly $\le$ the `Base + 5k LoRA` baseline.
+- **Failure Mode Protocol:** Mandated the inclusion of *one explicit failure case* in Chain C's heatmap analysis where TSLI locks onto a semantic distractor, proving an understanding of the infoNCE limit.
+- **Retained Highlights:** Maintained the strict 2D Image-Only scoping (dropping forced video narratives), the `Base + 5k LoRA` comparative baseline, BPE continuation inheritance logic, and transparent OOV tracking. 
+- **Status of Experiments:** All experiments remain explicitly framed as a "Planned Execution / Evaluation Protocol" awaiting empirical validation.

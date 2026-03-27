@@ -1,0 +1,10 @@
+# Revision_Log_V30
+- **Addressed InfoNCE Subword Averaging (Weakness 1):** Introduced a "Semantic Fallback Plan" in Sec 3.1. If subword averaging fails to converge due to structural priors, we dynamically extract the positive target from the frozen LLM's full-word contextualized logit.
+- **Addressed VASM Noun-Only Limitation (Weakness 2 & Req 2):** Explicitly stated in Sec 3.3 and Limitations that VASM bounds itself to object nouns, consciously ceding attribute/relation hallucination to the base model for safety.
+- **Elevated Latency (Weakness 3 & Req 1):** Moved A100 Tokens/Sec throughput benchmark from the Appendix directly into the main Evaluation Protocol (Sec 4.4).
+- **Addressed Entanglement/Capacity (Weakness 4 & Fig Req 3):** Added an explicit experiment protocol (Sec 4.5) to ablate $\Phi_{calib}$ complexity (Linear vs 2-layer MLP).
+- **Addressed Negative Sampling Edge Case (Sec 3.1 comment):** Specified a cross-batch sampling fallback if no intra-image patches meet the strict semantic/IoU constraints.
+- **Clarified LoRA Setup (Req 3):** Explicitly defined the 5k LoRA baseline in Sec 4.1 to tune the LLM's Q/V projections with a parameter budget $\ge \Phi_{calib}$.
+- **Upgraded Heatmap Protocol (Fig Req 1):** Expanded the Figure 1 protocol in Sec 4.3 to require the base model's native attention map alongside MeanPool and AdaptiveTopK.
+- **Added "Out-of-Candidate" Case (Fig Req 2):** Added a dedicated visual failure analysis in Sec 4.5 and Limitations to highlight the mathematical limit when targets rank $>M$.
+- **Retained Highlights:** Kept the strong baseline framing (DoLa/VCD as orthogonal), `Base + 5k LoRA` fairness control, BPE inheritance, and explicit 2D spatial bounding. All experiments remain scientifically marked as "Pending Execution" without fabricating numbers.

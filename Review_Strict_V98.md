@@ -1,0 +1,39 @@
+# Review_Strict_V98
+## Overall Score
+Score: 3/5
+
+## Verdict
+The paper proposes a highly structured, falsifiable evaluation protocol for a decode-time visual grounding intervention. The experimental contract (Tables 1-3) is one of the most rigorous I have seen, explicitly anticipating failure modes like AGL collapse, latency bottlenecks, and structural masking penalties. However, the theoretical foundation of the `TLRA_zero` variant contains a fatal architectural misunderstanding of standard MLLMs, and the construction of the VASM dictionary is a reproducibility black box. If the theoretical errors are corrected and the experimental execution honors the exact rigor promised in the draft, this will be a strong paper. Currently, it requires major methodological corrections before the proposed experiments are run.
+
+## Summary
+The authors present Token-Local Resonance Anchoring (TLRA), a decode-time intervention to reduce MLLM hallucination by biasing candidate token logits using localized visual evidence. To bypass per-step cross-modal attention bottlenecks, TLRA precomputes a static visual-to-vocabulary logit matrix ($N_v \times V$) post-prefill, retrieving visual support for only the Top-$M$ tokens during decoding. The method uses dynamic logit clipping and a Vocabulary-Anchored Semantic Masking (VASM) mechanism to protect functional syntax. The paper is currently a pre-registered experimental protocol with placeholders, proposing a rigorous matched-budget LoRA baseline and strict latency/polysemy audits.
+
+## WhatShouldBeKept
+1. **The Experimental Contract:** Tables 1, 2, and 3 are exceptionally well-designed. Do not dilute them.
+2. **The "Hijacking CDF" Metric:** Tracking whether the ground-truth token fell outside the Top-$M$ candidate window is a brilliant way to quantify the mathematical limits of late-stage decode intervention.
+3. **Average Generation Length (AGL) Tracking:** Identifying hallucination reduction that merely stems from output truncation is a chronic issue in decode-time literature. Retain the AGL and AGL StdDev metrics as mandatory.
+4. **Matched-Budget Calibration vs. LoRA:** Testing a trained decode-time component (`Phi_calib`) against a standard `Base + LoRA` trained on the *exact same* calibration data is the gold standard for proving the necessity of inference-time routing.
+
+## MajorWeaknesses
+1. **Fatal Architectural Mismatch in `TLRA_zero`:** You claim `TLRA_zero` is a "strict decode-time probe in which the model-native readout is applied directly to cached visual states." This reveals a fundamental misunderstanding of standard MLLM architectures (like LLaVA). The MLP projector maps visual tokens to the LLM's *input* embedding space (Layer 0). The LLM's native readout (`lm_head`) is trained to decode from the LLM's *final* hidden states (e.g., Layer 32). You cannot mathematically or semantically apply the `lm_head` to Layer 0 visual embeddings and expect a coherent vocabulary distribution. `TLRA_zero` as described is a theoretical impossibility for standard architectures unless you are implicitly evaluating untrained, random noise.
+2. **The VASM "Offline BPE Dictionary" is a Black Box:** You claim to use an offline dictionary to mask functional/abstract tokens. BPE tokenization (e.g., LLaMA's 32k/128k or Qwen's 151k vocab) does not map neatly to part-of-speech tags. How do you classify subwords like "Ġth", "app", or "le" as visually groundable physical entities? Without a mathematically strict, deterministic pipeline for generating this $V$-dimensional binary mask, your method is entirely unreproducible. 
+3. **Mischaracterization of Latency Bottlenecks:** You claim $O(M \times N_v)$ scalar lookups avoid severe latency penalties. While the *FLOPs* are low, extracting arbitrary columns from a large $N_v \times V$ matrix ($1024 \times 128000$ in fp16 is ~250MB) at every single autoregressive step is a heavily **memory-bound** gather operation. Kernel launch overhead and memory bandwidth, not matrix multiplication, will dictate your latency. Your current metric focuses on `tokens/s`, but you must explicitly profile memory bandwidth overhead.
+
+## SectionBySectionComments
+*   **Abstract & Introduction:** The framing is strong, but do not claim TLRA is a purely "inference-time mitigation strategy" if `TLRA_calib` requires training a new `Phi_calib` matrix. It is a *hybrid* (train-time calibration + inference-time routing) method. Be precise with your identity.
+*   **Section 3.1 (Architectural Scope):** You correctly exclude Q-Formers, but as stated above, you must completely rewrite the mechanics of `TLRA_zero`. If you want a zero-shot projection, you must explain how Layer 0 visual features are translated to Layer $L$ `lm_head` space (e.g., early exiting, which is known to be highly noisy).
+*   **Section 3.3 (Logit Clipping):** The math here is sound, but $\delta_{max}$ and $\alpha$ are introduced as hyper-parameters. You must state how these are selected (e.g., grid search on a held-out validation set) to avoid the accusation of benchmark-fitting.
+*   **Section 4 (Evaluation):** The split into Evidence Chains A, B, and C is logical and highly defensible. 
+
+## RequiredRevisions
+1. **Redefine `TLRA_zero`:** Either drop `TLRA_zero` entirely and own that this method requires a lightweight calibration phase (`TLRA_calib`), or propose a mathematically valid way to project Layer 0 visual states to the vocabulary space without training. 
+2. **VASM Construction Protocol:** You must provide a dedicated subsection (or comprehensive appendix) detailing exactly how the VASM binary mask is generated for a BPE vocabulary. Include the handling of subwords, the specific POS taggers or LLM-as-a-judge prompts used to build the static dictionary, and the exact proportion of the vocabulary that is masked ($\gamma = 0$).
+3. **Clarify `Phi_calib`:** Explicitly define the architecture, training objective (e.g., cross-entropy on visual grounding text), and the exact dataset used to train `Phi_calib`. Because it uses external supervision, the `Base + LoRA` control must see this exact same data, as you promised.
+
+## SuggestedFiguresTablesExperiments
+1. **Add Memory Profiling to Table 1:** Add a column for "Peak KV/Cache Memory Overhead (MB)" or "Memory Bandwidth Utilization". FLOP-based complexity ($O(M \times N_v)$) masks the reality of gathering from the $B$ matrix.
+2. **VASM Dictionary Generation Pipeline (Appendix):** A flowchart showing how you go from standard English WordNet/POS tags $\rightarrow$ text words $\rightarrow$ BPE tokenizer $\rightarrow$ binary vector $\gamma \in \{0, 1\}^V$.
+3. **Negative Control Expansion in Table 2:** Ensure `DocVQA` explicitly measures accuracy on *text embedded in the image*. Since OCR tokens are often highly context-dependent and heavily fragmented by BPE, static VASM should perform poorly here. This will validate your claim regarding the "Semantic Fragility" of the method.
+
+## AcceptanceOutlook
+The experimental framework outlined in this draft represents the exact kind of boundary-testing, self-skeptical science ACM MM needs. However, the theoretical error regarding standard MLLM readouts (`TLRA_zero`) is a critical flaw. If the authors correct the methodological formulation, explicitly document the VASM dictionary generation, and successfully execute the promised tables without watering down the matched-budget baselines, this paper has a very high ceiling for acceptance. If the authors walk back the rigorous baseline comparisons (e.g., dropping the LoRA parity test) once the empirical results come in, the paper should be rejected.

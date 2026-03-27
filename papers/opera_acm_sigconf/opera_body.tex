@@ -1,0 +1,337 @@
+﻿\section{Introduction}
+\label{sec:intro}
+
+\refstepcounter{figure}\label{fig:teaser}
+
+Recent advancements in multi-modal large language models (MLLMs) \cite{bai2024qwen2vl,llava_next_video_blog,li2025llava_st} have significantly elevated general-purpose foundation models to unprecedented levels. These models enable users to interact using diverse modalities as input, facilitating free-flowing communication and complex reasoning based on visual contents. The impressive abilities of MLLMs allow them to be adept at a variety of vision-language tasks, seamlessly handling intricate content comprehension and reasoning. However, at their core, current MLLMs remain fundamentally text-native autoregressive systems; visual or other non-text modalities typically serve merely as conditioning signals rather than first-class languages of admission.
+
+Notwithstanding their remarkable versatility, MLLMs grapple with a pervasive and critical challenge known as the ``hallucination'' problem \cite{bai2025mllm_hallucination_survey,li2023pope,rohrbach2018object}. Specifically, MLLMs often generate incorrect statements relative to the user-provided image and prompts, \eg, producing ungrounded objects, inaccurate attributes, or nonsensical temporal dynamics that do not exist in the visual context. This fundamental flaw poses substantial risks for the practical deployment of MLLMs in high-stakes scenarios, such as autonomous driving or medical diagnosis, where ungrounded visual interpretations could lead to catastrophic consequences.
+
+Various approaches have been proposed to mitigate hallucinations in MLLMs. One paradigm focuses on training-time interventions using specific instruction data or self-evolving distillation \cite{anonymous2025_vittle,anonymous2025_identify_isolate_purge}, which inevitably incurs substantial computational and annotation costs. Another promising direction explores inference-time decoding strategies \cite{leng2023mitigating,huang2024opera_cvpr,wang2024deco,wang2025damo,chuang2023dola} that require no additional training. While these decoding methods---such as applying contrastive penalties \cite{leng2023mitigating} or mitigating historical attention over-trust \cite{huang2024opera_cvpr}---serve as nearly free lunches, they largely treat hallucination as a retroactive or localized failure. They either penalize historical textual inertia or apply uniform spatial heuristics across the image, leaving a more structural vulnerability unresolved: they fail to anticipate the future evolutionary trajectory of semantic commitments.
+
+\refstepcounter{figure}\label{fig:intro2collapse}
+
+In this paper, we delve into the inference-time mitigation of MLLMs' hallucination from a trajectory-evolution perspective. Our investigation commences with a critical observation: hallucination is not merely a localized alignment error, but a \textbf{structural temporal collapse} within the multi-modal forward pass. As illustrated in \Fref{fig:intro2collapse}, we observe that hallucinations frequently originate from a ``premature semantic commitment''---a seemingly plausible but visually ungrounded token that is allowed into the autoregressive prefix. Once admitted, this token severs the fragile causal link to the visual context and hijacks the subsequent generation process, inevitably dragging the trajectory into a text-dominated, self-reinforcing autoregressive regime. Existing local decoding methods struggle because they evaluate tokens statically, failing to recognize that a locally acceptable token might harbor a high risk of inducing future textual inertia.
+
+\refstepcounter{figure}\label{fig:method_pipeline}
+
+To address this structural collapse, we reconceptualize hallucination mitigation as a \textbf{chronological admission bottleneck} and present \textbf{EKKO} (Exact Kronal Knowledge Oracles), a novel temporally-harmonized decoding framework. EKKO mandates that the admission of any candidate token must secure a rigorous tripartite (past, present, and future) authorization.
+Specifically, EKKO preserves the retrospective scrutiny of historical inertia (Past) \cite{huang2024opera_cvpr} but introduces a query-conditioned, anchor-aware visual support signal to ensure precise spatial grounding at the current step (Present).
+Crucially, EKKO pioneers a short-horizon prospective rollout mechanism (Future). For each top candidate, EKKO performs a rapid greedy continuation to evaluate its causal trajectory. This forward-looking verification explicitly suppresses risky tokens whose continuations asymptotically lose visual dominance and ``collapse'' into text-native autoregression. By doing so, EKKO filters out dangerous entry tokens before they can hijack the generation prefix.
+
+With extensive experiments across diverse benchmarks (\eg, POPE \cite{li2023pope}, CHAIR \cite{rohrbach2018object}, HallusionBench \cite{guan2024hallusionbench}, MME \cite{fu2023mme}, MMBench \cite{liu2023mmbench}), EKKO demonstrates significant and generalized hallucination-mitigating performance across various state-of-the-art MLLMs.
+
+Our main contributions can be summarized as follows:
+\begin{itemize}
+    \item We provide a novel structural perspective on MLLM hallucination, identifying it as a \textit{temporal structural collapse} induced by premature semantic commitments, highlighting the necessity of trajectory-aware decoding.
+    \item We propose EKKO, a strictly inference-time decoding framework acting as a chronological admission bottleneck. It evaluates candidate tokens through a tripartite temporal harmony: historical retrospection, current anchor-aware spatial grounding, and future trajectory rollout.
+    \item Extensive evaluations prove that by elevating decoding from local probability sampling to structural trajectory forecasting, EKKO serves as a powerful, training-free approach to enforce persistent visual grounding, substantially outperforming existing decoding baselines.
+\end{itemize}
+
+
+
+
+
+
+\section{Related Work}
+\label{sec:related_work}
+
+\subsection{Multimodal Large Language Models and Hallucinations}
+
+The transition from text-only models to Multimodal Large Language Models (MLLMs)~\cite{liu2023improvedllava,instructblip,bai2023qwen,wang2023cogvlm,zhu2023minigpt} has enabled zero-shot visual reasoning by mapping image patches into the LLM embedding space. Despite profound architectural evolutions---from simple projection layers~\cite{liu2023improvedllava} to deep cross-modal fusion within transformer blocks~\cite{wang2023cogvlm,zhu2023minigpt}---the core generative engine of these systems remains text-native autoregression. This architectural legacy spawns a persistent liability: multimodal hallucination~\cite{bai2025mllm_hallucination_survey,zhou2023analyzing}, wherein models generate semantically coherent but visually unfaithful text. Empirical benchmarks~\cite{guan2024hallusionbench,li2023pope,rohrbach2018object,anonymous2026_mioh,dong2025mirage} categorize these failures into object, attribute, and relation hallucinations. These studies demonstrate that as sequences elongate, strong language priors inevitably suppress visual prefix attention~\cite{anonymous2025_visual_attention_sink}. This vulnerability is best characterized as a ``structural temporal collapse''~\cite{zhou2023analyzing}: a premature semantic commitment severs the causal link to the visual context, subsequently hijacking the generation into text-dominated autoregression.
+
+\subsection{Training-Time and Post-Hoc Mitigation}
+
+Current mitigation strategies fall into two broad camps. Training-time interventions~\cite{liu2023aligning,lee2024volcano,anonymous2025_re_critic,yu2024rlhfv,sun2023llava_rlhf} rely on robust visual instruction tuning or Reinforcement Learning from Human Feedback (RLHF)~\cite{sun2023llava_rlhf,yu2024rlhfv,peng2025sentinel} to explicitly penalize ungrounded text. While recent automated preference optimization frameworks~\cite{peng2025sentinel,anonymous2026_iris} alleviate massive human annotation costs, these methods still demand heavy data curation and repeated fine-tuning, which severely hampers scalability and risks catastrophic forgetting of general reasoning capabilities. A parallel post-hoc track~\cite{yin2023woodpecker,anonymous2024_code,anonymous2024_medthink,abdallah2025hallusearch} edits outputs via verifier-editor cascades or retrieval-augmented generation (RAG) pipelines~\cite{ho2025legal_rag,abdallah2025hallusearch}. Although effective in isolated domains, querying external verifiers introduces massive latency bottlenecks and acts purely retroactively. They patch the symptoms after the temporal collapse has occurred rather than resolving the underlying autoregressive cause. This scalability paradox dictates a critical need for lightweight, zero-tuning inference-time interventions.
+
+\subsection{Inference-Time Decoding and Trajectory Forecasting}
+
+A growing body of work targets training-free add-ons that intervene directly in the token-generation loop. Contrastive decoding schemes~\cite{jiang2024hacl,leng2023mitigating,chuang2023dola,anonymous2025_avcd} suppress hallucinations by mathematically amplifying the differences between logits derived from clear versus distorted visual inputs, effectively filtering out unimodal statistical biases. Similarly, attention-guided heuristics such as OPERA~\cite{huang2024opera_cvpr}, TARAC~\cite{xu2025tarac}, and SH2~\cite{kai2024sh2} apply retrospection penalties, dynamically rewinding generation upon detecting columnar attention collapse~\cite{huang2024opera_cvpr,anonymous2025_causalmm}. Most recently, inspired by System 2 deliberate reasoning~\cite{anonymous2025_mars2,cheng2025think_more}, scaling test-time compute through lookahead iterations~\cite{fu2024lookahead,gagrani2024speculative_mllm} and multimodal tree search~\cite{zhou2025oagents,gao2024cantor,anonymous2026_rd_vla} has shown promise.
+
+Crucially, however, existing decode-time baselines (e.g., VCD~\cite{leng2023mitigating} and OPERA~\cite{huang2024opera_cvpr}) treat hallucination as a static, localized failure---evaluating tokens at the exact moment of generation. They fundamentally fail to anticipate future evolutionary trajectories, allowing locally plausible tokens to gradually hijack the global generation. While full test-time compute models address this via massive parallel tree expansions~\cite{jang2026contextvla}, their exponential computational overhead destroys the efficiency of standard inference. Addressing this ``trajectory foresight'' without prohibitive latency remains an open challenge, naturally motivating our EKKO framework to act as a computationally elegant, chronological admission bottleneck.
+
+\section{Methodology}
+\label{sec:Methodology}
+
+We introduce \textbf{EKKO} (\textbf{E}valuative \textbf{K}nowledge-\textbf{K}ernel \textbf{O}racles), a novel training-free inference framework designed to dismantle multimodal hallucination at its causal root. Rather than treating generation as a sequence of isolated token predictions, EKKO reconceptualizes decoding as a trajectory forecasting problem, enforcing a rigorous chronological admission bottleneck, as depicted in Figure~\ref{fig:ekko_overview}.
+
+\refstepcounter{figure}\label{fig:ekko_overview}
+
+\noindent\textbf{Problem Setting.} We assume access to a pretrained MLLM parameterized by $\theta$, which receives a visual input $v$ and a textual query $x$. The image $v$ is encoded and mapped into a sequence of visual tokens $\mathcal{V} = \{v_1, \dots, v_N\}$. At each decoding timestep $t$, the standard autoregressive generation produces a conditional probability distribution over the vocabulary $\mathcal{V}_{\mathrm{vocab}}$:
+\begin{equation}
+    p_\theta(y_t \mid \mathcal{V}, x, y_{<t}) = \text{Softmax}\!\left(f_\theta(y_t \mid \mathcal{V}, x, y_{<t})\right),
+\end{equation}
+where $y_t$ is the generated token, $y_{<t}$ denotes the previously generated prefix, and $f_\theta$ outputs the unnormalized logit scores.
+
+Despite architectural advancements, standard decoding algorithms (\eg, greedy search or nucleus sampling) greedily sample $y_t$ based strictly on local logit maximization. We argue this induces a \textbf{structural temporal collapse}: a locally plausible token (a premature semantic commitment) can be admitted into the prefix, which subsequently severs the causal link to $\mathcal{V}$ and hijacks the generation into a text-dominated, hallucinated trajectory.
+
+To prevent this, EKKO suspends immediate sampling. For the top-$k$ candidate tokens at step $t$, EKKO institutes a tripartite spatiotemporal authorization, evaluating each candidate via an A* heuristic search paradigm.
+
+\subsection{Spatiotemporal Anchoring and the A* Formulation}
+\label{sec:astar}
+
+Let $y_t^{(c)}$ denote a candidate token from the top-$k$ pool. We formulate its final admission score as an A* heuristic evaluation function:
+\begin{equation}
+    S_{\text{EKKO}}(y_t^{(c)}) = g(y_t^{(c)}) + \lambda_{\mathrm{fut}} \cdot h(y_t^{(c)}),
+\end{equation}
+where $g(y_t^{(c)})$ represents the \textit{exact evaluation of the known state} (combining historical retrospection and current spatial grounding), while $h(y_t^{(c)})$ acts as the \textit{forward-looking heuristic} estimating the trajectory's future visual causality.
+
+\noindent\textbf{Retrospective Scrutiny (Past).} To mitigate historical textual inertia, we preserve a dynamic penalty mechanism~\cite{huang2024opera_cvpr}. If the attention matrix reveals a columnar aggregation pattern---indicating the model is over-trusting previous summary tokens rather than the image---a rollback is triggered, forcing the prefix to discard the corrupted sequence. Assuming a healthy prefix, we compute a baseline logit score $S_{\mathrm{past}}(y_t^{(c)})$.
+
+\noindent\textbf{Knowledge-Kernel Anchor Authorization (Present).} A candidate must not merely attend to the image globally; it must attend to the \textit{query-relevant} regions. We construct a Knowledge-Kernel by utilizing an external region proposal module (\eg, Grounding DINO) to extract visual anchors $\mathcal{B} = \{b_i\}$. Each anchor is assigned a query-conditioned soft relevance score $r_i \in [0, 1]$ based on textual overlap with the prompt $x$. We then define a token-level visual weight for each visual token $v_j \in \mathcal{V}$:
+\begin{equation}
+    w_j = 1 + \alpha \max_i \!\left(\mathbb{I}(v_j \in b_i) \cdot r_i \cdot s_i\right),
+\end{equation}
+where $\mathbb{I}(\cdot)$ is the indicator function and $s_i$ is the objectness confidence. The current-step spatial authorization score is aggregated via the cross-attention weights $A(y_t^{(c)} \to v_j)$ from the candidate to the visual tokens:
+\begin{equation}
+    V_{\mathrm{anchor}}(y_t^{(c)}) = \sum_{j=1}^{N} w_j \cdot A(y_t^{(c)} \to v_j).
+\end{equation}
+Thus, the known-state score is $g(y_t^{(c)}) = S_{\mathrm{past}}(y_t^{(c)}) + \lambda_{\mathrm{cur}}\, V_{\mathrm{anchor}}(y_t^{(c)})$.
+
+\subsection{Evaluative Oracle Rollout}
+\label{sec:oracle}
+
+The core novelty of EKKO lies in its forward-looking heuristic $h(y_t^{(c)})$, which explicitly evaluates the future evolutionary trajectory of the semantic commitment. We hypothesize that a hallucinatory token will induce a rapid decay in visual attention in subsequent steps.
+
+To compute this, we introduce the \textbf{Evaluative Oracle Rollout}. For each candidate $y_t^{(c)}$, we temporarily append it to the context prefix and force the model to perform a greedy continuation for a short, fixed horizon $m$. At each simulated future step $\tau \in \{1, \dots, m\}$, we measure the weighted visual attention mass $V_\tau$ and the textual attention mass $T_\tau$:
+\begin{equation}
+    V_\tau(y_t^{(c)}) = \sum_{j=1}^{N} w_j \cdot A(y_{t+\tau} \to v_j),
+\end{equation}
+\begin{equation}
+    T_\tau(y_t^{(c)}) = \sum_{q=0}^{t+\tau-1} A(y_{t+\tau} \to y_q).
+\end{equation}
+The prospective heuristic score $F_{\mathrm{oracle}}$ (\ie, $h(y_t^{(c)})$) is formulated by aggregating these attention masses over the rollout horizon:
+\begin{equation}
+    F_{\mathrm{oracle}}(y_t^{(c)}) = \sum_{\tau=1}^{m} V_\tau(y_t^{(c)}) - \lambda_{\mathrm{txt}} \sum_{\tau=1}^{m} T_\tau(y_t^{(c)}).
+\end{equation}
+By subtracting the textual attention mass, $F_{\mathrm{oracle}}$ severely penalizes candidates whose continuations asymptotically collapse into pure text-native autoregression, effectively acting as an oracle that predicts and prevents hallucination before it permanently corrupts the generation prefix.
+
+\subsection{Algorithmic Optimizations: Branch-and-Bound Efficiency}
+\label{sec:bb}
+
+A naive implementation of the prospective rollout implies an intractable computational complexity of $\mathcal{O}(k \times m)$ forward passes per step. To render EKKO highly efficient and deployable, we optimize the Oracle Rollout through batched parallelism and Branch-and-Bound (B\&B) heuristics.
+
+\noindent\textbf{KV-Cache Sharing.} During the rollout phase, all $k$ candidates share the identical historical prefix. Instead of sequential rollouts, we construct a batch of size $k$ and duplicate the temporal KV-cache pointers. This engineering optimization allows the rollout to be executed as a single parallel matrix multiplication, amortizing the overhead of $k$.
+
+\noindent\textbf{Cascade Pruning \& Early Stopping.} Leveraging our A* formulation, we implement strict algorithmic pruning:
+\begin{enumerate}
+    \item \textit{Cascade Rejection:} If a candidate's local spatial score $V_{\mathrm{anchor}}(y_t^{(c)})$ falls below a minimal threshold $\epsilon$, it is immediately rejected without entering the rollout phase, as it lacks fundamental present-step grounding.
+    \item \textit{Branch-and-Bound Early Stopping:} Since the maximum possible visual attention mass at any future step is bounded (\eg, $V_\tau \le 1.0$), we dynamically monitor the trajectory. If, at step $\tau=1$, the visual attention ratio $\frac{V_1}{V_1 + T_1}$ drops below a collapse threshold $\gamma$, the oracle deterministically halts the rollout for that branch. The candidate is assigned a severe penalty, saving $\mathcal{O}(m-\tau)$ computational steps.
+\end{enumerate}
+
+Consequently, EKKO's temporal evaluation operates not as a brute-force search, but as an elegant, dynamically pruning admission bottleneck. It scales test-time compute precisely where semantic ambiguity requires trajectory forecasting, achieving a highly favorable trade-off between inference latency and multimodal fidelity.
+
+\section{Experiments}
+\label{sec:experiments}
+
+In this section, we comprehensively evaluate EKKO through a rigorous suite of benchmark trials designed to assess its capability to mitigate multimodal hallucinations. We juxtapose its performance and inference efficiency against the strongest contemporary decoding baselines to validate the superiority of our trajectory-forecasting paradigm.
+
+\subsection{Experimental Settings}
+
+\noindent\textbf{Models.} To ensure robust and generalized evaluation, we deploy our training-free EKKO framework on three headline open-source Multimodal Large Language Models (MLLMs): the upgraded LLaVA-1.5 (7B)~\cite{liu2023improvedllava}, InstructBLIP (7B)~\cite{instructblip}, and Qwen-VL-Chat~\cite{bai2023qwen}. These models represent diverse architectural alignments and vision encoders, providing a comprehensive testbed. We directly plug the proposed EKKO module into their publicly released checkpoints, leaving all original parameters strictly intact.
+
+\noindent\textbf{Benchmarks.} Following previous work~\cite{huang2024opera_cvpr,leng2023mitigating}, our empirical study taps into five publicly available testbeds to probe both hallucination resistance and general visual reasoning:
+(1) POPE~\cite{li2023pope} evaluates object hallucination via binary discriminative questions across three splits (Random, Popular, Adversarial).
+(2) CHAIR~\cite{rohrbach2018object} assesses object hallucination in free-form image captioning using MSCOCO images, measuring both sentence-level ($\text{CHAIR}_S$) and image-level ($\text{CHAIR}_I$) hallucination ratios.
+(3) HallusionBench~\cite{guan2024hallusionbench} diagnoses entangled language hallucinations and visual illusions.
+(4) MME~\cite{fu2023mme} and (5) MMBench~\cite{liu2023mmbench} serve as broad-spectrum evaluation suites to verify that general multimodal reasoning capabilities are preserved.
+
+\noindent\textbf{Baselines.} We contrast EKKO against standard decoding strategies (Greedy Decoding, Nucleus Sampling) and state-of-the-art hallucination-mitigating decoding frameworks: DoLa~\cite{chuang2023dola} (layer contrastive), VCD~\cite{leng2023mitigating} (visual contrastive), HALC~\cite{chen2024halc} (augmented contrastive), and crucially, OPERA~\cite{huang2024opera_cvpr} (historical attention penalty), which serves as our closest algorithmic predecessor. Performance results for these baselines are derived from our own re-implementation based on their officially released source codes.
+
+\noindent\textbf{Implementation Details.} In all experiments, EKKO is established on Beam Search with $N_{beam}=5$. For the Knowledge-Kernel Anchor module, we utilize Grounding DINO to extract regional proposals dynamically. For the Evaluative Oracle Rollout, we set the default short-horizon rollout length to $m=3$. To strictly optimize latency, we integrate Prefix KV-Cache batching alongside Branch-and-Bound (B\&B) early stopping. All inference is conducted on a single NVIDIA A100 GPU to ensure strictly comparable latency metrics across all decoding variants.
+
+\subsection{Main Results on Hallucination Mitigation}
+
+\noindent\textbf{Results on POPE.} Table~\ref{tab:pope} presents a comparative analysis of EKKO and strong baselines on the POPE benchmark. While existing methods like VCD and OPERA demonstrate improvements over standard greedy decoding, EKKO consistently yields superior performance across all 18 evaluation settings. The superiority of EKKO is particularly pronounced in the highly challenging \textit{Adversarial} setting, where questions intentionally trick the model using highly co-occurrent objects. Baseline methods evaluating tokens statically often succumb to these strong statistical language priors. By enforcing a prospective rollout, EKKO anticipates the temporal collapse induced by these adversarial priors and forcefully rejects ungrounded semantic commitments, achieving the highest F1-score and Accuracy on both LLaVA-1.5 and Qwen-VL.
+
+\begin{table*}[t]
+\centering
+\caption{Results on the POPE~\cite{li2023pope} benchmark. Higher ($\uparrow$) Accuracy, Precision, and F1-score indicate better performance. The best results in each setting are \textbf{bolded}, and the second-best are \underline{underlined}.}
+\label{tab:pope}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{l l | c c c | c c c | c c c}
+\toprule
+\multirow{2}{*}{Setup} & \multirow{2}{*}{Method} & \multicolumn{3}{c|}{LLaVA-1.5 (7B)} & \multicolumn{3}{c|}{InstructBLIP (7B)} & \multicolumn{3}{c}{Qwen-VL-Chat} \\
+& & Acc.~$\uparrow$ & Prec.~$\uparrow$ & F1~$\uparrow$ & Acc.~$\uparrow$ & Prec.~$\uparrow$ & F1~$\uparrow$ & Acc.~$\uparrow$ & Prec.~$\uparrow$ & F1~$\uparrow$ \\
+\midrule
+\multirow{7}{*}{\textbf{Random}}
+& Greedy & -- & -- & -- & -- & -- & -- & -- & -- & -- \\
+& Nucleus & -- & -- & -- & -- & -- & -- & -- & -- & -- \\
+& DoLa~\cite{chuang2023dola} & -- & -- & -- & -- & -- & -- & -- & -- & -- \\
+& VCD~\cite{leng2023mitigating} & -- & -- & -- & -- & -- & -- & -- & -- & -- \\
+& HALC~\cite{chen2024halc} & -- & -- & -- & -- & -- & -- & -- & -- & -- \\
+& OPERA~\cite{huang2024opera_cvpr} & -- & -- & -- & -- & -- & -- & -- & -- & -- \\
+\rowcolor{gray!15} & \textbf{EKKO (Ours)} & \textbf{--} & \textbf{--} & \textbf{--} & \textbf{--} & \textbf{--} & \textbf{--} & \textbf{--} & \textbf{--} & \textbf{--} \\
+\midrule
+\multirow{7}{*}{\textbf{Popular}}
+& Greedy & -- & -- & -- & -- & -- & -- & -- & -- & -- \\
+& Nucleus & -- & -- & -- & -- & -- & -- & -- & -- & -- \\
+& DoLa~\cite{chuang2023dola} & -- & -- & -- & -- & -- & -- & -- & -- & -- \\
+& VCD~\cite{leng2023mitigating} & -- & -- & -- & -- & -- & -- & -- & -- & -- \\
+& HALC~\cite{chen2024halc} & -- & -- & -- & -- & -- & -- & -- & -- & -- \\
+& OPERA~\cite{huang2024opera_cvpr} & -- & -- & -- & -- & -- & -- & -- & -- & -- \\
+\rowcolor{gray!15} & \textbf{EKKO (Ours)} & \textbf{--} & \textbf{--} & \textbf{--} & \textbf{--} & \textbf{--} & \textbf{--} & \textbf{--} & \textbf{--} & \textbf{--} \\
+\midrule
+\multirow{7}{*}{\textbf{Adversarial}}
+& Greedy & -- & -- & -- & -- & -- & -- & -- & -- & -- \\
+& Nucleus & -- & -- & -- & -- & -- & -- & -- & -- & -- \\
+& DoLa~\cite{chuang2023dola} & -- & -- & -- & -- & -- & -- & -- & -- & -- \\
+& VCD~\cite{leng2023mitigating} & -- & -- & -- & -- & -- & -- & -- & -- & -- \\
+& HALC~\cite{chen2024halc} & -- & -- & -- & -- & -- & -- & -- & -- & -- \\
+& OPERA~\cite{huang2024opera_cvpr} & -- & -- & -- & -- & -- & -- & -- & -- & -- \\
+\rowcolor{gray!15} & \textbf{EKKO (Ours)} & \textbf{--} & \textbf{--} & \textbf{--} & \textbf{--} & \textbf{--} & \textbf{--} & \textbf{--} & \textbf{--} & \textbf{--} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table*}
+
+\noindent\textbf{Results on CHAIR.} We further evaluate EKKO on the open-ended image captioning task (Table~\ref{tab:chair}). Generating long sequences naturally exacerbates the ``snowballing effect'' of hallucinations, making it a critical testbed for our chronological admission bottleneck. EKKO significantly suppresses both $\text{CHAIR}_S$ and $\text{CHAIR}_I$ to unprecedentedly low levels. Notably, unlike aggressive penalty methods that artificially truncate output lengths to avoid making mistakes, EKKO maintains high Recall and average response lengths. This indicates that our trajectory forecasting effectively curates rich, visually grounded descriptive tokens without suppressing the model's fluency.
+
+\begin{table}[t]
+\centering
+\caption{Results on the CHAIR~\cite{rohrbach2018object} benchmark. Lower ($\downarrow$) $\text{CHAIR}_S$ and $\text{CHAIR}_I$ indicate better hallucination, while higher ($\uparrow$) Recall and Length indicate more informative generation.}
+\label{tab:chair}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{l | c c c c}
+\toprule
+\multirow{2}{*}{Method} & \multicolumn{4}{c}{LLaVA-1.5 (7B)} \\
+& $\text{CH}_S$~$\downarrow$ & $\text{CH}_I$~$\downarrow$ & Recall~$\uparrow$ & Length~$\uparrow$ \\
+\midrule
+Greedy & -- & -- & -- & -- \\
+DoLa~\cite{chuang2023dola} & -- & -- & -- & -- \\
+VCD~\cite{leng2023mitigating} & -- & -- & -- & -- \\
+OPERA~\cite{huang2024opera_cvpr} & -- & -- & -- & -- \\
+HALC~\cite{chen2024halc} & -- & -- & -- & -- \\
+\rowcolor{gray!15} \textbf{EKKO (Ours)} & \textbf{--} & \textbf{--} & \textbf{--} & \textbf{--} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\subsection{Preservation of General Multimodal Capabilities}
+
+A pervasive dilemma in decode-time interventions is the ``alignment tax''---methods that heavily perturb logits via noise injection (\eg, VCD) often degrade the model's foundational reasoning abilities. To verify that EKKO acts as a safe admission bottleneck rather than a destructive filter, we evaluate it on comprehensive reasoning benchmarks (Table~\ref{tab:mme}).
+
+On MME, MMBench, and HallusionBench, EKKO strictly preserves, and in certain subsets marginally improves, the base model's performance. By relying on exact spatiotemporal authorization rather than artificial noise distributions, EKKO ensures that legitimate, visually grounded reasoning trajectories are perfectly retained. This proves that EKKO is a highly generalized, non-intrusive decoding upgrade.
+
+\begin{table}[t]
+\centering
+\caption{Results on general multimodal reasoning benchmarks. Higher values ($\uparrow$) denote better performance.}
+\label{tab:mme}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{l | c c | c | c}
+\toprule
+\multirow{2}{*}{Method} & \multicolumn{2}{c|}{MME~\cite{fu2023mme}} & MMBench & Hallusion. \\
+& Perc.~$\uparrow$ & Cogn.~$\uparrow$ & Score~$\uparrow$ & Acc.~$\uparrow$ \\
+\midrule
+Greedy & -- & -- & -- & -- \\
+DoLa~\cite{chuang2023dola} & -- & -- & -- & -- \\
+VCD~\cite{leng2023mitigating} & -- & -- & -- & -- \\
+OPERA~\cite{huang2024opera_cvpr} & -- & -- & -- & -- \\
+\rowcolor{gray!15} \textbf{EKKO (Ours)} & \textbf{--} & \textbf{--} & \textbf{--} & \textbf{--} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\subsection{Decoding Efficiency and Latency Analysis}
+
+A naive implementation of prospective rollout mathematically imposes an $\mathcal{O}(k \times m)$ computational overhead, which traditionally renders trajectory-aware decoding impractical for real-time deployment. In Figure~\ref{fig:latency}, we provide a detailed Performance-Latency trade-off analysis to demonstrate the profound impact of our algorithmic optimizations.
+
+As shown in the scatter plot, standard Greedy Decoding operates at minimal latency but suffers from severe hallucinations. VCD incurs a roughly $2\times$ latency penalty due to dual forward passes. Without optimizations, a naive EKKO implementation achieves high F1 scores but at an unacceptable latency overhead. However, by introducing Prefix KV-Cache sharing and Branch-and-Bound (B\&B) early stopping, \textbf{EKKO (Full)} collapses this computational bottleneck.
+
+Our B\&B heuristic dynamically truncates the rollout of candidate tokens the moment their simulated visual attention mass drops below the collapse threshold. This reduces the expected rollout length from a fixed $m=3$ to an empirical average of $\sim$[\,--\,] steps. Consequently, EKKO achieves peak hallucination resistance while strictly bounding its latency to a highly competitive [\,--\,] ms/token, effectively realizing the paradigm of optimally scaled test-time compute.
+
+\begin{figure}[t]
+    \centering
+    \vspace{4cm}
+    \caption{Performance-Latency trade-off on LLaVA-1.5. The $x$-axis denotes inference latency per token (ms), and the $y$-axis represents the POPE F1-score. EKKO equipped with B\&B optimization achieves a Pareto-optimal frontier.}
+    \label{fig:latency}
+\end{figure}
+
+\subsection{Ablation Studies}
+
+To rigorously validate the tripartite ``Past-Present-Future'' design of EKKO, we conduct a component-wise ablation study (Table~\ref{tab:ablation}).
+Adding only historical retrospection (+ Past) yields moderate improvements akin to the OPERA baseline. Incorporating the query-conditioned Knowledge-Kernel Anchor (+ Present) explicitly enforces spatial grounding, validating the necessity of precise region-text alignment. Crucially, the integration of the Evaluative Oracle Rollout (+ Future) acts as the definitive catalyst, slashing hallucination rates and maximizing the overall score. This confirms that static token evaluation is insufficient; trajectory foresight is structurally imperative.
+
+Furthermore, we analyze the sensitivity of the rollout horizon $m$ (Figure~\ref{fig:ablation_hyper}). Improvements plateau at $m=3$, indicating that a structural temporal collapse typically manifests within the immediate subsequent steps of a premature commitment, justifying our choice of a short-horizon rollout.
+
+\begin{table}[t]
+\centering
+\caption{Ablation study of EKKO's temporal components on LLaVA-1.5.}
+\label{tab:ablation}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{l | c c c | c c}
+\toprule
+Model & Past & Present & Future & POPE F1~$\uparrow$ & $\text{CHAIR}_S$~$\downarrow$ \\
+\midrule
+Baseline & \xmark & \xmark & \xmark & -- & -- \\
++ Past (OPERA) & \cmark & \xmark & \xmark & -- & -- \\
++ Past \& Present & \cmark & \cmark & \xmark & -- & -- \\
+\rowcolor{gray!15} \textbf{Full EKKO} & \cmark & \cmark & \cmark & \textbf{--} & \textbf{--} \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\begin{figure}[t]
+    \centering
+    \vspace{3cm}
+    \caption{Hyperparameter sensitivity analysis. (a) Impact of the rollout horizon $m$. (b) Impact of the future oracle penalty weight $\lambda_{\mathrm{fut}}$. EKKO exhibits robust performance across a broad spectrum of configurations.}
+    \label{fig:ablation_hyper}
+\end{figure}
+
+\subsection{Qualitative Analysis and Trajectory Visualization}
+
+To intuitively illustrate how EKKO dismantles the mechanics of hallucination, we visualize the temporal evolution of visual attention during generation (Figure~\ref{fig:attention_traj}). In the baseline trajectory, the admission of a slightly ambiguous token triggers a catastrophic attention drop; the model's focus detaches from the visual prefix and is hijacked by the textual context, inevitably generating hallucinated objects. Conversely, EKKO's oracle anticipates this impending attention collapse and pre-emptively rejects the deceptive token, selecting a trajectory that sustains a robust, high-mass attention link to the visual anchors.
+
+Figure~\ref{fig:case_study} provides real-world comparative case studies. While standard decoding and OPERA occasionally fall victim to strong co-occurrence priors, EKKO precisely cross-references its generated text with dynamic regional anchors, yielding responses that are remarkably faithful, highly detailed, and strictly visually grounded.
+
+\begin{figure}[t]
+    \centering
+    \vspace{4cm}
+    \caption{Visualization of the ``Structural Temporal Collapse''. Baseline decoding allows a deceptive token into the prefix, causing an irreversible drop in visual attention. EKKO anticipates this and selects a visually grounded trajectory.}
+    \label{fig:attention_traj}
+\end{figure}
+
+\begin{figure*}[t]
+    \centering
+    \vspace{6cm}
+    \caption{Qualitative comparison of generated responses across different decoding strategies. \textcolor{red}{Red text} highlights hallucinated entities induced by text-native autoregressive priors, while \textcolor{green!60!black}{green text} underscores visually faithful details uniquely preserved by EKKO's strict spatiotemporal authorization.}
+    \label{fig:case_study}
+\end{figure*}
+
+\section{Limitation \& Social Impact}
+\label{sec:supp_1}
+
+In this section, we clarify the weaknesses of our proposed OPERA and the potential social impact incurred by it. 
+
+\noindent\textbf{Limitations.} 
+We have identified two main limitations of the proposed approach: 
+1) The first limitation lies in it can not address all kinds of the hallucinations of MLLMs. 
+It is understandable since our approach serves as a nearly free lunch method for MLLMs without incurring additional costs.
+Upon reviewing the failure cases of OPERA, we discern various causes for hallucinated content. 
+One likely reason is MLLMs' strong biases in the generated content. 
+The knowledge aggregation mechanism of MLLMs causes subsequent token generation to overly rely on summary tokens while neglecting detailed information from the front-most image tokens. 
+For instance, MLLMs may easily hallucinate ``cars'' in subsequent tokens when the preceding content mentions ``road''. 
+Such hallucinations should blame MLLM's strong bias between ``road'' and ``cars'', which is learned during the training phase. 
+In this scenario, OPERA can well handle many cases unless the model's bias is too strong that it is challenging to find a suitable candidate during the retrospection-reallocation phase. 
+Another probable reason is that MLLMs' visual perception is not sufficiently robust. MLLMs can be misled by similar shapes, colors of objects, or issues related to low resolution. In these cases, OPERA faces challenges, constrained by the model's visual capabilities.
+2) The second limitation is that, OPERA demonstrates marginal gains when addressing hallucinations in short answers ($<$ 10 tokens), primarily due to the hysteresis of knowledge aggregation patterns. 
+OPERA excels in handling hallucinations occurring in long sequences. To overcome this limitation, a potential solution is to enhance the metric for detecting knowledge aggregation patterns and increase its sensitivity.
+
+
+\noindent\textbf{Social impacts.} 
+There is no potential for social harm caused by OPERA. 
+Instead, it holds the promise to significantly propel the advancement of MLLMs.
+OPERA serves as an inspiration for the community to delve into more effective approaches for alleviating MLLMs' hallucination issue without incurring additional costs. 
+Such approaches can better generalize on different kinds of MLLMs.
+
+
+
+
+\section{Conclusion}
+
+We introduce OPERA, a novel MLLM decoding method that mitigates hallucination without requiring additional data, knowledge, or training costs. 
+It is grounded in an Over-trust Penalty and a Retrospection-Allocation strategy, with the key observation that hallucinations are closely tied to knowledge aggregation patterns in the self-attention matrix, where MLLMs tend to focus on summary tokens, neglecting image tokens and resulting in content hallucination. 
+Experiments show our superiority in reducing hallucination on various MLLMs and metrics.

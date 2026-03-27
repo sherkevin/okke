@@ -1,0 +1,8 @@
+# Revision_Log_V108
+- **Addressed Loss Function & Negative Sampling**: Explicitly defined $\mathcal{L}_{calib}$ as a contrastive BCE loss with dynamic hard negative sampling from the $V_{noun}$ dictionary to prevent the mode collapse mathematically guaranteed by training an existence checker solely on caption data.
+- **Fixed Hardware Claims**: Removed exaggerated A100 latency (ms) claims. Pivoted the sparsity benefit strictly to VRAM footprint reduction and the elimination of gradient noise during training.
+- **Resolved Top-$k$ Ambiguity**: Formalized $k$ as a hyperparameter balancing occlusion blindness vs. spatial resolution, adding a dedicated ablation in Table 2 ($k=1$ vs $k=ALL$ vs optimal).
+- **Addressed BPE Fragmentation Threat**: Introduced the "First-Subword Anchoring Fallback" strategy. Added a dedicated "BPE Fragmentation Profile" table (Table 3) to explicitly audit the un-penalizable drop across Llama-2 and Llama-3 tokenizers.
+- **Refined the Syntax Floor**: Changed the absolute floor ($L_{floor}$) computation to only search within the Top-$M$ non-noun candidates, avoiding obscure Unicode noise.
+- **Enhanced Baselines and Vis**: Added Image-Level CFG to Table 1 and formalized a heat-map visualization plan to prove spatial provenance.
+- **Preserved Core Highlights**: Kept the Layer 0 geometric initialization (now explicitly bias-free to preserve dot-product manifolds), the existence checker framing, and the timidity/FNR audits.

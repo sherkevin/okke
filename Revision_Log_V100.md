@@ -1,0 +1,7 @@
+# Revision_Log_V100
+- **Scope Downgrade (Entity-Centric):** Conceded to the reviewer's point that VASM strictly protects nouns (physical entities). Completely rebranded the method from "General/Structure-Preserving Grounding" to "Entity-Centric Grounding." Added an explicit "Action/Verb Hallucination" stress test to Table 3 to document this limitation honestly.
+- **Mathematical Correction for `TLRA_zero`:** Addressed the geometric fallacy pointed out by the reviewer. Explicitly redefined `TLRA_zero` as a "Geometric Isotropy Probe" testing the joint multimodal input space ($X_v$ and $E_{in}$ at Layer 1), explicitly stating that if the distributions lack inherent semantic alignment, `TLRA_zero` fails and the method defaults to `TLRA_calib`.
+- **Memory Bandwidth Wall (HD MLLMs):** Directly addressed the 1.2GB uncoalesced gather bottleneck for $N_v \ge 3000$. Formalized a dedicated scaling audit (Section 4.4 / Figure 2) to test L2 cache thrashing across resolution scales.
+- **Baseline Fairness Check:** Clarified that the `Base + LoRA` matched-budget baseline explicitly fine-tunes *both* the LLM and the Projector to ensure a mathematically fair comparison against `Phi_calib`.
+- **Added `TLRA_Random_VASM`:** Added a random binary mask negative control to Table 2 (preserving sparsity but randomizing the dictionary) to prove the specific mapping of WordNet synsets is structurally necessary.
+- **Maintained:** The stringent experimental contract, the `Global_Visual_State` isolation, and the explicit measurement of structural and computational boundaries.

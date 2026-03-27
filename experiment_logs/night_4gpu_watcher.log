@@ -1,0 +1,93 @@
+[2026-03-22T03:14:05+08:00] Watcher tick started.
+[2026-03-22T03:14:05+08:00] Latest checklist detected: 今夜4GPU任务清单_V2.md (V2).
+[2026-03-22T03:14:05+08:00] Selected command document: 今夜4GPU启动命令_标杆V2.md
+[2026-03-22T03:14:05+08:00] Starting remote preflight.
+[2026-03-22T03:14:06+08:00] Launching block 1/7: CUDA_VISIBLE_DEVICES=0 nohup bash -lc '
+[2026-03-22T03:14:06+08:00] Block 1 launched successfully.
+[2026-03-22T03:14:06+08:00] Launching block 2/7: CUDA_VISIBLE_DEVICES=0 nohup bash -lc '
+[2026-03-22T03:14:07+08:00] Block 2 launched successfully.
+[2026-03-22T03:14:07+08:00] Launching block 3/7: CUDA_VISIBLE_DEVICES=1 nohup bash -lc '
+[2026-03-22T03:14:07+08:00] Block 3 launched successfully.
+[2026-03-22T03:14:07+08:00] Launching block 4/7: CUDA_VISIBLE_DEVICES=1 nohup bash -lc '
+[2026-03-22T03:14:08+08:00] Block 4 launched successfully.
+[2026-03-22T03:14:08+08:00] Launching block 5/7: CUDA_VISIBLE_DEVICES=2 nohup bash -lc '
+[2026-03-22T03:14:08+08:00] Block 5 launched successfully.
+[2026-03-22T03:14:08+08:00] Launching block 6/7: CUDA_VISIBLE_DEVICES=3 nohup bash -lc '
+[2026-03-22T03:14:09+08:00] Block 6 launched successfully.
+[2026-03-22T03:14:09+08:00] Launching block 7/7: CUDA_VISIBLE_DEVICES=3 nohup bash -lc '
+[2026-03-22T03:14:10+08:00] Block 7 launched successfully.
+[2026-03-22T03:14:32+08:00] New checklist V2 processed successfully.
+[2026-03-22T08:55:12+08:00] Bootstrapped watcher state at 今夜4GPU任务清单_V7.md (V7).
+[2026-03-22T08:55:16+08:00] Watcher tick started.
+[2026-03-22T08:55:16+08:00] Latest checklist detected: 今夜4GPU任务清单_V7.md (V7).
+[2026-03-22T08:55:16+08:00] No newer checklist version found; nothing to do.
+[2026-03-22T08:55:52+08:00] Bootstrapped watcher state at 今夜4GPU任务清单_V7.md (V7).
+[2026-03-22T08:55:58+08:00] Bootstrapped watcher state at 今夜4GPU任务清单_V7.md (V7).
+[2026-03-22T08:56:16+08:00] Watcher tick started.
+[2026-03-22T08:56:16+08:00] Latest checklist detected: 今夜4GPU任务清单_V7.md (V7).
+[2026-03-22T08:56:16+08:00] No newer checklist version found; nothing to do.
+[2026-03-22T09:56:03+08:00] Watcher tick started.
+[2026-03-22T09:56:03+08:00] No checklist matching 今夜4GPU任务清单_Vx.md was found.
+[2026-03-22T10:56:03+08:00] Watcher tick started.
+[2026-03-22T10:56:03+08:00] Latest checklist detected: 今夜4GPU任务清单_V1.md (V1).
+[2026-03-22T10:56:03+08:00] No newer checklist version found; nothing to do.
+[2026-03-22T11:56:02+08:00] Watcher tick started.
+[2026-03-22T11:56:02+08:00] Latest checklist detected: 今夜4GPU任务清单_V2.md (V2).
+[2026-03-22T11:56:02+08:00] No newer checklist version found; nothing to do.
+[2026-03-22T12:56:02+08:00] Watcher tick started.
+[2026-03-22T12:56:02+08:00] Latest checklist detected: 今夜4GPU任务清单_V2.md (V2).
+[2026-03-22T12:56:02+08:00] No newer checklist version found; nothing to do.
+[2026-03-22T13:56:02+08:00] Watcher tick started.
+[2026-03-22T13:56:02+08:00] Latest checklist detected: 今夜4GPU任务清单_V3.md (V3).
+[2026-03-22T13:56:02+08:00] No newer checklist version found; nothing to do.
+[2026-03-22T16:56:03+08:00] Watcher tick started.
+[2026-03-22T16:56:03+08:00] Latest checklist detected: 今夜4GPU任务清单_V6.md (V6).
+[2026-03-22T16:56:03+08:00] No newer checklist version found; nothing to do.
+[2026-03-22T18:56:04+08:00] Watcher tick started.
+[2026-03-22T18:56:04+08:00] Latest checklist detected: 今夜4GPU任务清单_V8.md (V8).
+[2026-03-22T18:56:04+08:00] A new checklist exists, but no matching 启动命令 markdown was found.
+[2026-03-22T19:56:04+08:00] Watcher tick started.
+[2026-03-22T19:56:04+08:00] Latest checklist detected: 今夜4GPU任务清单_V9.md (V9).
+[2026-03-22T19:56:04+08:00] A new checklist exists, but no matching 启动命令 markdown was found.
+[2026-03-22T20:56:03+08:00] Watcher tick started.
+[2026-03-22T20:56:03+08:00] Latest checklist detected: 今夜4GPU任务清单_V10.md (V10).
+[2026-03-22T20:56:03+08:00] A new checklist exists, but no matching 启动命令 markdown was found.
+[2026-03-22T21:56:03+08:00] Watcher tick started.
+[2026-03-22T21:56:03+08:00] Latest checklist detected: 今夜4GPU任务清单_V11.md (V11).
+[2026-03-22T21:56:03+08:00] A new checklist exists, but no matching 启动命令 markdown was found.
+[2026-03-22T22:56:03+08:00] Watcher tick started.
+[2026-03-22T22:56:03+08:00] Latest checklist detected: 今夜4GPU任务清单_V12.md (V12).
+[2026-03-22T22:56:03+08:00] A new checklist exists, but no matching 启动命令 markdown was found.
+[2026-03-23T10:56:03+08:00] Watcher tick started.
+[2026-03-23T10:56:03+08:00] Latest checklist detected: 今夜4GPU任务清单_V19.md (V19).
+[2026-03-23T10:56:03+08:00] A new checklist exists, but no matching 启动命令 markdown was found.
+[2026-03-23T11:56:03+08:00] Watcher tick started.
+[2026-03-23T11:56:03+08:00] Latest checklist detected: 今夜4GPU任务清单_V19.md (V19).
+[2026-03-23T11:56:03+08:00] A new checklist exists, but no matching 启动命令 markdown was found.
+[2026-03-23T13:56:04+08:00] Watcher tick started.
+[2026-03-23T13:56:04+08:00] Latest checklist detected: 今夜4GPU任务清单_V19.md (V19).
+[2026-03-23T13:56:04+08:00] A new checklist exists, but no matching 启动命令 markdown was found.
+[2026-03-23T14:56:02+08:00] Watcher tick started.
+[2026-03-23T14:56:03+08:00] Latest checklist detected: 今夜4GPU任务清单_V19.md (V19).
+[2026-03-23T14:56:03+08:00] A new checklist exists, but no matching 启动命令 markdown was found.
+[2026-03-23T15:56:04+08:00] Watcher tick started.
+[2026-03-23T15:56:04+08:00] Latest checklist detected: 今夜4GPU任务清单_V19.md (V19).
+[2026-03-23T15:56:04+08:00] A new checklist exists, but no matching 启动命令 markdown was found.
+[2026-03-23T16:56:02+08:00] Watcher tick started.
+[2026-03-23T16:56:02+08:00] Latest checklist detected: 今夜4GPU任务清单_V19.md (V19).
+[2026-03-23T16:56:02+08:00] A new checklist exists, but no matching 启动命令 markdown was found.
+[2026-03-23T18:20:07+08:00] Watcher tick started.
+[2026-03-23T18:20:07+08:00] Latest checklist detected: 今夜4GPU任务清单_V19.md (V19).
+[2026-03-23T18:20:08+08:00] A new checklist exists, but no matching 启动命令 markdown was found.
+[2026-03-23T18:56:02+08:00] Watcher tick started.
+[2026-03-23T18:56:02+08:00] Latest checklist detected: 今夜4GPU任务清单_V19.md (V19).
+[2026-03-23T18:56:02+08:00] A new checklist exists, but no matching 启动命令 markdown was found.
+[2026-03-23T19:56:01+08:00] Watcher tick started.
+[2026-03-23T19:56:02+08:00] Latest checklist detected: 今夜4GPU任务清单_V19.md (V19).
+[2026-03-23T19:56:02+08:00] A new checklist exists, but no matching 启动命令 markdown was found.
+[2026-03-23T20:56:02+08:00] Watcher tick started.
+[2026-03-23T20:56:02+08:00] Latest checklist detected: 今夜4GPU任务清单_V19.md (V19).
+[2026-03-23T20:56:02+08:00] A new checklist exists, but no matching 启动命令 markdown was found.
+[2026-03-23T21:56:02+08:00] Watcher tick started.
+[2026-03-23T21:56:02+08:00] Latest checklist detected: 今夜4GPU任务清单_V19.md (V19).
+[2026-03-23T21:56:02+08:00] A new checklist exists, but no matching 启动命令 markdown was found.

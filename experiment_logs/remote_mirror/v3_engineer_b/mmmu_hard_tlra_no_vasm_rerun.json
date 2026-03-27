@@ -1,0 +1,1696 @@
+{
+  "qwen3vl2b": [
+    {
+      "dataset": "mmmu",
+      "n_samples": 114,
+      "baseline": {
+        "accuracy": 0.20175438596491227,
+        "agl": 41.51754385964912,
+        "agl_stddev": 47.62706595530774,
+        "itl_ms_per_token": 38.146605328970224,
+        "tpot_ms_per_token": 38.146605328970224,
+        "tokens_per_second": 26.214652427815263,
+        "peak_vram_gb": 5.462724608,
+        "latency_multiplier_vs_base": 1.0
+      },
+      "bra": {
+        "accuracy": 0.16666666666666666,
+        "avg_candidate_window": 18.859649122807017,
+        "avg_visual_topk": 1.131578947368421,
+        "avg_resonance_time_ms": 0.30741724383242436,
+        "avg_routing_time_ms": 0.30741724383242436,
+        "avg_vasm_time_ms": 0.007282789525500875,
+        "intervention_rate": 0.37719298245614036,
+        "continuation_success_rate": 0.05417202418862571,
+        "visual_state_provenance": {
+          "module_path": "model.model",
+          "capture_kind": "forward_output_last_hidden_state",
+          "layer_role": "final",
+          "state_family": "llm_hidden_state",
+          "source_note": "h_L^(v_j) captured from final Qwen language model hidden states at visual token positions during prefill.",
+          "adapter_name": "qwen3_vl"
+        },
+        "continuation_failure_examples": [
+          {
+            "root_step": 6,
+            "root_token": "\u0120ratio",
+            "next_token": "**",
+            "next_token_normalized": "**",
+            "failure_type": "suffix_collapse"
+          },
+          {
+            "root_step": 8,
+            "root_token": "\u0120for",
+            "next_token": "\u0120a",
+            "next_token_normalized": "\u0121a",
+            "failure_type": "suffix_collapse"
+          },
+          {
+            "root_step": 9,
+            "root_token": "\u0120a",
+            "next_token": "\u0120stock",
+            "next_token_normalized": "\u0121stock",
+            "failure_type": "suffix_collapse"
+          },
+          {
+            "root_step": 10,
+            "root_token": "\u0120stock",
+            "next_token": ",",
+            "next_token_normalized": ",",
+            "failure_type": "suffix_collapse"
+          },
+          {
+            "root_step": 12,
+            "root_token": "\u0120we",
+            "next_token": "\u0120use",
+            "next_token_normalized": "\u0121use",
+            "failure_type": "suffix_collapse"
+          },
+          {
+            "root_step": 13,
+            "root_token": "\u0120use",
+            "next_token": "\u0120the",
+            "next_token_normalized": "\u0121the",
+            "failure_type": "suffix_collapse"
+          },
+          {
+            "root_step": 14,
+            "root_token": "\u0120the",
+            "next_token": "\u0120formula",
+            "next_token_normalized": "\u0121formula",
+            "failure_type": "suffix_collapse"
+          },
+          {
+            "root_step": 23,
+            "root_token": "\u0120Ratio",
+            "next_token": "}",
+            "next_token_normalized": "}",
+            "failure_type": "suffix_collapse"
+          },
+          {
+            "root_step": 25,
+            "root_token": "\u0120=",
+            "next_token": "\u0120\\",
+            "next_token_normalized": "\u0121\\",
+            "failure_type": "suffix_collapse"
+          },
+          {
+            "root_step": 34,
+            "root_token": "\u0120Return",
+            "next_token": "\u0120of",
+            "next_token_normalized": "\u0121of",
+            "failure_type": "suffix_collapse"
+          }
+        ],
+        "suffix_collapse_failures": 1991,
+        "continuation_attempts": 2331,
+        "agl": 37.39473684210526,
+        "agl_stddev": 46.93698994322865,
+        "itl_ms_per_token": 36.751670377296314,
+        "tpot_ms_per_token": 36.751670377296314,
+        "tokens_per_second": 27.209647608772617,
+        "peak_vram_gb": 5.462720512,
+        "latency_multiplier_vs_base": 0.9634322650824572
+      },
+      "bra_method": "tlra_no_vasm",
+      "sample_count": 114,
+      "model_family": "qwen3_vl",
+      "notes": [],
+      "sample_audits": [
+        {
+          "sample_index": 2,
+          "ground_truth": {
+            "answer": "A",
+            "subject": "Accounting",
+            "sample_id": "validation_Accounting_24",
+            "question_type": "multiple-choice"
+          },
+          "base_preview": "To calculate the **information ratio** (IR) for a stock, we use the formula:\n\n\\[\n\\text{Information Ratio} = \\frac{\\text{Excess Return of the Stock}}{\\text{Stand",
+          "bra_preview": "To calculate the **information ratio** for a stock, we use the formula:\n\n\\[\n\\text{Information Ratio} = \\frac{\\text{Average Excess Return of the Stock} - \\text{R",
+          "audit": [
+            {
+              "step": 4,
+              "token_ids": [
+                3070,
+                1995,
+                8085,
+                353,
+                334,
+                3546,
+                46635,
+                50207,
+                716,
+                17160
+              ],
+              "raw_scores": [
+                0.459642,
+                0.542713,
+                0.476445,
+                0.602059,
+                0.485199,
+                0.315145,
+                0.323038,
+                0.092915,
+                0.70054,
+                0.559886
+              ],
+              "rel_scores": [
+                0.012636,
+                0.017616,
+                0.013514,
+                0.022336,
+                0.013996,
+                0.007089,
+                0.007316,
+                0.002914,
+                0.033119,
+                0.018868
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 61.5482,
+              "routing_time_ms": 61.5482,
+              "visual_topk": 2
+            },
+            {
+              "step": 5,
+              "token_ids": [
+                25069,
+                14873,
+                2733,
+                1995,
+                27369,
+                13573,
+                40440,
+                1252,
+                318,
+                258
+              ],
+              "raw_scores": [
+                0.679703,
+                0.679468,
+                0.387154,
+                0.542713,
+                0.607878,
+                0.252579,
+                0.155003,
+                0.462851,
+                0.654678,
+                0.795192
+              ],
+              "rel_scores": [
+                0.030388,
+                0.03036,
+                0.00943,
+                0.017568,
+                0.0228,
+                0.005504,
+                0.003726,
+                0.012764,
+                0.027494,
+                0.048232
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 0.3155,
+              "routing_time_ms": 0.3155,
+              "visual_topk": 2
+            },
+            {
+              "step": 6,
+              "token_ids": [
+                11341,
+                50748,
+                320,
+                4379,
+                65801,
+                41238,
+                45358,
+                22777,
+                116699,
+                334
+              ],
+              "raw_scores": [
+                0.440014,
+                0.472881,
+                0.416579,
+                0.443813,
+                0.622134,
+                0.546051,
+                0.395518,
+                0.574561,
+                0.385136,
+                0.485199
+              ],
+              "rel_scores": [
+                0.013861,
+                0.015809,
+                0.012621,
+                0.014074,
+                0.02872,
+                0.021184,
+                0.011601,
+                0.023743,
+                0.011129,
+                0.016607
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 0.2854,
+              "routing_time_ms": 0.2854,
+              "visual_topk": 2
+            },
+            {
+              "step": 7,
+              "token_ids": [
+                334,
+                97219,
+                320,
+                83725,
+                69979,
+                3070,
+                11,
+                95518,
+                76496,
+                12210
+              ],
+              "raw_scores": [
+                0.485199,
+                0.456458,
+                0.416579,
+                0.464768,
+                0.353751,
+                0.459642,
+                0.468653,
+                0.381654,
+                0.221724,
+                0.467843
+              ],
+              "rel_scores": [
+                0.019376,
+                0.017272,
+                0.014725,
+                0.017856,
+                0.011453,
+                0.017493,
+                0.018135,
+                0.012805,
+                0.006754,
+                0.018077
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 0.2846,
+              "routing_time_ms": 0.2846,
+              "visual_topk": 2
+            },
+            {
+              "step": 8,
+              "token_ids": [
+                320,
+                369,
+                315,
+                304,
+                1667,
+                504,
+                3118,
+                11,
+                582,
+                19788
+              ],
+              "raw_scores": [
+                0.416579,
+                0.667326,
+                0.389649,
+                0.622496,
+                0.327282,
+                0.665724,
+                0.37974,
+                0.468653,
+                0.934945,
+                0.039935
+              ],
+              "rel_scores": [
+                0.014053,
+                0.038314,
+                0.012618,
+                0.032024,
+                0.009832,
+                0.038069,
+                0.012127,
+                0.017307,
+                0.111753,
+                0.003115
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 0.2809,
+              "routing_time_ms": 0.2809,
+              "visual_topk": 2
+            }
+          ]
+        },
+        {
+          "sample_index": 3,
+          "ground_truth": {
+            "answer": "A",
+            "subject": "Accounting",
+            "sample_id": "validation_Accounting_26",
+            "question_type": "multiple-choice"
+          },
+          "base_preview": "To determine the new break-even point after a 10% price increase, we need to follow these steps:\n\n### Step 1: Understand the current break-even point\nFrom the p",
+          "bra_preview": "To find the new break-even point after a 10% price increase, we need to recalculate the break-even point using the updated sales price.\n\n### Step 1: Understand ",
+          "audit": [
+            {
+              "step": 4,
+              "token_ids": [
+                501,
+                3070,
+                1438,
+                31728,
+                1532,
+                5421,
+                6049,
+                2297,
+                353,
+                5282
+              ],
+              "raw_scores": [
+                0.263047,
+                0.702173,
+                0.55556,
+                0.515435,
+                0.312111,
+                0.62303,
+                0.44325,
+                0.357014,
+                0.611062,
+                0.565362
+              ],
+              "rel_scores": [
+                0.006346,
+                0.036755,
+                0.020446,
+                0.017415,
+                0.007722,
+                0.026781,
+                0.013047,
+                0.009241,
+                0.025529,
+                0.021264
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 20.6344,
+              "routing_time_ms": 20.6344,
+              "visual_topk": 5
+            },
+            {
+              "step": 5,
+              "token_ids": [
+                1438,
+                3070,
+                5282,
+                15623,
+                8960,
+                29985,
+                14719,
+                353,
+                52745,
+                10865
+              ],
+              "raw_scores": [
+                0.55556,
+                0.702173,
+                0.565362,
+                0.746804,
+                0.46303,
+                0.848325,
+                0.453931,
+                0.611062,
+                0.49362,
+                0.522067
+              ],
+              "rel_scores": [
+                0.010646,
+                0.019137,
+                0.011072,
+                0.022877,
+                0.007353,
+                0.034337,
+                0.00709,
+                0.013292,
+                0.00831,
+                0.009311
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 0.3011,
+              "routing_time_ms": 0.3011,
+              "visual_topk": 5
+            },
+            {
+              "step": 6,
+              "token_ids": [
+                91531,
+                481,
+                55964,
+                16574,
+                90245,
+                12,
+                5655,
+                39687,
+                4142,
+                5239
+              ],
+              "raw_scores": [
+                0.818169,
+                0.6035,
+                0.199704,
+                0.77868,
+                0.668658,
+                0.330908,
+                0.537047,
+                0.611783,
+                0.350892,
+                0.526167
+              ],
+              "rel_scores": [
+                0.046841,
+                0.019847,
+                0.003947,
+                0.039997,
+                0.025757,
+                0.006671,
+                0.015215,
+                0.020516,
+                0.007226,
+                0.014567
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 0.2958,
+              "routing_time_ms": 0.2958,
+              "visual_topk": 5
+            },
+            {
+              "step": 7,
+              "token_ids": [
+                1459,
+                3501,
+                2768,
+                27442,
+                12194,
+                5126,
+                8153,
+                16574,
+                4982,
+                6358
+              ],
+              "raw_scores": [
+                0.861022,
+                0.656325,
+                0.695123,
+                0.747765,
+                0.577517,
+                0.824302,
+                0.466069,
+                0.77868,
+                0.673736,
+                0.736245
+              ],
+              "rel_scores": [
+                0.028906,
+                0.012746,
+                0.014886,
+                0.018375,
+                0.0093,
+                0.024957,
+                0.005955,
+                0.020794,
+                0.013666,
+                0.017548
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 0.287,
+              "routing_time_ms": 0.287,
+              "visual_topk": 5
+            },
+            {
+              "step": 8,
+              "token_ids": [
+                1283,
+                304,
+                979,
+                448,
+                1212,
+                11,
+                369,
+                320,
+                421,
+                518
+              ],
+              "raw_scores": [
+                0.287507,
+                0.576721,
+                0.634181,
+                0.666457,
+                0.575736,
+                0.609264,
+                0.574838,
+                0.598709,
+                0.489267,
+                0.425315
+              ],
+              "rel_scores": [
+                0.005874,
+                0.01868,
+                0.023507,
+                0.026747,
+                0.018607,
+                0.021277,
+                0.01854,
+                0.020398,
+                0.013166,
+                0.010194
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 0.2864,
+              "routing_time_ms": 0.2864,
+              "visual_topk": 5
+            }
+          ]
+        },
+        {
+          "sample_index": 10,
+          "ground_truth": {
+            "answer": "A",
+            "subject": "Architecture_and_Engineering",
+            "sample_id": "validation_Architecture_and_Engineering_2",
+            "question_type": "multiple-choice"
+          },
+          "base_preview": "To solve this problem, we need to compare the scales of photography for Camera A and Camera B at the same flying height and then calculate how many photographs ",
+          "bra_preview": "To solve this problem, we need to compare the scales of photography for Camera A and Camera B and then calculate how many photographs Camera A would take to cov",
+          "audit": [
+            {
+              "step": 4,
+              "token_ids": [
+                3491,
+                11,
+                3405,
+                12313,
+                3019,
+                1447,
+                86119,
+                9429,
+                54294,
+                7299
+              ],
+              "raw_scores": [
+                0.472296,
+                0.3543,
+                0.483336,
+                0.868409,
+                1.021278,
+                0.120933,
+                0.576713,
+                1.080489,
+                1.014889,
+                0.432735
+              ],
+              "rel_scores": [
+                0.00868,
+                0.005415,
+                0.009072,
+                0.042331,
+                0.078023,
+                0.002129,
+                0.013181,
+                0.098874,
+                0.076054,
+                0.00741
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 22.8624,
+              "routing_time_ms": 22.8624,
+              "visual_topk": 2
+            },
+            {
+              "step": 5,
+              "token_ids": [
+                11,
+                3019,
+                1447,
+                582,
+                323,
+                15860,
+                59726,
+                25,
+                304,
+                1667
+              ],
+              "raw_scores": [
+                0.3543,
+                1.021278,
+                0.120933,
+                0.582343,
+                0.436068,
+                0.813994,
+                0.70367,
+                0.261534,
+                0.128868,
+                0.979471
+              ],
+              "rel_scores": [
+                0.00616,
+                0.088771,
+                0.002422,
+                0.015338,
+                0.008544,
+                0.038742,
+                0.024919,
+                0.004251,
+                0.0025,
+                0.075101
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 0.3013,
+              "routing_time_ms": 0.3013,
+              "visual_topk": 2
+            },
+            {
+              "step": 6,
+              "token_ids": [
+                582,
+                1077,
+                1795,
+                1156,
+                498,
+                279,
+                358,
+                9429,
+                8253,
+                11047
+              ],
+              "raw_scores": [
+                0.582343,
+                0.568081,
+                1.000691,
+                0.455731,
+                0.569343,
+                0.440606,
+                0.417611,
+                1.080489,
+                0.669094,
+                0.766342
+              ],
+              "rel_scores": [
+                0.011359,
+                0.010729,
+                0.060546,
+                0.006845,
+                0.010783,
+                0.006443,
+                0.005877,
+                0.083312,
+                0.016071,
+                0.023713
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 0.2921,
+              "routing_time_ms": 0.2921,
+              "visual_topk": 2
+            },
+            {
+              "step": 7,
+              "token_ids": [
+                1184,
+                1156,
+                3278,
+                686,
+                9429,
+                1969,
+                23643,
+                1191,
+                4700,
+                1795
+              ],
+              "raw_scores": [
+                0.738117,
+                0.455731,
+                0.935581,
+                1.010108,
+                1.080489,
+                0.55859,
+                0.491548,
+                0.43514,
+                0.941355,
+                1.000691
+              ],
+              "rel_scores": [
+                0.018554,
+                0.005996,
+                0.040875,
+                0.055071,
+                0.072978,
+                0.009048,
+                0.00692,
+                0.005522,
+                0.04183,
+                0.053036
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 0.2875,
+              "routing_time_ms": 0.2875,
+              "visual_topk": 2
+            },
+            {
+              "step": 8,
+              "token_ids": [
+                311,
+                279,
+                264,
+                1447,
+                1378,
+                9429,
+                2326,
+                8253,
+                220,
+                11047
+              ],
+              "raw_scores": [
+                0.639195,
+                0.440606,
+                0.417167,
+                0.120933,
+                0.976501,
+                1.080489,
+                0.809281,
+                0.669094,
+                0.500943,
+                0.766342
+              ],
+              "rel_scores": [
+                0.014147,
+                0.006393,
+                0.005821,
+                0.00178,
+                0.05453,
+                0.082657,
+                0.027935,
+                0.015945,
+                0.008138,
+                0.023526
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 0.3161,
+              "routing_time_ms": 0.3161,
+              "visual_topk": 2
+            }
+          ]
+        },
+        {
+          "sample_index": 11,
+          "ground_truth": {
+            "answer": "A",
+            "subject": "Architecture_and_Engineering",
+            "sample_id": "validation_Architecture_and_Engineering_3",
+            "question_type": "multiple-choice"
+          },
+          "base_preview": "To calculate the corrected length of the section of the line, we need to account for the following factors:\n\n1. **Tape length measurement** \u2013 This is the observ",
+          "bra_preview": "To calculate the corrected length of the section of the line, we need to account for the effects of temperature and the elasticity of the tape. The corrected le",
+          "audit": [
+            {
+              "step": 4,
+              "token_ids": [
+                35965,
+                3070,
+                4396,
+                12440,
+                353,
+                26262,
+                39970,
+                23368,
+                31728,
+                44353
+              ],
+              "raw_scores": [
+                0.327782,
+                0.553323,
+                0.220677,
+                0.204434,
+                0.23551,
+                0.416193,
+                0.05557,
+                0.207751,
+                0.231232,
+                0.524627
+              ],
+              "rel_scores": [
+                0.011149,
+                0.027481,
+                0.007264,
+                0.006807,
+                0.007708,
+                0.015879,
+                0.003753,
+                0.006898,
+                0.007577,
+                0.024501
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 20.8562,
+              "routing_time_ms": 20.8562,
+              "visual_topk": 2
+            },
+            {
+              "step": 5,
+              "token_ids": [
+                3084,
+                320,
+                98402,
+                4129,
+                17287,
+                3070,
+                21370,
+                29325,
+                11,
+                5118
+              ],
+              "raw_scores": [
+                0.839411,
+                0.302307,
+                0.906886,
+                0.641696,
+                0.840261,
+                0.553323,
+                0.982431,
+                0.931276,
+                0.268993,
+                0.836069
+              ],
+              "rel_scores": [
+                0.030716,
+                0.003584,
+                0.040233,
+                0.013928,
+                0.030821,
+                0.009781,
+                0.054427,
+                0.044356,
+                0.003136,
+                0.030308
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 0.3044,
+              "routing_time_ms": 0.3044,
+              "visual_topk": 2
+            },
+            {
+              "step": 6,
+              "token_ids": [
+                315,
+                320,
+                11,
+                369,
+                17767,
+                19788,
+                304,
+                1711,
+                1667,
+                400
+              ],
+              "raw_scores": [
+                0.229796,
+                0.302307,
+                0.268993,
+                0.11726,
+                0.550405,
+                0.723246,
+                0.145182,
+                0.554776,
+                0.468463,
+                0.258545
+              ],
+              "rel_scores": [
+                0.006823,
+                0.009119,
+                0.007981,
+                0.00435,
+                0.024601,
+                0.049113,
+                0.004864,
+                0.025034,
+                0.017725,
+                0.007655
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 0.281,
+              "routing_time_ms": 0.281,
+              "visual_topk": 2
+            },
+            {
+              "step": 7,
+              "token_ids": [
+                279,
+                264,
+                419,
+                3772,
+                458,
+                1555,
+                11113,
+                429,
+                1782,
+                825
+              ],
+              "raw_scores": [
+                0.402862,
+                0.332564,
+                0.612186,
+                0.313358,
+                0.707977,
+                0.438825,
+                0.377089,
+                0.656181,
+                0.221,
+                0.771384
+              ],
+              "rel_scores": [
+                0.0119,
+                0.008983,
+                0.027491,
+                0.008319,
+                0.040327,
+                0.013742,
+                0.010735,
+                0.032781,
+                0.00575,
+                0.05197
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 0.2768,
+              "routing_time_ms": 0.2768,
+              "visual_topk": 2
+            },
+            {
+              "step": 8,
+              "token_ids": [
+                3772,
+                1555,
+                2331,
+                16971,
+                10572,
+                92360,
+                9067,
+                14652,
+                47998,
+                11113
+              ],
+              "raw_scores": [
+                0.313358,
+                0.438825,
+                0.518287,
+                0.755969,
+                0.342458,
+                0.640907,
+                0.689458,
+                0.811662,
+                0.322021,
+                0.377089
+              ],
+              "rel_scores": [
+                0.007833,
+                0.012939,
+                0.017781,
+                0.046009,
+                0.0088,
+                0.029037,
+                0.035261,
+                0.05749,
+                0.00811,
+                0.010108
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 0.2767,
+              "routing_time_ms": 0.2767,
+              "visual_topk": 2
+            }
+          ]
+        },
+        {
+          "sample_index": 12,
+          "ground_truth": {
+            "answer": "C",
+            "subject": "Architecture_and_Engineering",
+            "sample_id": "validation_Architecture_and_Engineering_4",
+            "question_type": "multiple-choice"
+          },
+          "base_preview": "To find the height difference $ h_{AB} $ between points A and B, we use the principle of leveling. The level instrument is placed at points M and N, and the rea",
+          "bra_preview": "To find the height difference $ h_{AB} $ between points A and B, we can use the principle of leveling. The level instrument is placed at point M and N, and we a",
+          "audit": [
+            {
+              "step": 4,
+              "token_ids": [
+                2608,
+                4396,
+                12140,
+                35965,
+                26163,
+                6672,
+                3070,
+                16202,
+                35858,
+                830
+              ],
+              "raw_scores": [
+                0.333611,
+                0.558032,
+                0.946797,
+                0.413071,
+                0.362055,
+                0.173836,
+                0.730508,
+                0.549102,
+                0.57528,
+                0.37468
+              ],
+              "rel_scores": [
+                0.005102,
+                0.01252,
+                0.059287,
+                0.007011,
+                0.005717,
+                0.002693,
+                0.024959,
+                0.012081,
+                0.013414,
+                0.006013
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 21.0467,
+              "routing_time_ms": 21.0467,
+              "visual_topk": 2
+            },
+            {
+              "step": 5,
+              "token_ids": [
+                6672,
+                59251,
+                40164,
+                11799,
+                55080,
+                99572,
+                47525,
+                3070,
+                62707,
+                1745
+              ],
+              "raw_scores": [
+                0.173836,
+                0.204633,
+                0.992875,
+                0.510515,
+                0.130343,
+                0.803918,
+                0.132109,
+                0.730508,
+                0.201576,
+                0.358914
+              ],
+              "rel_scores": [
+                0.003008,
+                0.003402,
+                0.079621,
+                0.011563,
+                0.002527,
+                0.037392,
+                0.002545,
+                0.027877,
+                0.00336,
+                0.006306
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 0.2938,
+              "routing_time_ms": 0.2938,
+              "visual_topk": 2
+            },
+            {
+              "step": 6,
+              "token_ids": [
+                400,
+                17767,
+                1948,
+                57960,
+                305,
+                3570,
+                11,
+                1124,
+                4930,
+                220
+              ],
+              "raw_scores": [
+                0.744293,
+                0.791133,
+                0.491793,
+                0.947653,
+                0.971583,
+                0.890647,
+                0.69377,
+                0.833609,
+                0.77471,
+                0.80084
+              ],
+              "rel_scores": [
+                0.017359,
+                0.020936,
+                0.006323,
+                0.039156,
+                0.04309,
+                0.031173,
+                0.014183,
+                0.024813,
+                0.019605,
+                0.021765
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 0.3212,
+              "routing_time_ms": 0.3212,
+              "visual_topk": 2
+            },
+            {
+              "step": 7,
+              "token_ids": [
+                305,
+                71,
+                472,
+                1124,
+                39,
+                9598,
+                220,
+                14137,
+                294,
+                67
+              ],
+              "raw_scores": [
+                0.971583,
+                1.017572,
+                0.562728,
+                0.833609,
+                0.719605,
+                0.547062,
+                0.80084,
+                0.526927,
+                0.848249,
+                0.917498
+              ],
+              "rel_scores": [
+                0.035377,
+                0.042522,
+                0.006894,
+                0.020372,
+                0.012912,
+                0.006475,
+                0.01787,
+                0.005974,
+                0.021601,
+                0.028495
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 0.4108,
+              "routing_time_ms": 0.4108,
+              "visual_topk": 2
+            },
+            {
+              "step": 8,
+              "token_ids": [
+                15159,
+                400,
+                1566,
+                32643,
+                62,
+                716,
+                56014,
+                1124,
+                47822,
+                14137
+              ],
+              "raw_scores": [
+                0.588895,
+                0.744293,
+                0.265463,
+                0.258469,
+                0.392938,
+                0.48993,
+                0.278594,
+                0.833609,
+                0.596587,
+                0.526927
+              ],
+              "rel_scores": [
+                0.023889,
+                0.044478,
+                0.006551,
+                0.006371,
+                0.010909,
+                0.016079,
+                0.006905,
+                0.063577,
+                0.024635,
+                0.018644
+              ],
+              "mask": [
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0,
+                1.0
+              ],
+              "reasons": [
+                "always_after_warmup"
+              ],
+              "intervened": true,
+              "resonance_time_ms": 0.3266,
+              "routing_time_ms": 0.3266,
+              "visual_topk": 2
+            }
+          ]
+        }
+      ],
+      "sample_errors": [],
+      "manifest_path": "/root/autodl-tmp/BRA_Project/datasets/MMMU_hf/mmmu_hard_manifest_v3b.json",
+      "sample_count_by_subject": {
+        "Accounting": 4,
+        "Agriculture": 6,
+        "Architecture_and_Engineering": 6,
+        "Art_Theory": 1,
+        "Basic_Medical_Science": 3,
+        "Biology": 2,
+        "Chemistry": 6,
+        "Clinical_Medicine": 6,
+        "Computer_Science": 6,
+        "Design": 4,
+        "Diagnostics_and_Laboratory_Medicine": 6,
+        "Economics": 2,
+        "Electronics": 6,
+        "Energy_and_Power": 6,
+        "Finance": 6,
+        "Geography": 4,
+        "History": 2,
+        "Manage": 5,
+        "Marketing": 5,
+        "Materials": 6,
+        "Math": 5,
+        "Mechanical_Engineering": 6,
+        "Music": 6,
+        "Physics": 3,
+        "Psychology": 1,
+        "Sociology": 1
+      },
+      "mmmu_subjects": [
+        "Accounting",
+        "Agriculture",
+        "Architecture_and_Engineering",
+        "Art_Theory",
+        "Basic_Medical_Science",
+        "Biology",
+        "Chemistry",
+        "Clinical_Medicine",
+        "Computer_Science",
+        "Design",
+        "Diagnostics_and_Laboratory_Medicine",
+        "Economics",
+        "Electronics",
+        "Energy_and_Power",
+        "Finance",
+        "Geography",
+        "History",
+        "Manage",
+        "Marketing",
+        "Materials",
+        "Math",
+        "Mechanical_Engineering",
+        "Music",
+        "Physics",
+        "Psychology",
+        "Sociology"
+      ]
+    }
+  ]
+}

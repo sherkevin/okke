@@ -1,0 +1,93 @@
+\begin{table*}[t]
+  \centering
+  \caption{POPE 基准（random 划分）主结果。TBD 表示定稿待填数值。}
+  \label{tab:pope}
+  \small
+  \begin{tabular}{llcccc}
+    \toprule
+    宿主模型 & 方法 & Acc & Prec & Recall & F1 \\
+    \midrule
+    \multirow{5}{*}{\textbf{Qwen-VL}}
+      & Base & TBD & TBD & TBD & TBD \\
+      & DoLa & TBD & TBD & TBD & TBD \\
+      & OPERA & TBD & TBD & TBD & TBD \\
+      & VCD & TBD & TBD & TBD & TBD \\
+      & \textbf{CHORD（本文）} & \textbf{0.9153} & \textbf{0.9822} & \textbf{0.8460} & \textbf{0.9090} \\
+    \midrule
+    \multirow{5}{*}{\textbf{LLaVA-1.5}}
+      & Base & TBD & TBD & TBD & TBD \\
+      & DoLa & TBD & TBD & TBD & TBD \\
+      & OPERA & TBD & TBD & TBD & TBD \\
+      & VCD & TBD & TBD & TBD & TBD \\
+      & \textbf{CHORD（本文）} & \textbf{TBD} & \textbf{TBD} & \textbf{TBD} & \textbf{TBD} \\
+    \midrule
+    \multirow{2}{*}{\textbf{InstructBLIP}}
+      & Base & TBD & TBD & TBD & TBD \\
+      & \textbf{CHORD（本文）} & \textbf{TBD} & \textbf{TBD} & \textbf{TBD} & \textbf{TBD} \\
+    \bottomrule
+  \end{tabular}
+\end{table*}
+
+\begin{table}[t]
+  \centering
+  \caption{CHAIR 开放式生成评估（越低越好）。}
+  \label{tab:chair}
+  \small
+  \begin{tabular}{llcc}
+    \toprule
+    宿主模型 & 方法 & CHAIR-s $\downarrow$ & CHAIR-i $\downarrow$ \\
+    \midrule
+    \multirow{2}{*}{Qwen-VL} & Base & TBD & TBD \\
+      & \textbf{CHORD} & \textbf{TBD} & \textbf{TBD} \\
+    \multirow{2}{*}{LLaVA-1.5} & Base & TBD & TBD \\
+      & \textbf{CHORD} & \textbf{TBD} & \textbf{TBD} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[t]
+  \centering
+  \caption{Qwen-VL 上 CHORD 组件消融（POPE）。}
+  \label{tab:ablation}
+  \small
+  \begin{tabular}{lcc}
+    \toprule
+    变体 & F1 & $\Delta$ F1 \\
+    \midrule
+    \textbf{完整 CHORD} & \textbf{TBD} & -- \\
+    无分词器桥接（原始 token） & TBD & TBD \\
+    绝对 $S_{\text{new}}$（无 $\Delta S$） & TBD & TBD \\
+    仅全局特征（无区域库） & TBD & TBD \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[t]
+  \centering
+  \caption{Qwen-VL 推理效率审计。}
+  \label{tab:efficiency}
+  \small
+  \begin{tabular}{lccc}
+    \toprule
+    方法 & 峰值显存 (GB) & 每步额外延迟 (ms) & F1 \\
+    \midrule
+    Base（束搜索） & TBD & 0 & TBD \\
+    DoLa & TBD & TBD & TBD \\
+    CHORD（每步全 $K$） & TBD & TBD（高） & TBD \\
+    \textbf{CHORD（Top-$1$ 监控）} & \textbf{TBD} & \textbf{TBD} & \textbf{TBD} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{figure}[t]
+  \centering
+  \fbox{%
+    \begin{minipage}{0.92\linewidth}
+      \centering
+      \vspace{0.8em}
+      \textbf{（插图占位）}CHORD 流水线：宿主 Top-$K$ 前沿 $\rightarrow$ 无参数分词器桥接 $\rightarrow$ 冻结文本/视觉编码器与区域库 $\rightarrow$ 共振增量 $\Delta S$ $\rightarrow$ 对 $\mathcal{F}_t$ 的有界 logit 校准。
+      \vspace{0.8em}
+    \end{minipage}}
+  \caption{解码期 CHORD 接入示意图（占位）。}
+  \label{fig:overview}
+\end{figure}

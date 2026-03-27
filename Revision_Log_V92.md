@@ -1,0 +1,7 @@
+# Revision_Log_V92
+- **Addressed Identity Crisis:** Explicitly reclassified TLRA from a "decode-time strategy" to a "hybrid auxiliary routing head". Updated Introduction and Abstract to contrast its trained nature against training-free methods (VCD, OPERA). Added "Extra Params" and "Extra Data" columns to Table 1.
+- **Removed `TLRA_zero` Strawman:** Deleted the trivial zero-shot architectural preliminary. Replaced it with "Stage 0: The Continuous Fusion Manifold Collapse" to deeply analyze why `ContinuousAdd` fails and why discrete routing is necessary.
+- **Refined Complexity Math:** Corrected the $O(1)$ overclaim. Clarified that while caching is a one-time operation, the per-step retrieval costs $O(M \cdot N_v)$ lightweight dot products.
+- **Upgraded Layer Assumptions:** Removed the hardcoded $L/2$ assumption. Introduced "The Layer Sweep Heatmap" (Evidence Chain C) to systematically profile where the "Local Evidence Illusion" begins across different architectures (LLaMA-2 vs. LLaMA-3).
+- **Acknowledged VASM Multilingual Fragility:** Explicitly noted that VASM (tuned on C4) is an English-centric hack. Added Multilingual/OOD negative controls to Evidence Chain B (Table 2) to audit its failure boundaries.
+- **Added Visual Diagnostics:** Integrated the requested "Hijacking Bounding Box" failure analysis to track ground-truth token rank escapes.

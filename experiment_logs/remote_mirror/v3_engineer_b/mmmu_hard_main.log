@@ -1,0 +1,98 @@
+======================================================================
+BRA EVALUATION MATRIX
+GPU: NVIDIA GeForce RTX 5090
+PyTorch: 2.7.0+cu128
+Transformers: 5.3.0
+N samples: 200
+======================================================================
+
+══════════════════════════════════════════════════════════════════════
+  Loading model: qwen3vl2b
+══════════════════════════════════════════════════════════════════════
+Loading weights:   0%|          | 0/625 [00:00<?, ?it/s]Loading weights:  76%|███████▌  | 474/625 [00:00<00:00, 4699.31it/s]Loading weights: 100%|██████████| 625/625 [00:00<00:00, 4446.77it/s]
+  Model loaded in 5.8s
+  Adapter: qwen3_vl
+
+────────────────────────────────────────────────────────────
+  Evaluating: mmmu (N=200)
+────────────────────────────────────────────────────────────
+  Loaded 114 samples
+  [1/114] 2.0s  base='A...'  bra='A...'
+  [2/114] 3.7s  base='A
+
+Explanation: The firm's overall cost ...'  bra='To determine which projects would be inc...'
+  [3/114] 2.1s  base='A. 0.0013...'  bra='To calculate the **information ratio** f...'
+  [10/114] 1.2s  base='A...'  bra='A...'
+  [20/114] 0.1s  base='A...'  bra='A...'
+  [30/114] 0.1s  base='A...'  bra='C...'
+  [40/114] 3.6s  base='To determine which sequence of edges can...'  bra='To determine which sequence of edges **c...'
+  [50/114] 0.8s  base='A...'  bra='C...'
+  [60/114] 3.6s  base='To determine the height \( H \) in the m...'  bra='To determine the height \( H \) in the m...'
+  [70/114] 1.9s  base='A...'  bra='To calculate net working capital (NWC), ...'
+  [80/114] 0.1s  base='C...'  bra='B...'
+  [90/114] 1.9s  base='To determine the displacement of plate A...'  bra='A...'
+  [100/114] 0.2s  base='A...'  bra='A...'
+  [110/114] 3.6s  base='To determine the speed of light in the p...'  bra='To determine the speed of light in the p...'
+
+======================================================================
+  EVALUATION REPORT: qwen3vl2b
+======================================================================
+
+  === mmmu (N=114, bra=tlra_full) ===
+  Metric                 Baseline        BRA        Delta
+  ──────────────────────────────────────────────────────
+  accuracy                 0.1930     0.1930    +0.0000 (+0.0pp)
+  agl                        38.5       42.4       +3.9
+  itl_ms_per_token        38.8113    33.8217    -4.9896 (-499.0pp)
+  tokens_per_second       25.7657    29.5668    +3.8011 (+380.1pp)
+
+Results saved to /root/autodl-tmp/BRA_Project/logs/v3_engineer_b/mmmu_hard_tlra_full.json
+======================================================================
+BRA EVALUATION MATRIX
+GPU: NVIDIA GeForce RTX 5090
+PyTorch: 2.7.0+cu128
+Transformers: 5.3.0
+N samples: 200
+======================================================================
+
+══════════════════════════════════════════════════════════════════════
+  Loading model: qwen3vl2b
+══════════════════════════════════════════════════════════════════════
+Loading weights:   0%|          | 0/625 [00:00<?, ?it/s]Loading weights: 100%|██████████| 625/625 [00:00<00:00, 9514.10it/s]
+  Model loaded in 5.7s
+  Adapter: qwen3_vl
+
+────────────────────────────────────────────────────────────
+  Evaluating: mmmu (N=200)
+────────────────────────────────────────────────────────────
+  Loaded 114 samples
+  [1/114] 4.6s  base='To determine the highest possible beta e...'  bra='To determine the highest possible beta e...'
+  [2/114] 3.5s  base='To determine which projects would be inc...'  bra='A
+
+Explanation: The firm's overall cost ...'
+  [3/114] 1.9s  base='To calculate the **information ratio** f...'  bra='A. 0.0046...'
+  [10/114] 1.1s  base='A...'  bra='B...'
+  [20/114] 0.1s  base='A...'  bra='A...'
+  [30/114] 0.1s  base='A...'  bra='C...'
+  [40/114] 3.5s  base='To determine which sequence of edges **c...'  bra='To determine which sequence of edges **c...'
+  [50/114] 0.7s  base='B...'  bra='B...'
+  [60/114] 3.5s  base='To determine the height \( H \) in the m...'  bra='To determine the height \( H \) in the m...'
+  [70/114] 0.1s  base='A...'  bra='A...'
+  [80/114] 0.1s  base='B...'  bra='A...'
+  [90/114] 0.1s  base='A...'  bra='A...'
+  [100/114] 0.1s  base='A...'  bra='A...'
+  [110/114] 3.9s  base='To determine the speed of light in the p...'  bra='To determine the speed of light in the p...'
+
+======================================================================
+  EVALUATION REPORT: qwen3vl2b
+======================================================================
+
+  === mmmu (N=114, bra=tlra_no_vasm) ===
+  Metric                 Baseline        BRA        Delta
+  ──────────────────────────────────────────────────────
+  accuracy                 0.1579     0.2193    +0.0614 (+6.1pp)
+  agl                        40.7       40.9       +0.2
+  itl_ms_per_token        34.1077    34.3623    +0.2546 (+25.5pp)
+  tokens_per_second       29.3189    29.1017    -0.2172 (-21.7pp)
+
+Results saved to /root/autodl-tmp/BRA_Project/logs/v3_engineer_b/mmmu_hard_tlra_no_vasm.json

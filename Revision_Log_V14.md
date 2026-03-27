@@ -1,0 +1,12 @@
+# Revision_Log_V14
+- **Addressed Representation Alignment**: Added a mandatory "Representation Sanity Check" (cosine similarity heatmap of $W_{vocab}$ vs $h_L^{(v_j)}$) to Sec 4.1 to empirically justify the core assumption behind $\text{BRA}_{zero}$.
+- **Justified Pre-fill Extraction**: Explicitly clarified in Intro and Sec 3.1 that while visual features are static to save VRAM, the dynamic autoregressive context is maintained by the step-by-step evolving text candidate set $\mathcal{C}_t$. Acknowledged this limitation in Sec 5.
+- **Fixed $\text{BRA}_{calib}$ Data Leakage & Sampling**: Explicitly defined $\{c^-\}$ as visually co-occurring but distinct objects (hard negatives) and explicitly banned POPE/CHAIR targets from VG training data.
+- **Upgraded Experimental Metrics**:
+  - Line 1: Added "False Suppression Rate" (FSR) to track recall drops.
+  - Line 2: Explicitly mandated VCD/DoLa comparisons in MMBench to prove they degrade cognition while BRA does not.
+  - Line 3: Added standard LLM Cross-Attention as a baseline in Spatial Heatmaps.
+  - Line 4: Upgraded Video Frame Hit Rate to rigorous "Temporal mIoU".
+  - Line 5: Added token-level log-probability extraction to mathematically prove the Entropy Trap and VASM efficacy.
+  - VRAM tracking explicitly added alongside latency in Sec 4.1.
+- **Preserved Highlights**: Retained the highly praised BPE continuation heuristic, the Image+Video dual narrative, the Pooling Paradox framing, and the Triton kernel systems-level optimizations.

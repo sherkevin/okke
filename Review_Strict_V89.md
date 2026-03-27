@@ -1,0 +1,40 @@
+# Review_Strict_V89
+## Overall Score
+Score: 4/5
+
+## Verdict
+The paper draft presents a highly disciplined, scientifically rigorous proposal for mitigating MLLM hallucinations via decode-time visual grounding. The authors’ commitment to strict evaluation contracts, explicit failure boundaries, and matched-data baselines is highly commendable and rare in current MM literature. However, beneath this excellent structural rigor, there are critical theoretical flaws in the VASM subword logic and architectural ambiguities regarding the baseline parity that must be resolved before execution. If the experimental execution lives up to the strictness of the proposal, this will be a strong paper, but the current design risks falling into hidden traps. 
+
+## Summary
+The paper proposes Token-Local Resonance Anchoring (TLRA), a hybrid projection-routing intervention that dynamically reweights the logits of top-M candidate tokens during MLLM decoding based on their similarity to static prefill visual states. To achieve this, it uses a lightweight trained projector (`Phi_calib`) to bridge the visual and lexical manifolds. It also introduces a Vocabulary-Anchored Semantic Mask (VASM) to protect syntax and abstract tokens from inappropriate visual penalization. The authors explicitly define a pre-registered experimental contract, including a mandatory data-matched LoRA baseline, negative controls (OCR tasks), and failure tracking.
+
+## WhatShouldBeKept
+1. **The Pre-registered Scientific Contract:** The explicit phrasing of "If `TLRA_calib` loses to the `LoRA` baseline, the hybrid routing claim is falsified" is fantastic. Keep this uncompromising intellectual honesty.
+2. **The `TLRA_zero` vs. `TLRA_calib` Separation:** Acknowledging the manifold mismatch and formally proving it with `TLRA_zero` is the correct pedagogical and scientific approach. 
+3. **Out-of-Candidate Hijacking Analysis:** Tracking when the ground-truth token falls outside the Top-M candidate window is a brilliant diagnostic metric that accurately captures the limits of decode-time routing.
+4. **The OCR Negative Control:** Using `DocVQA` to prove the boundaries of VASM is exactly how ablation studies should be designed.
+
+## MajorWeaknesses
+1. **The VASM "Subword Prefix Trap" (Fatal Flaw in Logic):** You claim that Frequency-Weighted Subword Resolution prevents catastrophic recall collapse. It prevents *starvation of visual triggers*, but it ignores *collateral damage on abstract words*. Suppose the subword `[car]` is frequency-resolved to $M_{VASM}=1$ because it usually means an automobile. If the model attempts to generate `[car, dinal]` (cardinal) or `[car, diovascular]`, and there is no "car" in the image, TLRA will heavily penalize the `[car]` candidate. Consequently, the model will be entirely blocked from generating "cardinal" or "cardiovascular". Frequency weighting does not solve BPE subword bleeding; it merely dictates *which* semantic direction is sacrificed. Your claim that VASM is a "zero-overhead structure-preserving shield" is overstated. It is a statistical heuristic that *will* damage non-physical vocabulary that shares prefixes with physical entities.
+2. **LoRA Baseline Objective Mismatch:** You mandate a parameter-matched `Base + LoRA` using the "exact same calibration subset." However, `Phi_calib` is trained via an InfoNCE-style contrastive objective, whereas standard LoRA is trained via autoregressive next-token prediction (Cross-Entropy). You are confounding the *training data* with the *training objective*. If `TLRA_calib` beats LoRA, is it because decode-time routing is superior, or simply because InfoNCE is a better objective for grounding than CE? 
+3. **Memory Bandwidth vs. FLOPs Sleight of Hand:** You correctly state that 800 MFLOPs is negligible. However, doing a dot product between $M=50$ candidates and $N_v=4000$ visual tokens requires loading the visual KV-cache (approx $4000 \times 4096 \times 2$ bytes $\approx 32.7$ MB in FP16) into the SMs *at every single decoding step*. While 32 MB is small compared to the 14 GB LLM weights, if it is not fused perfectly with the LM-head memory reads, it will cause sequential kernel dispatch delays. You must guarantee `Phi_calib` is applied only *once* during prefill, and the projected states are cached, rather than re-projecting at every step.
+
+## SectionBySectionComments
+* **Abstract & Intro:** The framing of a "bounded, falsifiable positive hypothesis" is refreshing. However, tone down the absolute confidence in VASM. Acknowledge the BPE prefix collision issue upfront.
+* **Section 3.1 & 3.2:** Explicitly state the timing of `Phi_calib`. Is `Phi_calib(h_prefill)` computed once per image and cached, or recomputed per token? If the latter, it's a huge waste of compute. 
+* **Section 3.3:** The penalty equation is sound, but $\beta$ must be carefully ablated. If $\Delta_L$ is huge (model is 99.9% confident in a syntactic token but VASM mistakenly flags it as 1), the visual penalty might override a perfectly valid high-confidence prediction. 
+* **Section 3.4 (VASM):** This section needs a rewrite to address the collateral damage on abstract words sharing physical subwords, as detailed in Weakness #1. 
+* **Section 4.2:** "AGL StdDev" is an excellent metric to catch models that cheat hallucination benchmarks by giving terse, uniform answers. Keep this.
+
+## RequiredRevisions
+1. **Redefine VASM's Capabilities:** You must explicitly acknowledge the "Collateral Damage on Abstract Completions" due to BPE subword bleeding. VASM is not a perfect shield. You must add an experiment evaluating TLRA on a standard language-only reasoning task (e.g., GSM8K or a pure text QA task passed through the MM interface) to quantify how much VASM damages general language coherence.
+2. **Isolate the Objective in the Baseline:** To ensure a mathematically fair comparison, you must include a baseline where `Phi_calib` is trained with standard CE loss, OR you must train the LoRA using an objective that directly optimizes image-text alignment. Otherwise, the "parity" claim is voided by the objective mismatch.
+3. **Hardware Execution Clarity:** Explicitly document the lifecycle of the visual states. State clearly that `Phi_calib` is executed $O(1)$ times per image (during or immediately after prefill) and that the $32$ MB tensor is kept in SRAM or L2 cache during the LM-head evaluation to prevent memory bandwidth starvation.
+
+## SuggestedFiguresTablesExperiments
+1. **Collateral Damage Audit (Must Add to Table 2):** Add a column evaluating performance on purely abstract linguistic tasks (e.g., Hellaswag or text-only logic prompts fed into the MLLM). This will prove whether your VASM frequency-weighting actually protects non-physical language or destroys it when visual evidence is low.
+2. **Latency/Throughput Bounds (Update Table 1):** Change the "tokens/s" column to report both *Prefill Time* and *Decode Time (ms/token)*. TLRA will likely inflate prefill slightly (due to `Phi_calib`) but must prove it doesn't throttle Decode Time by more than 5% compared to Base.
+3. **Ablation on $M$ (Candidate Window Size):** You locked $M=50$. Add a line plot in the appendix showing POPE F1 and "Out-of-Candidate Hijacking %" as $M$ scales from 10 to 100. This will empirically prove your claim about the visual entity being pushed out of the LM's candidate window.
+
+## AcceptanceOutlook
+The core proposal is extremely strong because of its structural honesty. If the authors execute the tables as promised, and address the glaring theoretical hole in the VASM subword logic (by either patching it or formally measuring its collateral damage), this will be a top-tier paper. If they ignore the BPE subword collision issue or fail to beat the matched LoRA baseline, the paper should be rejected based on its own pre-registered rules. Execute with extreme rigor.

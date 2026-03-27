@@ -1,0 +1,7 @@
+# Revision_Log_V10
+- **Addressed Reviewer's "Alignment Mirage" & $\Phi_{calib}$ flaw**: Explicitly formulated the localized InfoNCE loss in Section 3.1, defining positive (bounding box) and negative (incongruent random nouns) sampling to ground the previously vague $\Phi_{calib}$.
+- **Fixed the VASM Sub-word Fragmentation Vulnerability**: Upgraded Probabilistic VASM to "Stateful VASM" in Section 3.4. Added the critical BPE Continuation Heuristic, ensuring morphological fragments inherit the $\mathbb{E}[\gamma]$ of their root word instead of defaulting to 0.0, which would allow multi-token visual entities to escape penalization.
+- **Addressed Latency Underestimation in Video ($N_v \to 50,000$)**: Added a mandatory "Latency Scaling Curve" experiment in Section 4.1 to rigorously stress-test the Big-O complexity claims against VCD as $N_v$ grows extreme. Added memory bandwidth bottlenecks to Limitations.
+- **Refined Adaptive Top-$k$**: Replaced the arbitrary global $\rho$ with a formulation heavily dependent on $k_{min}$ to protect microscopic dense entities (e.g., in DocVQA) from pooling dilution.
+- **Enhanced Experimental Rigor**: Added $\text{BRA}_{calib}$ column mandate to Line 1; required mapping spatial Top-$k$ back to the original image grid in Line 3; formalized the "Frame Hit Rate" metric aggregated over 50+ videos in Line 4; mandated a "No-VASM" ablation in Line 5.
+- **Preserved Core Narrative**: Kept the Unified Image+Video narrative, the Pooling Paradox framing, and the 5-Tier experimental defense layout, as heavily praised by the reviewer.

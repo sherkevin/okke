@@ -1,0 +1,7 @@
+# Revision_Log_V6
+- **Fixed the "Entropy Trap" (Critical)**: Replaced predictive entropy $H_t$ (which falsely protects predictable hallucinations) with Vocabulary-Anchored Semantic Masking (VASM) using explicit POS-tag mapping to ensure structural word protection.
+- **Fixed Protocol 0 Fallacy**: Changed $\Phi$ training dataset from purely natural images (MSCOCO) to a mixed-domain corpus (MSCOCO + TextCaps + UI), and changed evaluation to test on *unseen* datasets (ChartQA/WebBench) using quantitative Recall@K instead of qualitative t-SNE.
+- **Resolved Pure Max-Pooling Vulnerability**: Replaced statistically dangerous absolute max-pooling ($1/1000$ chance of noise bypass) with Localized Top-$k$ Resonance, explicitly addressing the high-frequency visual noise issue.
+- **Upgraded Evaluation Protocol**: Added Syntax Preservation Rate metric (Protocol 3), added False Positive Cluttered Background benchmark (Protocol 4), and specified baseline models must include both continuous and dynamic-resolution MLLMs (LLaVA-1.5 / InternVL).
+- **Retained Highlights**: Maintained the central "Pooling Paradox" thesis and Protocol 2 (DoLa vs MeanPool vs TopK on DocVQA) as the core empirical proof.
+- **Pending Actions**: Actual execution of Protocols 0-5. All unproven claims have been accurately scoped as hypotheses and evaluation blueprints.

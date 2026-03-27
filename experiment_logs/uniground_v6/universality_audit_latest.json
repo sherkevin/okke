@@ -1,0 +1,63 @@
+{
+  "generated_at": "2026-03-22T14:05:14.933085",
+  "required_fields": [
+    "universal_claim_manifest",
+    "psi_univ checkpoint sha",
+    "prefix_ambiguity_rate",
+    "span_collapse_errors",
+    "suffix_stability_rate",
+    "abstention_rate",
+    "abort_trigger_rate",
+    "abort_backoff_verified_steps",
+    "latency_split"
+  ],
+  "scanned_tlra_univ_results": 1,
+  "accepted_count": 1,
+  "rejected_count": 0,
+  "accepted": [
+    {
+      "result_path": "D:\\Shervin\\OneDrive\\Desktop\\breaking\\logs\\v3_contract\\uniground_result_synthetic_smoke.json",
+      "ok": true,
+      "missing_required_fields": [],
+      "rejected_by_abort_rule": false,
+      "abort_trigger_rate": 0.25,
+      "abort_backoff_verified_steps": 2,
+      "prefix_ambiguity_rate": 0.125,
+      "span_collapse_errors": 1,
+      "suffix_stability_rate": 1.0,
+      "abstention_rate": 0.25,
+      "latency_split": {
+        "candidate_construction_ms": 0.4,
+        "sidecar_scoring_ms": 1.2,
+        "bridge_redistribution_ms": 0.3,
+        "jitter_ms": 0.1
+      },
+      "checks": {
+        "manifest_present": true,
+        "method_route": true,
+        "learned_module": true,
+        "uses_model_native_hidden_states_false": true,
+        "uses_lm_head_geometry_false": true,
+        "learned_per_model_adapter_false": true,
+        "parameter_free_tokenizer_bridge_true": true,
+        "abstention_controls_behavior_true": true,
+        "same_checkpoint_sha": true,
+        "prefix_ambiguity_rate": true,
+        "span_collapse_errors": true,
+        "suffix_stability_rate": true,
+        "abstention_rate": true,
+        "abort_trigger_rate": true,
+        "abort_backoff_verified_steps": true,
+        "latency_split_present": true,
+        "latency_candidate_construction": true,
+        "latency_sidecar_scoring": true,
+        "latency_bridge_redistribution": true,
+        "latency_jitter": true,
+        "abstention_abort_coupled": true
+      }
+    }
+  ],
+  "rejected": [],
+  "overall_ok": true,
+  "acceptance_rule": "If abort_trigger_rate > 0 then abort_backoff_verified_steps must be > 0; otherwise reject the result."
+}

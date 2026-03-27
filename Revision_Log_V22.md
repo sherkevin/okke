@@ -1,0 +1,6 @@
+# Revision_Log_V22
+- **Removed Video Formulation (Sec 3.2):** Addressed the reviewer's major critique regarding the "video disconnect" by removing the temporal decay equations from the core method and explicitly relegating video extensions to Section 5 (Limitations/Future Work), tightening the paper's focus on high-resolution static images.
+- **Clarified VASM Dictionary Generation (Sec 3.3):** Added explicit details that the $O(1)$ static dictionary is constructed offline using NLTK part-of-speech (POS) tagging on the decoded vocabulary, addressing the reviewer's request for reproducibility.
+- **Specified Base Model Architectures (Sec 4):** Explicitly named LLaVA-1.5 (MLP projector) and Qwen-VL-Chat (2D-RoPE) in the experimental protocol to resolve the "model architecture ambiguity" and test post-hoc entanglement across different visual processing paradigms.
+- **Tightened Experimental Rules (Sec 4):** Emphasized the strict AGL drop threshold (<10%) in Chain A, the `BRA_AdaptiveTopK` vs `BRA_MeanPool` absolute requirement in Chain C, and the `BRA_no_VASM` ablation requirement in Chain B.
+- **Retained Core Strengths:** Maintained the positive framing (no bashing of VCD/DoLa), the `BRA_zero` vs `BRA_calib` fairness fallback, and the BPE continuation inheritance mechanism.

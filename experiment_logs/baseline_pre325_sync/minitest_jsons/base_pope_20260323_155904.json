@@ -1,0 +1,23 @@
+{
+  "dataset": "pope",
+  "pope_split": "popular",
+  "method": "base",
+  "model": "llava-v1.5-7b",
+  "model_family": "llava",
+  "n_samples": 3000,
+  "sample_count": 3000,
+  "n_errors": 0,
+  "accuracy": 0.85,
+  "precision": 0.8221,
+  "recall": 0.8933,
+  "f1": 0.8562,
+  "agl": 23.02,
+  "agl_stddev": 6.3264,
+  "itl_ms_per_token": 18.48,
+  "tpot_ms_per_token": 18.48,
+  "tokens_per_second": 54.111,
+  "peak_vram_gb": 14.516,
+  "timestamp": "2026-03-23T15:59:04.727812",
+  "errors": [],
+  "notes": []
+}

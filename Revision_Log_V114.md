@@ -1,0 +1,7 @@
+# Revision_Log_V114
+- **Solved the Negation Trap:** Addressed the reviewer's most critical "fatal flaw" by explicitly defining the conflict between context-blindness and textual refusals. Introduced a "Negation Kill-Switch" heuristic and formally added True Negative Accuracy (Refusal) to the evaluation protocol in Chain A.
+- **Fixed Manifold Drift during Calibration:** Addressed the mathematical flaw of fine-tuning $W_{out}$. Shifted the architecture to explicitly freeze $W_{anchor}$ and train a lightweight Visual Alignment Adapter ($f_{adapt}$) *before* the projection, guaranteeing the preservation of the 1.00 cosine similarity to the LLM's logit space. Added this ablation to Table 2.
+- **Eliminated Greedy Pivot Absurdity:** Replaced the mid-subword penalty with "Pre-Commitment Nucleus Scanning", triggering the logit intervention via a predictive lookahead over the LLM's top-$K$ distribution before the first subword commits, avoiding forced morphological gibberish.
+- **Clarified Visual Localization Proof:** Mandated the extraction of Spatial Heatmaps in Chain C to explicitly prove to reviewers that dynamic pooling operates on localized visual objects rather than dispersed noise.
+- **Refined Zero-Shot Characterization:** Corrected the claim that DoLa/VCD lack visual pathways, specifying they lack "explicit, supervised spatial-to-lexical mappings."
+- **Retained Core Strengths:** Maintained the $\tau$-Abort syntax floor, the Grounding DINO prompt-injection baseline, and the Relational Exacerbation audit as strongly requested by the reviewer.

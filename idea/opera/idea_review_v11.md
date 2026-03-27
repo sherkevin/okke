@@ -1,0 +1,15 @@
+**Review Evaluation**
+
+**1. Fundamental Flaw in the "Exact Architectural Counterfactual" (Section 3.2)**
+The central premise of masking visual tokens *only* at the final layer ($L$) to extract a "purely linguistic prior" is mathematically and mechanistically false. In modern MLLMs, visual and textual features are deeply entangled via self-attention across dozens of preceding layers. By the time the forward pass reaches layer $L$, the textual token representations $\boldsymbol{h}_t^{(L-1)}$ are already heavily contaminated with visual semantics. Masking the attention weights at layer $L$ merely blocks the *residual* visual updates at the final step; it completely fails to remove the visual information already embedded in the textual tokens. The authors’ claim of constructing an "exact architectural counterfactual" and abandoning "flawed hidden-state approximations" is therefore hypocritical and conceptually broken. It is a shallow, late-stage perturbation masquerading as a rigorous causal intervention.
+
+**2. The JSD Gating Paradox and Computational Inefficiency (Section 3.3)**
+The use of Jensen-Shannon Divergence (JSD) as a syntactic filter relies on a fatally flawed assumption: that $P_{base} \approx P_{prior}$ only for functional words. If the language model suffers from strong textual bias (a primary driver of hallucinations), it will easily predict a hallucinated visual entity based purely on the textual prefix. In this scenario, both $P_{base}$ and $P_{prior}$ will confidently predict the hallucinated token, resulting in a JSD close to zero. Consequently, $\Phi_t \to 0$, deactivating the contrastive penalty exactly when it is needed most to suppress the text-induced hallucination. Furthermore, calculating vocabulary-level JSD at every single decoding step introduces a massive, unacceptable computational overhead that is entirely swept under the rug.
+
+**3. Derivative and Brittle Truncation Mechanics (Section 3.4)**
+Stripping away the verbose and pretentious nomenclature, "Plausibility-Bounded Contrastive Decoding" is merely dynamic logit truncation—a trivial repackaging of existing adaptive truncation methods used in standard contrastive decoding literature (e.g., DoLa, VCD). It relies heavily on a hyperparameter $\rho$ to define $\mathcal{V}_{head}$. Coupled with $\kappa$ (Eq. 7) and $\alpha$ (Eq. 9), the method introduces a highly brittle, multi-dimensional hyperparameter space. If a hallucinated token is overconfidently predicted (which is common), it will bypass the $\mathcal{M}_t$ mask and still dominate the output. 
+
+**4. Arrogant and Unsubstantiated Terminology**
+The writing is aggressively oversold. Terms like "mechanistically rigorous," "mathematically exact," and "absolute strictness" are used to describe what is, in reality, a heavily parameterized heuristic built on a fundamentally flawed assumption about layer-wise feature entanglement. The methodology attacks prior work for being "flawed" and "heuristic" while introducing glaring heuristic approximations of its own.
+
+**Score: 2 / 5 (Reject)**

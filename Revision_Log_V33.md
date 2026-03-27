@@ -1,0 +1,7 @@
+# Revision_Log_V33
+- **Fixed InfoNCE Semantic Negative Constraints (Sec 3.1):** Addressed the reviewer's concern about IoU < 0.1 patches containing semantic fragments in crowded scenes by mandating a strict semantic disjoint constraint (cross-referencing panoptic/instance labels).
+- **Addressed the Latency Trap (Sec 3.2 & 4.4):** Explicitly formulated optimizations (Entropy-Gated Execution and Candidate Window Bounds) to bypass the $O(L \times |V| \times N_v)$ bottleneck. Added a `Latency vs. M` chart plan to the evaluation protocol.
+- **Addressed VASM's Noun-Centric Blindspot (Sec 4.1 & 5):** Updated Chain A evaluation metrics to explicitly break down CHAIR into Object vs. Attribute/Relation hallucination gaps to quantify the exact capability ceiling of ignoring non-nouns.
+- **Resolved $\theta_{noise}$ Brittleness (Sec 3.2):** Replaced the static threshold with a dynamic moving median of the activation distribution to ensure zero-shot generalizability across datasets.
+- **Preserved Core Strengths:** Retained the fair zero/calib boundary (`TSLI_zero` vs `TSLI_calib`), the exact theoretical framing of baseline orthogonal regularizers, the 2D spatial scope, and the critical `Base + 5k LoRA` control mechanism.
+- **Note:** All tables and figures remain framed strictly as a pre-registered experimental protocol (no fabricated data).

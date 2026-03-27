@@ -1,0 +1,44 @@
+# Review_Strict_V47
+
+## Overall Score
+Score: 3/5
+
+## Verdict
+This manuscript presents a highly structured, theoretically mature protocol for addressing object hallucination in Image-LLMs via token-local visual intervention. The authors exhibit commendable scientific restraint by explicitly bounding their scope to 2D spatial tasks and discarding forced generalizations to video. The proposed evaluation framework—specifically the rigorous isolation of the 5k-sample prior via a matched `Base + 5k LoRA` control and the transparent profiling of Out-Of-Vocabulary (OOV) intervention bypass rates—sets a high standard for experimental design. However, the paper reads as a "registered report" with pending execution. The heavy reliance on new nomenclature (TLVI, VASM) inflates the core contribution, which is fundamentally a "dictionary-gated token-local logits intervention with a calibrated projection head." Acceptance is strictly contingent upon the unforgiving execution of the proposed experimental chains and the toning down of acronym-heavy branding.
+
+## Summary
+The paper proposes Token-Local Visual Intervention (TLVI), a decode-time logits adjustment mechanism that reweights candidate tokens using localized visual evidence. Acknowledging that deep self-attention washes out spatial fidelity, the authors introduce a pre-evaluation threshold that shifts the method from a zero-shot diagnostic (`TLVI_zero`) to a hybrid approach requiring a 5k-sample trained MLP projector (`TLVI_calib`). To prevent decoding latency explosions, a visual activation threshold is computed strictly at the prefill stage using an ~85k WordNet dictionary. To prevent structural collapse of functional syntax and OCR tokens, a Vocabulary-Anchored Semantic Masking (VASM) mechanism restricts the intervention. The paper outlines a highly detailed, pre-registered evaluation protocol spanning three evidence chains: Hallucination Reduction, Structure Preservation, and Local Evidence Value.
+
+## WhatShouldBeKept
+1. **The 2D Spatial Scope:** Your deliberate decision to discard spatiotemporal/video extensions to secure defensible claims regarding spatial locality is excellent. Do not add video experiments just to appease typical ACM MM multimedia narrative expectations. 
+2. **The `Base + 5k LoRA` Strict Control:** This is the most scientifically mature component of your methodology. By matching optimizer states and InfoNCE objectives to the 5k visual-genome subset used for `TLVI_calib`, you eliminate the confounding variable of simple parameter exposure. Keep this exactly as planned.
+3. **The "Inaction vs. Preservation" Profiling:** Acknowledging that your method might maintain reasoning performance on MMMU simply because out-of-vocabulary terms safely bypass the intervention ($\gamma=0$) is a highly sophisticated epistemic boundary. The planned scatterplot (Figure 1) tracking Intervention Trigger Rate (%) against Accuracy Drop is mandatory and must be kept.
+4. **Inter-Token Latency (ITL) Transparency:** Admitting the $\mathcal{O}(M \cdot N_v \log k)$ CUDA sorting bottleneck and defining a strict >3% accuracy gain threshold over `TLVI_MeanPool` to justify the overhead is excellent engineering honesty.
+
+## MajorWeaknesses
+1. **The "Decode-Time" Framing is Borderline Misleading:** While the intervention occurs at decode time, `TLVI_calib` requires a 4.2M parameter projection head trained via InfoNCE on 5,000 spatial samples. This is not a purely inference-time/training-free method. It is a lightweight, localized fine-tuning approach paired with an inference-time routing mechanism. You must explicitly reframe the paper to admit that the method relies on trained spatial alignment.
+2. **Acronym Inflation and Over-Claiming:** "Vocabulary-Anchored Semantic Masking (VASM)" is a fancy term for a dictionary lookup + regex mask. "Threshold-Gated Adaptive Top-k Pooling" is standard masked pooling. Shrink your claims. The true innovation is the *orchestration* of these straightforward engineering mechanisms to safely inject local visual evidence. 
+3. **Misalignment of Baselines (DoLa, VCD, OPERA):** You state that DoLa, VCD, and OPERA "lack a mechanism to inject strictly token-local visual evidence." This borders on a strawman argument. They lack this mechanism because they are fundamentally different regularizers targeting global token probabilities, attention distributions, or layer-wise contrasts. Do not frame their absence of spatial pooling as a failure; treat them strictly as competitive, orthogonal baselines. If you slip into claiming "they rely on global pooling and therefore fail," the paper will be rejected for baseline mischaracterization.
+4. **Prefill TTFT Bottleneck:** Computing a dot product between an 85,000-size vocabulary and $N_v$ visual tokens at prefill is a massive computational payload. While you acknowledge it, the method's viability hinges on whether this is actually deployable.
+
+## SectionBySectionComments
+*   **Abstract & Intro:** Very strong problem definition. Ensure the transition from zero-shot to calibrated methods is stated earlier. Remove any lingering implications that DoLa/VCD are flawed for not being spatially aware.
+*   **Method (Section 3.1):** The offline Washout Threshold (IoU > 0.15) is arbitrary. Why 0.15? This threshold needs an empirical justification or citation. The spatial exclusion zone (IoU < 0.1) for negative sampling is robust and mathematically sound.
+*   **Method (Section 3.2):** Deriving $\theta_{active}$ as the 85th percentile of the maximum activations is risky. In a highly dense image with many objects, the 85th percentile might truncate valid objects. In a sparse image, it might elevate noise. The static percentile is a weak link.
+*   **Method (Section 3.3):** The Polysemy & OOV Concession is well-written. The dynamic BPE inheritance via greedy string matching on the GPU is technically non-trivial; ensure Appendix B provides clear, reproducible pseudo-code for this.
+*   **Protocol (Section 4.1 - 4.4):** This is the strongest part of the manuscript. The explicit definition of the 3 evidence chains provides a perfect roadmap.
+
+## RequiredRevisions
+1. **Recalibrate the Core Proposition:** Your core proposition is a positive one: *how to inject token-local visual evidence at decode time without breaking language structure.* Focus entirely on validating this proposition through your three chains. Drop the grandiose naming conventions (TLVI, VASM) and just describe the system functionally.
+2. **Clarify the `TLVI_calib` Status:** Explicitly state in the Abstract and Introduction that your method relies on a fine-tuned spatial projector (5k samples). Do not let readers assume this is a plug-and-play training-free method like DoLa.
+3. **Baseline Framing:** Re-write the introduction of DoLa, VCD, and OPERA to clearly state: "These methods successfully regularize global attention and language priors. We tackle an orthogonal problem: spatial evidence routing."
+
+## SuggestedFiguresTablesExperiments
+Since the experiments are currently in the planning stage, you must execute the following to pass the peer review threshold:
+1. **Dictionary Size vs. TTFT Ablation:** You must add an experiment in Chain C or the Defense Lines that ablates the size of the WordNet dictionary (e.g., 10k, 50k, 85k) against the Time to First Token (TTFT). You need to prove that an 85k dot product is strictly necessary for accuracy, or if a much smaller dictionary suffices to save prefill latency.
+2. **Execute Table 1 Strictly:** The comparison between `TLVI_calib (+VASM)` and `Base + 5k LoRA` is the single most important number in the paper. If the delta is <2% on POPE F1, the entire architectural complexity is invalidated.
+3. **Dynamic Percentile Ablation:** Replace or supplement the proposed "85th percentile default" ablation with a metric that adapts to image density (e.g., number of detected edges or entropy of the visual hidden states), rather than a hard-coded 85%.
+4. **Failure Cases:** Execute the planned Appendix D. Show exactly what happens when VASM's regex fails on a heavily formatted document (e.g., a table with mixed alphanumeric codes not caught by the deterministic mask).
+
+## AcceptanceOutlook
+The theoretical groundwork and the rigorous, skeptical evaluation protocol laid out here are of top-tier quality. The authors have successfully identified the core vulnerabilities of decode-time interventions (spatial washout, latency bottlenecks, structural collapse). If the authors execute the proposed experimental chains with total fidelity—particularly respecting the stringent `Base + 5k LoRA` baseline and the ITL Multiplier constraints—this will be a strong Accept. If the results are massaged to hide latency explosions or OOV bypass rates, it will be a clear Reject.

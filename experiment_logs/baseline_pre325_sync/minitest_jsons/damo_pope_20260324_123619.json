@@ -1,0 +1,23 @@
+{
+  "dataset": "pope",
+  "pope_split": "random",
+  "method": "damo",
+  "model": "instructblip-7b",
+  "model_family": "instructblip",
+  "n_samples": 2,
+  "sample_count": 2,
+  "n_errors": 0,
+  "accuracy": 1.0,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1": 1.0,
+  "agl": 19.0,
+  "agl_stddev": 7.0,
+  "itl_ms_per_token": 46.32,
+  "tpot_ms_per_token": 46.32,
+  "tokens_per_second": 21.589,
+  "peak_vram_gb": 15.875,
+  "timestamp": "2026-03-24T12:36:19.929219",
+  "errors": [],
+  "notes": []
+}

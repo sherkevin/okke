@@ -1,0 +1,7 @@
+# Revision_Log_V41
+- **Fixed Pipeline Bloat & Entropy Gate Paradox**: Transformed the "Dual-Condition" paradox into a single "Arrogance-Triggered Entropy Gate", drastically simplifying the logic. Explicitly promised to prune this component if it fails to yield $\ge 2\%$ absolute gain in ablation.
+- **Clarified VASM Brittleness**: Explicitly defined the dictionary size (~85k WordNet physical entities) in the main text. Added a targeted "Polysemy False Positive Rate" metric (500-sample manual check) to Chain B evaluation to address dictionary brittleness honestly.
+- **Operational Boundaries Clarified**: Explicitly stated that Otsu thresholding is an *offline* evaluation per architecture (adding Gaussian smoothing to prevent box fragmentation), and $\theta_{max}$ is derived *once per prompt*. 
+- **Latency & Experimental Adjustments**: Added the `Tokens/Sec` column to the step-by-step ablation table (Chain A). Ensured Table 2 strictly compares `Base`, `Base + 5k LoRA`, `BRA_MeanPool`, and `BRA_calib`. Committed to plotting batched OOM failures (red 'X') for BS=8 in Figure 3.
+- **Retained Highlights**: Preserved the DoLa/VCD/OPERA framing as orthogonal regularizers, the strict 2D spatial bounding, and the highly praised `Base + 5k LoRA` control logic.
+- **Pending Actions**: All empirical results (Tokens/Sec tracking, OOM plotting, Polysemy checking) are staged for execution.

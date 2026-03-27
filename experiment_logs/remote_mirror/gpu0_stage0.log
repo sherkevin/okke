@@ -1,0 +1,863 @@
+Loading weights:   0%|          | 0/750 [00:00<?, ?it/s]Loading weights:   0%|          | 1/750 [00:00<07:13,  1.73it/s]Loading weights:   2%|▏         | 15/750 [00:00<00:25, 28.46it/s]Loading weights:   3%|▎         | 23/750 [00:00<00:18, 39.59it/s]Loading weights:   4%|▍         | 31/750 [00:00<00:15, 46.40it/s]Loading weights:   5%|▌         | 39/750 [00:01<00:14, 48.55it/s]Loading weights:   7%|▋         | 49/750 [00:01<00:12, 57.84it/s]Loading weights:   8%|▊         | 59/750 [00:01<00:10, 66.35it/s]Loading weights:   9%|▉         | 67/750 [00:01<00:10, 66.94it/s]Loading weights:  10%|█         | 76/750 [00:01<00:09, 71.68it/s]Loading weights:  11%|█         | 84/750 [00:01<00:09, 68.64it/s]Loading weights:  12%|█▏        | 93/750 [00:01<00:09, 69.16it/s]Loading weights:  14%|█▎        | 103/750 [00:01<00:08, 73.43it/s]Loading weights:  15%|█▍        | 111/750 [00:02<00:09, 69.37it/s]Loading weights:  16%|█▌        | 119/750 [00:02<00:09, 68.13it/s]Loading weights:  17%|█▋        | 126/750 [00:02<00:09, 67.49it/s]Loading weights:  18%|█▊        | 135/750 [00:02<00:08, 71.17it/s]Loading weights:  19%|█▉        | 143/750 [00:02<00:08, 72.67it/s]Loading weights:  20%|██        | 151/750 [00:02<00:09, 66.11it/s]Loading weights:  21%|██        | 159/750 [00:02<00:09, 65.53it/s]Loading weights:  23%|██▎       | 169/750 [00:02<00:08, 72.46it/s]Loading weights:  24%|██▎       | 177/750 [00:02<00:07, 72.32it/s]Loading weights:  25%|██▍       | 185/750 [00:03<00:08, 68.46it/s]Loading weights:  26%|██▌       | 192/750 [00:03<00:09, 58.79it/s]Loading weights:  27%|██▋       | 202/750 [00:03<00:08, 66.93it/s]Loading weights:  28%|██▊       | 213/750 [00:03<00:07, 74.94it/s]Loading weights:  29%|██▉       | 221/750 [00:03<00:07, 72.76it/s]Loading weights:  31%|███       | 229/750 [00:03<00:07, 70.34it/s]Loading weights:  32%|███▏      | 237/750 [00:03<00:08, 62.59it/s]Loading weights:  33%|███▎      | 247/750 [00:04<00:07, 66.65it/s]Loading weights:  34%|███▍      | 257/750 [00:04<00:07, 69.06it/s]Loading weights:  35%|███▌      | 265/750 [00:04<00:06, 69.95it/s]Loading weights:  36%|███▋      | 273/750 [00:04<00:07, 65.28it/s]Loading weights:  37%|███▋      | 280/750 [00:04<00:07, 65.37it/s]Loading weights:  39%|███▊      | 290/750 [00:04<00:06, 71.46it/s]Loading weights:  40%|███▉      | 298/750 [00:04<00:06, 73.39it/s]Loading weights:  41%|████      | 306/750 [00:04<00:06, 68.77it/s]Loading weights:  42%|████▏     | 313/750 [00:04<00:06, 68.40it/s]Loading weights:  43%|████▎     | 323/750 [00:05<00:05, 76.01it/s]Loading weights:  44%|████▍     | 331/750 [00:05<00:05, 76.15it/s]Loading weights:  45%|████▌     | 339/750 [00:05<00:05, 71.44it/s]Loading weights:  46%|████▋     | 347/750 [00:05<00:06, 62.79it/s]Loading weights:  48%|████▊     | 357/750 [00:05<00:05, 67.99it/s]Loading weights:  49%|████▉     | 367/750 [00:05<00:05, 73.38it/s]Loading weights:  50%|█████     | 376/750 [00:05<00:04, 77.36it/s]Loading weights:  51%|█████     | 384/750 [00:05<00:04, 73.49it/s]Loading weights:  52%|█████▏    | 392/750 [00:06<00:05, 68.29it/s]Loading weights:  62%|██████▏   | 467/750 [00:06<00:01, 241.76it/s]Loading weights:  75%|███████▍  | 559/750 [00:06<00:00, 413.98it/s]Loading weights:  88%|████████▊ | 659/750 [00:06<00:00, 571.56it/s]Loading weights:  97%|█████████▋| 727/750 [00:06<00:00, 580.00it/s]Loading weights: 100%|██████████| 750/750 [00:06<00:00, 113.24it/s]
+[1/64] COCO_val2014_000000558840.jpg top1=False top5=True candidate_overlap=True
+[2/64] COCO_val2014_000000200365.jpg top1=True top5=True candidate_overlap=True
+[3/64] COCO_val2014_000000495357.jpg top1=True top5=True candidate_overlap=False
+[4/64] COCO_val2014_000000116061.jpg top1=True top5=True candidate_overlap=True
+[5/64] COCO_val2014_000000016164.jpg top1=True top5=True candidate_overlap=True
+[6/64] COCO_val2014_000000289343.jpg top1=True top5=True candidate_overlap=True
+[7/64] COCO_val2014_000000205350.jpg top1=True top5=True candidate_overlap=True
+[8/64] COCO_val2014_000000061471.jpg top1=True top5=True candidate_overlap=True
+[9/64] COCO_val2014_000000000074.jpg top1=True top5=True candidate_overlap=True
+[10/64] COCO_val2014_000000212545.jpg top1=True top5=True candidate_overlap=True
+[11/64] COCO_val2014_000000514915.jpg top1=True top5=True candidate_overlap=True
+[12/64] COCO_val2014_000000154589.jpg top1=True top5=True candidate_overlap=True
+[13/64] COCO_val2014_000000471175.jpg top1=True top5=True candidate_overlap=True
+[14/64] COCO_val2014_000000225919.jpg top1=True top5=True candidate_overlap=True
+[15/64] COCO_val2014_000000400728.jpg top1=True top5=True candidate_overlap=True
+[16/64] COCO_val2014_000000194306.jpg top1=True top5=True candidate_overlap=True
+[17/64] COCO_val2014_000000383780.jpg top1=True top5=True candidate_overlap=True
+[18/64] COCO_val2014_000000580255.jpg top1=True top5=True candidate_overlap=True
+[19/64] COCO_val2014_000000370210.jpg top1=True top5=True candidate_overlap=False
+[20/64] COCO_val2014_000000075283.jpg top1=True top5=True candidate_overlap=True
+[21/64] COCO_val2014_000000325969.jpg top1=True top5=True candidate_overlap=False
+[22/64] COCO_val2014_000000251716.jpg top1=True top5=True candidate_overlap=True
+[23/64] COCO_val2014_000000472375.jpg top1=True top5=True candidate_overlap=True
+[24/64] COCO_val2014_000000013882.jpg top1=True top5=True candidate_overlap=True
+[25/64] COCO_val2014_000000185156.jpg top1=True top5=True candidate_overlap=False
+[26/64] COCO_val2014_000000520301.jpg top1=True top5=True candidate_overlap=True
+[27/64] COCO_val2014_000000176697.jpg top1=True top5=True candidate_overlap=True
+[28/64] COCO_val2014_000000376608.jpg top1=True top5=True candidate_overlap=True
+[29/64] COCO_val2014_000000178939.jpg top1=True top5=True candidate_overlap=True
+[30/64] COCO_val2014_000000579321.jpg top1=True top5=True candidate_overlap=True
+[31/64] COCO_val2014_000000173350.jpg top1=True top5=True candidate_overlap=True
+[32/64] COCO_val2014_000000494869.jpg top1=True top5=True candidate_overlap=True
+[33/64] COCO_val2014_000000026654.jpg top1=True top5=True candidate_overlap=True
+[34/64] COCO_val2014_000000346071.jpg top1=True top5=True candidate_overlap=False
+[35/64] COCO_val2014_000000158497.jpg top1=True top5=True candidate_overlap=True
+[36/64] COCO_val2014_000000408307.jpg top1=True top5=True candidate_overlap=False
+[37/64] COCO_val2014_000000252203.jpg top1=True top5=True candidate_overlap=True
+[38/64] COCO_val2014_000000263146.jpg top1=True top5=True candidate_overlap=True
+[39/64] COCO_val2014_000000390348.jpg top1=True top5=True candidate_overlap=True
+[40/64] COCO_val2014_000000395230.jpg top1=True top5=True candidate_overlap=True
+[41/64] COCO_val2014_000000554002.jpg top1=True top5=True candidate_overlap=True
+[42/64] COCO_val2014_000000426342.jpg top1=True top5=True candidate_overlap=True
+[43/64] COCO_val2014_000000155997.jpg top1=True top5=True candidate_overlap=True
+[44/64] COCO_val2014_000000278435.jpg top1=True top5=True candidate_overlap=True
+[45/64] COCO_val2014_000000047263.jpg top1=True top5=True candidate_overlap=True
+[46/64] COCO_val2014_000000519838.jpg top1=True top5=True candidate_overlap=True
+[47/64] COCO_val2014_000000283119.jpg top1=True top5=True candidate_overlap=True
+[48/64] COCO_val2014_000000369190.jpg top1=True top5=True candidate_overlap=True
+[49/64] COCO_val2014_000000458424.jpg top1=True top5=True candidate_overlap=True
+[50/64] COCO_val2014_000000239985.jpg top1=True top5=True candidate_overlap=True
+[51/64] COCO_val2014_000000151988.jpg top1=True top5=True candidate_overlap=True
+[52/64] COCO_val2014_000000364010.jpg top1=True top5=True candidate_overlap=True
+[53/64] COCO_val2014_000000205573.jpg top1=True top5=True candidate_overlap=True
+[54/64] COCO_val2014_000000427639.jpg top1=True top5=True candidate_overlap=True
+[55/64] COCO_val2014_000000233660.jpg top1=True top5=True candidate_overlap=True
+[56/64] COCO_val2014_000000032054.jpg top1=True top5=True candidate_overlap=True
+[57/64] COCO_val2014_000000153692.jpg top1=True top5=True candidate_overlap=True
+[58/64] COCO_val2014_000000174871.jpg top1=True top5=True candidate_overlap=True
+[59/64] COCO_val2014_000000037017.jpg top1=True top5=True candidate_overlap=True
+[60/64] COCO_val2014_000000569729.jpg top1=True top5=True candidate_overlap=True
+[61/64] COCO_val2014_000000378163.jpg top1=True top5=True candidate_overlap=True
+[62/64] COCO_val2014_000000412764.jpg top1=True top5=True candidate_overlap=False
+[63/64] COCO_val2014_000000098194.jpg top1=False top5=True candidate_overlap=False
+[64/64] COCO_val2014_000000382406.jpg top1=True top5=True candidate_overlap=True
+{
+  "method": "tlra_zero",
+  "model": "qwen3-vl-8b",
+  "n_samples": 64,
+  "top1_overlap": 0.9688,
+  "top5_overlap": 1.0,
+  "top10_overlap": 1.0,
+  "patch_top1_overlap": 0.0158,
+  "patch_top5_overlap": 0.046,
+  "patch_top10_overlap": 0.0674,
+  "candidate_window_overlap": 0.875,
+  "notes": [],
+  "timestamp": "2026-03-22T01:53:27.899770",
+  "samples": [
+    {
+      "image": "COCO_val2014_000000558840.jpg",
+      "labels": [
+        "bottle",
+        "cup",
+        "dining table",
+        "hot dog",
+        "person",
+        "spoon"
+      ],
+      "targets": [
+        "bottle",
+        "cup",
+        "dining",
+        "dining table",
+        "dog",
+        "hot",
+        "hot dog",
+        "person",
+        "spoon",
+        "table",
+        "ġbottle",
+        "ġcup",
+        "ġdining",
+        "ġdog",
+        "ġhot",
+        "ġperson",
+        "ġspoon",
+        "ġtable"
+      ],
+      "n_patches": 260,
+      "image_hit_top1": false,
+      "image_hit_top5": true,
+      "image_hit_top10": true,
+      "patch_hit_rate_top1": 0.0,
+      "patch_hit_rate_top5": 0.03076923076923077,
+      "patch_hit_rate_top10": 0.05,
+      "candidate_window_overlap": true,
+      "sample_patch_tokens": [
+        [
+          "ċ",
+          "ċċ",
+          "<|im_end|>",
+          "ġ",
+          "ġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġ",
+          "ġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġ",
+          "ċġġċ",
+          "ċġċ",
+          "ġċċ",
+          "ċċċċ"
+        ],
+        [
+          "ċ",
+          ",",
+          "<|im_end|>",
+          "</",
+          "ċċ",
+          ",image",
+          "åľ¾åĥı",
+          ")",
+          "åľ¾çīĩ",
+          ",ċ"
+        ],
+        [
+          "ċ",
+          "ġand",
+          "/",
+          "ãģģ",
+          "ġor",
+          ",",
+          "<|im_end|>",
+          "ġto",
+          "ġ",
+          "ġin"
+        ],
+        [
+          "ċ",
+          "ċċ",
+          "ġand",
+          ",",
+          "<|im_end|>",
+          "i",
+          "</",
+          "ġor",
+          "/",
+          "ġwith"
+        ],
+        [
+          "ċ",
+          "4",
+          "2",
+          "/",
+          ",",
+          "0",
+          "ġand",
+          "1",
+          "3",
+          "<|im_end|>"
+        ]
+      ],
+      "sample_patch_scores": [
+        [
+          29.8947,
+          29.7618,
+          26.9575,
+          19.2933,
+          19.0639,
+          18.3636,
+          18.0558,
+          17.878,
+          17.8622,
+          17.2125
+        ],
+        [
+          29.5163,
+          20.1192,
+          20.069,
+          17.2171,
+          16.7889,
+          14.4037,
+          14.0997,
+          14.0077,
+          13.8732,
+          13.6382
+        ],
+        [
+          29.1671,
+          23.8229,
+          22.8517,
+          22.7612,
+          22.3121,
+          20.3508,
+          19.8694,
+          19.8312,
+          19.5672,
+          19.5214
+        ],
+        [
+          24.5226,
+          21.6263,
+          20.2917,
+          20.2279,
+          19.4362,
+          18.8032,
+          18.6391,
+          18.5091,
+          18.3606,
+          17.9209
+        ],
+        [
+          24.631,
+          20.0279,
+          19.3412,
+          18.3434,
+          17.9991,
+          17.3201,
+          17.2417,
+          17.1746,
+          17.006,
+          16.8858
+        ]
+      ]
+    },
+    {
+      "image": "COCO_val2014_000000200365.jpg",
+      "labels": [
+        "bicycle",
+        "car",
+        "cup",
+        "dining table",
+        "hot dog"
+      ],
+      "targets": [
+        "bicycle",
+        "car",
+        "cup",
+        "dining",
+        "dining table",
+        "dog",
+        "hot",
+        "hot dog",
+        "table",
+        "ġbicycle",
+        "ġcar",
+        "ġcup",
+        "ġdining",
+        "ġdog",
+        "ġhot",
+        "ġtable"
+      ],
+      "n_patches": 300,
+      "image_hit_top1": true,
+      "image_hit_top5": true,
+      "image_hit_top10": true,
+      "patch_hit_rate_top1": 0.013333333333333334,
+      "patch_hit_rate_top5": 0.06,
+      "patch_hit_rate_top10": 0.10333333333333333,
+      "candidate_window_overlap": true,
+      "sample_patch_tokens": [
+        [
+          "ċċ",
+          "ċ",
+          "ġġġġġġġġġġġġġġġġġġġġġġġ",
+          "ġġġġġġġġġġġ",
+          "ġ",
+          "ċċċċ",
+          "\"ċ",
+          "ġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġ",
+          "ġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġ",
+          "ġġġġġġġġġġġġġ"
+        ],
+        [
+          ",",
+          "ċ",
+          ")",
+          "</",
+          ",ċ",
+          "ċċ",
+          "/",
+          "ogram",
+          "<|im_end|>",
+          "}"
+        ],
+        [
+          "ċċ",
+          "</",
+          "ċ",
+          "<|im_end|>",
+          ",",
+          "ġand",
+          "ġ",
+          "ĉ",
+          "ġġ",
+          "ġġġ"
+        ],
+        [
+          "ċ",
+          "ġ",
+          "ċċ",
+          "</",
+          "ĉ",
+          "<|im_end|>",
+          "ġġ",
+          "2",
+          "/",
+          "+"
+        ],
+        [
+          "/",
+          "a",
+          "ċ",
+          "t",
+          "a",
+          "2",
+          ",",
+          "s",
+          "1",
+          "i"
+        ]
+      ],
+      "sample_patch_scores": [
+        [
+          18.124,
+          16.4523,
+          15.8841,
+          15.3114,
+          15.1438,
+          15.1056,
+          14.9769,
+          14.8566,
+          14.7178,
+          14.5896
+        ],
+        [
+          24.1471,
+          22.6412,
+          18.2331,
+          16.7861,
+          15.5941,
+          15.2392,
+          14.7835,
+          14.4631,
+          14.0919,
+          14.0322
+        ],
+        [
+          23.096,
+          22.9973,
+          22.0712,
+          21.907,
+          21.2557,
+          20.2074,
+          20.1499,
+          19.6411,
+          19.4394,
+          19.2133
+        ],
+        [
+          27.1525,
+          25.4304,
+          25.0837,
+          21.4643,
+          19.5741,
+          18.8555,
+          18.5034,
+          18.1081,
+          17.9694,
+          17.7929
+        ],
+        [
+          20.7626,
+          20.1722,
+          19.7874,
+          19.1241,
+          18.4277,
+          18.318,
+          17.6557,
+          17.3963,
+          17.3839,
+          17.057
+        ]
+      ]
+    },
+    {
+      "image": "COCO_val2014_000000495357.jpg",
+      "labels": [
+        "dog",
+        "handbag",
+        "motorcycle",
+        "person"
+      ],
+      "targets": [
+        "bag",
+        "dog",
+        "handbag",
+        "motorcycle",
+        "person",
+        "ġdog",
+        "ġhand",
+        "ġmotorcycle",
+        "ġperson"
+      ],
+      "n_patches": 300,
+      "image_hit_top1": true,
+      "image_hit_top5": true,
+      "image_hit_top10": true,
+      "patch_hit_rate_top1": 0.0033333333333333335,
+      "patch_hit_rate_top5": 0.023333333333333334,
+      "patch_hit_rate_top10": 0.03,
+      "candidate_window_overlap": false,
+      "sample_patch_tokens": [
+        [
+          "ċċ",
+          "ċ",
+          "ġġġġġġġġġġġġġġġġġġġġġġġ",
+          "ġ",
+          "<|im_end|>",
+          "ġġġġġġġġġġġ",
+          "ċċċċ",
+          "ġġġġġġġġġġġġġġġġġġġġġġġġġ",
+          "ġċċ",
+          "ġġġġġġġġġġġġġġġ"
+        ],
+        [
+          "ċ",
+          "<|im_end|>",
+          "ċċ",
+          ",",
+          "ellaneous",
+          "</",
+          "ductory",
+          "lication",
+          "lider",
+          "bed"
+        ],
+        [
+          "ization",
+          "åįĸ",
+          "ular",
+          "ċ",
+          ",",
+          "åįĸçļħ",
+          "ized",
+          "ċċ",
+          "ize",
+          "ology"
+        ],
+        [
+          "ċ",
+          "ular",
+          "ċċ",
+          ",",
+          "0",
+          "ization",
+          "åįĸ",
+          "ġ",
+          "ize",
+          "ġof"
+        ],
+        [
+          "ċ",
+          "+",
+          ",",
+          "ċċ",
+          "ġ+",
+          "ed",
+          "ġto",
+          "/",
+          "4",
+          "ġvertical"
+        ]
+      ],
+      "sample_patch_scores": [
+        [
+          23.4406,
+          20.8095,
+          18.359,
+          18.2355,
+          17.7603,
+          16.9314,
+          16.6176,
+          16.4049,
+          16.1944,
+          16.1913
+        ],
+        [
+          33.4984,
+          19.8234,
+          18.316,
+          18.0436,
+          17.5276,
+          16.7498,
+          16.4687,
+          16.1349,
+          16.0617,
+          16.0141
+        ],
+        [
+          21.1047,
+          19.9606,
+          19.722,
+          19.5717,
+          18.8827,
+          18.7779,
+          18.7558,
+          18.5725,
+          18.4513,
+          18.2797
+        ],
+        [
+          22.4074,
+          20.6071,
+          20.3609,
+          19.1471,
+          19.0511,
+          18.1695,
+          18.1214,
+          17.5043,
+          17.4416,
+          17.3514
+        ],
+        [
+          24.7732,
+          22.3238,
+          20.3793,
+          20.0975,
+          20.0566,
+          18.3295,
+          18.0188,
+          17.6696,
+          17.5198,
+          16.6286
+        ]
+      ]
+    },
+    {
+      "image": "COCO_val2014_000000116061.jpg",
+      "labels": [
+        "bottle",
+        "bus",
+        "car",
+        "dog",
+        "handbag",
+        "motorcycle",
+        "person"
+      ],
+      "targets": [
+        "bag",
+        "bottle",
+        "bus",
+        "car",
+        "dog",
+        "handbag",
+        "motorcycle",
+        "person",
+        "ġbottle",
+        "ġbus",
+        "ġcar",
+        "ġdog",
+        "ġhand",
+        "ġmotorcycle",
+        "ġperson"
+      ],
+      "n_patches": 192,
+      "image_hit_top1": true,
+      "image_hit_top5": true,
+      "image_hit_top10": true,
+      "patch_hit_rate_top1": 0.026041666666666668,
+      "patch_hit_rate_top5": 0.06770833333333333,
+      "patch_hit_rate_top10": 0.08854166666666667,
+      "candidate_window_overlap": true,
+      "sample_patch_tokens": [
+        [
+          "ċċ",
+          "<|im_end|>",
+          "**ċċ",
+          "ċ",
+          "ġ",
+          "</",
+          "ċċċċ",
+          "ċċċ",
+          "ġin",
+          "ġċċ"
+        ],
+        [
+          "<|im_end|>",
+          "</",
+          "ċ",
+          "ãģģ",
+          "ġor",
+          "ġand",
+          "ċċ",
+          "<img",
+          "æīĸ",
+          "åĵį"
+        ],
+        [
+          "ãģģ",
+          "<|im_end|>",
+          "ċċ",
+          "ï¼į",
+          "ċ",
+          "ġand",
+          "ġ",
+          "ġbuilding",
+          "å»ºçńĳ",
+          "ġor"
+        ],
+        [
+          "oters",
+          "1",
+          "oter",
+          "ðłľµ",
+          "è¸ı",
+          "ot",
+          "ġscooter",
+          "e",
+          "ðłıį",
+          "otor"
+        ],
+        [
+          "ġand",
+          "ġstainless",
+          "ġso",
+          "</",
+          "ä¸įéķīéĵ¢",
+          "ġscissors",
+          "ġmoo",
+          "ġcopper",
+          "ġsoap",
+          "ġoverhead"
+        ]
+      ],
+      "sample_patch_scores": [
+        [
+          25.9312,
+          24.5628,
+          22.0893,
+          21.8455,
+          20.4103,
+          19.826,
+          17.9976,
+          17.8496,
+          17.6675,
+          17.4814
+        ],
+        [
+          28.0862,
+          26.115,
+          22.7417,
+          20.8439,
+          19.1654,
+          18.3859,
+          18.3308,
+          17.3957,
+          17.3843,
+          16.5074
+        ],
+        [
+          22.1721,
+          22.0385,
+          21.9601,
+          21.4529,
+          21.3573,
+          21.1312,
+          20.8479,
+          20.0595,
+          19.3955,
+          19.1439
+        ],
+        [
+          21.2798,
+          18.8556,
+          18.5108,
+          18.2346,
+          17.1005,
+          16.2048,
+          16.1662,
+          15.6448,
+          15.5596,
+          15.3954
+        ],
+        [
+          20.3999,
+          19.5409,
+          18.6838,
+          18.3169,
+          18.2353,
+          17.3948,
+          16.3362,
+          16.2948,
+          16.0964,
+          16.0466
+        ]
+      ]
+    },
+    {
+      "image": "COCO_val2014_000000016164.jpg",
+      "labels": [
+        "dog",
+        "toilet"
+      ],
+      "targets": [
+        "dog",
+        "toilet",
+        "ġdog",
+        "ġtoilet"
+      ],
+      "n_patches": 300,
+      "image_hit_top1": true,
+      "image_hit_top5": true,
+      "image_hit_top10": true,
+      "patch_hit_rate_top1": 0.016666666666666666,
+      "patch_hit_rate_top5": 0.023333333333333334,
+      "patch_hit_rate_top10": 0.03333333333333333,
+      "candidate_window_overlap": true,
+      "sample_patch_tokens": [
+        [
+          "ċċ",
+          "ġ",
+          "ġġġġġġġġġġġġġġġġġġġġġġġ",
+          "<|im_end|>",
+          "ġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġ",
+          "ġġġġġġġġġġġġġġġġġġġġġġġġġ",
+          "ġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġ",
+          "ġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġġ",
+          "ġġġġġġġġġġġġġ",
+          "ġġġġġġġġġġġ"
+        ],
+        [
+          "ċ",
+          "ċċ",
+          "<|im_end|>",
+          ",",
+          "</",
+          "ċġċ",
+          "ġ/",
+          "ġ(",
+          "ċċċċ",
+          ")ċ"
+        ],
+        [
+          "/",
+          "ãģģ",
+          "ular",
+          "ċ",
+          ")",
+          "ning",
+          "ization",
+          "ology",
+          "ized",
+          "bed"
+        ],
+        [
+          "ċ",
+          "0",
+          "ġ",
+          "/",
+          ",",
+          "ċċ",
+          "ãģģ",
+          ")",
+          "4",
+          "1"
+        ],
+        [
+          "/",
+          ",",
+          "ċ",
+          "a",
+          ")",
+          "t",
+          "+",
+          "e",
+          "0",
+          "t"
+        ]
+      ],
+      "sample_patch_scores": [
+        [
+          18.1506,
+          17.389,
+          17.175,
+          16.7211,
+          15.5984,
+          15.4495,
+          15.4419,
+          15.0995,
+          15.0425,
+          15.0302
+        ],
+        [
+          37.1134,
+          22.1558,
+          20.9804,
+          19.195,
+          19.0678,
+          16.3375,
+          15.9398,
+          15.7084,
+          15.6809,
+          15.6406
+        ],
+        [
+          21.5508,
+          20.8922,
+          18.9593,
+          18.5925,
+          18.5273,
+          18.4917,
+          18.2859,
+          17.9891,
+          17.7662,
+          17.6501
+        ],
+        [
+          21.9675,
+          18.8441,
+          18.7658,
+          18.025,
+          17.8954,
+          17.7396,
+          16.953,
+          16.4499,
+          16.3602,
+          16.1756
+        ],
+        [
+          22.0198,
+          21.0792,
+          20.6907,
+          20.6506,
+          19.5752,
+          18.7014,
+          18.6546,
+          17.9679,
+          17.6515,
+          17.2575
+        ]
+      ]
+    }
+  ]
+}
+Saved to logs/night_v2/gpu0_stage0_tlra_zero_8b.json
