@@ -1,6 +1,0 @@
-# Revision_Log_V9
-- **Fixed Compute Explosion (Reviewer's Major Weakness 1):** Explicitly defined the bounded candidate set $\mathcal{C}_t = \text{Top-}M(L_{orig})$ in Sec 3.1. Added Big-O complexity analysis $O(M \times N_v \times d)$ in Sec 3.2, proving latency feasibility. Added Hardware Metrics (TPOT, Tokens/s) to the experimental protocol (Sec 4.1).
-- **Addressed Zero-Shot Alignment Assumption (Reviewer's Major Weakness 2):** Updated the evaluation protocol to mandate cross-architecture testing on at least two distinct families (LLaVA-NeXT and Qwen-VL) to ensure findings are not model-specific flukes.
-- **Addressed VASM Context-Blindness (Reviewer's Major Weakness 3):** Added an explicit failure case analysis in Section 5 discussing how unusual prompts can break static expected values. 
-- **Enhanced Visual/Experimental Proofs:** Mandated specific qualitative visualizations requested by the reviewer: Spatial Heatmaps for DocVQA (Line 3) and Temporal Histograms for video action frames (Line 4).
-- **Retained Core Strengths:** Maintained the strong ACM MM Image+Video ($T \times H \times W$) narrative, the 5-Tier Defense protocol (including AGL metric), and the explicit decoupling of $\Phi_{zero}$ vs $\Phi_{calib}$.

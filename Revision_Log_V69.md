@@ -1,6 +1,0 @@
-# Revision_Log_V69
-- **Spatial vs Noun-Chunk Contradiction Resolved:** Updated Section 3.1 to state that $\Phi_{calib}$ training includes explicit scene-graph relational triplets (subject-predicate-object) to justify the spatial evaluation on FREAK. Updated Evidence Chain C hypothesis to explicitly acknowledge that Object Existence margins will likely be higher than Spatial Relations, isolating the calibrator's data boundaries.
-- **BPE Momentum Unverified Assumption Fixed:** Acknowledged the risk of KV-cache alteration causing "BPE stuttering" in Section 3.4. Added the `BPE Completion Success Rate (BPE-CSR)` metric evaluated on 500 multi-token entities in Section 4.2 to mathematically bound this risk.
-- **Entropy Fallback Tuning Leak Fixed:** Explicitly defined in Section 3.2 that attention sinks are deterministic (e.g., `<bos>`) and that $\theta_{fallback}$ is calibrated on a strictly held-out VisDial validation split (1,000 samples).
-- **Video Modality Creep Eliminated:** Ensured all text specifically bounds the methodology and experimental protocol strictly to 2D image-centric benchmarks.
-- **Retained Highlights:** Maintained the positive framing against baselines, the OCR Concession via `DocVQA`, and the critical `TLRA_MeanPool` parity ablation.

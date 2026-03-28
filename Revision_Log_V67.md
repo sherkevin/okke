@@ -1,7 +1,0 @@
-# Revision_Log_V67
-- **Fixed Calibrator Asymmetry Vulnerability:** Added `TLRA_RandomK` baseline to Evidence Chain A and strictly stated the hypothesis that adaptive Top-K must beat both global pooling and random selection to prove the localization mechanism works, not just the CC3M prior. 
-- **Fixed VASM Minimum Length Flaw:** Replaced the crude $L_{char} \ge 4$ filter with a "Tokenizer-Aware Subword Boundary Check". This ensures valid 3-letter words ("cat", "cup") are protected and intervened upon, while BPE prefixes still trigger collision checks.
-- **Formalized $\Phi_{calib}$:** Added the explicit dense token-to-patch InfoNCE mathematical formulation in Section 3.1.
-- **Addressed Prefill Pruning Risk:** Explicitly acknowledged in Methodology and Limitations that prefill pruning can prematurely delete latent visual evidence needed at $t > 0$, explaining why the entropy fallback is necessary but admitting it remains a fundamental architectural risk.
-- **Expanded Audits & Negative Controls:** Added multi-temperature testing ($T=0.2, 0.7$), MMMU discipline breakdown (to protect math/symbols), DocVQA exact intervention trigger rate tracking (~0%), and an Activation Rate plot for the Entropy Fallback. Added English-centric (WordNet) limitation.
-- **Preserved Strengths:** Kept the DocVQA OCR negative control, BPE momentum delegation framing, and the strict focus on structure-preserving intervention.

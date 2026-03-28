@@ -1,114 +1,0 @@
-/root/miniconda3/envs/opera/lib/python3.10/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: 'Could not load this library: /root/miniconda3/envs/opera/lib/python3.10/site-packages/torchvision/image.so'If you don't plan on using image functionality from `torchvision.io`, you can ignore this warning. Otherwise, there might be something wrong with your environment. Did you have `libjpeg` or `libpng` installed before building `torchvision` from source?
-  warn(
-Some weights of LlavaLlamaForCausalLM were not initialized from the model checkpoint at /root/autodl-tmp/CHIRO/models/llava-1.5-7b-converted-opera and are newly initialized: ['model.layers.2.self_attn.rotary_emb.inv_freq', 'model.layers.9.self_attn.rotary_emb.inv_freq', 'model.layers.1.self_attn.rotary_emb.inv_freq', 'model.layers.30.self_attn.rotary_emb.inv_freq', 'model.layers.13.self_attn.rotary_emb.inv_freq', 'model.layers.26.self_attn.rotary_emb.inv_freq', 'model.layers.5.self_attn.rotary_emb.inv_freq', 'model.layers.4.self_attn.rotary_emb.inv_freq', 'model.layers.6.self_attn.rotary_emb.inv_freq', 'model.layers.17.self_attn.rotary_emb.inv_freq', 'model.layers.14.self_attn.rotary_emb.inv_freq', 'model.layers.24.self_attn.rotary_emb.inv_freq', 'model.layers.15.self_attn.rotary_emb.inv_freq', 'model.layers.11.self_attn.rotary_emb.inv_freq', 'model.layers.29.self_attn.rotary_emb.inv_freq', 'model.layers.0.self_attn.rotary_emb.inv_freq', 'model.layers.19.self_attn.rotary_emb.inv_freq', 'model.layers.23.self_attn.rotary_emb.inv_freq', 'model.layers.31.self_attn.rotary_emb.inv_freq', 'model.layers.18.self_attn.rotary_emb.inv_freq', 'model.layers.10.self_attn.rotary_emb.inv_freq', 'model.layers.12.self_attn.rotary_emb.inv_freq', 'model.layers.21.self_attn.rotary_emb.inv_freq', 'model.layers.28.self_attn.rotary_emb.inv_freq', 'model.layers.7.self_attn.rotary_emb.inv_freq', 'model.layers.3.self_attn.rotary_emb.inv_freq', 'model.layers.16.self_attn.rotary_emb.inv_freq', 'model.layers.22.self_attn.rotary_emb.inv_freq', 'model.layers.25.self_attn.rotary_emb.inv_freq', 'model.layers.20.self_attn.rotary_emb.inv_freq', 'model.layers.27.self_attn.rotary_emb.inv_freq', 'model.layers.8.self_attn.rotary_emb.inv_freq']
-You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
-Initializing Model
-CLIPImageProcessor {
-  "crop_size": {
-    "height": 336,
-    "width": 336
-  },
-  "do_center_crop": true,
-  "do_convert_rgb": true,
-  "do_normalize": true,
-  "do_rescale": true,
-  "do_resize": true,
-  "image_mean": [
-    0.48145466,
-    0.4578275,
-    0.40821073
-  ],
-  "image_processor_type": "CLIPImageProcessor",
-  "image_std": [
-    0.26862954,
-    0.26130258,
-    0.27577711
-  ],
-  "processor_class": "LlavaProcessor",
-  "resample": 3,
-  "rescale_factor": 0.00392156862745098,
-  "size": {
-    "shortest_edge": 336
-  }
-}
-
-Done!
-load data finished
-Start eval...
-  0%|          | 0/64 [00:00<?, ?it/s]/root/autodl-tmp/EKKO/minigpt4/models/llava.py:101: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
-  return torch.cuda.amp.autocast(dtype=dtype)
-/root/autodl-tmp/EKKO/transformers-4.29.2/src/transformers/generation/utils.py:1269: UserWarning: You have modified the pretrained model configuration to control generation. This is a deprecated strategy to control generation and will be removed soon, in a future version. Please use a generation configuration file (see https://huggingface.co/docs/transformers/main_classes/text_generation)
-  warnings.warn(
-  2%|▏         | 1/64 [00:02<02:11,  2.09s/it]  3%|▎         | 2/64 [00:03<01:44,  1.69s/it]  5%|▍         | 3/64 [00:04<01:34,  1.56s/it]  6%|▋         | 4/64 [00:06<01:29,  1.50s/it]  8%|▊         | 5/64 [00:07<01:26,  1.46s/it]  9%|▉         | 6/64 [00:09<01:23,  1.44s/it] 11%|█         | 7/64 [00:10<01:22,  1.45s/it] 12%|█▎        | 8/64 [00:12<01:21,  1.45s/it] 14%|█▍        | 9/64 [00:13<01:19,  1.45s/it] 16%|█▌        | 10/64 [00:14<01:17,  1.44s/it] 17%|█▋        | 11/64 [00:16<01:15,  1.43s/it] 19%|█▉        | 12/64 [00:17<01:14,  1.43s/it] 20%|██        | 13/64 [00:19<01:12,  1.42s/it] 22%|██▏       | 14/64 [00:20<01:11,  1.42s/it] 23%|██▎       | 15/64 [00:21<01:09,  1.42s/it] 25%|██▌       | 16/64 [00:23<01:08,  1.42s/it] 27%|██▋       | 17/64 [00:24<01:06,  1.42s/it] 28%|██▊       | 18/64 [00:26<01:05,  1.43s/it] 30%|██▉       | 19/64 [00:27<01:04,  1.44s/it] 31%|███▏      | 20/64 [00:29<01:03,  1.45s/it] 33%|███▎      | 21/64 [00:30<01:02,  1.46s/it] 34%|███▍      | 22/64 [00:32<01:01,  1.46s/it] 36%|███▌      | 23/64 [00:33<00:59,  1.46s/it] 38%|███▊      | 24/64 [00:35<00:58,  1.46s/it] 39%|███▉      | 25/64 [00:36<00:56,  1.45s/it] 41%|████      | 26/64 [00:37<00:55,  1.46s/it] 42%|████▏     | 27/64 [00:39<00:54,  1.47s/it] 44%|████▍     | 28/64 [00:40<00:53,  1.48s/it] 45%|████▌     | 29/64 [00:42<00:51,  1.48s/it] 47%|████▋     | 30/64 [00:43<00:49,  1.46s/it] 48%|████▊     | 31/64 [00:45<00:48,  1.46s/it] 50%|█████     | 32/64 [00:46<00:47,  1.48s/it] 52%|█████▏    | 33/64 [00:48<00:46,  1.48s/it] 53%|█████▎    | 34/64 [00:49<00:44,  1.48s/it] 55%|█████▍    | 35/64 [00:51<00:42,  1.48s/it] 56%|█████▋    | 36/64 [00:52<00:41,  1.47s/it] 58%|█████▊    | 37/64 [00:54<00:39,  1.47s/it] 59%|█████▉    | 38/64 [00:55<00:37,  1.46s/it] 61%|██████    | 39/64 [00:57<00:36,  1.45s/it] 62%|██████▎   | 40/64 [00:58<00:34,  1.46s/it] 64%|██████▍   | 41/64 [00:59<00:33,  1.45s/it] 66%|██████▌   | 42/64 [01:01<00:31,  1.45s/it] 67%|██████▋   | 43/64 [01:02<00:30,  1.45s/it] 69%|██████▉   | 44/64 [01:04<00:29,  1.45s/it] 70%|███████   | 45/64 [01:05<00:27,  1.45s/it] 72%|███████▏  | 46/64 [01:07<00:26,  1.45s/it] 73%|███████▎  | 47/64 [01:08<00:24,  1.45s/it] 75%|███████▌  | 48/64 [01:10<00:23,  1.45s/it] 77%|███████▋  | 49/64 [01:11<00:21,  1.45s/it] 78%|███████▊  | 50/64 [01:13<00:20,  1.45s/it] 80%|███████▉  | 51/64 [01:14<00:18,  1.43s/it] 81%|████████▏ | 52/64 [01:15<00:17,  1.44s/it] 83%|████████▎ | 53/64 [01:17<00:15,  1.44s/it] 84%|████████▍ | 54/64 [01:18<00:14,  1.45s/it] 86%|████████▌ | 55/64 [01:20<00:12,  1.44s/it] 88%|████████▊ | 56/64 [01:21<00:11,  1.45s/it] 89%|████████▉ | 57/64 [01:23<00:10,  1.44s/it] 91%|█████████ | 58/64 [01:24<00:08,  1.45s/it] 92%|█████████▏| 59/64 [01:26<00:07,  1.44s/it] 94%|█████████▍| 60/64 [01:27<00:05,  1.45s/it] 95%|█████████▌| 61/64 [01:28<00:04,  1.43s/it] 97%|█████████▋| 62/64 [01:30<00:02,  1.44s/it] 98%|█████████▊| 63/64 [01:31<00:01,  1.44s/it]100%|██████████| 64/64 [01:33<00:00,  1.45s/it]100%|██████████| 64/64 [01:33<00:00,  1.46s/it]
-Yes, there is a snowboard in the image
-No, there is no car in the image.
-Yes, there is a person in the image.
-No, there is no sandwich in the image
-Yes, there are skis in the image,
-No, there is no couch in the image
-Yes, there is a truck in the image
-No, there is no pizza in the image
-Yes, there is a person in the image,
-No, there is no sink in the image.
-Yes, there is an umbrella in the
-No, there is no cell phone in the image
-Yes, there is a person in the image,
-No, there is no sheep in the image.
-Yes, there is a bicycle in the
-No, there is no broccoli in the
-No, there is no car in the image.
-Yes, there is a person in the image,
-No, there is no teddy bear in the
-No, there is no potted plant in the
-No, there is no broccoli in the
-No, there is no car in the image.
-No, there is no orange in the image.
-Yes, there is a traffic light in the image
-No, there is no train in the image.
-Yes, there is a person in the image,
-No, there is no surfboard in the
-Yes, there is a car in the image,
-Yes, there is a kite in the image
-Yes, there is a small white dog in the
-No, there is no toaster in the image
-Yes, there is a dining table in the
-No, there is no sports ball in the image
-No, there is no bed in the image.
-Yes, there is a book in the image,
-Yes, there is a person in the image,
-No, there is no traffic light in the image
-Yes, there is a spoon in the image
-Yes, there is a fork in the image,
-No, there is no truck in the image
-No, there is no TV in the image.
-No, there is no bowl in the image
-Yes, there is a toaster in the image
-No, there is no cow in the image.
-Yes, there is a microwave in the
-No, there is no laptop in the image.
-Yes, there is a backpack in the image
-Yes, there is a cell phone in the image
-Yes, there is a person in the image,
-No, there is no couch in the image
-Yes, there are skis in the image,
-No, there is no tennis racket in the
-Yes, there is a bird in the image,
-No, there is no fire hydrant in the
-Yes, there is a person in the image,
-No, there is no bed in the image.
-Yes, there is a boat in the image,
-No, there is no bench in the image
-Yes, there is a person in the image,
-Yes, there is an orange in the image.
-No, there is no cow in the image.
-Yes, there is a bottle in the image
-No, there is no bed in the image.
-No, there is no backpack in the image
-[50.0, 5]===============================================
-TP	FP	TN	FN	
-28	3	27	6
-Accuracy: 0.859375
-Precision: 0.9032258064516129
-Recall: 0.8235294117647058
-F1 score: 0.8615384615384616
-Yes ratio: 0.484375

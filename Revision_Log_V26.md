@@ -1,8 +1,0 @@
-# Revision_Log_V26
-- **Addressed "Illusion of Inference-time":** Explicitly stated that if `BRA_zero` fails, `BRA_calib` is a "lightweight calibrated decoding method" and transparently owned the parametric asymmetry compared to VCD/DoLa. 
-- **Expanded VASM Brittleness:** Upgraded the static COCO dictionary to a WordNet-lemmatized synset dictionary to handle plurals, synonyms, and broader concepts natively. Added a concrete BPE inheritance example (`_rhi`, `no`, `cer`, `os`).
-- **Fixed Loss Formulation (Eq 1):** Redefined $E_{txt}^+$ to strictly be $W_{vocab}[c^+]$ (the corresponding row from the LLM's terminal `lm_head` matrix) instead of the input embedding. Enforced IoU < 0.1 for negative patch sampling to avoid large/occluded object ambiguity.
-- **Clarified Normalization & Penalty Formulation:** Explicitly defined Softmax normalization across the bounded Top-$M$ candidate set, and tied penalty $\alpha$ dynamically to the entropy of original logits. 
-- **Bounded to Image-LLMs:** Removed vague hints at general MLLM temporal capabilities. Explicitly bound the framework to Image-LLMs and dense spatial reasoning to maintain theoretical tightness.
-- **Added Recommended Protocol Artifacts:** Mandated Cosine Similarity heatmaps for Defense Line 1, Failure Case Analysis (DocVQA MeanPool vs TopK) for Defense Line 4, and an A100 Tokens/Sec Efficiency Table.
-- **Maintained Strengths:** Retained the positive framing of baselines, AGL constraint, BPE inheritance math, and the strict falsifiable structure.

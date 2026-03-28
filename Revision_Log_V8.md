@@ -1,7 +1,0 @@
-# Revision_Log_V8
-- **Fairness & Training-Free Illusion Fixed:** Decoupled $\Phi$ into $\text{BRA}_{zero}$ (Identity mapping) and $\text{BRA}_{calib}$ (RefCOCO InfoNCE). This explicitly answers the reviewer's major critique about unfair baseline comparisons against DoLa/VCD.
-- **Video Narrative Restored:** Re-integrated the ACM MM "Image + Video" mandate by expanding $N_v$ to $T \times H \times W$ in Section 3.2. Clarified how Adaptive Top-$k$ isolates temporal actions without averaging out signals, addressing the reviewer's spatial-temporal decay concern.
-- **Mathematical Ambiguity Resolved:** Explicitly stated in Section 3.1 that visual tokens $h_L^{(v_j)}$ are extracted *post-LLM* (contextualized but retaining 2D/3D RoPE), answering the reviewer's architectural question.
-- **Experimental Protocol Overhauled:** Restructured Section 4 into the exact "5 Defense Lines" requested by the reviewer (POPE+AGL, MMBench, FREAK+DocVQA, VIDHALLUC, MMMU Hard), transitioning all unverified claims into explicit "Evaluation Protocols / Hypotheses".
-- **Polysemy Addressed:** Acknowledged the "like" (verb vs prep) polysemy edge case in the Limitations section as an inherent trade-off of the expected value formulation.
-- **Retained Core Strengths:** Maintained the mathematically sound critique of the "Pooling Paradox", the Adaptive Top-$k$ formula, and the Probabilistic VASM logic (including BPE protections).

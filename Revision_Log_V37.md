@@ -1,7 +1,0 @@
-# Revision_Log_V37
-- **Entropy Gate Fix**: Replaced the "static empirical safe zone" with a "Validation-Calibrated Entropy Gate" using known POPE false positives to address the "Arrogance of Priors" flaw pointed out by the reviewer.
-- **`BRA_calib` Domain Shift Tracking**: Explicitly added a domain shift evaluation in Chain C (testing COCO-trained `BRA_calib` on DocVQA) and added it to the Limitations section to address the overfitting risk.
-- **VASM Polysemy False Positives**: Added a specific "Polysemy False Positive Ablation" in Chain B (using MMBench) and updated the Limitations to acknowledge the brute-force superset vulnerability (e.g., "apple"/"bank").
-- **Clarification in Methodology**: Specified in Section 3.1 that visual hidden states are extracted "strictly extracted immediately prior to the terminal $W_{vocab}$ projection", answering the reviewer's layer question. Added a note in 3.2 confirming the moving median is stable on sparse images.
-- **Evaluation Protocol Blueprinting**: Embedded the exact required Tables and Figures (Table 1, Table 2, Figure 1, Figure 2, Figure 3) requested by the reviewer directly into Section 4's execution plan.
-- **Preserved Highlights**: Maintained the parameter-matched 5k LoRA baseline, strictly respectful framing of DoLa/VCD/OPERA as orthogonal regularizers, the 2D spatial scope, and the VASM logic.

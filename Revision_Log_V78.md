@@ -1,9 +1,0 @@
-# Revision_Log_V78
-- **Scope Contraction (OCR):** Completely purged all implications that the method is designed for dense document understanding. Explicitly framed DocVQA as a purely mathematical negative control and noted that TLRA is "blind" to text-in-image tokens.
-- **Multimedia Modality Fix:** Explicitly acknowledged that the spatial ($H \times W$) formulation is mechanically unsound for Spatio-Temporal tokens without dedicated theory. Relegated video strictly to an exploratory appendix pilot, removing it from the primary scientific claims.
-- **Baseline Framing:** Removed language framing DoLa, VCD, and OPERA as "failures" relying on global pooling; re-characterized them accurately as "highly competitive global decoding heuristics."
-- **Hyperparameter Lock:** Added the critical spatial ratio $\rho$ to the single-configuration lock list ($\tau_{sim}, \tau_{evidence}, \alpha, M, \rho$).
-- **Systemic Cost Audit:** Replaced theoretical FLOPs with actual measured Time-Per-Output-Token (TPOT in ms) on a standardized A100 GPU for the efficiency pareto, explicitly acknowledging the memory-bandwidth bottleneck of $M$ candidates.
-- **Fallback Clause Established:** Added an explicit methodological commitment stating that if `AdaptiveTopK` fails to statistically beat `MeanPool` on *unseen* objects (Chain C), the paper formally devolves to claiming a `MeanPool + VASM` baseline.
-- **Failure Audits Strengthened:** Documented the BPE linguistic fragility (hyphenation/fragmentation missing WordNet roots) and updated the out-of-candidate bound audit to mandate plotting the raw logit rank over sequence steps.
-- **Data Leakage Defense:** Added a requirement for a supplementary table detailing the 50k conceptual caption filtering to guarantee zero overlap with the FREAK "Unseen" test split.

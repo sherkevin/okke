@@ -1,7 +1,0 @@
-# Revision_Log_V70
-- **Addressed BPE Momentum Fragility**: Formalized the `BPE-CSR` (BPE Completion Success Rate) metric in Sec 4.2, explicitly testing the mathematical collapse of suffix generation, including handling of exact matches and valid synonyms. Added top-5 token probability tracking for suffix failures in Figure 3.
-- **Addressed Calibrator Leakage**: Introduced the `Vocabulary Leakage Audit` in Sec 4.1 to mandate reporting the noun-chunk overlap between $\Phi_{calib}$ training data and target datasets (e.g., POPE objects), stratifying seen vs. unseen entities.
-- **Refined VASM Subword Mechanics**: Added a theoretical justification for the $L_{char} \ge 4$ boundary check based on SentencePiece statistical distributions (preventing common functional fragment collisions).
-- **Expanded Chain C Parity**: Added the `TLRA_RandomK` baseline to the FREAK experiments to guarantee that AdaptiveTopK beats both uniform random sampling and mean pooling.
-- **Upgraded Efficiency Visuals**: Changed Figure 1 to a Pareto frontier of `POPE F1` vs. `Decode Latency` varying $M$, as requested by the reviewer. Added a scatter plot linking VASM Trigger Rate to POPE F1 improvement.
-- **Preserved Strengths**: Maintained the baseline framing, strictly kept the OCR negative control (DocVQA), and enforced the strict 2D image-centric scope by removing any distracting references to video.

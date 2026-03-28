@@ -1,8 +1,0 @@
-# Revision_Log_V96
-- **Identity Reframing**: Addressed Reviewer's Major Weakness 1. Removed "hybrid auxiliary routing head" jargon. Explicitly defined the method as a "static late-fusion visual logit bias."
-- **Continuous Baseline Overhaul**: Fixed Major Weakness 3. Changed the flawed `ContinuousAdd_Gated` (adding to final hidden state) to `Continuous_Gated_XAttn` (injecting via a zero-initialized intermediate cross-attention layer) to provide a fair continuous integration strawman.
-- **VASM Heuristic & Multilingualism**: Addressed Major Weakness 2. Upgraded VASM from a "bottleneck" to a "fatal heuristic" and explicitly documented its guaranteed breakdown in multilingual/morphologically rich settings.
-- **The Distractor Prompt Test**: Implemented the Reviewer's mandatory negative constraints experiment (Evidence Chain A) to honestly quantify the failure rate of context-blind routing when instructed to ignore a visually present object.
-- **Latency & Implementation Details**: Addressed Major Weakness 4. Explicitly acknowledged PyTorch kernel launch overhead vs. custom Triton kernels. Added VRAM footprint (~32MB) to Table 2.
-- **Hyperparameter Stability**: Clarified that $\tau_{sim}$ is globally fixed (e.g., $\sqrt{D_{vocab}}$) and not per-image tuned. Addressed how $\Delta_L$ bounding falls back to 1.0 during Beam Search. Added 3-seed std-dev requirement to Table 1.
-- **Kept Original Strengths**: Retained the `Base + LoRA` parity baseline, the Hijacking CDF plot, the MMHal relational audit, and the `TLRA w/o VASM` ablation exactly as requested.

@@ -1,6 +1,0 @@
-# Revision_Log_V82
-- **Addressed Reviewer Weakness 1 & Required Revision 1**: Fully integrated `TLRA_zero` into Section 4.1 (Evidence Chain A). Table 1 now explicitly plans to test Base, VCD, OPERA, DoLa, and `TLRA_zero` in the Zero-Shot block, ensuring the viability probe is tested fairly.
-- **Addressed Reviewer Weakness 2 & Required Revision 2**: Updated Section 3.3 to mathematically define the VASM masking rule. It now explicitly states that $\gamma=1$ is assigned by tracing an unbroken hypernym path to `physical_entity.n.01` or `object.n.01`.
-- **Addressed Reviewer Weakness 3 & Required Revision 3**: Updated Section 3.1 to clarify the neutral training of $\Phi_{calib}$. It is now explicitly stated that the MLP is trained via standard next-token prediction (cross-entropy) on 50k captions *without* the TLRA intervention active.
-- **Addressed Reviewer Weakness 4 & Required Revision 5**: Maintained strict discipline on modality claims. Video is strictly relegated to an exploratory pilot mentioned only in the Limitations/Appendix.
-- **Retained Strengths**: Kept the AGL Audit, the DocVQA negative control framing, and the respectful treatment of sequence-level baselines (DoLa, VCD, OPERA) without falsely claiming they fail due to global pooling.

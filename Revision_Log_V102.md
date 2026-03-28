@@ -1,8 +1,0 @@
-# Revision_Log_V102
-- **Hardware Physics Math Corrected:** Acknowledged the reviewer's math regarding $B$ vs $W_{calib}$. We formally redefined the memory crossover point to $N_v = D$. Static precomputation is now correctly identified as strictly optimal for standard HD ($N_v \le 4096$), with dynamic slicing reserved for Ultra-HD.
-- **Softmax Bug Fixed:** Replaced the structurally dangerous relative Softmax with an absolute independent Sigmoid (clamped) in the evidence aggregation equation to prevent universally hallucinated windows from receiving a "best of the worst" free pass.
-- **Missing Training Formulation Added:** Replaced the extensive `TLRA_zero` theater in Section 3.1 with the exact training formulation for $W_{calib}$, including dataset size, frozen components, and the VASM-masked cross-entropy objective.
-- **VASM Subword Continuation Rule:** Explicitly clarified that VASM masks only the initial BPE stem (prefix) of multi-token entities, allowing unmodified autoregressive decay to complete morphological suffixes.
-- **Added DocVQA and Top-M Throughput:** Expanded Chain C to include DocVQA (as a text-rich spatial proxy) and added a dedicated Top-M throughput ablation to the latency audit.
-- **Maintained:** The rigorously pre-registered evaluation protocol, the matched-parameter baselines (`Global_Visual_State`, `Base+LoRA`), and the core vulnerability audits (Hijacking CDF, AGL bounds).
-- **Future Validation:** All empirical tables remain mapped as "planned/TBF," enforcing a strict standard for the eventual empirical execution.

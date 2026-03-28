@@ -1,7 +1,0 @@
-# Revision_Log_V20
-- **Addressed Reviewer Feedback regarding Nomenclature:** Renamed the method from "Bi-directional Resonance Anchoring (BRA)" to "Token-Local Resonance Anchoring (TLRA)" to accurately reflect the uni-directional logits reweighting process and avoid buzzwords.
-- **Addressed Reviewer Feedback regarding Equation 3:** Removed the mathematically ambiguous expectation operator $\mathbb{E}$ from $\gamma(c)$, explicitly defining it as a deterministic mask in Section 3.3.
-- **Addressed Reviewer Feedback regarding Defense Line 1 (Catastrophe Risk):** Added an explicit "Fallback Protocol" in Section 4.1. If the overlap rate is $<5\%$ (highly likely for prefix-conditioned models like LLaVA), the paper will explicitly pivot to `TLRA_calib` as a proven architectural necessity, turning a potential flaw into a strong scientific claim.
-- **Addressed Reviewer Feedback regarding Tokenization:** Expanded Section 3.4 to clarify how VASM adapts to different tokenizers (SentencePiece vs. Byte-Level BPE/tiktoken).
-- **Retained Core Strengths:** Maintained the positive framing of baselines, the 5-Line Defense Protocol, the explicit exclusion of video, and the AGL tracking mandate.
-- **Pending Execution:** The hypotheses outlined in Section 4 dictate exactly how Tables 1-3 and Figures 1-2 will be populated in the final empirical phase.

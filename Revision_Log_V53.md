@@ -1,9 +1,0 @@
-# Revision_Log_V53
-- **Scoping & Baseline Framing:** Preserved the respectful framing of DoLa, VCD, and OPERA as global regularizers (as requested), and firmly maintained the strict 2D Image-LLM scope, explicitly discarding video to keep claims defensible.
-- **Evaluation Protocol Formalization:** Restructured Section 4 into an explicit "Evaluation Protocol and Experimental Design" to reflect that experiments are blueprints/hypotheses to be run, actively preventing any fabrication of empirical results.
-- **Addressing Reviewer Demands on Evidence Chains:** 
-  - *Chain A:* Explicitly added the requirement that the `Base + 5k LoRA` control must be executed with strict parity (identical optimizer states, batch sizes, LR schedules).
-  - *Chain B:* Added the specific requirement to report "VASM Intervention Rate (%)" in Table 2, acknowledging the "Inaction Boundary" where <10% trigger rate means the method preserves reasoning by doing nothing.
-  - *Defense Line 4 & 5:* Explicitly planned Figure 2 (Inter-Token Latency vs. Sequence Length) and an EMA token-by-token curve to prove the rolling decay doesn't act as a premature kill-switch. Added Figure 3 for the OCR Failure Trajectory to track BPE brittleness.
-- **Methodology Refinement:** Highlighted the specific sensitivity of $\tau_{comp}$ in the Compositional InfoNCE section (Section 3.1) and the risk of the EMA acting as an "algorithmic placebo" (Section 3.2).
-- **Limitations:** Expanded Section 5 to transparently summarize the severe operational risks (Latency bottlenecks, OOV Vulnerability, EMA Trap) highlighted by the reviewer.

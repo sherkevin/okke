@@ -1,9 +1,0 @@
-# Revision_Log_V31
-- **Latency Transparency:** Promoted the severe latency bottleneck ($O(L \times V \times N_v)$) to a core limitation in both Section 4.4 and Section 5, committing to explicit A100 Tokens/Sec reporting.
-- **InfoNCE Target Fix:** Replaced the risky L2-normalized subword mean with the "contextualized hidden state of the final subword" as the primary positive target for $\Phi_{calib}$, as demanded by the reviewer.
-- **Rigorous Baselines (Chain A):** Specified that the `Base + 5k LoRA` baseline will explicitly target the LLM's Q/V projections with equal or greater parameter budget, trained to convergence, and added AGL standard deviation reporting to detect repetitive fragment collapse.
-- **OOV Tracking (Chain B):** Mandated exact Out-Of-Vocabulary (OOV) rate reporting on MMMU(Hard) to ensure transparency if VASM "turns off" for reasoning tokens.
-- **Noun-Centric Blindspot:** Added explicit discussion in Section 5 acknowledging that VASM is entirely blind to action and attribute hallucinations, establishing this as a firm capability ceiling.
-- **Heatmap Protocol Updates:** Updated Figure 1 protocol to mandate a 3-way grid (Native vs. MeanPool vs. AdaptiveTopK) *and* an explicit failure case showing semantic ambiguity errors.
-- **Maintained Highlights:** Retained the `BRA_zero` vs `BRA_calib` structural boundary, BPE Continuation Inheritance logic, and strictly 2D spatial focus.
-- **Future Validation Needed:** All empirical claims remain as pre-registered hypotheses awaiting full execution (A100 Throughput, POPE/CHAIR metrics, OOV tracking, and Attention Heatmap extraction).

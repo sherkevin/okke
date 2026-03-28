@@ -1,7 +1,0 @@
-# Revision_Log_V19
-- **Addressed Zero-Shot Validity & Post-Hoc Entanglement:** Acknowledged that transformer layers mix context, but defended the viability of `BRA_zero` via residual stream spatial bias. Made the Token Overlap Rate (Defense Line 1) a hard pass/fail threshold.
-- **Formalized `BRA_calib`:** Explicitly defined $\Phi_{calib}$ as a lightweight linear layer trained on 5k COCO patch-to-box pairs with an InfoNCE loss and a frozen LLM, preventing test-set leakage and preserving efficiency.
-- **Clarified VASM Root Logic:** Redefined the static prior dictionary as an $O(1)$ pre-computed binary mask (via WordNet intersection), explicitly removing runtime NLP toolkit overhead.
-- **Defined $\tau_{sim}$:** Added definition of $\tau_{sim}$ in Section 3.2 as a temperature scaling parameter tuned via grid search to control resonance distribution sharpness.
-- **Refined Experimental Protocols:** Explicitly mandated `AGL` reporting in Chain A, specified ANLS metric for DocVQA in Chain C, and added Top-$M$ logit failure visualizations to Appendix E.
-- **Retained Core Strengths:** Maintained the strong positive framing, the BPE continuation inheritance logic, the `BRA_zero`/`BRA_calib` dichotomy, and the explicit scoping out of video narratives.

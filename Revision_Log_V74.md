@@ -1,7 +1,0 @@
-# Revision_Log_V74
-- **Domain Leakage Rectification**: Dropped the mathematically flawed claim of "zero domain overlap." Replaced it with a rigorous, falsifiable "Category Leakage Audit" (evaluating entities Seen vs. Unseen in calibrator pseudo-labels).
-- **BPE-CSR Tightening**: Removed the brittle Levenshtein distance ($\ge 0.8$) metric. Procedurally redefined BPE-CSR as an "Exact Semantic Match" to prevent near-miss spelling anomalies from artificially inflating success rates.
-- **Latency & System Overhead Formalization**: Explicitly introduced Table 3 to track Time-To-First-Token (TTFT), Time-Per-Output-Token (TPOT), and Peak VRAM, proving TLRA's viability as a decode-time plugin on the Pareto frontier.
-- **Fallback Threshold Rigor**: Clarified in Section 3.2 and 4.4 that $\theta_{fallback}$ is fixed universally across all datasets, validating the prompt-agnostic normalized entropy claim.
-- **Baseline Integrity & Plot Robustness**: Added `TLRA_zero` to the core protocol (Table 1) to explicitly define the calibrator's heavy lifting. Mandated error bands over $\ge 3$ prompt variants for the `TLRA_MeanPool` parity ablation (Figure 1). Added a Suffix Collapse Failure Analysis trace.
-- **Retained Highlights**: Maintained the OCR Concession/DocVQA negative control, the positive taxonomic framing of VCD/DoLa/OPERA, and the AGL asterisk rule for CHAIR artifacts.

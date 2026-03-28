@@ -1,4 +1,0 @@
-# Large local data — do not push to GitHub
-datasets/
-checkpoints/
-*.log

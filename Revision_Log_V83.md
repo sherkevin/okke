@@ -1,8 +1,0 @@
-# Revision_Log_V83
-- **Defined $\text{score}(v_j, c)$ (Reviewer Weakness 2):** Explicitly formulated the spatial support calculation as cosine similarity in Section 3.2, distinguishing between native spaces (`TLRA_zero`) and projected spaces (`TLRA_calib`).
-- **Stabilized Logit Intervention (Reviewer Weakness 3):** Replaced the highly unstable $\max - \min$ absolute range penalty ($\Delta_L$) with robust dispersion scaling utilizing the standard deviation of candidate logits ($\sigma_L$) in Section 3.4.
-- **Addressed Polysemy in VASM (Reviewer Weakness 4):** Acknowledged the lexical rigidity of using primary WordNet synsets for words with multiple senses (e.g., "monitor", "bat") in Section 3.3 and added it explicitly to the Limitations in Section 5.
-- **Contingency Planning for Claims (Reviewer Weakness 1/Required Revision 4):** Formally codified a contingency plan in Section 4.3 (Evidence Chain C) and Section 5, explicitly stating that if `AdaptiveTopK` fails on the Unseen split, the claim devolves to "structure-preserving TTA."
-- **Experimental Upgrades:** Specified Batch Size = 1 for the TPOT Pareto (Sec 4.4) and added a planned ablation for candidate window $M \in \{10, 20, 50, 100\}$ to justify the TPOT tradeoff.
-- **Retained Highlights:** The framing of baselines, the fairness boundary, BPE inheritance logic, the AGL audit, DocVQA flat-lining, and the demotion of video to the appendix were all fully preserved as requested.
-- **Pending Execution:** The actual empirical execution of Tables 1-4 is pending, particularly the highly critical Chain C (Seen vs Unseen Parity Test).

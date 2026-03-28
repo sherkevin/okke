@@ -1,7 +1,0 @@
-# Revision_Log_V93
-- **Fixed Continuous Fusion Strawman:** Addressed Reviewer Weakness 2 by upgrading the trivial continuous baseline to `TLRA_ContinuousAdd_Gated` with a zero-initialized $\gamma$. This ensures the baseline is fair and physically capable before we claim discrete logit routing defeats it.
-- **Exposed Top-K Kernel Latency:** Addressed Reviewer Weakness 3 by explicitly defining a hardware latency audit (Table 2) that isolates the dot-product and dynamic Top-K sort wall-clock times, acknowledging the GPU bandwidth hostility of the operation.
-- **Addressed VASM/Objective Flaw:** Addressed Reviewer Weakness 1 by reframing VASM from a "clever feature" to an "engineering fallback" masking the manifold bleeding of the NTP objective. Added the "Native Separation Audit" (scatter plot) to empirically test $\Phi_{calib}$'s unmasked semantic separation.
-- **Partitioned Table 1:** Addressed Reviewer Weakness 4 by strictly splitting Table 1 into Zero-Shot (VCD/DoLa) vs. Hybrid (LoRA/TLRA) with a "Train Modality" column to prevent apples-to-oranges comparisons.
-- **Added Minor Ablations:** Added the $\beta$ restraint ablation and the Visual Resolution (small object) failure analysis as requested.
-- **Retained Highlights:** Maintained the strong `Base + LoRA` protocol, the Layer Sweep, and the "Hijacking" histogram, which the reviewer praised.

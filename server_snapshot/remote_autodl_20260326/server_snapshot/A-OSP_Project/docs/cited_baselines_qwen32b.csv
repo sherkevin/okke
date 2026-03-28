@@ -1,8 +1,0 @@
-model,variant,benchmark,score,metric_type,notes,source_url,source_bibtex
-Qwen3-VL-32B,Instruct,POPE,NOT_REPORTED,—,"POPE is not included in the Qwen3-VL technical report; the benchmark is considered saturated for frontier models. No official score exists for this model–benchmark pair.",https://arxiv.org/abs/2511.21631,"arXiv:2511.21631 (Bai et al., 2025)"
-Qwen3-VL-32B,Instruct,MMBench-EN,87.6,Accuracy (%),"Table 3 of the technical report; column order: 30B-A3B-Thinking / 30B-A3B-Instruct / 32B-Thinking / 32B-Instruct / Gemini-2.5-Flash / GPT-5-mini.",https://arxiv.org/abs/2511.21631,"arXiv:2511.21631 (Bai et al., 2025)"
-Qwen3-VL-32B,Thinking,MMBench-EN,89.5,Accuracy (%),"Table 3 (Thinking variant of 32B model). Highest reported for medium-sized model family.",https://arxiv.org/abs/2511.21631,"arXiv:2511.21631 (Bai et al., 2025)"
-Qwen3-VL-32B,Instruct,MMMU,76.0,Accuracy (%),"Table 3; instruct variant score.",https://arxiv.org/abs/2511.21631,"arXiv:2511.21631 (Bai et al., 2025)"
-Qwen3-VL-32B,Thinking,MMMU,78.1,Accuracy (%),"Table 3; thinking variant achieves state-of-the-art among medium models.",https://arxiv.org/abs/2511.21631,"arXiv:2511.21631 (Bai et al., 2025)"
-Qwen3-VL-32B,Instruct,ChartQA,88.5,Accuracy (%),"Table 3; instruct variant on ChartQA test split.",https://arxiv.org/abs/2511.21631,"arXiv:2511.21631 (Bai et al., 2025)"
-Qwen3-VL-32B,Thinking,ChartQA,89.0,Accuracy (%),"Table 3; thinking variant on ChartQA test split.",https://arxiv.org/abs/2511.21631,"arXiv:2511.21631 (Bai et al., 2025)"

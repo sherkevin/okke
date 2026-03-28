@@ -1,7 +1,0 @@
-# Revision_Log_V34
-- **Addressed High-Confidence Hallucinations (Entropy Gate Blindspot):** Added strict evaluation of the false-negative rate of the entropy gate to Chain A, and documented the "arrogance of language priors" in the Limitations section.
-- **Addressed Claim Retreat Contingency:** Embedded explicit language in the hypothesis of Chain A outlining that a failure of `TSLI_zero` (especially on 1D LLaVA) will result in a formal downgrade to a "calibrated post-hoc alignment" claim via `TSLI_calib`.
-- **Addressed Memory Overhead:** Added Peak VRAM tracking alongside Tokens/Sec in the Latency Profiling section.
-- **Enhanced Chain A/B/C metrics:** Mandated matched LoRA rank $r$ for the 5k baseline (~16M params). Added "BPE Collision Rate" and MMMU vs OOV scatterplot. Added handling for raw byte fallbacks (`<0xE2>`).
-- **Enhanced Visualizations:** Added the 4th visualization (Entropy/Gate Activation Over Time) mapping text color intensity to TSLI triggers. Specified the semantic distractor failure must be from the same super-category. Refined bounding box logic for overlapping objects (smallest box / foreground priority).
-- **Preserved Highlights:** Retained the robust VCD/OPERA/DoLa orthogonality framing, 2D-only spatial scope, and the `Base + 5k LoRA` control baseline.

@@ -1,7 +1,0 @@
-# Revision_Log_V117
-- **Addressed the "Geometric Manifold" Fallacy ($W_{in}$ vs $W_{out}$):** Explicitly acknowledged the depth gap between layer 0 and layer $N$. Reframed the $W_{out}$ projection as a "Shallow Semantic Bypass" and added the `TLRA_W_in` ablation to the pre-registered protocol (Chain C).
-- **Reframed Negation Kill-Switch:** Downgraded the heuristic to a "Lexical Fallback Constraint", acknowledging it as a brittle limit of the architecture. Added "False Positive Negation Rate" to Chain A.
-- **Added `TLRA_Blind` Baseline:** Added a mandatory blind-adapter ablation to Table 1 to prove hallucination reduction stems from token-local spatial resonance, not just memorizing the Visual Genome long-tailed prior.
-- **Clarified Hardware/Trie Masking Reality:** Specified byte-level tokenizer dependencies (e.g., Tiktoken leading spaces) and added "TPOT Jitter (Std Dev)" to Table 3 to explicitly audit the branch-divergence cost of batched Trie traversal on GPUs.
-- **Mandated Collateral Damage Visualizations:** Updated Chain C visual requirements to explicitly mandate failure cases where occlusion causes false penalties.
-- **Retained Core Strengths:** Maintained VASM, dynamic activation pooling, TTFT vs TPOT disaggregation, and the brutally honest tone regarding system boundaries.

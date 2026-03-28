@@ -1,7 +1,0 @@
-# Revision_Log_V4
-- **Addressed Mathematical Fallacy in Video:** Completely removed the mathematically ungrounded latent-space Difference-of-Gaussians (DoG) filter. Replaced it with "Cross-Frame Attention Displacement" (tracking attention weight shifts) to isolate actions without semantic drift.
-- **Addressed Heuristic Fragility in SMI:** Replaced brittle tokenizer-prefix rules (`Ġ`) with an elegant, universal "Entropy-Guided Dynamic Weighting" mechanism. Low-entropy continuation/syntax tokens automatically receive $\gamma \to 0$.
-- **Expanded Protocol 2 (Pooling Paradox):** Added DocVQA and TextVQA per reviewer request to definitively test high-resolution dense spatial grounding.
-- **Resolved Zero-Shot Contradiction ($\Phi$):** Acknowledged the alignment gap and proposed a fallback $\Phi$ adapter training protocol (<1 hour, 1 GPU, MSCOCO-val) to maintain the low-deployment-cost claim.
-- **Expanded Baselines & Metrics:** Added Woodpecker and LURE to baselines, and added Protocol 6 (Sensitivity Analysis for $\alpha, \beta$) and Protocol 5 (BPE Case Study).
-- **Preserved Highlights:** Retained the core concept of the "Pooling Paradox", the foundational Modality Alignment Probe (Protocol 0), and the Pareto Frontier system analysis.

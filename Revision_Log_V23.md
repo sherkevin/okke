@@ -1,8 +1,0 @@
-# Revision_Log_V23
-- **Fixed VASM Static Lookup Flaw:** Replaced the mathematically naive, context-free NLTK POS tagging with a "constrained visual-concept dictionary" (e.g., COCO/LVIS categories) to avoid linguistic collisions (e.g., "watch" as verb vs noun), addressing the reviewer's strongest methodological critique. Added explicit mention of collision rate tracking.
-- **Added `BRA_RandomK` Baseline:** Updated Defense Line 4 (Chain C) to include `BRA_RandomK` alongside MeanPool and AdaptiveTopK. This proves performance stems from localized evidence rather than sparse noise injection.
-- **Refined Failure Analysis:** Introduced "Spatial Washout" to Defense Line 5 and the Limitations section, acknowledging the severe risk of deep attention mixing, especially in 1D sequence architectures like LLaVA. 
-- **Removed Video Trajectories:** Completely stripped out the distracting and unsupported claims regarding video and temporal extension, tightening the scope exclusively to dense spatial verification.
-- **Framing Corrections:** Fixed the introduction to properly classify DoLa, VCD, and OPERA as competitive, orthogonal regularizers rather than attacking them as global pooling strawmen. Simplified over-engineered claims.
-- **Preserved Highlights:** Maintained the strong `BRA_zero` vs `BRA_calib` fairness loop, the AGL tracking, and the mathematical elegance of BPE continuation inheritance.
-- *Pending Execution:* Running the `BRA_RandomK` ablation, assembling the constrained visual dictionary, and verifying spatial washout metrics.

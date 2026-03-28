@@ -1,8 +1,0 @@
-# Revision_Log_V111
-- **Scope Downgrade & Title Change:** Explicitly changed framing from general "Hallucination Suppression" to "Entity Existence Checker" across all sections based on Reviewer's major weakness #5.
-- **"Graceful Pivot" Reframe (Method & Exp):** Stripped the defensive "graceful pivot" language. Acknowledged it as a "text-corruption risk / semantic hazard". Added explicit discussion of "Lookahead and Rollback" vs greedy pivots, and implemented a GPT-4 "Pivot Survival Rate" metric to measure semantic absurdity (Critique #1).
-- **Dynamic Syntax Floor Math Fix:** Added explicit tie-breaking logic ($-\epsilon$ subtraction to the floor token clamp) to definitively resolve what happens at $L_{final} == L_{floor}$, while maintaining the honesty about Argmax Retention (Critique #2).
-- **Layer 0 to Layer N Manifold Check:** Added the "L0/LN Cosine Similarity" metric as an explicit prerequisite check in Table 2 and Section 3.1 to mathematically justify the initialization assumption before training (Critique #3).
-- **Relational Hallucination Tracking:** Added MMHal-Relations to Table 1 to directly measure the risk of the context-blind checker *exacerbating* incorrect spatial priors when objects are present (Critique #4).
-- **Latency Protocol Update:** Explicitly mandated Batch Size $\ge 8$ with *diverse prompts* for Tokens/Sec tracking to accurately measure GPU warp divergence (Critique Section 4 comments).
-- **Retained Strengths:** Kept the falsifiable execution contract, the context-blindness admission, the `TLRA_zero` baseline, and the negative control heatmaps precisely as praised by the reviewer.

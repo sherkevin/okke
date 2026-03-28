@@ -1,7 +1,0 @@
-# Revision_Log_V103
-- **Reframed Method Identity:** Completely abandoned the false zero-shot framing. Re-identified `TLRA_calib` as a "Lightweight Parametric Decode-Time Routing Head" trained on 50k data, removing unfair direct comparisons to DoLa/VCD.
-- **Established Strict Budget-Matched Baselines:** Enforced a do-or-die requirement in Table 1 that TLRA must beat a `Base + LoRA` trained on the exact same 50k data with equivalent parameter rank.
-- **Introduced Morphological Error Rate (MER):** Added MER to track "Frankenstein words" and evaluate the Subword Continuation Rule, moving beyond simplistic AGL metrics.
-- **Hardware Physics Correction:** Downgraded the exaggerated "Exact $N_v = D$ Crossover" math. Replaced it with an accurate discussion on memory bandwidth, tracking Time-to-First-Token (TTFT) vs. Time-Per-Output-Token (TPOT).
-- **Downgraded `TLRA_zero`:** Shifted `TLRA_zero` from a "negative control proving geometric discoveries" to a simple "sanity check" acknowledging well-known base representation anisotropy.
-- **Retained Strengths:** Kept the failure boundary analysis (Verb Stress Test, Top-M Hijacking CDF) and the masked-loss design for $W_{calib}$. Added a planned Logit Evolution Case Study based on reviewer suggestions.

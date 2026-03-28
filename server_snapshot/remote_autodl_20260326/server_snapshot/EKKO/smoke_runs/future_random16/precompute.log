@@ -1,1 +1,0 @@
-{"output_jsonl": "smoke_runs/future_random16/anchors.jsonl", "entries": 16, "box_threshold": 0.25, "text_threshold": 0.2, "max_boxes": 8}

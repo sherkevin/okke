@@ -1,8 +1,0 @@
-# Revision_Log_V39
-- **Fixed "Washout Threshold" Brittleness**: Replaced the flawed POPE F1 > 2% drop metric with a direct feature-level threshold (average spatial alignment zero-shot bounding box retrieval IoU < 0.15 on a 500-sample validation set).
-- **Addressed Pipeline Bloat**: Added a mandatory step-by-step ablation to Exp 4.1 (`Base` -> `MeanPool` -> `Adaptive Top-k` -> `VASM` -> `Entropy Gate`) to ensure precise component attribution.
-- **Quantified VASM Domain Dependency**: Added a strict requirement in Exp 4.2 to track the % of visual nouns that bypass intervention ($\gamma=0$) due to being out-of-vocabulary (OOV) in MMMU/DocVQA. Acknowledged this explicit limitation in Section 5.
-- **Defined Implicit Math/Thresholds**: Explicitly defined $\theta_{max}$ (90th percentile of prefix prompt token activations) and $H_{low}$ / $H_{high}$ (dynamically calibrated via the 10th and 90th percentiles of the validation set entropy distribution).
-- **Latency Honesty**: Separated *Prefill Latency* from *Decode Latency* in Section 4.4 and Appendix E to prevent masking the true computational cost.
-- **Failure Analysis**: Added a mandatory VASM failure subplot (polysemy destroying a token) to Figure 2.
-- **Retained Highlights**: Maintained the highly-praised positive framing of orthogonal baselines, the 2D spatial restriction, the strict `Base + 5k LoRA` control, and the OOV/polysemy transparency.

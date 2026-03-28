@@ -1,9 +1,0 @@
-# Revision_Log_V101
-- **Reframed `TLRA_zero`:** Explicitly re-characterized it as a negative control/probe intended to fail, verifying the geometric anisotropy of the MLP-projector input space (addressing major weakness 1).
-- **Reframed `TLRA_calib`:** Stripped away dramatic "routing" jargon, explicitly labeling it a "late-fusion visual classifier bias/ensemble" to accurately reflect its simplicity, resting its value entirely on outperforming the static `Base+LoRA` baseline (addressing major weakness 2).
-- **Corrected Hardware Physics:** Replaced all inaccurate references to "L2 cache thrashing" with correct physics: "uncoalesced High Bandwidth Memory (HBM) read bottlenecks." (addressing major weakness 3).
-- **Added Dynamic Sliced-Matmul Ablation:** Introduced an architectural comparison (Section 3.2 and Section 4.4) evaluating static precomputation vs dynamic sliced-matmul to navigate the HBM wall (addressing suggested experiment 1).
-- **Added BPE Collision Audit:** Explicitly defined how VASM handles prefix spaces/capitalization and added a BPE Entity Coverage metric to Table 2 (addressing major weakness 4).
-- **Formalized `Global_Visual_State`:** Explicitly specified it as a matched-parameter, uniform pooling control baseline.
-- **Added Failure Case Plan:** Added a commitment to visualizing polysemy failures and hijacked tokens in Section 4.3.
-- **Retained Core Strengths:** Kept the falsifiable contract (Tables 1-3), AGL tracking, Hijacking CDF, VASM Ablation Triangle, and Verb-Stress test entirely intact. All unrun experiments remain cleanly marked as protocols/hypotheses.

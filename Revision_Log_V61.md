@@ -1,7 +1,0 @@
-# Revision_Log_V61
-- **Resolved the "OCR Paradox":** Fully removed DocVQA/OCR claims from motivation and Evidence Chain C. Explicitly added the "OCR Concession" into Section 3.4 and Limitations, explaining that VASM's lexical dictionary approach naturally masks OOV/OCR strings to protect syntax. Replaced OCR tests with FREAK (Position/Counting) and Object HalBench.
-- **Fixed `TLRA_calib` Identity Crisis:** Removed the wishy-washy "If Stage 0 fails..." narrative. Stated definitively that `TLRA_zero` fails due to embedding asymmetry, and established `TLRA_calib` as the core method. Explicitly defined the calibration protocol (single linear layer, generic CC3M data, contrastive loss, 100% frozen LLM/Vision encoder) to maintain fairness against DoLa/VCD.
-- **Addressed Computational Hard Bounds:** Defined the $O(M \times N_v)$ complexity explicitly in Section 3.2. Added Figure 1 (Efficiency Scaling: Tokens/Second vs $N_v$) to the Evaluation Protocol with a strict 50% threshold metric.
-- **Structured Table Layouts:** Formatted Evidence Chains A, B, and C to exactly match the reviewer's required baseline/ablation rows and metrics (including the mandatory AGL column in Table 1).
-- **Failure Analysis:** Added the explicit requirement to show an Out-of-Candidate ($> M$) failure and a VASM Masking Error failure.
-- **Retained Strengths:** Kept the positive framing, the Adaptive Top-$k$ vs MeanPool ablation, VASM's BPE inheritance, and the bounded secondary status of the video pilot.

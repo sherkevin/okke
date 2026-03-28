@@ -1,8 +1,0 @@
-# Revision_Log_V91
-- **Fixed "Local Evidence Illusion" (Fatal Flaw):** Shifted the extraction of $h_{prefill}^{(v_j)}$ from the final LLM layer to intermediate layers ($L/2$) in Section 3.2. Final layers are contaminated by global self-attention; this change restores spatial locality to the claims. Added "Representation Depth Ablation" to Section 4.4.
-- **Added "Dumb" Baseline:** Introduced `TLRA_ContinuousAdd` (trivial continuous additive fusion into hidden states) in Section 4.2 and Table 1 to justify the necessity of complex discrete logit-space Top-M routing.
-- **Addressed Tokenizer Brittleness:** Re-framed VASM's collateral damage to explicitly acknowledge its sensitivity to BPE dictionary size. Added a Cross-Tokenizer Audit (32k vs 128k vocab) to Section 4.3 and Table 2.
-- **Bounded Top-M Claims:** Explicitly defined the "Hijacking Problem" as the "Top-M Ceiling" limitation in Section 5, acknowledging that out-of-candidate entities cannot be saved by TLRA.
-- **Added $\Delta_L$ Scatter Plot:** Added the requested failure analysis metric to Section 4.5 to prove the penalty bounding works.
-- **Retained Highlights:** Kept the objective-matched LoRA baseline, hardware lifecycle tracking, and the strict zero/calib fairness split.
-- **Pending Future Work:** The extraction layer ablation (Early vs Mid vs Late), Continuous Addition implementation, and Cross-Tokenizer benchmark runs are formally registered as expected experiments (TBF).

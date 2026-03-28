@@ -1,6 +1,0 @@
-# Revision_Log_V21
-- **Fixed the `calib` Fairness Loophole:** Explicitly mandated that if `BRA_zero` fails and `BRA_calib` is used, all baselines (VCD, OPERA, DoLa) must be augmented with PEFT/LoRA fine-tuning on the exact same 5k COCO set to ensure an apples-to-apples comparison.
-- **Proving Spatial Locality:** Added "Protocol A" in Defense Line 1 to mathematically prove that $h_L^{(v_j)}$ preserves spatial alignment (overcoming deep self-attention mixing) via Representation Similarity / Attention Rollout.
-- **Terminology De-bloat & Renaming:** Reverted framework name to **Bounded Resonance Anchoring (BRA)** strictly per prompt requirements (`BRA_zero`, `BRA_calib`, etc.) while standardizing the descriptive phrasing to "token-local logits intervention" to reduce grandiose vocabulary. Updated the title to reflect this clarity.
-- **Video Spatio-Temporal Fix:** Re-introduced video capability as a secondary feature by integrating a mathematically sound Temporal Decay Proximity Penalty ($\exp(-\lambda |t_j - t_{curr}|)$), directly addressing the reviewer's concern about mechanically flattening $T \times H \times W$.
-- **Preserved Strengths:** Kept the AGL-constrained Hallucination evaluation (Table 1), the BPE continuation inheritance logic, the respectful framing of baselines, and the three-chain/five-line falsifiable evaluation structure.

@@ -1,6 +1,0 @@
-# Revision_Log_V66
-- **Addressed BPE-WordNet Collisions:** Acknowledged the "bulletin" -> "bullet" false-prefix collision (Reviewer's Major Weakness 1). Added a minimum string length filter ($L_{char} \ge 4$) in Section 3.4 and explicitly listed it as a structural failure case in Figure 3 and Limitations.
-- **Fixed Pruning Vulnerability:** Replaced the arbitrary $L_{prompt} < 5$ fallback heuristic with an *Attention Entropy* metric ($\theta_{fallback}$), explicitly mentioning the exclusion of architectural attention sinks (e.g., `<image>`) to prevent catastrophic evidence loss (Reviewer's Major Weakness 2 & 3).
-- **Repositioned DocVQA:** Moved DocVQA from the Local Evidence table to Evidence Chain B as an explicit *negative control*, perfectly aligning with the OCR Concession logic.
-- **Taxonomy Clarification:** Added explicit wording in the Introduction and Limitations that TLRA is a "base-model-frozen plug-in" rather than purely training-free, distinguishing it fairly from DoLa/VCD.
-- **Retained Highlights:** Kept the `TLRA_MeanPool` parity constraint, the AGL length-collapse check, the VASM theoretical framing, and the exclusion of spatiotemporal video logic from the main narrative.

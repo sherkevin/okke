@@ -1,7 +1,0 @@
-# Revision_Log_V42
-- **Removed Pipeline Bloat Padding**: Framed the Entropy Gate as an *optional heuristic* subject to a ruthless $\ge 2\%$ absolute gain pruning threshold to directly address reviewer concerns over arbitrary patches.
-- **Addressed VASM's "Inaction Conflation"**: explicitly introduced "Intervention Trigger Rate (%)" in both Table 1 and Figure 1 to prevent falsely claiming structure preservation when the dictionary merely encounters OOV terms and bypasses intervention.
-- **Confronted Polysemy Directly**: Added a planned qualitative deep-dive for "Polysemy False Positives" (e.g., suppressing non-visual uses of nouns like "bank" or "process") in Section 4.2 and Appendix D.
-- **Clarified Latency / Zero-Shot realities**: Openly admitted the "Zero-Shot Illusion" (expecting LLaVA-1.5 to fail the washout threshold immediately) and added the explicit $\approx 1$ A100 GPU hour training cost for $\Phi_{calib}$. Added $M \in \{10, 50, 100, 200\}$ with explicit mentions of "CUDA kernel launch overheads" resulting from $M \times N_v$ sorting.
-- **Retained Orthogonal Regularizer Framing**: Kept DoLa/VCD/OPERA framed as orthogonal (not "global pooling" strawmen) to maintain a defensible, scholarly stance.
-- **Pending Execution**: Table 1, Figure 1, Figure 3, and all evidence chains remain strictly formatted as a pre-registered evaluation protocol awaiting code execution.

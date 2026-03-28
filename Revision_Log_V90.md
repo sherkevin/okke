@@ -1,6 +1,0 @@
-# Revision_Log_V90
-- **Addressed the VASM "Subword Prefix Trap":** Fully acknowledged the reviewer's critique regarding the collateral damage on abstract words (e.g., `[car, dinal]`). Explicitly reframed VASM from a "perfect zero-overhead shield" to a "statistical heuristic" that trades minor abstract linguistic damage to prevent visual trigger starvation.
-- **Fixed the LoRA Baseline Objective Mismatch:** Eliminated the confounder between InfoNCE and Cross-Entropy by strictly defining `Phi_calib` and the `Base + LoRA` baseline as sharing the *exact same localized Cross-Entropy objective*.
-- **Clarified Hardware Execution (Prefill Caching):** Added explicit language in Abstract, Section 3.2, and Section 4.5 detailing that $\Phi_{calib}$ is computed exactly once during prefill, caching the $\approx 32.7$ MB tensor to prevent memory bandwidth starvation during autoregressive decoding.
-- **Updated Evaluation Protocol:** Replaced generic latency with `Prefill Time (ms)` and `Decode (ms/tok)` in Table 1. Added `GSM8K (Text-Only)` to Table 2 to formally measure the collateral damage of the BPE prefix trap. Added the ablation on $M$ (Candidate Window Size).
-- **Retained Core Strengths:** Maintained the uncompromising scientific contract, the `TLRA_zero` vs. `TLRA_calib` boundary, the Out-of-Candidate Hijacking analysis, and the OCR negative controls.

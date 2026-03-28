@@ -1,8 +1,0 @@
-# Revision_Log_V49
-- **Fixed Prefill Threshold Attrition:** Added a new evaluation protocol (Fig 4) to empirically track valid activation rates across decoding steps ($t=1$ to $t=250$), directly addressing the reviewer's concern about threshold drift during long autoregression.
-- **Refined Negative Sampling:** Replaced the naive absolute spatial exclusion zone with a dual negative sampling strategy (Standard + Hard Negatives) in Section 3.1 to force the MLP to disentangle heavily overlapping objects ($\text{IoU} > 0.5$ with different semantics).
-- **Added Tier 1 vs. Tier 2 Masking Ablation:** Updated Chain C (Table 2) to strictly ablate `Local_Calib (Tier 1)` vs `Local_Calib (Tier 1+2)` on DocVQA, preventing regex logic from gaming the evaluation.
-- **Explicit Success Criteria:** Defined a hard falsifiability boundary in Section 4.1—if the `Base + 5k LoRA` control closes >90% of the gap, the spatial routing hypothesis fails.
-- **Robust Entropy Calculation:** Normalized visual hidden-state entropy $\mathcal{H}_{vis}$ by sequence length $N_v$ in Section 3.2 to handle dynamic resolution models gracefully.
-- **Polysemy Acknowledgment:** Added a specific failure case deep dive in Appendix D addressing how context-blind gating handles polysemy (e.g., "bank").
-- **Retained Core Strengths:** Maintained the rigid 2D scoping (no video), kept the framing of DoLa/VCD/OPERA as successful orthogonal regularizers, and preserved the highly defensible `Base + 5k LoRA` rigorous baseline.

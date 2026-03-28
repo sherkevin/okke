@@ -1,7 +1,0 @@
-# Revision_Log_V105
-- **Addressed the "Vocabulary Sparsity Trap":** Added explicit limitations regarding the $D \times V$ scaling issue and introduced the "Unseen Objects Acc. (Sparsity Test)" in Table 2 to falsifiably test generalization vs. memorization.
-- **Addressed BPE Prefix Collisions:** Upgraded VASM with an "Unambiguous Stem Restriction" (Section 3.4) to explicitly filter out stems that frequently complete abstract non-physical concepts (e.g., `_cat` -> catastrophe). Also documented "Whitespace Inclusivity" for token mapping.
-- **Addressed Recall Degradation:** Integrated "Object Recall" and "Avg Nouns/Gen" metrics into Table 1 to definitively disprove the "Penalty-Only Fallacy" (generic collapse/silencing nouns).
-- **Nuanced the LoRA Slaughterhouse:** Reframed the defense against the budget-matched LoRA. Instead of claiming TLRA will win purely on reasoning, we emphasize its structural advantage: "Zero-Interference Guarantee" with the base LLM weights, hypothesizing LoRA will suffer catastrophic forgetting on MMBench while TLRA stays perfectly preserved.
-- **Clarified Training Gradients:** Explicitly stated in Section 3.1 that the base LLM and Vision encoder are strictly frozen, and gradients flow *only* to $W_{calib}$.
-- **Maintained Core Claims:** Fully retained the "Existence Checker Fallacy", budget-matched LoRA mandate, TTFT vs. TPOT bandwidth physics, and TLRA_zero/calib distinctions.

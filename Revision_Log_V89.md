@@ -1,8 +1,0 @@
-# Revision_Log_V89
-- **Fixed Hardware Bottleneck Fallacy:** Rewrote the math regarding the $O(M \times N_v)$ cost. Removed the erroneous claim that it spikes VRAM. Correctly framed the cost as $\approx 800$ MFLOPs and $\approx 32$ MB cache read, which is practically free compared to the memory-bound loading of 14GB weights. Swapped "Peak VRAM" for "Activation Memory" and "FLOPs/tok" in evaluation tables.
-- **Fixed VASM Recall Collapse:** Replaced the highly destructive "conservative boolean intersection" with a "Frequency-Weighted Subword Resolution" based on corpus probability to prevent 90%+ masking of physical entities due to subword bleeding (e.g., "car" / "careful"). Added "VASM Effective Recall Ratio" to Table 2 to quantitatively prove survival rates.
-- **Resolved Manifold Mismatch:** Explicitly defined $h_{prefill}^{(v_j)}$ as the final-layer prefill LLM hidden state, and the target lexical space as the dynamic pre-LM-head hidden space.
-- **Stabilized Resonance Penalty:** Replaced the unbounded $\Delta_L$ scaling with a bounded $\min(\Delta_L, \beta)$ to prevent logit explosion when the model is overconfident.
-- **Clarified AGL StdDev:** Explained that this metric explicitly detects models "gaming" the hallucination metrics by collapsing generation diversity and producing uniformly truncated responses.
-- **Enhanced Failure Protocol:** Added a histogram plotting requirement to explicitly track the rank of ground-truth tokens during Out-of-Candidate Hijacking events.
-- **Retained Strengths:** Kept the `TLRA_zero`/`TLRA_calib` split, the `DocVQA` negative OCR control, and the paramount data-matched LoRA baseline.

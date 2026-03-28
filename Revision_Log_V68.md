@@ -1,7 +1,0 @@
-# Revision_Log_V68
-- **Addressed Prefill Pruning Flaw**: Explicitly acknowledged the "Prefill Pruning Blindspot" in Methodology and Limitations. Stated that the Entropy Fallback is the primary routing mechanism for long-form generation, and bounding is largely maintained by Candidate limitation ($M$).
-- **Clarified Calibrator Overheads & Bias**: Defined $\Phi_{calib}$ as a strict single linear layer ($D_v \times |V|$). Added InfoNCE Calibrator Bias to limitations, acknowledging that noun-chunk training captures attribute-noun pairs but struggles with pure spatial prepositions.
-- **Enforced Table Enhancements**: Added `VASM Trigger Rate (%)` to all relevant tables. For Table 1, mandated the AGL Asterisk rule (>5% collapse). For Table 2, explicitly defined DocVQA as a ~0% trigger negative control. For Table 3, broke down FREAK into Spatial vs. Existence.
-- **Updated Visualizations**: Mandated a Fallback Activation Rate scatter plot in Figure 1, and a specific "BPE Stuttering Heatmap" in Figure 3.
-- **Preserved Strengths**: Kept `TLRA_MeanPool` internal control, the OCR concession, and Tokenizer-Aware boundaries entirely intact.
-- **Note on Video**: Following strict isolation requests, all video references have been entirely excised to keep the main narrative perfectly image-centric and tightly bounded.

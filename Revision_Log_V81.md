@@ -1,6 +1,0 @@
-# Revision_Log_V81
-- **Tone & Framing:** Removed the "manifesto" language and "Fallback Clause" legalistic phrasing, replacing it with standard rigorous scientific terminology (e.g., "Regression Baseline"). 
-- **Methodology (VASM & BPE):** Explicitly formalized the BPE continuation inheritance logic in Section 3.3 with clear mathematical conditions, and clarified that when $\gamma(c)=0$, the penalty multiplier zeroes out entirely.
-- **Evaluation Reorganization:** Directly aligned with the reviewer's requested Tables and Figures. Established Chain A (Hallucination + AGL audit), Chain B (Structure + DocVQA negative control), and Chain C (The Parity Test on Unseen FREAK objects). 
-- **Baseline Accuracy:** Maintained strict baseline separation: DoLa/VCD are evaluated in Table 1 as sequence heuristics, while Table 3 strictly isolates spatial routing against calibrated `MeanPool` and `RandomK`.
-- **Latency & Bounds:** Explicitly mapped Figure 2 (TPOT Pareto) and Figure 3 (Out-of-Candidate logit rank tracking) to directly address the latency and theoretical limitations of the bounded $M$ window.

@@ -1,7 +1,0 @@
-# Revision_Log_V106
-- **Fixed Initialization Math:** Replaced random initialization with Semantic Initialization (`lm_head` anchoring) to mathematically solve the unseen token "Sparsity Trap" (Section 3.1 & 4.2).
-- **Upgraded Baseline Contract:** Addressed the "strawman" critique by introducing a `Standard LoRA` (trained on broad 150k mix) as the genuine SOTA comparison, while keeping the `Restricted LoRA (50k)` strictly as an ablation for catastrophic forgetting (Section 4).
-- **Upgraded Benchmarks:** Replaced basic POPE-only focus with AMBER and MMHAL-Bench to prove relevance on modern hallucination evaluations (Section 4.1).
-- **Redefined Logit Clipping:** Updated Equation 1 with an Absolute Syntax Floor ($L_{floor}$) to mathematically guarantee that penalized nouns cannot fall below the probability of verbs/adjectives, preventing behavioral/syntax collapse.
-- **Added FNR Metric:** Introduced False Negative Rate tracking to explicitly police model "timidity" and behavioral interference.
-- **Retained Core Strengths:** Maintained VASM BPE collision logic, the strict Falsifiable Audit framework, static vs. dynamic hardware tradeoffs (now requiring real ms latency), and the honest "Existence Checker" failure bounds.

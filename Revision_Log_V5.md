@@ -1,6 +1,0 @@
-# Revision_Log_V5
-- **Removed Video Section:** Completely excised Section 3.4 (Cross-Frame Attention Displacement) and related video protocols to address the severe VRAM contradiction pointed out by the reviewer. The paper is now laser-focused on high-resolution spatial preservation.
-- **Simplified Reshaping Math:** Addressed the "Over-parameterization" critique in Eq 3.2 by unifying the additive penalty and reward into a single "Relative Resonance Penalty" governed by a single hyperparameter $\alpha$ and the SMI damping weight $\gamma$. 
-- **Defended $\Phi$ Alignment:** Upgraded Protocol 0 to explicitly test "Cross-Domain Generalization." This directly addresses the reviewer's concern that $\Phi$ might just be fine-tuning in disguise. By training on MSCOCO and testing on DocVQA, we plan to prove $\Phi$ learns a universal semantic mapping.
-- **Added Targeted Experiments:** Integrated all reviewer-suggested experiments into Section 4, including the "Pooling Paradox Proof Table" (Protocol 2), the "SMI Heatmap" (Protocol 3), and the "TPOT vs Accuracy Pareto Frontier" (Protocol 4).
-- **Added Clutter Limitation:** Added a transparent limitation discussing how the max-pooling operator might fail in highly cluttered scenes.

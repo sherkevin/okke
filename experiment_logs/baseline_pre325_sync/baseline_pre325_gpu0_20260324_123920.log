@@ -1,107 +1,0 @@
-[MATRIX] baseline_pre325_gpu0 start 2026-03-24T12:39:21+08:00
-[START] llava-v1.5-7b__pope__random__vcd 2026-03-24T12:39:21+08:00
-2026-03-24 12:39:22,530 [INFO] Pipeline: method=vcd  dataset=pope  model=llava-v1.5-7b  mini_test=3000
-2026-03-24 12:39:22,530 [INFO] Loading model from /root/autodl-tmp/BRA_Project/models/llava-1.5-7b-hf ...
-Loading weights:   0%|          | 0/686 [00:00<?, ?it/s]Loading weights:   0%|          | 1/686 [00:00<01:49,  6.28it/s]Loading weights:   1%|▏         | 10/686 [00:00<00:18, 35.89it/s]Loading weights:   2%|▏         | 14/686 [00:00<00:26, 25.55it/s]Loading weights:   3%|▎         | 22/686 [00:00<00:30, 22.11it/s]Loading weights:   5%|▍         | 31/686 [00:01<00:22, 28.87it/s]Loading weights:   6%|▌         | 38/686 [00:01<00:18, 35.93it/s]Loading weights:   6%|▋         | 43/686 [00:01<00:23, 27.89it/s]Loading weights:   7%|▋         | 49/686 [00:01<00:21, 29.07it/s]Loading weights:   8%|▊         | 58/686 [00:02<00:22, 27.83it/s]Loading weights:  10%|▉         | 67/686 [00:02<00:21, 28.80it/s]Loading weights:  11%|█         | 76/686 [00:02<00:20, 29.30it/s]Loading weights:  12%|█▏        | 85/686 [00:02<00:19, 30.19it/s]Loading weights:  14%|█▎        | 94/686 [00:03<00:20, 28.26it/s]Loading weights:  15%|█▌        | 103/686 [00:03<00:18, 31.03it/s]Loading weights:  16%|█▋        | 112/686 [00:03<00:19, 29.70it/s]Loading weights:  18%|█▊        | 121/686 [00:04<00:18, 30.44it/s]Loading weights:  19%|█▉        | 129/686 [00:04<00:15, 36.39it/s]Loading weights:  20%|█▉        | 134/686 [00:04<00:18, 30.55it/s]Loading weights:  20%|██        | 139/686 [00:04<00:19, 27.36it/s]Loading weights:  22%|██▏       | 148/686 [00:05<00:18, 29.45it/s]Loading weights:  22%|██▏       | 154/686 [00:05<00:15, 33.71it/s]Loading weights:  23%|██▎       | 158/686 [00:05<00:19, 27.08it/s]Loading weights:  24%|██▍       | 166/686 [00:05<00:17, 29.46it/s]Loading weights:  26%|██▌       | 175/686 [00:06<00:18, 27.30it/s]Loading weights:  27%|██▋       | 184/686 [00:06<00:16, 29.66it/s]Loading weights:  28%|██▊       | 193/686 [00:06<00:16, 29.72it/s]Loading weights:  29%|██▉       | 201/686 [00:06<00:13, 34.97it/s]Loading weights:  30%|███       | 206/686 [00:06<00:14, 32.25it/s]Loading weights:  31%|███       | 211/686 [00:07<00:16, 28.34it/s]Loading weights:  32%|███▏      | 220/686 [00:07<00:16, 27.87it/s]Loading weights:  33%|███▎      | 223/686 [00:07<00:16, 27.81it/s]Loading weights:  33%|███▎      | 229/686 [00:07<00:14, 30.79it/s]Loading weights:  35%|███▍      | 237/686 [00:07<00:11, 39.31it/s]Loading weights:  35%|███▌      | 242/686 [00:08<00:14, 29.63it/s]Loading weights:  36%|███▌      | 247/686 [00:08<00:15, 27.64it/s]Loading weights:  37%|███▋      | 256/686 [00:08<00:14, 29.24it/s]Loading weights:  38%|███▊      | 264/686 [00:08<00:12, 34.15it/s]Loading weights:  39%|███▉      | 268/686 [00:09<00:15, 27.74it/s]Loading weights:  40%|███▉      | 274/686 [00:09<00:15, 26.30it/s]Loading weights:  41%|████▏     | 283/686 [00:09<00:13, 29.04it/s]Loading weights:  51%|█████     | 348/686 [00:09<00:02, 122.84it/s]Loading weights:  72%|███████▏  | 496/686 [00:09<00:00, 360.65it/s]Loading weights:  91%|█████████ | 624/686 [00:09<00:00, 544.57it/s]Loading weights: 100%|██████████| 686/686 [00:09<00:00, 69.18it/s] 
-The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
-2026-03-24 12:39:37,526 [INFO] POPE split: /root/autodl-tmp/BRA_Project/datasets/POPE/output/coco/coco_pope_random.json
-2026-03-24 12:39:39,204 [INFO]   [1/3000] pred=yes label=yes len=25  Yes, there is a snowboard in the image, and the person is ri
-2026-03-24 12:39:40,159 [INFO]   [2/3000] pred=no label=no len=25  No, there is no car in the image. The image features a perso
-2026-03-24 12:39:41,043 [INFO]   [3/3000] pred=yes label=yes len=23  Yes, there is a person in the image, who is skiing down a sn
-2026-03-24 12:39:41,940 [INFO]   [4/3000] pred=no label=no len=25  No, there is no sandwich in the image. The image features a 
-2026-03-24 12:39:42,882 [INFO]   [5/3000] pred=yes label=yes len=25  Yes, there is a skier in the image, and they are riding down
-2026-03-24 12:39:47,969 [INFO]   [10/3000] pred=no label=no len=36  No, there is no sink in the image. The image features a woma
-2026-03-24 12:39:57,534 [INFO]   [20/3000] pred=yes label=no len=30  Yes, there is a teddy bear in the image, and it is being hel
-2026-03-24 12:40:07,128 [INFO]   [30/3000] pred=yes label=no len=22  Yes, there is a kite in the image, and it is hanging from th
-2026-03-24 12:40:14,934 [INFO]   [40/3000] pred=no label=no len=21  No, there is no bird in the image. The image features a man 
-2026-03-24 12:40:23,409 [INFO]   [50/3000] pred=yes label=no len=17  Yes, there is a cell phone in the image, lying on the snow.
-2026-03-24 12:40:32,194 [INFO]   [60/3000] pred=no label=no len=29  No, there is no bench in the image. The image features a roc
-2026-03-24 12:40:41,357 [INFO]   [70/3000] pred=no label=no len=31  No, there is no wine glass in the image. The image features 
-2026-03-24 12:40:49,918 [INFO]   [80/3000] pred=no label=no len=29  No, there is no zebra in the image. The image features a you
-2026-03-24 12:40:58,433 [INFO]   [90/3000] pred=yes label=no len=17  Yes, there is a chair in the image, located near the fence.
-2026-03-24 12:41:07,603 [INFO]   [100/3000] pred=no label=no len=30  No, there is no frisbee in the image. The image features a w
-2026-03-24 12:41:17,561 [INFO]   [110/3000] pred=no label=no len=27  No, there is no cow in the image. The image features a bathr
-2026-03-24 12:41:25,893 [INFO]   [120/3000] pred=no label=no len=32  No, there is no mouse in the image. The image features a stu
-2026-03-24 12:41:34,889 [INFO]   [130/3000] pred=yes label=no len=22  Yes, there is a clock in the image, located on the bed where
-2026-03-24 12:41:43,873 [INFO]   [140/3000] pred=no label=no len=30  No, there is no giraffe in the image. The image features a b
-2026-03-24 12:41:53,261 [INFO]   [150/3000] pred=no label=no len=31  No, there is no microwave in the image. The image features a
-2026-03-24 12:42:02,233 [INFO]   [160/3000] pred=yes label=no len=20  Yes, there is a donut in the image, which is hanging on the 
-2026-03-24 12:42:11,094 [INFO]   [170/3000] pred=no label=no len=28  No, there is no elephant in the image. The image features a 
-2026-03-24 12:42:20,417 [INFO]   [180/3000] pred=no label=no len=24  No, there is no horse in the image. The image features a cat
-2026-03-24 12:42:29,903 [INFO]   [190/3000] pred=no label=no len=36  No, there is no horse in the image. The image features a man
-2026-03-24 12:42:38,360 [INFO]   [200/3000] pred=no label=no len=24  No, there is no stop sign in the image. The image features a
-2026-03-24 12:42:47,713 [INFO]   [210/3000] pred=no label=no len=31  No, there is no wine glass in the image. The image features 
-2026-03-24 12:42:55,769 [INFO]   [220/3000] pred=yes label=no len=28  Yes, there is a cell phone in the image, and it is being use
-2026-03-24 12:43:04,842 [INFO]   [230/3000] pred=no label=no len=36  No, there is no surfboard in the image. The image features a
-2026-03-24 12:43:13,545 [INFO]   [240/3000] pred=no label=no len=29  No, there is no apple in the image. The image features a man
-2026-03-24 12:43:22,408 [INFO]   [250/3000] pred=no label=no len=33  No, there is no couch in the image. The image features a lar
-2026-03-24 12:43:30,818 [INFO]   [260/3000] pred=no label=no len=26  No, there is no truck in the image. The image features a gro
-2026-03-24 12:43:40,122 [INFO]   [270/3000] pred=no label=no len=37  No, there is no vase in the image. The image features a stre
-2026-03-24 12:43:48,564 [INFO]   [280/3000] pred=no label=no len=27  No, there is no sports ball in the image. The image features
-2026-03-24 12:43:57,312 [INFO]   [290/3000] pred=no label=no len=30  No, there is no refrigerator in the image. The image feature
-2026-03-24 12:44:05,588 [INFO]   [300/3000] pred=yes label=no len=17  Yes, there is a remote in the image, placed on the kitchen c
-2026-03-24 12:44:15,440 [INFO]   [310/3000] pred=no label=no len=38  No, there is no broccoli in the image. The image features a 
-2026-03-24 12:44:23,823 [INFO]   [320/3000] pred=no label=no len=27  No, there is no kite in the image. The image features a disp
-2026-03-24 12:44:32,922 [INFO]   [330/3000] pred=yes label=no len=19  Yes, there is a refrigerator in the image, located in the ba
-2026-03-24 12:44:40,422 [INFO]   [340/3000] pred=yes label=no len=18  Yes, there is a stuffed dog in the image, placed on the bed.
-2026-03-24 12:44:50,091 [INFO]   [350/3000] pred=no label=no len=29  No, there is no toothbrush in the image. The image features 
-2026-03-24 12:44:59,619 [INFO]   [360/3000] pred=yes label=no len=28  Yes, there is a teddy bear in the image, which is placed on 
-2026-03-24 12:45:08,428 [INFO]   [370/3000] pred=no label=no len=33  No, there is no cat in the image. The image features a red b
-2026-03-24 12:45:17,042 [INFO]   [380/3000] pred=no label=no len=27  No, there is no sandwich in the image. The image features a 
-2026-03-24 12:45:26,061 [INFO]   [390/3000] pred=yes label=no len=18  Yes, there is a remote in the image, which is placed on the 
-2026-03-24 12:45:34,566 [INFO]   [400/3000] pred=no label=no len=37  No, there is no frisbee in the image. The image features a l
-2026-03-24 12:45:43,331 [INFO]   [410/3000] pred=no label=no len=29  No, there is no bottle in the image. The image features a ne
-2026-03-24 12:45:51,980 [INFO]   [420/3000] pred=no label=no len=27  No, there is no kite in the image. The image features a whit
-2026-03-24 12:46:00,044 [INFO]   [430/3000] pred=no label=no len=34  No, there is no carrot in the image. The image features a ma
-2026-03-24 12:46:09,417 [INFO]   [440/3000] pred=no label=no len=31  No, there is no traffic light in the image. The image featur
-2026-03-24 12:46:18,238 [INFO]   [450/3000] pred=no label=no len=24  No, there is no keyboard in the image. The woman is playing 
-2026-03-24 12:46:28,793 [INFO]   [460/3000] pred=no label=no len=30  No, there is no bicycle in the image. The image features peo
-2026-03-24 12:46:37,589 [INFO]   [470/3000] pred=no label=no len=27  No, there is no potted plant in the image. The image feature
-2026-03-24 12:46:46,647 [INFO]   [480/3000] pred=yes label=no len=21  Yes, there is a clock in the image, and it is located near t
-2026-03-24 12:46:55,485 [INFO]   [490/3000] pred=no label=no len=28  No, there is no tennis racket in the image. The man is holdi
-2026-03-24 12:47:05,793 [INFO]   [500/3000] pred=no label=no len=33  No, there is no cat in the image. The image features a man s
-2026-03-24 12:47:13,695 [INFO]   [510/3000] pred=no label=no len=21  No, there are no skis in the image. The image features toile
-2026-03-24 12:47:21,742 [INFO]   [520/3000] pred=no label=no len=22  No, there is no train in the image. The image features a com
-2026-03-24 12:47:30,238 [INFO]   [530/3000] pred=no label=no len=28  No, there is no elephant in the image. The image features tw
-2026-03-24 12:47:39,243 [INFO]   [540/3000] pred=no label=no len=30  No, there is no fire hydrant in the image. The image feature
-2026-03-24 12:47:47,748 [INFO]   [550/3000] pred=no label=no len=32  No, there is no train in the image. The image features a cit
-2026-03-24 12:47:56,646 [INFO]   [560/3000] pred=no label=no len=26  No, there is no cell phone in the image. The image features 
-2026-03-24 12:48:04,611 [INFO]   [570/3000] pred=no label=no len=26  No, there is no laptop in the image. The image features a wo
-2026-03-24 12:48:12,509 [INFO]   [580/3000] pred=no label=no len=26  No, there is no couch in the image. The image features a blu
-2026-03-24 12:48:21,176 [INFO]   [590/3000] pred=no label=no len=34  No, there is no refrigerator in the image. The image feature
-2026-03-24 12:48:30,809 [INFO]   [600/3000] pred=no label=no len=34  No, there is no apple in the image. The image features a gro
-2026-03-24 12:48:39,337 [INFO]   [610/3000] pred=yes label=no len=19  Yes, there is a remote in the image, which is attached to th
-2026-03-24 12:48:48,338 [INFO]   [620/3000] pred=no label=no len=33  No, there is no zebra in the image. The image features a bla
-2026-03-24 12:48:57,703 [INFO]   [630/3000] pred=no label=no len=27  No, there is no sheep in the image. The image features a sno
-2026-03-24 12:49:06,443 [INFO]   [640/3000] pred=no label=no len=36  No, there is no snowboard in the image. The image features a
-2026-03-24 12:49:16,356 [INFO]   [650/3000] pred=no label=no len=26  No, there is no bear in the image. The scene features people
-2026-03-24 12:49:25,302 [INFO]   [660/3000] pred=no label=no len=37  No, there is no apple in the image. The image features a man
-2026-03-24 12:49:35,155 [INFO]   [670/3000] pred=no label=no len=29  No, there is no train in the image. The image features a liv
-2026-03-24 12:49:43,934 [INFO]   [680/3000] pred=no label=no len=39  No, there is no microwave in the image. The image features a
-2026-03-24 12:49:53,212 [INFO]   [690/3000] pred=no label=no len=39  No, there is no potted plant in the image. The image feature
-2026-03-24 12:50:02,230 [INFO]   [700/3000] pred=no label=no len=26  No, there is no remote in the image. The image shows a man a
-2026-03-24 12:50:11,142 [INFO]   [710/3000] pred=no label=no len=28  No, there is no vase in the image. The image features a man 
-2026-03-24 12:50:19,570 [INFO]   [720/3000] pred=no label=no len=28  No, there is no sports ball in the image. The image features
-2026-03-24 12:50:28,078 [INFO]   [730/3000] pred=no label=no len=27  No, there is no umbrella in the image. The woman is holding 
-2026-03-24 12:50:36,175 [INFO]   [740/3000] pred=yes label=no len=19  Yes, there is a bench in the image, located near the motorcy
-2026-03-24 12:50:44,244 [INFO]   [750/3000] pred=no label=no len=23  No, there is no pizza in the image. The image features a cou
-2026-03-24 12:50:53,477 [INFO]   [760/3000] pred=no label=no len=39  No, there is no keyboard in the image. The image features a 
-2026-03-24 12:51:02,938 [INFO]   [770/3000] pred=yes label=no len=15  Yes, there is a pair of scissors in the image.
-2026-03-24 12:51:11,639 [INFO]   [780/3000] pred=yes label=no len=17  Yes, there is a TV in the image, located in the kitchen area
-2026-03-24 12:51:21,482 [INFO]   [790/3000] pred=no label=no len=32  No, there is no skateboard in the image. The image features 
-2026-03-24 12:51:30,545 [INFO]   [800/3000] pred=no label=no len=31  No, there is no boat in the image. The image features a pile
-2026-03-24 12:51:39,825 [INFO]   [810/3000] pred=no label=no len=29  No, there is no sink in the image. The focus is on the perso
-2026-03-24 12:51:48,235 [INFO]   [820/3000] pred=no label=no len=35  No, there is no pizza in the image. The image shows a farmer
-2026-03-24 12:51:56,773 [INFO]   [830/3000] pred=no label=no len=33  No, there is no banana in the image. The image features a yo
-2026-03-24 12:52:05,769 [INFO]   [840/3000] pred=yes label=no len=26  Yes, there is a potted plant in the image, located near the 
-2026-03-24 12:52:14,383 [INFO]   [850/3000] pred=no label=no len=32  No, there is no pizza in the image. The image features a sma
-2026-03-24 12:52:22,859 [INFO]   [860/3000] pred=yes label=no len=29  Yes, there is a zebra in the image, and the person is typing
-2026-03-24 12:52:31,195 [INFO]   [870/3000] pred=no label=no len=25  No, there is no stop sign in the image. The woman is holding
-2026-03-24 12:52:39,599 [INFO]   [880/3000] pred=no label=no len=26  No, there is no sink in the image. The focus is on the peopl
-2026-03-24 12:52:48,296 [INFO]   [890/3000] pred=no label=no len=30  No, there is no dog in the image. The image features a bathr
-2026-03-24 12:52:57,398 [INFO]   [900/3000] pred=no label=no len=28  No, there is no suitcase in the image. The image features a 
-2026-03-24 12:53:06,674 [INFO]   [910/3000] pred=no label=no len=41  No, there is no sports ball in the image. The image features
-2026-03-24 12:53:15,404 [INFO]   [920/3000] pred=no label=no len=28  No, there is no truck in the image. The image features a pla
-2026-03-24 12:53:24,372 [INFO]   [930/3000] pred=no label=no len=29  No, there is no oven in the image. The image features a stre
-2026-03-24 12:53:33,174 [INFO]   [940/3000] pred=no label=no len=22  No, there is no fork in the image. The person is holding the
-2026-03-24 12:53:43,405 [INFO]   [950/3000] pred=no label=no len=29  No, there is no bus in the image. The image features a tenni
