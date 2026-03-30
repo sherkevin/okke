@@ -86,7 +86,7 @@ def parse_args():
     parser.add_argument("--llava-ckpt", type=str, default=None, help="optional local merged checkpoint path for llava-1.5")
     parser.add_argument("--llava-proc-path", type=str, default=None, help="optional local CLIP processor path for llava-1.5")
     parser.add_argument("--output-json", type=str, default=None, help="optional path to save metrics and decoded outputs")
-    parser.add_argument("--chord-enable", action="store_true", help="enable CHORD current-term reranking on top of official OPERA")
+    parser.add_argument("--chord-enable", action="store_true", help="enable CHORD current-term reranking on top of the baseline beam-search path")
     parser.add_argument("--anchor-cache-jsonl", type=str, default=None, help="offline anchor cache produced by precompute_pope_anchor_cache.py")
     parser.add_argument("--alpha-anchor", type=float, default=0.5, help="soft anchor gain applied to matched visual tokens")
     parser.add_argument("--lambda-cur", type=float, default=0.0, help="current-step CHORD bonus weight")
@@ -258,7 +258,7 @@ def _load_anchor_cache(args) -> AnchorCache | None:
     if not args.chord_enable:
         return None
     if args.anchor_cache_jsonl is None:
-        raise ValueError("EKKO requires --anchor-cache-jsonl so knowledge-kernel lookup stays fully offline.")
+        raise ValueError("CHORD requires --anchor-cache-jsonl so knowledge-kernel lookup stays fully offline.")
     return AnchorCache.from_jsonl(args.anchor_cache_jsonl)
 
 
@@ -331,7 +331,7 @@ def main():
     pred_list, pred_list_s, label_list = [], [], []
     run_outputs = []
     if args.chord_enable and args.batch_size != 1:
-        raise ValueError("The current CHORD-on-EKKO path supports batch_size=1 only.")
+        raise ValueError("The current CHORD path supports batch_size=1 only.")
     for batch_id, data in tqdm(enumerate(pope_loader), total=len(pope_loader)):
         image = data["image"]
         raw_queries = data["query"]
@@ -413,7 +413,7 @@ def main():
                     num_beams=args.beam,
                     max_new_tokens=args.max_new_tokens,
                     output_attentions=True,
-                    opera_decoding=True,
+                    chord_decoding=True,
                     scale_factor=args.scale_factor,
                     threshold=args.threshold,
                     num_attn_candidates=args.num_attn_candidates,

@@ -14,7 +14,7 @@ from chord.query_formulation import extract_anchor_query
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Precompute detector anchors for POPE samples before EKKO decoding.")
+    parser = argparse.ArgumentParser(description="Precompute detector anchors for POPE samples before CHORD decoding.")
     parser.add_argument("--pope-path", required=True)
     parser.add_argument("--data-path", required=True)
     parser.add_argument("--output-jsonl", required=True)

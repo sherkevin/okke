@@ -5,7 +5,7 @@ import os
 import subprocess
 from dataclasses import dataclass
 
-from chord.anchor_builder import DetectedAnchor
+from chord.knowledge_kernel_evaluator import DetectedAnchor
 
 
 @dataclass

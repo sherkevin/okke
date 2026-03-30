@@ -175,7 +175,7 @@ for img_id in tqdm(range(len(img_files))):
                 num_beams=args.beam,
                 max_new_tokens=512,
                 output_attentions=True,
-                opera_decoding=True,
+                chord_decoding=True,
                 scale_factor=args.scale_factor,
                 threshold=args.threshold,
                 num_attn_candidates=args.num_attn_candidates,

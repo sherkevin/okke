@@ -343,7 +343,7 @@ class MiniGPT4(Blip2Base):
         output_attentions=False,
         return_dict_in_generate=False,
         # ours
-        opera_decoding=False,
+        chord_decoding=False,
         key_position=None,
         scale_factor=1.0,
         threshold=1,
@@ -396,8 +396,8 @@ class MiniGPT4(Blip2Base):
                 num_return_sequences=num_captions,
                 output_attentions=output_attentions,
                 return_dict_in_generate=return_dict_in_generate,
-                # opera
-                opera_decoding=opera_decoding,
+                # chord
+                chord_decoding=chord_decoding,
                 key_position=key_position,
                 scale_factor=scale_factor,
                 threshold=threshold,

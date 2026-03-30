@@ -1,10 +1,10 @@
-from chord.anchor_builder import (
+from chord.knowledge_kernel_evaluator import (
     AnchorWeightResult,
     build_anchor_weight_result,
 )
 from chord.anchor_cache import AnchorCache, CachedAnchorEntry, build_anchor_cache_key, dump_anchor_cache
 from chord.detector_client import GroundingDinoClient
-from chord.ekko_fusion import ChordRerankResult, apply_chord_rerank, apply_current_chord_score, fuse_chord_scores
+from chord.chord_fusion import ChordRerankResult, apply_chord_rerank, apply_current_chord_score, fuse_chord_scores
 from chord.knowledge_kernel_evaluator import (
     DetectedAnchor,
     KnowledgeKernelResult,

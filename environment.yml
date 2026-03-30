@@ -1,4 +1,4 @@
-name: opera
+name: chord
 channels:
   - pytorch
   - defaults

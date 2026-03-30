@@ -1153,8 +1153,8 @@ class GenerationMixin:
         synced_gpus: Optional[bool] = None,
         assistant_model: Optional["PreTrainedModel"] = None,
         streamer: Optional["BaseStreamer"] = None,
-        # OPERA's kwargs
-        opera_decoding: Optional[bool] = None,
+        # CHORD decoding kwargs
+        chord_decoding: Optional[bool] = None,
         key_position: Optional[dict] = None,
         scale_factor: Optional[float] = 50.0,
         threshold: Optional[int] = 15,
@@ -1523,48 +1523,8 @@ class GenerationMixin:
                 **model_kwargs,
             )
 
-        if is_greedy_gen_mode and opera_decoding:
-            assert False, "OPERA does not support beam=1 in the current version. It will be added in the future."
-            assert generation_config.output_attentions, "OPERA decoding requires output_attentions=True!"
-
-            if key_position is None:
-                raise ValueError("OPERA decoding requires positions for attention!")
-
-            if generation_config.num_return_sequences > 1:
-                raise ValueError(
-                    "num_return_sequences has to be 1 when doing greedy search, "
-                    f"but is {generation_config.num_return_sequences}."
-                )
-
-            # 11. run greedy search
-            return self.opera_greedy_search(
-                input_ids,
-                logits_processor=logits_processor,
-                stopping_criteria=stopping_criteria,
-                pad_token_id=generation_config.pad_token_id,
-                eos_token_id=generation_config.eos_token_id,
-                output_scores=generation_config.output_scores,
-                return_dict_in_generate=generation_config.return_dict_in_generate,
-                synced_gpus=synced_gpus,
-                streamer=streamer,
-                key_position=key_position,
-                scale_factor=scale_factor,
-                threshold=threshold,
-                num_attn_candidates=num_attn_candidates, 
-                penalty_weights=penalty_weights,
-                chord_visual_token_weights=chord_visual_token_weights,
-                chord_lambda_cur=chord_lambda_cur,
-                chord_lambda_fut=chord_lambda_fut,
-                chord_lambda_txt=chord_lambda_txt,
-                chord_zero_anchor_penalty=chord_zero_anchor_penalty,
-                chord_future_horizon=chord_future_horizon,
-                chord_future_topk=chord_future_topk,
-                chord_tau_abort=chord_tau_abort,
-                chord_attention_last_n_layers=chord_attention_last_n_layers,
-                chord_attention_head_reduce=chord_attention_head_reduce,
-                chord_diagnostics=chord_diagnostics,
-                **model_kwargs,
-            )
+        if is_greedy_gen_mode and chord_decoding:
+            raise NotImplementedError("CHORD decoding currently requires num_beams > 1.")
 
         elif is_greedy_gen_mode:
             if generation_config.num_return_sequences > 1:
@@ -1638,11 +1598,11 @@ class GenerationMixin:
                 **model_kwargs,
             )
 
-        elif is_beam_gen_mode and opera_decoding:
-            assert generation_config.output_attentions, "OPERA decoding requires output_attentions=True!"
+        elif is_beam_gen_mode and chord_decoding:
+            assert generation_config.output_attentions, "CHORD decoding requires output_attentions=True!"
 
             if key_position is None:
-                raise ValueError("OPERA decoding requires positions for attention!")
+                raise ValueError("CHORD decoding requires positions for attention!")
 
             if generation_config.num_return_sequences > generation_config.num_beams:
                 raise ValueError("`num_return_sequences` has to be smaller or equal to `num_beams`.")
@@ -1667,8 +1627,8 @@ class GenerationMixin:
                 is_encoder_decoder=self.config.is_encoder_decoder,
                 **model_kwargs,
             )
-            # 13. run opera beam search
-            return self.opera_beam_search(
+            # 13. run CHORD beam search
+            return self.chord_beam_search(
                 input_ids,
                 beam_scorer,
                 logits_processor=logits_processor,
@@ -3146,7 +3106,7 @@ class GenerationMixin:
         else:
             return sequence_outputs["sequences"]
 
-    def opera_beam_search(
+    def chord_beam_search(
         self,
         input_ids: torch.LongTensor,
         beam_scorer: BeamScorer,
@@ -3365,7 +3325,7 @@ class GenerationMixin:
         if chord_diagnostics is not None:
             chord_diagnostics.append(
                 {
-                    "entered_opera_beam_search": True,
+                    "entered_chord_beam_search": True,
                     "attention_last_n_layers": attention_last_n_layers,
                     "attention_head_reduce": attention_head_reduce,
                 }
@@ -3452,7 +3412,7 @@ class GenerationMixin:
                     [0 for _ in range(num_attn_candidates)],
                 )
 
-            from chord.future_rollout import compute_visual_anchor_ratio, reduce_attention_maps, summarize_rollout_step_batch
+            from chord.oracle_rollout_simulator import compute_visual_anchor_ratio, reduce_attention_maps, summarize_rollout_step_batch
 
             image_indices = torch.arange(
                 attn_pos["image_start"],
@@ -3705,7 +3665,7 @@ class GenerationMixin:
             )
 
             # Load the previous self-attention weights
-            from chord.future_rollout import reduce_attention_maps
+            from chord.oracle_rollout_simulator import reduce_attention_maps
 
             reduced_attn = reduce_attention_maps(
                 outputs.attentions,
@@ -3829,7 +3789,7 @@ class GenerationMixin:
             rollback_loc_gathers = torch.cat(history_rollback_locs, -1)# [batch_size * num_beams, window_size]
 
             candidate_token_scores -= penalty_weights * penalty_scores
-            candidate_token_scores_opera = candidate_token_scores.clone()
+            candidate_token_scores_baseline = candidate_token_scores.clone()
             if expanded_token_weights is not None and float(chord_lambda_cur) != 0.0:
                 from chord.chord_fusion import apply_current_chord_score
 
@@ -3838,16 +3798,16 @@ class GenerationMixin:
                     :,
                     -1,
                     attn_pos["image_start"]:attn_pos["image_end"]+1,
-                ].to(candidate_token_scores_opera.device)
+                ].to(candidate_token_scores_baseline.device)
                 candidate_token_scores_current, v_anchor_scores = apply_current_chord_score(
-                    opera_scores=candidate_token_scores_opera,
+                    baseline_scores=candidate_token_scores_baseline,
                     candidate_visual_attn=current_visual_attn,
                     token_weights=expanded_token_weights.unsqueeze(1),
                     lambda_cur=float(chord_lambda_cur),
                 )
             else:
-                candidate_token_scores_current = candidate_token_scores_opera
-                v_anchor_scores = torch.zeros_like(candidate_token_scores_opera)
+                candidate_token_scores_current = candidate_token_scores_baseline
+                v_anchor_scores = torch.zeros_like(candidate_token_scores_baseline)
             (
                 f_future_scores,
                 future_sum_visual_scores,
@@ -3865,7 +3825,7 @@ class GenerationMixin:
                 attn_pos=attn_pos,
                 v_anchor_scores=v_anchor_scores,
             )
-            current_state["candidate_token_scores"] = candidate_token_scores_opera.clone()
+            current_state["candidate_token_scores"] = candidate_token_scores_baseline.clone()
             current_state["f_future_scores"] = f_future_scores.clone()
 
             # history check
@@ -3978,9 +3938,9 @@ class GenerationMixin:
                     from chord.chord_fusion import fuse_chord_scores
 
                     candidate_token_scores_fused = fuse_chord_scores(
-                        opera_scores=candidate_token_scores_opera,
-                        v_anchor=v_anchor_scores.to(candidate_token_scores_opera.dtype),
-                        f_future=f_future_scores.to(candidate_token_scores_opera.dtype),
+                        baseline_scores=candidate_token_scores_baseline,
+                        v_anchor=v_anchor_scores.to(candidate_token_scores_baseline.dtype),
+                        f_future=f_future_scores.to(candidate_token_scores_baseline.dtype),
                         lambda_cur=float(chord_lambda_cur),
                         lambda_fut=float(chord_lambda_fut),
                         zero_anchor_penalty=float(chord_zero_anchor_penalty or 0.0),

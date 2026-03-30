@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 import torch
 
-from chord.anchor_builder import compute_knowledge_kernel_bonus
+from chord.knowledge_kernel_evaluator import compute_knowledge_kernel_bonus
 
 
 @dataclass(frozen=True)
@@ -19,7 +19,7 @@ class ChordRerankResult:
 
 def fuse_chord_scores(
     *,
-    opera_scores: torch.Tensor,
+    baseline_scores: torch.Tensor,
     v_anchor: torch.Tensor,
     f_future: torch.Tensor,
     lambda_cur: float,
@@ -27,30 +27,30 @@ def fuse_chord_scores(
     zero_anchor_penalty: float = 0.0,
 ) -> torch.Tensor:
     if lambda_cur == 0.0 and lambda_fut == 0.0 and zero_anchor_penalty == 0.0:
-        return opera_scores.clone()
-    no_anchor_mask = (v_anchor <= 0.0).to(opera_scores.dtype)
-    return opera_scores + lambda_cur * v_anchor + lambda_fut * f_future - zero_anchor_penalty * no_anchor_mask
+        return baseline_scores.clone()
+    no_anchor_mask = (v_anchor <= 0.0).to(baseline_scores.dtype)
+    return baseline_scores + lambda_cur * v_anchor + lambda_fut * f_future - zero_anchor_penalty * no_anchor_mask
 
 
 def apply_current_chord_score(
     *,
-    opera_scores: torch.Tensor,
+    baseline_scores: torch.Tensor,
     candidate_visual_attn: torch.Tensor,
     token_weights: torch.Tensor,
     lambda_cur: float,
 ) -> tuple[torch.Tensor, torch.Tensor]:
     if lambda_cur == 0.0:
-        zero_bonus = torch.zeros_like(opera_scores)
-        return opera_scores.clone(), zero_bonus
+        zero_bonus = torch.zeros_like(baseline_scores)
+        return baseline_scores.clone(), zero_bonus
 
     v_anchor = compute_knowledge_kernel_bonus(candidate_visual_attn, token_weights)
-    return opera_scores + lambda_cur * v_anchor, v_anchor
+    return baseline_scores + lambda_cur * v_anchor, v_anchor
 
 
 def apply_chord_rerank(
     *,
     candidate_tokens: torch.Tensor,
-    opera_scores: torch.Tensor,
+    baseline_scores: torch.Tensor,
     v_anchor: torch.Tensor,
     f_future: torch.Tensor,
     lambda_cur: float,
@@ -70,7 +70,7 @@ def apply_chord_rerank(
         )
 
     fused_scores = fuse_chord_scores(
-        opera_scores=opera_scores,
+        baseline_scores=baseline_scores,
         v_anchor=v_anchor,
         f_future=f_future,
         lambda_cur=lambda_cur,
