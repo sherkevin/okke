@@ -1,0 +1,53 @@
+[
+  {
+    "session_id": "019e6f2b-33a9-78e0-bdb7-eaa32981ae5c",
+    "generated_at_utc": "2026-05-31T15:57:18.910522+00:00",
+    "source_file": "codex_chat_history\\redacted_raw\\019e6f2b-33a9-78e0-bdb7-eaa32981ae5c\\rollout-2026-05-28T23-19-27-019e6f2b-33a9-78e0-bdb7-eaa32981ae5c.jsonl",
+    "source_bytes": 32655934,
+    "source_sha256": "7cb1c4201f559d95be702996c0bdd264ce89a298d13c40ba8b051df1b5f28a7f",
+    "original_events": 7659,
+    "compact_events": 4674,
+    "duplicates_removed": 2985,
+    "compact_events_bytes": 5886350,
+    "transcript_file": "codex_chat_history\\cleaned\\019e6f2b-33a9-78e0-bdb7-eaa32981ae5c\\transcript.md",
+    "encrypted_reasoning_omitted": 868,
+    "tool_outputs_summarized": 1584,
+    "custom_outputs_summarized": 281,
+    "unknown_payloads_summarized": 69,
+    "transcript_bytes": 4613548
+  },
+  {
+    "session_id": "019e6f39-dfd6-74c2-bdf2-1c79753c7ec1",
+    "generated_at_utc": "2026-05-31T15:57:19.299900+00:00",
+    "source_file": "codex_chat_history\\redacted_raw\\019e6f39-dfd6-74c2-bdf2-1c79753c7ec1\\rollout-2026-05-28T23-35-31-019e6f39-dfd6-74c2-bdf2-1c79753c7ec1.jsonl",
+    "source_bytes": 19071903,
+    "source_sha256": "2c7724cca624d060fe8e5b939a0d7e361b6cef4522df9dd9c9ae380cd9969d42",
+    "original_events": 5624,
+    "compact_events": 3677,
+    "duplicates_removed": 1947,
+    "compact_events_bytes": 4645531,
+    "transcript_file": "codex_chat_history\\cleaned\\019e6f39-dfd6-74c2-bdf2-1c79753c7ec1\\transcript.md",
+    "encrypted_reasoning_omitted": 537,
+    "tool_outputs_summarized": 1218,
+    "custom_outputs_summarized": 181,
+    "unknown_payloads_summarized": 22,
+    "transcript_bytes": 3710538
+  },
+  {
+    "session_id": "019e7e49-9136-7c02-b3f4-7f17404d2932",
+    "generated_at_utc": "2026-05-31T15:57:19.394147+00:00",
+    "source_file": "codex_chat_history\\redacted_raw\\019e7e49-9136-7c02-b3f4-7f17404d2932\\rollout-2026-05-31T21-46-56-019e7e49-9136-7c02-b3f4-7f17404d2932.jsonl",
+    "source_bytes": 2092273,
+    "source_sha256": "b394948b291988dc0cb77f0138842b08606a67353313cb7e234784afb2028d12",
+    "original_events": 1027,
+    "compact_events": 662,
+    "duplicates_removed": 365,
+    "compact_events_bytes": 698697,
+    "transcript_file": "codex_chat_history\\cleaned\\019e7e49-9136-7c02-b3f4-7f17404d2932\\transcript.md",
+    "encrypted_reasoning_omitted": 135,
+    "tool_outputs_summarized": 260,
+    "custom_outputs_summarized": 24,
+    "unknown_payloads_summarized": 1,
+    "transcript_bytes": 530629
+  }
+]

@@ -2,7 +2,7 @@
 
 This directory packages the Codex sessions that matter for the CHORD rebuttal handoff.
 
-Redacted raw logs are kept because the user explicitly requested that chat records be uploaded with the project. They are not the best entry point for a collaborator. Start from the handoff files below, then open the redacted jsonl only when exact prior messages or tool outputs are needed.
+Redacted raw logs are kept because the user explicitly requested that chat records be uploaded with the project. They are not the best entry point for a collaborator. Start from the handoff files and the cleaned transcripts below, then open the redacted jsonl only when exact prior messages or full tool outputs are needed.
 
 ## Start Here
 
@@ -11,6 +11,16 @@ Redacted raw logs are kept because the user explicitly requested that chat recor
 | Rebuttal author role | `handoffs/rebuttal_role_handoff_20260531.md` | `019e6f2b-33a9-78e0-bdb7-eaa32981ae5c` | `redacted_raw/019e6f2b-33a9-78e0-bdb7-eaa32981ae5c/` |
 | Strict reviewer role | `handoffs/reviewer_role_handoff_20260531.md` | `019e6f39-dfd6-74c2-bdf2-1c79753c7ec1` | `redacted_raw/019e6f39-dfd6-74c2-bdf2-1c79753c7ec1/` |
 | Current sync/upload work | this README and `LOCAL_TASKS.md` | `019e7e49-9136-7c02-b3f4-7f17404d2932` | `redacted_raw/019e7e49-9136-7c02-b3f4-7f17404d2932/` |
+
+## Cleaned Reading Layer
+
+Use `cleaned/README.md` first for a compact index. Each session under `cleaned/<session-id>/` contains:
+
+- `transcript.md`: chronological human-readable transcript with long tool outputs summarized.
+- `compact_events.jsonl`: deduplicated structured event stream for programmatic inspection.
+- `summary.json`: source SHA256, source byte count, original/compact event counts, duplicate count, and omitted encrypted-reasoning count.
+
+The cleaned layer removes exact duplicate compact events, omits encrypted reasoning payloads, and summarizes long tool outputs by preview plus SHA256. The complete redacted raw logs remain in `redacted_raw/` for exact reconstruction.
 
 ## Resume Commands
 

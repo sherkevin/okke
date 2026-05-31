@@ -1,0 +1,17 @@
+{
+  "session_id": "019e7e49-9136-7c02-b3f4-7f17404d2932",
+  "generated_at_utc": "2026-05-31T15:57:19.394147+00:00",
+  "source_file": "codex_chat_history\\redacted_raw\\019e7e49-9136-7c02-b3f4-7f17404d2932\\rollout-2026-05-31T21-46-56-019e7e49-9136-7c02-b3f4-7f17404d2932.jsonl",
+  "source_bytes": 2092273,
+  "source_sha256": "b394948b291988dc0cb77f0138842b08606a67353313cb7e234784afb2028d12",
+  "original_events": 1027,
+  "compact_events": 662,
+  "duplicates_removed": 365,
+  "compact_events_bytes": 698697,
+  "transcript_file": "codex_chat_history\\cleaned\\019e7e49-9136-7c02-b3f4-7f17404d2932\\transcript.md",
+  "encrypted_reasoning_omitted": 135,
+  "tool_outputs_summarized": 260,
+  "custom_outputs_summarized": 24,
+  "unknown_payloads_summarized": 1,
+  "transcript_bytes": 530629
+}

@@ -1,0 +1,17 @@
+{
+  "session_id": "019e6f39-dfd6-74c2-bdf2-1c79753c7ec1",
+  "generated_at_utc": "2026-05-31T15:57:19.299900+00:00",
+  "source_file": "codex_chat_history\\redacted_raw\\019e6f39-dfd6-74c2-bdf2-1c79753c7ec1\\rollout-2026-05-28T23-35-31-019e6f39-dfd6-74c2-bdf2-1c79753c7ec1.jsonl",
+  "source_bytes": 19071903,
+  "source_sha256": "2c7724cca624d060fe8e5b939a0d7e361b6cef4522df9dd9c9ae380cd9969d42",
+  "original_events": 5624,
+  "compact_events": 3677,
+  "duplicates_removed": 1947,
+  "compact_events_bytes": 4645531,
+  "transcript_file": "codex_chat_history\\cleaned\\019e6f39-dfd6-74c2-bdf2-1c79753c7ec1\\transcript.md",
+  "encrypted_reasoning_omitted": 537,
+  "tool_outputs_summarized": 1218,
+  "custom_outputs_summarized": 181,
+  "unknown_payloads_summarized": 22,
+  "transcript_bytes": 3710538
+}
