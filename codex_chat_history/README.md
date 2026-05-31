@@ -12,6 +12,15 @@ Redacted raw logs are kept because the user explicitly requested that chat recor
 | Strict reviewer role | `handoffs/reviewer_role_handoff_20260531.md` | `019e6f39-dfd6-74c2-bdf2-1c79753c7ec1` | `redacted_raw/019e6f39-dfd6-74c2-bdf2-1c79753c7ec1/` |
 | Current sync/upload work | this README and `LOCAL_TASKS.md` | `019e7e49-9136-7c02-b3f4-7f17404d2932` | `redacted_raw/019e7e49-9136-7c02-b3f4-7f17404d2932/` |
 
+## Automation Definitions
+
+The paused scheduled tasks for the review and rebuttal role windows are exported under `automations/`:
+
+- `automations/README.md`
+- `automations/review_role_automation.md`
+- `automations/rebuttal_role_automation.md`
+- `automations/raw_toml/`
+
 ## Cleaned Reading Layer
 
 Use `cleaned/README.md` first for a compact index. Each session under `cleaned/<session-id>/` contains:

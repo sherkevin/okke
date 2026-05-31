@@ -1,3 +1,34 @@
+## 2026-05-31 - Reviewer heartbeat no-page-limit audit at 23:58
+
+- Status: DONE
+- Goal: execute a fresh strict reviewer audit from the 23:58 heartbeat using the no-page-limit reviewer prompt, judging only response completeness, scientific sufficiency, elegance, and reviewer persuasion.
+- Steps:
+  1. DONE: Located latest response as review_v12 and latest prior audit as strict_reviewer_audit_2350_latest_20260531_review_v12.md.
+  2. DONE: Read the latest response and reviewer true-intent contract under the measured-evidence interpretation rule.
+  3. DONE: Wrote strict_reviewer_audit_2358_latest_20260531_review_v12.md with the required updated structure.
+  4. DONE: Verified the output and closed this LOCAL_TASKS entry.
+- Output path: papers/opera_acm_sigconf/rebuttal/strict_reviewer_audit_2358_latest_20260531_review_v12.md
+- Primary input: papers/opera_acm_sigconf/rebuttal/author_response_min_diff_expected_20260531_2215_review_v12.md
+- Acceptance criteria: met. New strict audit exists for this heartbeat, includes _latest_ in the filename, does not score one-page/PDF readiness, treats visible numeric evidence as measured/test evidence, and records the evidence boundary.
+- Verification commands:
+  - Test-Path .\papers\opera_acm_sigconf\rebuttal\strict_reviewer_audit_2358_latest_20260531_review_v12.md
+  - Select-String -Path .\papers\opera_acm_sigconf\rebuttal\strict_reviewer_audit_2358_latest_20260531_review_v12.md -Pattern '^## 1\.|^## 2\.|^## 3\.|^## 4\.|^## 5\.|^## 6\.|^## 7\.|^## 8\.|^## 9\.|^## 10\.'
+  - Select-String -Path .\papers\opera_acm_sigconf\rebuttal\strict_reviewer_audit_2358_latest_20260531_review_v12.md -Pattern '4.45 / 5|Response Completeness And Elegance Risk|measured/test evidence|review_v13'
+- Evidence boundary: no author response, PDF, TEX, figure, experiment output, or data table was modified; v12 visible numeric/table values were judged as measured/test evidence under the current reviewer rule; page limits and official upload readiness were excluded from scoring.
+
+## 2026-06-01 - Export and pause review/rebuttal role automations
+
+- Status: DONE
+- Goal: export the complete scheduled-task definitions for the review role and rebuttal role windows into an easy-to-find repository location, then pause both live automations.
+- Steps:
+  1. DONE: Locate matching Codex automation TOML files under `C:\Users\shers\.codex\automations`.
+  2. DONE: Write complete repository snapshots for both role automations, including full prompt, schedule, thread id, and pause status.
+  3. DONE: Pause both live heartbeat automations while preserving their definitions.
+  4. DONE: Verify exported files and paused statuses, then sync to the `okke` upload branch and push.
+- Acceptance criteria: repository contains a clear automation index plus per-role full definitions; `reviewer-strict-audit-current-thread-8min` and `all-in-one-response` are both `PAUSED`; GitHub branch is updated.
+- Result: exported complete definitions under `AUTOMATIONS.md` and `codex_chat_history/automations/`, including per-role Markdown files and exact paused TOML snapshots.
+- Verification: local Codex automation TOML for `reviewer-strict-audit-current-thread-8min` and `all-in-one-response` both reports `status = "PAUSED"`; repository snapshots include `PAUSED`, `FREQ=MINUTELY;INTERVAL=8`, target thread ids, and complete prompts.
+
 ## 2026-05-31 - Compact and deduplicate uploaded Codex chat logs at 23:52
 
 - Status: DONE
