@@ -1,16 +1,19 @@
 ## 2026-05-31 - GitHub upload and role handoff package at 22:02
 
-- Status: RUNNING
+- Status: DONE
 - Goal: sync current/rebuttal/reviewer Codex sessions, organize clean handoff materials for the rebuttal and reviewer roles, and upload the current project state to GitHub.
 - Steps:
   1. DONE: Sync Codex session jsonl files for current, `rebuttal role`, and `reviewer role`.
   2. DONE: Build cleaned role handoff docs so collaborators can quickly take over the rebuttal author and strict reviewer roles.
   3. DONE: Check obvious secret/large-file risks and choose a GitHub-safe publish route.
-  4. RUNNING: Commit and push to GitHub, then record the resulting URL.
+  4. DONE: Commit and push the GitHub upload branch, then record the resulting URL.
 - Acceptance criteria: role handoff docs point to canonical paper/rebuttal artifacts and raw session logs, GitHub push succeeds, and final response includes the GitHub address plus any upload boundary.
 - Current outputs: `codex_chat_history\README.md`, `codex_chat_history\handoffs\rebuttal_role_handoff_20260531.md`, `codex_chat_history\handoffs\reviewer_role_handoff_20260531.md`, and redacted session jsonl copies under `codex_chat_history\redacted_raw`.
 - Upload safety: project scripts `veb_idea_workflow.py` and `scripts\monitor_idea_batch.py` no longer contain hard-coded API keys; uploaded chat jsonl copies are redacted for OpenAI-style and GitHub-style tokens. Per the 22:35 user instruction, archive/package files (`*.tar.gz`, `*.zip`, `*.7z`, `*.rar`) are ignored and not uploaded; chat history remains the priority upload.
 - Nested repo handling: local `.git` metadata for `EKKO`, `OPERA`, and `external\DAMO` was moved to ignored `.codex-session-sync\nested_git_metadata\...`; their current worktree contents are staged as ordinary files so GitHub contains the actual files rather than broken gitlinks.
+- Result: priority upload succeeded to `https://github.com/sherkevin/okke/tree/codex/chat-history-okke-sync-20260531`.
+- Verification: pushed branch `codex/chat-history-okke-sync-20260531` to `ssh://git@github.com/sherkevin/okke.git`; branch contains `codex_chat_history`, role handoffs, sync scripts, CHORD rebuttal/paper artifacts, selected CHORD code/tests, and excludes archive packages.
+- Boundary: a broader non-archive upload commit (`714792a`, branch `codex/chord-handoff-sync`) was attempted first but SSH push was reset during transfer. The successful branch is an orphan priority branch intended to guarantee the chat records and handoff materials are on GitHub; full server snapshots, vendored bulk trees, and archive packages were not uploaded.
 
 ## 2026-05-31 - Restore full scientific author response after 22:13 correction
 
