@@ -1,0 +1,7 @@
+{
+  "limit": 8,
+  "total_detector_ms": 11982,
+  "mean_detector_ms": 1497.75,
+  "status": 0,
+  "gpu": 0
+}

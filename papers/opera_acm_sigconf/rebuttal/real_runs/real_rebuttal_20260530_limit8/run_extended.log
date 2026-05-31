@@ -1,0 +1,88 @@
+[phase] extended start 2026-05-30T10:45:45+08:00
+[config] BASE=/media/data3/dengkw/chord_rebuttal_20260529 RUN_DIR=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8 LIMIT=8 TAG=adv8 LLAVA_GPUS=0,2,3,6
+viplabserver12
+0, NVIDIA GeForce RTX 2080 Ti, 11264 MiB, 6 MiB, 0 %
+1, NVIDIA GeForce RTX 3090, 24576 MiB, 20992 MiB, 0 %
+2, NVIDIA GeForce RTX 2080 Ti, 11264 MiB, 6 MiB, 0 %
+3, NVIDIA GeForce RTX 2080 Ti, 11264 MiB, 6 MiB, 0 %
+4, NVIDIA GeForce RTX 3090, 24576 MiB, 20992 MiB, 0 %
+5, NVIDIA GeForce RTX 3090, 24576 MiB, 21022 MiB, 0 %
+6, NVIDIA GeForce RTX 2080 Ti, 11264 MiB, 6 MiB, 0 %
+7, NVIDIA GeForce RTX 3090, 24576 MiB, 20992 MiB, 0 %
+[phase] wait for LLaVA local files
+13G	/media/data3/dengkw/chord_rebuttal_20260529/assets/models/llava-v1.5-7b
+[phase] ensure POPE and COCO images
+records 8 missing 0
+[phase] precompute real anchors
+{"output_jsonl": "/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/anchors_pope_adv8.jsonl", "entries": 8, "box_threshold": 0.25, "text_threshold": 0.2, "max_boxes": 8}
+[phase] create uniform/random anchor controls
+[phase] launch LLaVA sequentially on verified idle 2080Ti set 0,2,3,6
+[run] name=llava_pope_adv8_opera gpu=0,2,3,6 anchor= args=
+[done] name=llava_pope_adv8_opera status=0 log=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_opera.log output=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_opera.json
+[run] name=llava_pope_adv8_same_anchor_non_chord gpu=0,2,3,6 anchor=--chord-enable --anchor-cache-jsonl /media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/anchors_pope_adv8.jsonl args=--lambda-cur 0 --lambda-fut 0 --future-horizon 0 --future-topk 0
+[done] name=llava_pope_adv8_same_anchor_non_chord status=0 log=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_same_anchor_non_chord.log output=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_same_anchor_non_chord.json
+[run] name=llava_pope_adv8_pc_real gpu=0,2,3,6 anchor=--chord-enable --anchor-cache-jsonl /media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/anchors_pope_adv8.jsonl args=--lambda-cur 0.25 --lambda-fut 0 --future-horizon 0 --future-topk 0
+[done] name=llava_pope_adv8_pc_real status=0 log=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_pc_real.log output=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_pc_real.json
+[run] name=llava_pope_adv8_full_k5_m3 gpu=0,2,3,6 anchor=--chord-enable --anchor-cache-jsonl /media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/anchors_pope_adv8.jsonl args=--lambda-cur 0.25 --lambda-fut 0.05 --future-horizon 3 --future-topk 5
+[done] name=llava_pope_adv8_full_k5_m3 status=0 log=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_full_k5_m3.log output=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_full_k5_m3.json
+[run] name=llava_pope_adv8_full_k3_m2 gpu=0,2,3,6 anchor=--chord-enable --anchor-cache-jsonl /media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/anchors_pope_adv8.jsonl args=--lambda-cur 0.25 --lambda-fut 0.05 --future-horizon 2 --future-topk 3
+[done] name=llava_pope_adv8_full_k3_m2 status=0 log=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_full_k3_m2.log output=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_full_k3_m2.json
+[run] name=llava_pope_adv8_full_k5_m1 gpu=0,2,3,6 anchor=--chord-enable --anchor-cache-jsonl /media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/anchors_pope_adv8.jsonl args=--lambda-cur 0.25 --lambda-fut 0.05 --future-horizon 1 --future-topk 5
+[done] name=llava_pope_adv8_full_k5_m1 status=0 log=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_full_k5_m1.log output=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_full_k5_m1.json
+[run] name=llava_pope_adv8_full_k5_m2 gpu=0,2,3,6 anchor=--chord-enable --anchor-cache-jsonl /media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/anchors_pope_adv8.jsonl args=--lambda-cur 0.25 --lambda-fut 0.05 --future-horizon 2 --future-topk 5
+[done] name=llava_pope_adv8_full_k5_m2 status=0 log=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_full_k5_m2.log output=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_full_k5_m2.json
+[run] name=llava_pope_adv8_full_k5_m4 gpu=0,2,3,6 anchor=--chord-enable --anchor-cache-jsonl /media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/anchors_pope_adv8.jsonl args=--lambda-cur 0.25 --lambda-fut 0.05 --future-horizon 4 --future-topk 5
+[done] name=llava_pope_adv8_full_k5_m4 status=0 log=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_full_k5_m4.log output=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_full_k5_m4.json
+[run] name=llava_pope_adv8_full_k10_m3 gpu=0,2,3,6 anchor=--chord-enable --anchor-cache-jsonl /media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/anchors_pope_adv8.jsonl args=--lambda-cur 0.25 --lambda-fut 0.05 --future-horizon 3 --future-topk 10
+[done] name=llava_pope_adv8_full_k10_m3 status=0 log=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_full_k10_m3.log output=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_full_k10_m3.json
+[run] name=llava_pope_adv8_pc_uniform gpu=0,2,3,6 anchor=--chord-enable --anchor-cache-jsonl /media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/anchors_pope_adv8_uniform.jsonl args=--lambda-cur 0.25 --lambda-fut 0 --future-horizon 0 --future-topk 0
+[done] name=llava_pope_adv8_pc_uniform status=0 log=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_pc_uniform.log output=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_pc_uniform.json
+[run] name=llava_pope_adv8_pc_random gpu=0,2,3,6 anchor=--chord-enable --anchor-cache-jsonl /media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/anchors_pope_adv8_random_matched.jsonl args=--lambda-cur 0.25 --lambda-fut 0 --future-horizon 0 --future-topk 0
+[done] name=llava_pope_adv8_pc_random status=0 log=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_pc_random.log output=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_pc_random.json
+[run] name=llava_pope_adv8_past_future gpu=0,2,3,6 anchor=--chord-enable --anchor-cache-jsonl /media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/anchors_pope_adv8.jsonl args=--lambda-cur 0 --lambda-fut 0.05 --future-horizon 3 --future-topk 5
+[done] name=llava_pope_adv8_past_future status=0 log=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_past_future.log output=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit8/llava_pope_adv8_past_future.json
+[phase] summarize
+[phase] extended complete 2026-05-30T14:23:38+08:00
+anchors_pope_adv8.jsonl 3106 bytes
+anchors_pope_adv8_random_matched.jsonl 3106 bytes
+anchors_pope_adv8_summary.json 105 bytes
+anchors_pope_adv8_uniform.jsonl 3106 bytes
+llava_pope_adv8_full_k10_m3.json 1150752 bytes
+llava_pope_adv8_full_k10_m3.log 13893 bytes
+llava_pope_adv8_full_k10_m3.status 2 bytes
+llava_pope_adv8_full_k3_m2.json 1152353 bytes
+llava_pope_adv8_full_k3_m2.log 13893 bytes
+llava_pope_adv8_full_k3_m2.status 2 bytes
+llava_pope_adv8_full_k5_m1.json 1150754 bytes
+llava_pope_adv8_full_k5_m1.log 13893 bytes
+llava_pope_adv8_full_k5_m1.status 2 bytes
+llava_pope_adv8_full_k5_m2.json 1150749 bytes
+llava_pope_adv8_full_k5_m2.log 13893 bytes
+llava_pope_adv8_full_k5_m2.status 2 bytes
+llava_pope_adv8_full_k5_m3.json 1150754 bytes
+llava_pope_adv8_full_k5_m3.log 13893 bytes
+llava_pope_adv8_full_k5_m3.status 2 bytes
+llava_pope_adv8_full_k5_m4.json 1150753 bytes
+llava_pope_adv8_full_k5_m4.log 13893 bytes
+llava_pope_adv8_full_k5_m4.status 2 bytes
+llava_pope_adv8_opera.json 1148676 bytes
+llava_pope_adv8_opera.log 13893 bytes
+llava_pope_adv8_opera.status 2 bytes
+llava_pope_adv8_past_future.json 1150754 bytes
+llava_pope_adv8_past_future.log 13893 bytes
+llava_pope_adv8_past_future.status 2 bytes
+llava_pope_adv8_pc_random.json 1154767 bytes
+llava_pope_adv8_pc_random.log 13893 bytes
+llava_pope_adv8_pc_random.status 2 bytes
+llava_pope_adv8_pc_real.json 1154750 bytes
+llava_pope_adv8_pc_real.log 13893 bytes
+llava_pope_adv8_pc_real.status 2 bytes
+llava_pope_adv8_pc_uniform.json 1154761 bytes
+llava_pope_adv8_pc_uniform.log 13893 bytes
+llava_pope_adv8_pc_uniform.status 2 bytes
+llava_pope_adv8_same_anchor_non_chord.json 1154751 bytes
+llava_pope_adv8_same_anchor_non_chord.log 13893 bytes
+llava_pope_adv8_same_anchor_non_chord.status 2 bytes
+real_rebuttal_metrics_20260529.json 9960 bytes
+real_rebuttal_metrics_20260529.md 2496 bytes
+run_extended.log 7695 bytes

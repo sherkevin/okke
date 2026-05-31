@@ -1,0 +1,79 @@
+Sigcomm 2014 author response guidelines
+
+As with recent years, we are allowing authors to view a subset of the reviews for their papers and
+optionally provide a response. The reviews will be available for viewing by end of day on 14 Mar 2014 and
+the author response can be provided until 20:00 EDT on 21 Mar 2014. Responses must be brief; the site will
+enforce a limit of 400 words and 2600 characters.
+Our goal in allowing authors to provide a response is to enable them to answer questions raised by the
+reviewers, and to point out any errors they spot in the reviews. To this end, the review form will include a
+section where reviewers can list specific questions they have for the authors. The authors should endeavor to
+respond to these questions. In addition, they are free to also respond to other comments in the reviews where
+they believe a clarification or correction might help. As in the original paper submission, authors should be
+careful to preserve anonymity while submitting their response.
+We wish to emphasize that the author responses are likely to be most effective when focused on factual
+points rather than opinion. The PC can choose to ignore any new results or improvements claimed by the
+authors. Also, the PC has the final say on whether a paper with some errors can still be accepted, even when
+the author response includes corrections aimed at rectifying errors in the original submission. We provide
+some examples below of how authors might make best use of the response opportunity. Ultimately, however,
+it is up to the authors to decide how best to utilize the opportunity to respond.
+Please note that while the Sigcomm reviewing will be done over two rounds, the constraints of the
+reviewing schedule mean that only the reviews from the first round will be made available for the authors to
+respond to. Nevertheless, we expect that the first round reviews will bring out most or all of the questions,
+confusion, or misunderstanding, if any, that arise when someone reads the paper, which are precisely the
+kinds of things that authors should be responding to.
+
+Examples of appropriate responses
+While we expect that authors will focus on answering the specific questions raised by reviewers, we recognize that there might be instances where authors would also want to also respond to reviewer comments that
+they believe are misplaced or in error. We provide examples of both.
+Reviewer question: The approach here seems very similar to that in [XYZ]. What is the new contribution?
+Author response: Whereas [XYZ] assumed that the nodes were mostly static, we handle the case where the
+nodes are highly mobile. Section ABC explains why it is important to consider mobility and why it makes
+the problem challenging.
+Reviewer question: Your algorithm seems to assume XYZ for correctness/speed. Is this so?
+Author response: That is partially correct. We assume this for speed but not for correctness. Correctness
+follows from the discussion in Section ABC.
+1
+
+Reviewer question: In your proof of Theorem 3 on Page 8, column 2, it appears that Line 7 does not follow
+from Line 6. What happens if A is not a subset of B, and c is greater than 100?
+Author response: Yes, there is an error in the proof, but the Theorem is still correct because when A is not
+a subset of B, c is less than 10 by Lemma 2. (As noted above, the PC has the final say on whether such
+corrections can be accepted.)
+Reviewer question: I don’t see why you have chosen to compare your system with the older XYZ scheme
+instead of the newer ABC one. It seems to me that your gains compared to ABC would be quite minimal.
+Author response: We would have ideally liked to have compared with ABC, but weren’t able to because
+of the difficulty in obtaining an implementation of ABC. However, we believe that our approach would still
+gain compared to ABC because of [explain reasons].
+Reviewer comment: The complexity of the proposed scheme doesn’t seem worthwhile since the compression gain is only 5%, going from 80% compression to 85%.
+Author response: Going from 80% to 85% in compression would cut down the on-the-wire traffic by 25%
+(100-80 = 20, and 100-85 = 15).
+Reviewer comment: Emails from new senders is almost certainly where silent email loss happens, but the
+paper doesn’t handle this case.
+Author response: The experimental data presented in Section XYZ shows that a significant amount of silent
+loss occurred even when multiple emails were sent from a sender to a recipient and, moreover, even when
+the sender was added to the recipient’s “safe senders” list (i.e., it wasn’t the case of a first-time sender).
+
+Examples of inappropriate responses
+Inappropriate author response: Reviewer C clearly didn’t read the paper carefully. The comments are
+about typos!
+This is a waste of your response section; attacking reviewers will not help, however annoying a reviewer
+may appear to be (and remember much of this is perception). In general, trying to react to opinion with
+counter-opinion is unlikely to help.
+Inappropriate author response: We have recently updated our results and found that our experiment runs
+ten times as fast. Results are at this web URL.
+Such a response is inappropriate because, besides potentially compromising anonymity, it seeks to get
+around the tight length restriction placed on the author response through a level of indirection! The author
+response, together with the paper, should be self-contained and the PC will disregard any additional materials
+outside of these.
+Inappropriate author response: We have a new proof of the theorem but aren’t able to include it here
+because of space limitations.
+Again, the tight space limitation reflects the intent of the author response mechanism of giving authors
+the opportunity to provide brief clarifications, which when read together with the paper are clear and com2
+
+plete. It is not appropriate to stuff in new results or findings that require more extensive explanation than
+would be possible in the space available. As noted above, the PC can choose to ignore any new results or
+improvements claimed by the authors.
+
+3
+
+

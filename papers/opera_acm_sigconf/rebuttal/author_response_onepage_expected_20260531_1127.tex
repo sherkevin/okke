@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage[letterpaper,margin=0.45in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext,newtxmath}
+\usepackage{microtype}
+\usepackage{array,tabularx,booktabs}
+\usepackage{enumitem}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.5pt}
+\setlength{\tabcolsep}{2.8pt}
+\renewcommand{\arraystretch}{1.04}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\begin{document}
+\fontsize{8.35}{9.1}\selectfont
+
+\begin{center}
+{\bf Author Response: CHORD Hallucination Mitigation}
+\end{center}
+
+We thank the reviewers for pointing out that aggregate benchmark scores alone do not isolate mechanism, detector attribution, and deployment cost. We revise the response around claim discipline and targeted diagnostics: CHORD is detector-assisted and training-free for the base MLLM; it is an admission-time verifier for object-grounded hallucination mitigation; decoder-to-vision attention is an operational scoring feature, not a causal explanation.
+
+\vspace{1pt}
+\begin{tabularx}{\linewidth}{@{}p{0.145\linewidth}p{0.205\linewidth}Y Y@{}}
+\toprule
+Concern & Reviewer need & Author response & Camera-ready boundary \\
+\midrule
+Future mechanism & M8du asks whether Future actually changes admitted tokens and whether those changes help. & We will add a paired Full-vs-P+C admission diagnostic: rollout-induced token flips, corrected unsupported object mentions, harmful changes, neutral changes, sample size, and parser boundary. & Future is a quality-oriented verifier, not a claim that every token needs rollout. Exact flip/correctness counts, confidence intervals, and $p$-values are reported only for completed paired logs; otherwise no expected numbers are used. \\
+\midrule
+Detector attribution & KrEs/M8du ask whether Grounding DINO alone explains the gains. & We isolate detector contribution with fixed same-anchor non-CHORD, uniform/random anchors, Past+Future without Current, P+C, and Full; we also stratify zero/relevant/noisy anchors and detector threshold sensitivity when measured. & CHORD is detector-assisted. We do not claim detector independence, second-proposer robustness, or gains under missed/noisy anchors unless those runs are measured. \\
+\midrule
+Cost/defaults & jjVG/KrEs/ve3y ask about overhead, end-to-end latency, batch behavior, and why $k=5,m=3$. & We separate one-time proposal cost from decode ITL and will report total latency, peak VRAM, and batch-size boundary when logs are complete. P+C is the practical/default regime; Full is quality-oriented/offline. & $k=5,m=3$ is the quality setting. Under latency constraints, P+C or $k=5,m=2$ is the recommended practical setting. Full is not presented as a low-cost deployment default. \\
+\midrule
+Recent baselines & jjVG/KrEs ask for stronger recent training-free baselines. & We add ONLY, VHD/VHR, and HALC to related work and compare under a matched protocol: same backbone, split, prompt family, parser, seeds, and validation budget. & Numeric wins are included only for completed matched runs with provenance. If a baseline is not completed before final response, we state the matched protocol and add the result in camera-ready rather than implying superiority. \\
+\midrule
+Novelty/scope & KrEs/yx8u/ve3y question whether CHORD is only a combination of known parts and whether it generalizes broadly. & We clarify the contribution as a coordinated admission-time verifier that jointly tests Past rollback, Current object support, and bounded Future stability. We redraw Fig.~2 as sequential Past/Current/Future stages to remove pipeline clutter. & We narrow the main claim to object-grounded hallucination and open-ended object mentions. We remove detector-independent, broad relation/composition, and causal-attention claims unless supported by measured evidence. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{2pt}
+\textbf{Evidence policy.} All exact numbers in the official response and camera-ready paper must be measured or removed. Internal expected target tables are not used as factual rebuttal evidence. If real measurements disagree with the expected pattern, we will replace the row and narrow the claim rather than tune wording to preserve a stronger claim.
+
+\end{document}

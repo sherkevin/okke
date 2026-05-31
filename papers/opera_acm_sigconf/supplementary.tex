@@ -1,0 +1,178 @@
+%%
+%% Supplementary material for CHORD.
+%%
+\documentclass[sigconf,anonymous,nonacm]{acmart}
+
+\AtBeginDocument{%
+  \providecommand\BibTeX{{Bib\TeX}}}
+
+\usepackage{xspace}
+\usepackage{booktabs}
+
+\newcommand{\ie}{\textit{i.e.}\xspace}
+\newcommand{\eg}{\textit{e.g.}\xspace}
+\newcommand{\etc}{\textit{etc.}\xspace}
+
+\settopmatter{printacmref=false,printfolios=false}
+
+\begin{document}
+
+\title{Supplementary Material for CHORD: Calibrating Hallucinations via Object-Resonant Decoding in Multimodal Large Language Models}
+
+% Double-blind submission: keep all author-identifying information disabled.
+% \author{Kaiwen Deng}
+% \email{dkw24@mails.tsinghua.edu.cn}
+% \affiliation{%
+%   \institution{Tsinghua Shenzhen International Graduate School, Tsinghua University}
+%   \city{Shenzhen}
+%   \country{China}}
+%
+% \author{Wenming Yang}
+% \authornote{Corresponding author.}
+% \email{yang.wenming@sz.tsinghua.edu.cn}
+% \affiliation{%
+%   \institution{Shenzhen International Graduate School \& Department of Electronic Engineering, Tsinghua University}
+%   \city{Shenzhen}
+%   \country{China}}
+
+\renewcommand{\shortauthors}{Anonymous Submission}
+
+\begin{abstract}
+This supplementary document provides the latest implementation and evaluation notes for CHORD. It is synchronized with the current main paper and includes only material supported by the submitted code, figures, and measured results.
+\end{abstract}
+
+\maketitle
+
+\section{Overview}
+
+The main paper presents the method definition, the principal quantitative comparisons, and the core qualitative evidence. This supplement serves two narrower purposes. First, it records the decode-time procedure and configuration choices needed to reproduce the submitted results. Second, it clarifies how the operating-point trade-offs in the main paper should be interpreted, without expanding the claim scope of the submission.
+
+All benchmark runs are driven through the same evaluation entrypoint, \path{run_eval_pipeline.py}. In the submitted matrix, POPE is evaluated on the standard Random, Popular, and Adversarial splits with 3000 examples per split, CHAIR uses 5000 captioning samples, and MMBench is evaluated on the development parquet loaded by the same pipeline. Across methods, prompts, benchmark-side evaluation logic, and answer parsing remain fixed; only the decode-time decision rule changes.
+
+\section{Unified Decode-Time Procedure}
+\label{sec:supp_decode}
+
+CHORD operates as a bounded decode-time controller rather than a global search procedure. The practical stepwise flow is summarized below.
+
+\begin{enumerate}
+    \item Run a standard decoding step and check whether the rollback criterion inherited from OPERA is triggered on the current prefix.
+    \item If rollback is triggered, repair the prefix and recompute the current step on the repaired state.
+    \item Extract the top-$k$ candidate tokens under the repaired state.
+    \item For each candidate, perform a candidate-conditioned forward pass to compute the current object-resonant score $V_{\mathrm{res}}$.
+    \item Reject candidates that fail the current-step support test.
+    \item Reuse the candidate-conditioned state as the root of a short-horizon rollout branch.
+    \item Accumulate the future harmonic score $F_{\mathrm{harm}}$ for at most $m$ rollout steps, with optional early aborting when the visual ratio falls below $\tau_{\mathrm{abort}}$.
+    \item Combine the past, current, and future terms into the final CHORD score and admit the highest-scoring candidate.
+\end{enumerate}
+
+The main computational reuse is that the current and future terms share the same candidate-conditioned state. The forward pass used to compute $V_{\mathrm{res}}$ also initializes the rollout branch for $F_{\mathrm{harm}}$. This reuse avoids duplicating branch setup and makes short-horizon verification lighter than a naive independent rollout implementation.
+
+\section{Variant Definitions}
+\label{sec:supp_variants}
+
+The main paper discusses CHORD as a small family of operating regimes. For clarity, \autoref{tab:supp_variants} lists the exact semantic difference between the four reported variants.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Definition of the CHORD family variants used in the main paper.}
+\label{tab:supp_variants}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Variant} & \textbf{Past} & \textbf{Current} & \textbf{Future} \\
+\midrule
+Past      & Yes & No  & No  \\
+Past+C    & Yes & Yes & No  \\
+Past+F    & Yes & No  & Yes \\
+Full      & Yes & Yes & Yes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+These variants are intended to expose how each signal changes the operating frontier. The \textit{Past} variant isolates rollback-based correction. \textit{Past+C} adds admission-time visual support and corresponds to the efficiency-oriented regime in the main paper. \textit{Past+F} isolates the effect of short-horizon verification without current object resonance. Full CHORD combines all three signals and forms the quality-oriented regime.
+
+\section{Proposal Extraction and Attention Aggregation}
+\label{sec:supp_proposals}
+
+CHORD relies on a lightweight query-conditioned proposal stage. In the submitted implementation, the proposer is invoked once before autoregressive decoding begins, and the retained proposals are cached for the full generation process. The detector configuration used in the current submission is Grounding DINO with the local \texttt{grounding-dino-base} checkpoint, box threshold $0.25$, text threshold $0.2$, and at most $8$ retained boxes per example. This avoids repeated detector calls during decoding and keeps current-support computation lighter than the rollout itself.
+
+Both current and future scoring use decoder attention aggregated from the last four decoder blocks. The main paper motivates this choice with design evidence rather than with a claim of universality. In practice, this late-layer window provided the most stable compromise between semantic specificity and step-level volatility in our implementation.
+
+Three failure modes are especially relevant when interpreting results:
+\begin{itemize}
+    \item \textbf{Missed anchors.} If the proposer fails to localize the query-relevant object, the current support term loses discriminative value.
+    \item \textbf{Diffuse proposal sets.} If too many weak boxes are retained, the object-resonant weighting becomes flatter and candidate separation weakens.
+    \item \textbf{Query mismatch.} If the text used for proposal extraction underspecifies the visual target, proposal relevance may be weaker than the downstream decoding decision requires.
+\end{itemize}
+
+These cases help explain why CHORD can improve admission stability without guaranteeing correction of all errors inherited from the base model or the visual evidence available to it.
+
+\section{Experimental Protocol}
+\label{sec:supp_protocol}
+
+The submitted experiments use a single evaluation entrypoint, \texttt{run\_eval\_pipeline.py}, with benchmark-specific branches for POPE, CHAIR, and MMBench. Prompt formats remain benchmark-native, generation is deterministic with \texttt{do\_sample=False}, and only the decode-time controller changes across compared methods.
+
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\caption{Benchmark-side generation settings used in the submitted matrix.}
+\label{tab:supp_protocol}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Benchmark} & \textbf{Task} & \textbf{Metric(s)} & \textbf{max\_new\_tokens} \\
+\midrule
+POPE    & Binary QA  & F1 / Prec. / Rec. & 8 \\
+CHAIR   & Captioning & CHAIR$_S$ / CHAIR$_I$ & 96 \\
+MMBench & MCQA       & Accuracy & 4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+For the main CHORD setting reported in the paper, the decode-time configuration is fixed to top-$k=5$, rollout horizon $m=3$, $\alpha=0.5$, $\lambda_{\mathrm{cur}}=0.25$, $\lambda_{\mathrm{fut}}=0.05$, $\lambda_{\mathrm{txt}}=1.0$, $\epsilon=0$, and $\tau_{\mathrm{abort}}=0.0$. Proposal extraction uses the \texttt{grounding-dino-base} checkpoint with box threshold $0.25$, text threshold $0.2$, and \texttt{max\_boxes=8}. The proposal cache is built once per example and then reused across the full decoded answer.
+
+The submitted model set matches the main paper: LLaVA-1.5 (7B) and InstructBLIP (7B). The main comparisons are restricted to representative decode-time baselines that are closest in intervention stage and deployment assumptions: Greedy, OPERA, VCD, DoLa, and the CHORD family.
+
+\section{Latency Measurement Protocol}
+\label{sec:supp_latency}
+
+All latency measurements are meaningful only under a fixed hardware environment, warmed-up model state, and consistent prompt format. In our evaluation pipeline, latency is timed around the generation call with CUDA events after model inputs are assembled, and per-sample ITL is recorded as \texttt{elapsed\_ms / gen\_length}. The reported main-paper ITL values use a single NVIDIA A100 GPU under a fixed proposal policy.
+
+The following controls are held constant when comparing methods:
+\begin{itemize}
+    \item fixed GPU type, precision mode, and batch size;
+    \item latency measured after warm-up iterations;
+    \item average per-token latency computed on the same benchmark split for all compared methods;
+    \item identical image preprocessing and proposal extraction policy across methods;
+    \item explicit accounting that the reported ITL measures decode-stage generation time rather than a fully amortized end-to-end system latency.
+\end{itemize}
+
+This protocol isolates the cost of decode-time control from unrelated implementation noise. It should therefore be interpreted as a controlled comparison of decoding policies, not as a full system throughput claim.
+
+\section{How to Read the Main Results}
+\label{sec:supp_reading}
+
+The main paper exposes two practically distinct CHORD operating points. For latency-sensitive POPE evaluation, \textit{Past+Current} is the stronger setting. The full configuration is more favorable when sentence-level hallucination suppression in open-ended generation is the primary goal. This division is consistent with the structure of the method: current-step support mainly improves immediate token admission, while short-horizon rollout is most useful when one weak admission can destabilize a longer continuation.
+
+The CHAIR results should also be read asymmetrically. Sentence-level hallucination reduction benefits most clearly from the full method. Image-level CHAIR is harder to optimize because it depends on local admission quality as well as broader caption composition. For this reason, the main paper reports POPE, CHAIR, MMBench, and ITL jointly rather than treating any single metric as sufficient.
+
+The operating-point tables in the main paper are intended to make the method easier to deploy in practice. Rather than presenting CHORD as a single universally preferred controller, the tables show how the current and future signals move the decoder along a predictable quality-latency frontier.
+
+\section{Qualitative Case Reporting}
+\label{sec:supp_qualitative}
+
+The qualitative figure in the main paper combines trace-backed affirmative and negative cases with one hard-negative final-decision case. This distinction is deliberate. For panels with token-level trace evidence, the figure reports rejected opener candidates suppressed during decoding. For the hard-negative case, only the final decision is reported so that the paper does not imply token-level trace availability where it was not retained in the same form.
+
+Displayed cases should be interpreted as examples drawn from the evaluated benchmark pool rather than as separately staged demonstrations. Their purpose is diagnostic: they illustrate when CHORD has room to improve admission quality, especially when the top-$k$ set contains both a grounded candidate and a linguistically strong but weakly grounded competitor.
+
+\section{Scope of This Supplement}
+\label{sec:supp_scope}
+
+This supplementary file is intentionally conservative. It includes only material that is already supported by the current submission package, including the latest main paper, figures, and measured evaluation tables. Larger hyperparameter sweeps, extended qualitative galleries, or additional visual summaries should be added only when backed by measured results and finalized assets.
+
+\makeatletter
+\let\balance\relax
+\makeatother
+\nobalance
+
+\end{document}

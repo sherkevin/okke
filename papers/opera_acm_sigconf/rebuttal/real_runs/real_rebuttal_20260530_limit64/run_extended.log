@@ -1,0 +1,21 @@
+[phase] extended start 2026-05-30T14:39:36+08:00
+[config] BASE=/media/data3/dengkw/chord_rebuttal_20260529 RUN_DIR=/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit64 LIMIT=64 TAG=adv64 LLAVA_GPUS=0,2,3,6
+viplabserver12
+0, NVIDIA GeForce RTX 2080 Ti, 11264 MiB, 6 MiB, 0 %
+1, NVIDIA GeForce RTX 3090, 24576 MiB, 20992 MiB, 0 %
+2, NVIDIA GeForce RTX 2080 Ti, 11264 MiB, 6 MiB, 0 %
+3, NVIDIA GeForce RTX 2080 Ti, 11264 MiB, 6 MiB, 0 %
+4, NVIDIA GeForce RTX 3090, 24576 MiB, 20992 MiB, 0 %
+5, NVIDIA GeForce RTX 3090, 24576 MiB, 21022 MiB, 0 %
+6, NVIDIA GeForce RTX 2080 Ti, 11264 MiB, 6 MiB, 0 %
+7, NVIDIA GeForce RTX 3090, 24576 MiB, 20992 MiB, 0 %
+[phase] wait for LLaVA local files
+13G	/media/data3/dengkw/chord_rebuttal_20260529/assets/models/llava-v1.5-7b
+[phase] ensure POPE and COCO images
+records 64 missing 0
+[phase] precompute real anchors
+[knowledge-kernel-cache] processed 50 samples
+{"output_jsonl": "/media/data3/dengkw/chord_rebuttal_20260529/runs/real_rebuttal_20260530_limit64/anchors_pope_adv64.jsonl", "entries": 64, "box_threshold": 0.25, "text_threshold": 0.2, "max_boxes": 8}
+[phase] create uniform/random anchor controls
+[phase] launch LLaVA sequentially on verified idle 2080Ti set 0,2,3,6
+[run] name=llava_pope_adv64_opera gpu=0,2,3,6 anchor= args=

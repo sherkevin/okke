@@ -1,0 +1,151 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand*\HyPL@Entry[1]{}
+\citation{alayrac2022flamingo,li2023blip2,liu2023improvedllava,instructblip,bai2024qwen2vl,chen2024internvl,ye2024mplugowl2,li2025llava_st}
+\citation{bai2025mllm_hallucination_survey,li2023pope,rohrbach2018object,lovenia2023nope,wang2023amber,wu2024relationship_hallucinations,jing2023faithscore}
+\citation{liu2023aligning,chen2024hio,zhang2024reflective_instruction,lee2024volcano,yu2024rlhfv,sun2023llava_rlhf,peng2025sentinel}
+\citation{yin2023woodpecker,gunjal2024detecting_preventing,zhang2025dhcp,jing2023faithscore}
+\citation{leng2023mitigating,favero2024m3id,deng2024clipguided,wang2024icd,chuang2023dola,jiang2024hacl,kim2024code}
+\citation{huang2024opera_cvpr,woo2024ritual,liu2024paying_attention_image,xu2025tarac,kai2024sh2}
+\citation{zhang2025degf,cao2025cofidec}
+\HyPL@Entry{0<</S/D>>}
+\@writefile{toc}{\contentsline {section}{Abstract}{1}{section*.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces CHORD reframes decode-time hallucination control as \emph  {admission followed by short-horizon verification}. Left: regular decoding may admit a locally fluent but weakly grounded token and drift into text-dominated continuation. Right: CHORD screens the same admission through past rollback protection, current object resonance, and future rollout arbitration before commitment.}}{1}{figure.caption.5}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:teaser}{{1}{1}{CHORD reframes decode-time hallucination control as \emph {admission followed by short-horizon verification}. Left: regular decoding may admit a locally fluent but weakly grounded token and drift into text-dominated continuation. Right: CHORD screens the same admission through past rollback protection, current object resonance, and future rollout arbitration before commitment}{figure.caption.5}{}}
+\citation{alayrac2022flamingo,li2023blip2,liu2023improvedllava,instructblip,bai2023qwen,wang2023cogvlm,zhu2023minigpt,chen2024internvl,ye2024mplugowl2}
+\citation{bai2025mllm_hallucination_survey,zhou2023analyzing,li2023pope,rohrbach2018object,lovenia2023nope,wang2023amber,guan2024hallusionbench,wu2024relationship_hallucinations,lu2023agnosia}
+\citation{liu2023aligning,chen2024hio,zhang2024reflective_instruction,lee2024volcano,yu2024rlhfv,sun2023llava_rlhf,peng2025sentinel}
+\citation{yin2023woodpecker,gunjal2024detecting_preventing,zhang2025dhcp,jing2023faithscore}
+\citation{leng2023mitigating,favero2024m3id,deng2024clipguided,wang2024icd,chuang2023dola,jiang2024hacl,kim2024code}
+\citation{huang2024opera_cvpr}
+\citation{woo2024ritual}
+\citation{xu2025tarac}
+\citation{kai2024sh2}
+\citation{liu2024paying_attention_image}
+\citation{zhang2025degf,cao2025cofidec}
+\citation{fu2024lookahead,gagrani2024speculative_mllm,gao2024cantor,cheng2025think_more}
+\citation{huang2024opera_cvpr}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related_work}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}MLLM Hallucination}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Training-Time and Post-Hoc Mitigation}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Decode-Time Intervention and Lookahead}{2}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Methodology}{2}{section.3}\protected@file@percent }
+\newlabel{sec:Methodology}{{3}{2}{Methodology}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Candidate Scoring}{2}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:astar}{{3.1}{2}{Candidate Scoring}{subsection.3.1}{}}
+\citation{liu2023groundingdino}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Method overview of CHORD. Stage 0 constructs query-relevant anchors and anchor weights before autoregressive decoding. Stage 1 applies rollback-based past protection to repair already-collapsed prefixes. Stage 2 reranks the top-$k$ candidates through object-resonant current scoring and bounded future arbitration under shared-KV rollout. Stage 3 admits the candidate with the highest aggregate score.}}{3}{figure.caption.6}\protected@file@percent }
+\newlabel{fig:method_overview}{{2}{3}{Method overview of CHORD. Stage 0 constructs query-relevant anchors and anchor weights before autoregressive decoding. Stage 1 applies rollback-based past protection to repair already-collapsed prefixes. Stage 2 reranks the top-$k$ candidates through object-resonant current scoring and bounded future arbitration under shared-KV rollout. Stage 3 admits the candidate with the highest aggregate score}{figure.caption.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Future Rollout and Harmonic Arbitration}{4}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:oracle}{{3.2}{4}{Future Rollout and Harmonic Arbitration}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Efficient Rollout Execution}{4}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:bb}{{3.3}{4}{Efficient Rollout Execution}{subsection.3.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Complexity and Practical Behavior}{4}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:complexity}{{3.4}{4}{Complexity and Practical Behavior}{subsection.3.4}{}}
+\citation{liu2023improvedllava}
+\citation{instructblip}
+\citation{huang2024opera_cvpr,leng2023mitigating}
+\citation{li2023pope}
+\citation{rohrbach2018object}
+\citation{liu2023mmbench}
+\citation{chuang2023dola}
+\citation{leng2023mitigating}
+\citation{huang2024opera_cvpr}
+\citation{chen2024halc}
+\citation{liu2023groundingdino}
+\citation{huang2024opera_cvpr}
+\citation{leng2023mitigating}
+\citation{chuang2023dola}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Design Discussion}{5}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{5}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{5}{Experiments}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Settings}{5}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Main Results on Hallucination Mitigation}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Main quantitative comparison. We report the full CHORD configuration against external decode-time baselines. For each model we report average POPE F1 across the three splits, POPE Adversarial F1, CHAIR sentence/image hallucination ratios, MMBench accuracy, and per-token inference latency (ITL, ms/token). Lower ($\downarrow $) CHAIR and ITL are better; higher ($\uparrow $) POPE/MMBench are better. Bold indicates the best result in each column. Internal CHORD operating points are analyzed separately in \hyperref  [tab:family_tradeoff]{Table\nonbreakingspace \ref *{tab:family_tradeoff}} and \hyperref  [tab:operating_points]{Table\nonbreakingspace \ref *{tab:operating_points}}.}}{6}{table.caption.7}\protected@file@percent }
+\newlabel{tab:main_results}{{1}{6}{Main quantitative comparison. We report the full CHORD configuration against external decode-time baselines. For each model we report average POPE F1 across the three splits, POPE Adversarial F1, CHAIR sentence/image hallucination ratios, MMBench accuracy, and per-token inference latency (ITL, ms/token). Lower ($\downarrow $) CHAIR and ITL are better; higher ($\uparrow $) POPE/MMBench are better. Bold indicates the best result in each column. Internal CHORD operating points are analyzed separately in \Tref {tab:family_tradeoff} and \Tref {tab:operating_points}}{table.caption.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Qualitative Analysis and Trajectory Visualization}{6}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Operating-Point Synthesis}{6}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:efficiency}{{4.4}{6}{Operating-Point Synthesis}{subsection.4.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Design evidence for CHORD. Top: decoder-to-vision heatmaps under three layer-selection choices, showing why CHORD uses the `last-4' window. Bottom-left: representative current-support scores for competing candidates at the admission step. Bottom-right: representative rollout utility traces showing how future arbitration separates a stable continuation from a text-dominated branch.}}{6}{figure.caption.8}\protected@file@percent }
+\newlabel{fig:design_evidence}{{3}{6}{Design evidence for CHORD. Top: decoder-to-vision heatmaps under three layer-selection choices, showing why CHORD uses the `last-4' window. Bottom-left: representative current-support scores for competing candidates at the admission step. Bottom-right: representative rollout utility traces showing how future arbitration separates a stable continuation from a text-dominated branch}{figure.caption.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Trace-backed qualitative evidence on four POPE-style cases. Panels (a)--(c) expose real rejected opener candidates suppressed during decoding, while panel (d) is reported as a hard-negative decision case without token-level trace annotation. Together they show how CHORD preserves grounded admissions and blocks weakly grounded continuations.}}{7}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:qualitative_cases}{{4}{7}{Trace-backed qualitative evidence on four POPE-style cases. Panels (a)--(c) expose real rejected opener candidates suppressed during decoding, while panel (d) is reported as a hard-negative decision case without token-level trace annotation. Together they show how CHORD preserves grounded admissions and blocks weakly grounded continuations}{figure.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces POPE Adversarial precision-recall breakdown for representative baselines and the two main CHORD operating points. `CHORD-P+C' primarily improves robustness by raising precision without a large recall collapse, which is consistent with a better admission rule rather than a merely more conservative decoder.}}{7}{table.caption.11}\protected@file@percent }
+\newlabel{tab:adv_breakdown}{{2}{7}{POPE Adversarial precision-recall breakdown for representative baselines and the two main CHORD operating points. `CHORD-P+C' primarily improves robustness by raising precision without a large recall collapse, which is consistent with a better admission rule rather than a merely more conservative decoder}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Trade-off within the CHORD family across both backbones. `Past' is the lowest-latency correction, `Past+Current' gives the best efficiency-quality compromise, and `Full CHORD' gives the strongest overall quality metrics.}}{7}{table.caption.12}\protected@file@percent }
+\newlabel{tab:family_tradeoff}{{3}{7}{Trade-off within the CHORD family across both backbones. `Past' is the lowest-latency correction, `Past+Current' gives the best efficiency-quality compromise, and `Full CHORD' gives the strongest overall quality metrics}{table.caption.12}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Component Trade-off Within the CHORD Family}{7}{subsection.4.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Deployment-oriented operating-point summary relative to Greedy. Negative $\mitDelta $CH values indicate hallucination reduction; positive $\mitDelta $ITL indicates extra latency. Higher $\mitDelta $Adv.\ F1/$\mitDelta $MMB are better, lower $\mitDelta $CH are better.}}{7}{table.caption.13}\protected@file@percent }
+\newlabel{tab:operating_points}{{4}{7}{Deployment-oriented operating-point summary relative to Greedy. Negative $\Delta $CH values indicate hallucination reduction; positive $\Delta $ITL indicates extra latency. Higher $\Delta $Adv.\ F1/$\Delta $MMB are better, lower $\Delta $CH are better}{table.caption.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Quantitative synthesis of the main tables. (a,b) Adversarial F1 versus ITL. (c,d) CHAIR$_S$ versus MMBench with marker area proportional to ITL. The plots separate the efficiency-oriented `CHORD-P+C' regime from quality-oriented Full CHORD.}}{8}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:quantitative}{{5}{8}{Quantitative synthesis of the main tables. (a,b) Adversarial F1 versus ITL. (c,d) CHAIR$_S$ versus MMBench with marker area proportional to ITL. The plots separate the efficiency-oriented `CHORD-P+C' regime from quality-oriented Full CHORD}{figure.caption.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Conclusion}{8}{section.5}\protected@file@percent }
+\newlabel{sec:conclusion}{{5}{8}{Conclusion}{section.5}{}}
+\bibstyle{ACM-Reference-Format}
+\bibdata{sample-base}
+\bibcite{alayrac2022flamingo}{{1}{2022}{{Alayrac et~al\mbox  {.}}}{{}}}
+\bibcite{li2023blip2}{{2}{2023}{{Li et~al\mbox  {.}}}{{}}}
+\bibcite{liu2023improvedllava}{{3}{2024}{{Liu et~al\mbox  {.}}}{{}}}
+\bibcite{instructblip}{{4}{2023}{{Dai et~al\mbox  {.}}}{{}}}
+\bibcite{bai2024qwen2vl}{{5}{2024}{{Wang et~al\mbox  {.}}}{{}}}
+\bibcite{chen2024internvl}{{6}{2024}{{Chen et~al\mbox  {.}}}{{}}}
+\bibcite{ye2024mplugowl2}{{7}{2024}{{Ye et~al\mbox  {.}}}{{}}}
+\bibcite{li2025llava_st}{{8}{2025}{{Li et~al\mbox  {.}}}{{}}}
+\bibcite{bai2025mllm_hallucination_survey}{{9}{2024}{{Bai et~al\mbox  {.}}}{{}}}
+\bibcite{li2023pope}{{10}{2023}{{Li et~al\mbox  {.}}}{{}}}
+\bibcite{rohrbach2018object}{{11}{2018}{{Rohrbach et~al\mbox  {.}}}{{}}}
+\bibcite{lovenia2023nope}{{12}{2024}{{Lovenia et~al\mbox  {.}}}{{}}}
+\bibcite{wang2023amber}{{13}{2023}{{Wang et~al\mbox  {.}}}{{}}}
+\bibcite{wu2024relationship_hallucinations}{{14}{2024}{{Wu et~al\mbox  {.}}}{{}}}
+\bibcite{jing2023faithscore}{{15}{2024}{{Jing et~al\mbox  {.}}}{{}}}
+\bibcite{liu2023aligning}{{16}{2024}{{Liu et~al\mbox  {.}}}{{}}}
+\bibcite{chen2024hio}{{17}{2024}{{Chen et~al\mbox  {.}}}{{}}}
+\bibcite{zhang2024reflective_instruction}{{18}{2024}{{Zhang et~al\mbox  {.}}}{{}}}
+\bibcite{lee2024volcano}{{19}{2024}{{Lee et~al\mbox  {.}}}{{}}}
+\bibcite{yu2024rlhfv}{{20}{2024}{{Yu et~al\mbox  {.}}}{{}}}
+\bibcite{sun2023llava_rlhf}{{21}{2024}{{Sun et~al\mbox  {.}}}{{}}}
+\bibcite{peng2025sentinel}{{22}{2025}{{Peng et~al\mbox  {.}}}{{}}}
+\bibcite{yin2023woodpecker}{{23}{2024}{{Yin et~al\mbox  {.}}}{{}}}
+\bibcite{gunjal2024detecting_preventing}{{24}{2024}{{Gunjal et~al\mbox  {.}}}{{}}}
+\bibcite{zhang2025dhcp}{{25}{2025}{{Zhang et~al\mbox  {.}}}{{}}}
+\bibcite{leng2023mitigating}{{26}{2024}{{Leng et~al\mbox  {.}}}{{}}}
+\bibcite{favero2024m3id}{{27}{2024}{{Favero et~al\mbox  {.}}}{{}}}
+\bibcite{deng2024clipguided}{{28}{2024}{{Deng et~al\mbox  {.}}}{{}}}
+\@writefile{toc}{\contentsline {section}{References}{9}{section*.15}\protected@file@percent }
+\bibcite{wang2024icd}{{29}{2024}{{Wang et~al\mbox  {.}}}{{}}}
+\bibcite{chuang2023dola}{{30}{2024}{{Chuang et~al\mbox  {.}}}{{}}}
+\bibcite{jiang2024hacl}{{31}{2024}{{Jiang et~al\mbox  {.}}}{{}}}
+\bibcite{kim2024code}{{32}{2024}{{Kim et~al\mbox  {.}}}{{}}}
+\bibcite{huang2024opera_cvpr}{{33}{2024}{{Huang et~al\mbox  {.}}}{{}}}
+\bibcite{woo2024ritual}{{34}{2024}{{Woo et~al\mbox  {.}}}{{}}}
+\bibcite{liu2024paying_attention_image}{{35}{2024}{{Liu et~al\mbox  {.}}}{{}}}
+\bibcite{xu2025tarac}{{36}{2025}{{Xu et~al\mbox  {.}}}{{}}}
+\bibcite{kai2024sh2}{{37}{2024}{{Kai et~al\mbox  {.}}}{{}}}
+\bibcite{zhang2025degf}{{38}{2025}{{Zhang et~al\mbox  {.}}}{{}}}
+\bibcite{cao2025cofidec}{{39}{2025}{{Cao et~al\mbox  {.}}}{{}}}
+\bibcite{bai2023qwen}{{40}{2023}{{Bai et~al\mbox  {.}}}{{}}}
+\bibcite{wang2023cogvlm}{{41}{2024}{{Wang et~al\mbox  {.}}}{{}}}
+\bibcite{zhu2023minigpt}{{42}{2024}{{Zhu et~al\mbox  {.}}}{{}}}
+\bibcite{zhou2023analyzing}{{43}{2024}{{Zhou et~al\mbox  {.}}}{{}}}
+\bibcite{guan2024hallusionbench}{{44}{2024}{{Guan et~al\mbox  {.}}}{{}}}
+\bibcite{lu2023agnosia}{{45}{2023}{{Lu et~al\mbox  {.}}}{{}}}
+\bibcite{fu2024lookahead}{{46}{2024}{{Fu et~al\mbox  {.}}}{{}}}
+\bibcite{gagrani2024speculative_mllm}{{47}{2024}{{Gagrani et~al\mbox  {.}}}{{}}}
+\bibcite{gao2024cantor}{{48}{2024}{{Gao et~al\mbox  {.}}}{{}}}
+\bibcite{cheng2025think_more}{{49}{2025}{{Cheng et~al\mbox  {.}}}{{}}}
+\bibcite{liu2023groundingdino}{{50}{2024a}{{Liu et~al\mbox  {.}}}{{}}}
+\bibcite{liu2023mmbench}{{51}{2024b}{{Liu et~al\mbox  {.}}}{{}}}
+\bibcite{chen2024halc}{{52}{2024}{{Chen et~al\mbox  {.}}}{{}}}
+\newlabel{tocindent-1}{0pt}
+\newlabel{tocindent0}{0pt}
+\newlabel{tocindent1}{4.185pt}
+\newlabel{tocindent2}{10.35pt}
+\newlabel{tocindent3}{0pt}
+\newlabel{tocindent4}{0pt}
+\newlabel{tocindent5}{0pt}
+\newlabel{TotPages}{{10}{10}{}{page.10}{}}
+\gdef \@abspage@last{10}

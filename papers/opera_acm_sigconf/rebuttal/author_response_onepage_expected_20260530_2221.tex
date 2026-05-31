@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage[letterpaper,margin=0.45in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext,newtxmath}
+\usepackage{microtype}
+\usepackage{array,tabularx,booktabs}
+\usepackage{enumitem}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.5pt}
+\setlength{\tabcolsep}{2.8pt}
+\renewcommand{\arraystretch}{1.04}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\begin{document}
+\fontsize{8.6}{9.35}\selectfont
+
+\begin{center}
+{\bf Author Response: CHORD Hallucination Mitigation}
+\end{center}
+
+We thank the reviewers for identifying that aggregate benchmark scores alone do not isolate mechanism, detector attribution, and deployment cost. We therefore add targeted diagnostics and narrow the claim: CHORD is a detector-assisted, base-MLLM-training-free admission-time verifier for object-grounded hallucination mitigation; decoder-to-vision attention is used as an operational scoring signal, not as a causal explanation.
+
+\vspace{1pt}
+\begin{tabularx}{\linewidth}{@{}p{0.145\linewidth}Y Y Y@{}}
+\toprule
+Concern & Reviewer need & Response / evidence to add & Boundary in final paper \\
+\midrule
+Future mechanism & M8du asks whether Future actually changes admitted tokens and whether those changes help. & We add a paired Full-vs-P+C admission diagnostic: rollout-induced token changes, corrected unsupported mentions, and harmful changes. Exact flip/correctness counts are included only for completed paired logs; otherwise the rebuttal states the diagnostic protocol without expected numbers. & Future is a quality-oriented verifier, not a claim that every token needs rollout. If paired logs are unavailable, we do not report expected percentages, counts, confidence intervals, or p-values. \\
+\midrule
+Detector attribution & KrEs/M8du ask whether Grounding DINO alone explains the gains. & We isolate detector contribution with fixed same-anchor, uniform/random-anchor, no-Current, P+C, and Full controls. If control logs are complete, the compact attribution row is reported; otherwise we state the control design and limitation. & CHORD is detector-assisted. We do not claim detector independence or second-proposer robustness unless those runs are measured. \\
+\midrule
+Cost, baselines, and hyperparameters & jjVG/KrEs/ve3y ask about overhead, recent baselines, and why $k=5,m=3$. & We separate proposal cost from decode ITL. P+C is the practical/default regime; Full is quality-oriented/offline. $k=5,m=3$ is the quality setting, while P+C or $k=5,m=2$ is practical under latency constraints. ONLY, VHD/VHR, and HALC are compared only under matched backbone, split, prompt family, parser, seeds, and validation budget. & We report numeric total cost, VRAM, batch behavior, and recent-baseline wins only when measured with provenance; otherwise they remain camera-ready additions, not rebuttal evidence. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{2pt}
+We will redraw Fig.~2 as sequential Past/Current/Future stages with fewer connectors. The camera-ready version will remove detector-independent, broad relation/composition, or causal-attention claims unless supported by measured evidence. All exact numbers in the official page must be measured or removed; expected target values from the internal master are not used as factual rebuttal evidence.
+
+\end{document}

@@ -1,0 +1,943 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{52}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{} and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showURL}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showURL #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[Alayrac et~al\mbox{.}(2022)]%
+        {alayrac2022flamingo}
+\bibfield{author}{\bibinfo{person}{Jean-Baptiste Alayrac},
+  \bibinfo{person}{Jeff Donahue}, \bibinfo{person}{Pauline Luc},
+  \bibinfo{person}{Antoine Miech}, \bibinfo{person}{Iain Barr},
+  \bibinfo{person}{Yana Hasson}, \bibinfo{person}{Karel Lenc},
+  \bibinfo{person}{Arthur Mensch}, \bibinfo{person}{Katie Millican},
+  \bibinfo{person}{Malcolm Reynolds}, {et~al\mbox{.}}}
+  \bibinfo{year}{2022}\natexlab{}.
+\newblock \showarticletitle{Flamingo: a Visual Language Model for Few-Shot
+  Learning}. In \bibinfo{booktitle}{\emph{Advances in Neural Information
+  Processing Systems}}. \bibinfo{publisher}{Curran Associates, Inc.},
+  \bibinfo{address}{Red Hook, NY, USA}, \bibinfo{pages}{23716--23736}.
+\newblock
+\urldef\tempurl%
+\url{https://proceedings.neurips.cc/paper_files/paper/2022/hash/960a172bc7fbf0177ccccbb411a7d800-Abstract-Conference.html}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Li et~al\mbox{.}(2023)]%
+        {li2023blip2}
+\bibfield{author}{\bibinfo{person}{Junnan Li}, \bibinfo{person}{Dongxu Li},
+  \bibinfo{person}{Silvio Savarese}, {and} \bibinfo{person}{Steven Hoi}.}
+  \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{{BLIP-2}: Bootstrapping Language-Image Pre-training
+  with Frozen Image Encoders and Large Language Models}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the International Conference on
+  Machine Learning (ICML)}}. \bibinfo{publisher}{PMLR},
+  \bibinfo{address}{Honolulu, HI, USA}, \bibinfo{pages}{19730--19742}.
+\newblock
+\urldef\tempurl%
+\url{https://proceedings.mlr.press/v202/li23q.html}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Liu et~al\mbox{.}(2024)]%
+        {liu2023improvedllava}
+\bibfield{author}{\bibinfo{person}{Haotian Liu}, \bibinfo{person}{Chunyuan Li},
+  \bibinfo{person}{Yuheng Li}, {and} \bibinfo{person}{Yong~Jae Lee}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Improved Baselines with Visual Instruction Tuning}.
+  In \bibinfo{booktitle}{\emph{Proceedings of the IEEE/CVF Conference on
+  Computer Vision and Pattern Recognition (CVPR)}}. \bibinfo{publisher}{IEEE},
+  \bibinfo{address}{Los Alamitos, CA, USA}, \bibinfo{pages}{26296--26306}.
+\newblock
+\urldef\tempurl%
+\url{https://openaccess.thecvf.com/content/CVPR2024/html/Liu_Improved_Baselines_with_Visual_Instruction_Tuning_CVPR_2024_paper.html}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Dai et~al\mbox{.}(2023)]%
+        {instructblip}
+\bibfield{author}{\bibinfo{person}{Wenliang Dai}, \bibinfo{person}{Junnan Li},
+  \bibinfo{person}{Dongxu Li}, \bibinfo{person}{Anthony Meng~Huat Tiong},
+  \bibinfo{person}{Junqi Zhao}, \bibinfo{person}{Weisheng Wang},
+  \bibinfo{person}{Boyang Li}, \bibinfo{person}{Pascale Fung}, {and}
+  \bibinfo{person}{Steven Hoi}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{{InstructBLIP}: Towards General-purpose
+  Vision-Language Models with Instruction Tuning}. In
+  \bibinfo{booktitle}{\emph{Advances in Neural Information Processing
+  Systems}}. \bibinfo{publisher}{Curran Associates, Inc.},
+  \bibinfo{address}{Red Hook, NY, USA}, \bibinfo{pages}{49250--49267}.
+\newblock
+
+
+\bibitem[Wang et~al\mbox{.}(2024)]%
+        {bai2024qwen2vl}
+\bibfield{author}{\bibinfo{person}{Peng Wang}, \bibinfo{person}{Shuai Bai},
+  \bibinfo{person}{Sinan Tan}, \bibinfo{person}{Shijie Wang},
+  \bibinfo{person}{Zhihao Fan}, \bibinfo{person}{Jinze Bai},
+  \bibinfo{person}{Keqin Chen}, \bibinfo{person}{Xuejing Liu},
+  \bibinfo{person}{Jialin Wang}, \bibinfo{person}{Wenbin Ge},
+  \bibinfo{person}{Yang Fan}, \bibinfo{person}{Kai Dang},
+  \bibinfo{person}{Mengfei Du}, \bibinfo{person}{Xuancheng Ren},
+  \bibinfo{person}{Rui Men}, \bibinfo{person}{Dayiheng Liu},
+  \bibinfo{person}{Chang Zhou}, \bibinfo{person}{Jingren Zhou}, {and}
+  \bibinfo{person}{Junyang Lin}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \bibinfo{title}{{Qwen2-VL}: Enhancing Vision-Language Model's
+  Perception of the World at Any Resolution}.
+\newblock
+\showeprint[arxiv]{2409.12191}~[cs.CV]
+\urldef\tempurl%
+\url{https://arxiv.org/abs/2409.12191}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Chen et~al\mbox{.}(2024)]%
+        {chen2024internvl}
+\bibfield{author}{\bibinfo{person}{Zhe Chen}, \bibinfo{person}{Jiannan Wu},
+  \bibinfo{person}{Wenhai Wang}, \bibinfo{person}{Weijie Su},
+  \bibinfo{person}{Guo Chen}, \bibinfo{person}{Sen Xing},
+  \bibinfo{person}{Muyan Zhong}, \bibinfo{person}{Qinglong Zhang},
+  \bibinfo{person}{Xizhou Zhu}, \bibinfo{person}{Lewei Lu}, {et~al\mbox{.}}}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{{InternVL}: Scaling up Vision Foundation Models and
+  Aligning for Generic Visual-Linguistic Tasks}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the IEEE/CVF Conference on Computer
+  Vision and Pattern Recognition (CVPR)}}. \bibinfo{publisher}{IEEE},
+  \bibinfo{address}{Los Alamitos, CA, USA}, \bibinfo{pages}{24185--24198}.
+\newblock
+\urldef\tempurl%
+\url{https://openaccess.thecvf.com/content/CVPR2024/html/Chen_InternVL_Scaling_up_Vision_Foundation_Models_and_Aligning_for_Generic_CVPR_2024_paper.html}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Ye et~al\mbox{.}(2024)]%
+        {ye2024mplugowl2}
+\bibfield{author}{\bibinfo{person}{Qinghao Ye}, \bibinfo{person}{Haiyang Xu},
+  \bibinfo{person}{Jiabo Ye}, \bibinfo{person}{Ming Yan},
+  \bibinfo{person}{Anwen Hu}, \bibinfo{person}{Haowei Liu}, \bibinfo{person}{Qi
+  Qian}, \bibinfo{person}{Ji Zhang}, {and} \bibinfo{person}{Fei Huang}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{{mPLUG-Owl2}: Revolutionizing Multi-modal Large
+  Language Model with Modality Collaboration}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the IEEE/CVF Conference on Computer
+  Vision and Pattern Recognition (CVPR)}}. \bibinfo{publisher}{IEEE},
+  \bibinfo{address}{Los Alamitos, CA, USA}, \bibinfo{pages}{13040--13051}.
+\newblock
+\urldef\tempurl%
+\url{https://openaccess.thecvf.com/content/CVPR2024/html/Ye_mPLUG-Owl2_Revolutionizing_Multi-modal_Large_Language_Model_with_Modality_Collaboration_CVPR_2024_paper.html}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Li et~al\mbox{.}(2025)]%
+        {li2025llava_st}
+\bibfield{author}{\bibinfo{person}{Hongyu Li}, \bibinfo{person}{Jinyu Chen},
+  \bibinfo{person}{Ziyu Wei}, \bibinfo{person}{Shaofei Huang},
+  \bibinfo{person}{Tianrui Hui}, \bibinfo{person}{Jialin Gao},
+  \bibinfo{person}{Xiaoming Wei}, {and} \bibinfo{person}{Si Liu}.}
+  \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{{LLaVA-ST}: A Multimodal Large Language Model for
+  Fine-Grained Spatial-Temporal Understanding}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the IEEE/CVF Conference on Computer
+  Vision and Pattern Recognition (CVPR)}}. \bibinfo{publisher}{IEEE},
+  \bibinfo{address}{Los Alamitos, CA, USA}, \bibinfo{pages}{8592--8603}.
+\newblock
+\urldef\tempurl%
+\url{https://openaccess.thecvf.com/content/CVPR2025/papers/Li_LLaVA-ST_A_Multimodal_Large_Language_Model_for_Fine-Grained_Spatial-Temporal_Understanding_CVPR_2025_paper.pdf}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Bai et~al\mbox{.}(2024)]%
+        {bai2025mllm_hallucination_survey}
+\bibfield{author}{\bibinfo{person}{Zechen Bai}, \bibinfo{person}{Pichao Wang},
+  \bibinfo{person}{Tianjun Xiao}, \bibinfo{person}{Tong He},
+  \bibinfo{person}{Zongbo Han}, \bibinfo{person}{Zheng Zhang}, {and}
+  \bibinfo{person}{Mike~Zheng Shou}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \bibinfo{title}{Hallucination of Multimodal Large Language Models: A
+  Survey}.
+\newblock
+\showeprint[arxiv]{2404.18930}~[cs.CV]
+\urldef\tempurl%
+\url{https://arxiv.org/abs/2404.18930}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Li et~al\mbox{.}(2023)]%
+        {li2023pope}
+\bibfield{author}{\bibinfo{person}{Yifan Li}, \bibinfo{person}{Yifan Du},
+  \bibinfo{person}{Kun Zhou}, \bibinfo{person}{Jinpeng Wang},
+  \bibinfo{person}{Wayne~Xin Zhao}, {and} \bibinfo{person}{Ji-Rong Wen}.}
+  \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Evaluating Object Hallucination in Large
+  Vision-Language Models}. In \bibinfo{booktitle}{\emph{Proceedings of the 2023
+  Conference on Empirical Methods in Natural Language Processing (EMNLP)}}.
+  \bibinfo{publisher}{Association for Computational Linguistics},
+  \bibinfo{address}{Singapore}, \bibinfo{pages}{292--305}.
+\newblock
+\urldef\tempurl%
+\url{https://aclanthology.org/2023.emnlp-main.20/}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Rohrbach et~al\mbox{.}(2018)]%
+        {rohrbach2018object}
+\bibfield{author}{\bibinfo{person}{Anna Rohrbach}, \bibinfo{person}{Lisa~Anne
+  Hendricks}, \bibinfo{person}{Kaylee Burns}, \bibinfo{person}{Trevor Darrell},
+  {and} \bibinfo{person}{Kate Saenko}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Object Hallucination in Image Captioning}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 2018 Conference on Empirical
+  Methods in Natural Language Processing}}. \bibinfo{publisher}{Association for
+  Computational Linguistics}, \bibinfo{address}{Brussels, Belgium},
+  \bibinfo{pages}{4035--4045}.
+\newblock
+\urldef\tempurl%
+\url{https://aclanthology.org/D18-1437/}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Lovenia et~al\mbox{.}(2024)]%
+        {lovenia2023nope}
+\bibfield{author}{\bibinfo{person}{Holy Lovenia}, \bibinfo{person}{Wenliang
+  Dai}, \bibinfo{person}{Samuel Cahyawijaya}, \bibinfo{person}{Ziwei Ji}, {and}
+  \bibinfo{person}{Pascale Fung}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Negative Object Presence Evaluation ({NOPE}) to
+  Measure Object Hallucination in Vision-Language Models}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 3rd Workshop on Advances in
+  Language and Vision Research (ALVR)}}. \bibinfo{publisher}{Association for
+  Computational Linguistics}, \bibinfo{address}{Bangkok, Thailand},
+  \bibinfo{pages}{37--58}.
+\newblock
+\href{https://doi.org/10.18653/v1/2024.alvr-1.4}{doi:\nolinkurl{10.18653/v1/2024.alvr-1.4}}
+
+
+\bibitem[Wang et~al\mbox{.}(2023)]%
+        {wang2023amber}
+\bibfield{author}{\bibinfo{person}{Junyang Wang}, \bibinfo{person}{Yuhang
+  Wang}, \bibinfo{person}{Guohai Xu}, \bibinfo{person}{Jing Zhang},
+  \bibinfo{person}{Yukai Gu}, \bibinfo{person}{Haitao Jia},
+  \bibinfo{person}{Ming Yan}, \bibinfo{person}{Ji Zhang}, {and}
+  \bibinfo{person}{Jitao Sang}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \bibinfo{title}{{AMBER}: An {LLM}-free Multi-dimensional Benchmark
+  for {MLLMs} Hallucination Evaluation}.
+\newblock
+\showeprint[arxiv]{2311.07397}~[cs.CV]
+\urldef\tempurl%
+\url{https://arxiv.org/abs/2311.07397}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Wu et~al\mbox{.}(2024)]%
+        {wu2024relationship_hallucinations}
+\bibfield{author}{\bibinfo{person}{Mingrui Wu}, \bibinfo{person}{Jiayi Ji},
+  \bibinfo{person}{Oucheng Huang}, \bibinfo{person}{Jiale Li},
+  \bibinfo{person}{Yuhang Wu}, \bibinfo{person}{Xiaoshuai Sun}, {and}
+  \bibinfo{person}{Rongrong Ji}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Evaluating and Analyzing Relationship
+  Hallucinations in {LVLMs}}. In \bibinfo{booktitle}{\emph{Proceedings of the
+  International Conference on Machine Learning (ICML)}}.
+  \bibinfo{publisher}{PMLR}, \bibinfo{address}{Vienna, Austria},
+  \bibinfo{pages}{53553--53570}.
+\newblock
+\urldef\tempurl%
+\url{https://proceedings.mlr.press/v235/wu24l.html}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Jing et~al\mbox{.}(2024)]%
+        {jing2023faithscore}
+\bibfield{author}{\bibinfo{person}{Liqiang Jing}, \bibinfo{person}{Ruosen Li},
+  \bibinfo{person}{Yunmo Chen}, {and} \bibinfo{person}{Xinya Du}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{{FaithScore}: Fine-grained Evaluations of
+  Hallucinations in Large Vision-Language Models}. In
+  \bibinfo{booktitle}{\emph{Findings of the Association for Computational
+  Linguistics: EMNLP 2024}}. \bibinfo{publisher}{Association for Computational
+  Linguistics}, \bibinfo{address}{Miami, Florida, USA},
+  \bibinfo{pages}{5042--5063}.
+\newblock
+\href{https://doi.org/10.18653/v1/2024.findings-emnlp.290}{doi:\nolinkurl{10.18653/v1/2024.findings-emnlp.290}}
+
+
+\bibitem[Liu et~al\mbox{.}(2024)]%
+        {liu2023aligning}
+\bibfield{author}{\bibinfo{person}{Fuxiao Liu}, \bibinfo{person}{Kevin Lin},
+  \bibinfo{person}{Linjie Li}, \bibinfo{person}{Jianfeng Wang},
+  \bibinfo{person}{Yaser Yacoob}, {and} \bibinfo{person}{Lijuan Wang}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Aligning Large Multi-Modal Model with Robust
+  Instruction Tuning}. In \bibinfo{booktitle}{\emph{Proceedings of the
+  International Conference on Learning Representations (ICLR)}}.
+  \bibinfo{publisher}{OpenReview.net}, \bibinfo{address}{Vienna, Austria},
+  \bibinfo{numpages}{45}~pages.
+\newblock
+\urldef\tempurl%
+\url{https://openreview.net/forum?id=J44HfH4JCg}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Chen et~al\mbox{.}(2024)]%
+        {chen2024hio}
+\bibfield{author}{\bibinfo{person}{Beitao Chen}, \bibinfo{person}{Xinyu Lyu},
+  \bibinfo{person}{Lianli Gao}, \bibinfo{person}{Jingkuan Song}, {and}
+  \bibinfo{person}{Heng~Tao Shen}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Alleviating Hallucinations in Large Vision-Language
+  Models through Hallucination-Induced Optimization}. In
+  \bibinfo{booktitle}{\emph{Advances in Neural Information Processing
+  Systems}}. \bibinfo{publisher}{Curran Associates, Inc.},
+  \bibinfo{address}{Red Hook, NY, USA}, \bibinfo{numpages}{22}~pages.
+\newblock
+
+
+\bibitem[Zhang et~al\mbox{.}(2024)]%
+        {zhang2024reflective_instruction}
+\bibfield{author}{\bibinfo{person}{Jinrui Zhang}, \bibinfo{person}{Teng Wang},
+  \bibinfo{person}{Haigang Zhang}, \bibinfo{person}{Ping Lu}, {and}
+  \bibinfo{person}{Feng Zheng}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Reflective Instruction Tuning: Mitigating
+  Hallucinations in Large Vision-Language Models}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the European Conference on Computer
+  Vision (ECCV)}}. \bibinfo{publisher}{Springer}, \bibinfo{address}{Cham,
+  Switzerland}, \bibinfo{numpages}{18}~pages.
+\newblock
+\urldef\tempurl%
+\url{https://www.ecva.net/papers/eccv_2024/papers_ECCV/html/8550_ECCV_2024_paper.php}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Lee et~al\mbox{.}(2024)]%
+        {lee2024volcano}
+\bibfield{author}{\bibinfo{person}{Seongyun Lee}, \bibinfo{person}{Sue~Hyun
+  Park}, \bibinfo{person}{Yongrae Jo}, {and} \bibinfo{person}{Minjoon Seo}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Volcano: Mitigating Multimodal Hallucination
+  through Self-Feedback Guided Revision}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 2024 Annual Conference of the
+  North American Chapter of the Association for Computational Linguistics
+  (NAACL)}}. \bibinfo{publisher}{Association for Computational Linguistics},
+  \bibinfo{address}{Mexico City, Mexico}, \bibinfo{pages}{391--404}.
+\newblock
+\urldef\tempurl%
+\url{https://aclanthology.org/2024.naacl-long.23/}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Yu et~al\mbox{.}(2024)]%
+        {yu2024rlhfv}
+\bibfield{author}{\bibinfo{person}{Tianyu Yu}, \bibinfo{person}{Yuan Yao},
+  \bibinfo{person}{Haoye Zhang}, \bibinfo{person}{Taiwen He},
+  \bibinfo{person}{Yifeng Han}, \bibinfo{person}{Ganqu Cui},
+  \bibinfo{person}{Jinyi Hu}, \bibinfo{person}{Zhiyuan Liu},
+  \bibinfo{person}{Hai-Tao Zheng}, \bibinfo{person}{Maosong Sun},
+  {et~al\mbox{.}}} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{{RLHF-V}: Towards Trustworthy {MLLMs} via Behavior
+  Alignment from Fine-grained Correctional Human Feedback}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the IEEE/CVF Conference on Computer
+  Vision and Pattern Recognition (CVPR)}}. \bibinfo{publisher}{IEEE},
+  \bibinfo{address}{Los Alamitos, CA, USA}, \bibinfo{pages}{13807--13816}.
+\newblock
+\urldef\tempurl%
+\url{https://openaccess.thecvf.com/content/CVPR2024/html/Yu_RLHF-V_Towards_Trustworthy_MLLMs_via_Behavior_Alignment_from_Fine-grained_Correctional_CVPR_2024_paper.html}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Sun et~al\mbox{.}(2024)]%
+        {sun2023llava_rlhf}
+\bibfield{author}{\bibinfo{person}{Zhiqing Sun}, \bibinfo{person}{Sheng Shen},
+  \bibinfo{person}{Shengcao Cao}, \bibinfo{person}{Haotian Liu},
+  \bibinfo{person}{Chunyuan Li}, \bibinfo{person}{Yikang Shen},
+  \bibinfo{person}{Chuang Gan}, \bibinfo{person}{Liangyan Gui},
+  \bibinfo{person}{Yu-Xiong Wang}, \bibinfo{person}{Yiming Yang},
+  \bibinfo{person}{Kurt Keutzer}, {and} \bibinfo{person}{Trevor Darrell}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Aligning Large Multimodal Models with Factually
+  Augmented {RLHF}}. In \bibinfo{booktitle}{\emph{Findings of the Association
+  for Computational Linguistics: ACL 2024}}. \bibinfo{publisher}{Association
+  for Computational Linguistics}, \bibinfo{address}{Bangkok, Thailand},
+  \bibinfo{pages}{13088--13110}.
+\newblock
+\href{https://doi.org/10.18653/v1/2024.findings-acl.775}{doi:\nolinkurl{10.18653/v1/2024.findings-acl.775}}
+
+
+\bibitem[Peng et~al\mbox{.}(2025)]%
+        {peng2025sentinel}
+\bibfield{author}{\bibinfo{person}{Shangpin Peng}, \bibinfo{person}{Senqiao
+  Yang}, \bibinfo{person}{Li Jiang}, {and} \bibinfo{person}{Zhuotao Tian}.}
+  \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{Mitigating Object Hallucinations via Sentence-Level
+  Early Intervention ({SENTINEL})}. In \bibinfo{booktitle}{\emph{Proceedings of
+  the IEEE/CVF International Conference on Computer Vision (ICCV)}}.
+  \bibinfo{publisher}{IEEE}, \bibinfo{address}{Los Alamitos, CA, USA},
+  \bibinfo{pages}{635--646}.
+\newblock
+\urldef\tempurl%
+\url{https://openaccess.thecvf.com/content/ICCV2025/html/Peng_Mitigating_Object_Hallucinations_via_Sentence-Level_Early_Intervention_ICCV_2025_paper.html}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Yin et~al\mbox{.}(2024)]%
+        {yin2023woodpecker}
+\bibfield{author}{\bibinfo{person}{Shukang Yin}, \bibinfo{person}{Chaoyou Fu},
+  \bibinfo{person}{Sirui Zhao}, \bibinfo{person}{Tong Xu}, \bibinfo{person}{Hao
+  Wang}, \bibinfo{person}{Dianbo Sui}, \bibinfo{person}{Yunhang Shen},
+  \bibinfo{person}{Ke Li}, \bibinfo{person}{Xing Sun}, {and}
+  \bibinfo{person}{Enhong Chen}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Woodpecker: Hallucination Correction for Multimodal
+  Large Language Models}.
+\newblock \bibinfo{journal}{\emph{Science China Information Sciences}}
+  \bibinfo{volume}{67}, \bibinfo{number}{12} (\bibinfo{year}{2024}),
+  \bibinfo{pages}{220105}.
+\newblock
+\href{https://doi.org/10.1007/s11432-024-4251-x}{doi:\nolinkurl{10.1007/s11432-024-4251-x}}
+
+
+\bibitem[Gunjal et~al\mbox{.}(2024)]%
+        {gunjal2024detecting_preventing}
+\bibfield{author}{\bibinfo{person}{Anisha Gunjal}, \bibinfo{person}{Jihan Yin},
+  {and} \bibinfo{person}{Erhan Bas}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Detecting and Preventing Hallucinations in Large
+  Vision Language Models}. In \bibinfo{booktitle}{\emph{Proceedings of the AAAI
+  Conference on Artificial Intelligence}}. \bibinfo{publisher}{AAAI Press},
+  \bibinfo{address}{Palo Alto, CA, USA}, \bibinfo{pages}{18135--18143}.
+\newblock
+\urldef\tempurl%
+\url{https://ojs.aaai.org/index.php/AAAI/article/view/29944}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Zhang et~al\mbox{.}(2025)]%
+        {zhang2025dhcp}
+\bibfield{author}{\bibinfo{person}{Yudong Zhang}, \bibinfo{person}{Ruobing
+  Xie}, \bibinfo{person}{Xingwu Sun}, \bibinfo{person}{Yiqing Huang},
+  \bibinfo{person}{Jiansheng Chen}, \bibinfo{person}{Zhanhui Kang},
+  \bibinfo{person}{Di Wang}, {and} \bibinfo{person}{Yu Wang}.}
+  \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{{DHCP}: Detecting Hallucinations by Cross-modal
+  Attention Pattern in Large Vision-Language Models}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 33rd ACM International
+  Conference on Multimedia (MM '25)}}. \bibinfo{publisher}{ACM},
+  \bibinfo{address}{New York, NY, USA}, \bibinfo{pages}{3555--3564}.
+\newblock
+\href{https://doi.org/10.1145/3746027.3755118}{doi:\nolinkurl{10.1145/3746027.3755118}}
+
+
+\bibitem[Leng et~al\mbox{.}(2024)]%
+        {leng2023mitigating}
+\bibfield{author}{\bibinfo{person}{Sicong Leng}, \bibinfo{person}{Hang Zhang},
+  \bibinfo{person}{Guanzheng Chen}, \bibinfo{person}{Xin Li},
+  \bibinfo{person}{Shijian Lu}, \bibinfo{person}{Chunyan Miao}, {and}
+  \bibinfo{person}{Lidong Bing}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Mitigating Object Hallucinations in Large
+  Vision-Language Models through Visual Contrastive Decoding}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the IEEE/CVF Conference on Computer
+  Vision and Pattern Recognition (CVPR)}}. \bibinfo{publisher}{IEEE},
+  \bibinfo{address}{Los Alamitos, CA, USA}, \bibinfo{pages}{13872--13882}.
+\newblock
+\urldef\tempurl%
+\url{https://openaccess.thecvf.com/content/CVPR2024/papers/Leng_Mitigating_Object_Hallucinations_in_Large_Vision-Language_Models_through_Visual_Contrastive_CVPR_2024_paper.pdf}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Favero et~al\mbox{.}(2024)]%
+        {favero2024m3id}
+\bibfield{author}{\bibinfo{person}{Alessandro Favero}, \bibinfo{person}{Luca
+  Zancato}, \bibinfo{person}{Matthew Trager}, \bibinfo{person}{Siddharth
+  Choudhary}, \bibinfo{person}{Pramuditha Perera}, \bibinfo{person}{Alessandro
+  Achille}, \bibinfo{person}{Ashwin Swaminathan}, {and}
+  \bibinfo{person}{Stefano Soatto}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Multi-modal Hallucination Control by Visual
+  Information Grounding}. In \bibinfo{booktitle}{\emph{Proceedings of the
+  IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}}.
+  \bibinfo{publisher}{IEEE}, \bibinfo{address}{Los Alamitos, CA, USA},
+  \bibinfo{pages}{14303--14312}.
+\newblock
+\urldef\tempurl%
+\url{https://openaccess.thecvf.com/content/CVPR2024/html/Favero_Multi-modal_Hallucination_Control_by_Visual_Information_Grounding_CVPR_2024_paper.html}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Deng et~al\mbox{.}(2024)]%
+        {deng2024clipguided}
+\bibfield{author}{\bibinfo{person}{Ailin Deng}, \bibinfo{person}{Zhirui Chen},
+  {and} \bibinfo{person}{Bryan Hooi}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \bibinfo{title}{Seeing is Believing: Mitigating Hallucination in
+  Large Vision-Language Models via {CLIP}-Guided Decoding}.
+\newblock \bibinfo{howpublished}{Poster at the Second Workshop on Reliable and
+  Responsible Foundation Models at {ICLR} 2024}.
+\newblock
+\urldef\tempurl%
+\url{https://openreview.net/forum?id=hZ9XshbCPq}
+\showURL{%
+\tempurl}
+\newblock
+\shownote{OpenReview}.
+
+
+\bibitem[Wang et~al\mbox{.}(2024)]%
+        {wang2024icd}
+\bibfield{author}{\bibinfo{person}{Xintong Wang}, \bibinfo{person}{Jingheng
+  Pan}, \bibinfo{person}{Liang Ding}, {and} \bibinfo{person}{Chris Biemann}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Mitigating Hallucinations in Large Vision-Language
+  Models with Instruction Contrastive Decoding}. In
+  \bibinfo{booktitle}{\emph{Findings of the Association for Computational
+  Linguistics: ACL 2024}}. \bibinfo{publisher}{Association for Computational
+  Linguistics}, \bibinfo{address}{Bangkok, Thailand},
+  \bibinfo{pages}{15840--15853}.
+\newblock
+\urldef\tempurl%
+\url{https://aclanthology.org/2024.findings-acl.942/}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Chuang et~al\mbox{.}(2024)]%
+        {chuang2023dola}
+\bibfield{author}{\bibinfo{person}{Yung-Sung Chuang}, \bibinfo{person}{Yujia
+  Xie}, \bibinfo{person}{Hongyin Luo}, \bibinfo{person}{Yoon Kim},
+  \bibinfo{person}{James Glass}, {and} \bibinfo{person}{Pengcheng He}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{{DoLa}: Decoding by Contrasting Layers Improves
+  Factuality in Large Language Models}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the International Conference on
+  Learning Representations (ICLR)}}. \bibinfo{publisher}{OpenReview.net},
+  \bibinfo{address}{Vienna, Austria}, \bibinfo{numpages}{26}~pages.
+\newblock
+\urldef\tempurl%
+\url{https://openreview.net/forum?id=Th6NyL07na}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Jiang et~al\mbox{.}(2024)]%
+        {jiang2024hacl}
+\bibfield{author}{\bibinfo{person}{Chaoya Jiang}, \bibinfo{person}{Haiyang Xu},
+  \bibinfo{person}{Mengfan Dong}, \bibinfo{person}{Jiaxing Chen},
+  \bibinfo{person}{Wei Ye}, \bibinfo{person}{Ming Yan},
+  \bibinfo{person}{Qinghao Zhao}, \bibinfo{person}{Ji Zhang},
+  \bibinfo{person}{Fei Huang}, {and} \bibinfo{person}{Shikun Zhang}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Hallucination Augmented Contrastive Learning for
+  Multimodal Large Language Model ({HACL})}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the IEEE/CVF Conference on Computer
+  Vision and Pattern Recognition (CVPR)}}. \bibinfo{publisher}{IEEE},
+  \bibinfo{address}{Los Alamitos, CA, USA}, \bibinfo{pages}{27036--27046}.
+\newblock
+\urldef\tempurl%
+\url{https://arxiv.org/abs/2312.06968}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Kim et~al\mbox{.}(2024)]%
+        {kim2024code}
+\bibfield{author}{\bibinfo{person}{Junho Kim}, \bibinfo{person}{Hyunjun Kim},
+  \bibinfo{person}{Yeonju Kim}, {and} \bibinfo{person}{Yong~Man Ro}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{{CODE}: Contrasting Self-generated Description to
+  Combat Hallucination in Large Multi-modal Models}. In
+  \bibinfo{booktitle}{\emph{Advances in Neural Information Processing
+  Systems}}. \bibinfo{publisher}{Curran Associates, Inc.},
+  \bibinfo{address}{Red Hook, NY, USA}, \bibinfo{numpages}{29}~pages.
+\newblock
+
+
+\bibitem[Huang et~al\mbox{.}(2024)]%
+        {huang2024opera_cvpr}
+\bibfield{author}{\bibinfo{person}{Qidong Huang}, \bibinfo{person}{Xiaoyi
+  Dong}, \bibinfo{person}{Pan Zhang}, \bibinfo{person}{Bin Wang},
+  \bibinfo{person}{Conghui He}, \bibinfo{person}{Jiaqi Wang},
+  \bibinfo{person}{Dahua Lin}, \bibinfo{person}{Weiming Zhang}, {and}
+  \bibinfo{person}{Nenghai Yu}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{{OPERA}: Alleviating Hallucination in Multi-Modal
+  Large Language Models via Over-Trust Penalty and Retrospection-Allocation}.
+  In \bibinfo{booktitle}{\emph{Proceedings of the IEEE/CVF Conference on
+  Computer Vision and Pattern Recognition (CVPR)}}. \bibinfo{publisher}{IEEE},
+  \bibinfo{address}{Los Alamitos, CA, USA}, \bibinfo{pages}{13418--13427}.
+\newblock
+\urldef\tempurl%
+\url{https://openaccess.thecvf.com/content/CVPR2024/papers/Huang_OPERA_Alleviating_Hallucination_in_Multi-Modal_Large_Language_Models_via_Over-Trust_CVPR_2024_paper.pdf}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Woo et~al\mbox{.}(2024)]%
+        {woo2024ritual}
+\bibfield{author}{\bibinfo{person}{Sangmin Woo}, \bibinfo{person}{Jaehyuk
+  Jang}, \bibinfo{person}{Donguk Kim}, \bibinfo{person}{Yubin Choi}, {and}
+  \bibinfo{person}{Changick Kim}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \bibinfo{title}{{RITUAL}: Random Image Transformations as a Universal
+  Anti-hallucination Lever in {LVLMs}}.
+\newblock
+\showeprint[arxiv]{2405.17821}~[cs.CV]
+\urldef\tempurl%
+\url{https://arxiv.org/abs/2405.17821}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Liu et~al\mbox{.}(2024)]%
+        {liu2024paying_attention_image}
+\bibfield{author}{\bibinfo{person}{Shi Liu}, \bibinfo{person}{Kecheng Zheng},
+  {and} \bibinfo{person}{Wei Chen}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Paying More Attention to Image: A Training-Free
+  Method for Alleviating Hallucination in {LVLMs}}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the European Conference on Computer
+  Vision (ECCV)}}. \bibinfo{publisher}{Springer}, \bibinfo{address}{Cham,
+  Switzerland}, \bibinfo{pages}{125--140}.
+\newblock
+\urldef\tempurl%
+\url{https://link.springer.com/chapter/10.1007/978-3-031-73010-8_8}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Xu et~al\mbox{.}(2025)]%
+        {xu2025tarac}
+\bibfield{author}{\bibinfo{person}{Xiaohua Xu} {et~al\mbox{.}}}
+  \bibinfo{year}{2025}\natexlab{}.
+\newblock \bibinfo{title}{Mitigating Hallucination in {LVLMs} via Temporal
+  Attention Real-time Accumulative Connection ({TARAC})}.
+\newblock
+\showeprint[arxiv]{2504.04099}~[cs.CV]
+\urldef\tempurl%
+\url{https://arxiv.org/abs/2504.04099}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Kai et~al\mbox{.}(2024)]%
+        {kai2024sh2}
+\bibfield{author}{\bibinfo{person}{Jushi Kai}, \bibinfo{person}{Tianhang
+  Zhang}, \bibinfo{person}{Hai Hu}, {and} \bibinfo{person}{Zhouhan Lin}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{{SH2}: Self-Highlighted Hesitation Helps You Decode
+  More Truthfully}. In \bibinfo{booktitle}{\emph{Findings of the Association
+  for Computational Linguistics: EMNLP 2024}}. \bibinfo{publisher}{Association
+  for Computational Linguistics}, \bibinfo{address}{Miami, Florida, USA},
+  \bibinfo{pages}{4514--4530}.
+\newblock
+\href{https://doi.org/10.18653/v1/2024.findings-emnlp.260}{doi:\nolinkurl{10.18653/v1/2024.findings-emnlp.260}}
+
+
+\bibitem[Zhang et~al\mbox{.}(2025)]%
+        {zhang2025degf}
+\bibfield{author}{\bibinfo{person}{Ce Zhang}, \bibinfo{person}{Zifu Wan},
+  \bibinfo{person}{Zhehan Kan}, \bibinfo{person}{Martin~Q. Ma},
+  \bibinfo{person}{Simon Stepputtis}, \bibinfo{person}{Deva Ramanan},
+  \bibinfo{person}{Russ Salakhutdinov}, \bibinfo{person}{Louis-Philippe
+  Morency}, \bibinfo{person}{Katia Sycara}, {and} \bibinfo{person}{Yaqi Xie}.}
+  \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{Self-Correcting Decoding with Generative Feedback
+  for Mitigating Hallucinations in Large Vision-Language Models}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the International Conference on
+  Learning Representations (ICLR)}}. \bibinfo{publisher}{OpenReview.net},
+  \bibinfo{address}{Singapore}, \bibinfo{numpages}{31}~pages.
+\newblock
+
+
+\bibitem[Cao et~al\mbox{.}(2025)]%
+        {cao2025cofidec}
+\bibfield{author}{\bibinfo{person}{Zongsheng Cao}, \bibinfo{person}{Yangfan
+  He}, \bibinfo{person}{Anran Liu}, \bibinfo{person}{Jun Xie},
+  \bibinfo{person}{Feng Chen}, {and} \bibinfo{person}{Zepeng Wang}.}
+  \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{{CoFi-Dec}: Hallucination-Resistant Decoding via
+  Coarse-to-Fine Generative Feedback in Large Vision-Language Models}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the 33rd ACM International
+  Conference on Multimedia (MM '25)}}. \bibinfo{publisher}{ACM},
+  \bibinfo{address}{New York, NY, USA}, \bibinfo{pages}{10709--10718}.
+\newblock
+\href{https://doi.org/10.1145/3746027.3754791}{doi:\nolinkurl{10.1145/3746027.3754791}}
+
+
+\bibitem[Bai et~al\mbox{.}(2023)]%
+        {bai2023qwen}
+\bibfield{author}{\bibinfo{person}{Jinze Bai}, \bibinfo{person}{Shuai Bai},
+  \bibinfo{person}{Shusheng Yang}, \bibinfo{person}{Shijie Wang},
+  \bibinfo{person}{Sinan Tan}, \bibinfo{person}{Peng Wang},
+  \bibinfo{person}{Junyang Lin}, \bibinfo{person}{Chang Zhou}, {and}
+  \bibinfo{person}{Jingren Zhou}.} \bibinfo{year}{2023}\natexlab{}.
+\newblock \bibinfo{title}{{Qwen-VL}: A Frontier Large Vision-Language Model
+  with Versatile Abilities}.
+\newblock
+\showeprint[arxiv]{2308.12966}~[cs.CV]
+\urldef\tempurl%
+\url{https://arxiv.org/abs/2308.12966}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Wang et~al\mbox{.}(2024)]%
+        {wang2023cogvlm}
+\bibfield{author}{\bibinfo{person}{Weihan Wang}, \bibinfo{person}{Qingsong Lv},
+  \bibinfo{person}{Wenmeng Yu}, \bibinfo{person}{Wenyi Hong},
+  \bibinfo{person}{Ji Qi}, \bibinfo{person}{Yan Wang}, \bibinfo{person}{Junhui
+  Ji}, \bibinfo{person}{Zhuoyi Yang}, \bibinfo{person}{Lei Zhao},
+  \bibinfo{person}{Xixuan Song}, \bibinfo{person}{Jiazheng Xu},
+  \bibinfo{person}{Keqin Chen}, \bibinfo{person}{Bin Xu},
+  \bibinfo{person}{Juanzi Li}, \bibinfo{person}{Yuxiao Dong},
+  \bibinfo{person}{Ming Ding}, {and} \bibinfo{person}{Jie Tang}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{{CogVLM}: Visual Expert for Pretrained Language
+  Models}. In \bibinfo{booktitle}{\emph{Advances in Neural Information
+  Processing Systems}}. \bibinfo{publisher}{Curran Associates, Inc.},
+  \bibinfo{address}{Red Hook, NY, USA}, \bibinfo{numpages}{25}~pages.
+\newblock
+\href{https://doi.org/10.52202/079017-3860}{doi:\nolinkurl{10.52202/079017-3860}}
+
+
+\bibitem[Zhu et~al\mbox{.}(2024)]%
+        {zhu2023minigpt}
+\bibfield{author}{\bibinfo{person}{Deyao Zhu}, \bibinfo{person}{Jun Chen},
+  \bibinfo{person}{Xiaoqian Shen}, \bibinfo{person}{Xiang Li}, {and}
+  \bibinfo{person}{Mohamed Elhoseiny}.} \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{{MiniGPT-4}: Enhancing Vision-Language
+  Understanding with Advanced Large Language Models}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the International Conference on
+  Learning Representations (ICLR)}}. \bibinfo{publisher}{OpenReview.net},
+  \bibinfo{address}{Vienna, Austria}, \bibinfo{numpages}{16}~pages.
+\newblock
+\urldef\tempurl%
+\url{https://openreview.net/forum?id=1tZbq88f27}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Zhou et~al\mbox{.}(2024)]%
+        {zhou2023analyzing}
+\bibfield{author}{\bibinfo{person}{Yiyang Zhou}, \bibinfo{person}{Chenhang
+  Cui}, \bibinfo{person}{Jaehong Yoon}, \bibinfo{person}{Linjun Zhang},
+  \bibinfo{person}{Zhun Deng}, \bibinfo{person}{Chelsea Finn},
+  \bibinfo{person}{Mohit Bansal}, {and} \bibinfo{person}{Huaxiu Yao}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Analyzing and Mitigating Object Hallucination in
+  Large Vision-Language Models}. In \bibinfo{booktitle}{\emph{Proceedings of
+  the International Conference on Learning Representations (ICLR)}}.
+  \bibinfo{publisher}{OpenReview.net}, \bibinfo{address}{Vienna, Austria},
+  \bibinfo{numpages}{30}~pages.
+\newblock
+\urldef\tempurl%
+\url{https://openreview.net/forum?id=oZDJKTlOUe}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Guan et~al\mbox{.}(2024)]%
+        {guan2024hallusionbench}
+\bibfield{author}{\bibinfo{person}{Tianrui Guan}, \bibinfo{person}{Fuxiao Liu},
+  \bibinfo{person}{Xiyang Wu}, \bibinfo{person}{Ruiqi Xian},
+  \bibinfo{person}{Zongxia Li}, \bibinfo{person}{Xiaoyu Liu},
+  \bibinfo{person}{Xijun Wang}, \bibinfo{person}{Lichang Chen},
+  \bibinfo{person}{Furong Huang}, \bibinfo{person}{Yaser Yacoob},
+  \bibinfo{person}{Dinesh Manocha}, {and} \bibinfo{person}{Tianyi Zhou}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{{HallusionBench}: An Advanced Diagnostic Suite for
+  Entangled Language Hallucination and Visual Illusion in Large Vision-Language
+  Models}. In \bibinfo{booktitle}{\emph{Proceedings of the IEEE/CVF Conference
+  on Computer Vision and Pattern Recognition (CVPR)}}.
+  \bibinfo{publisher}{IEEE}, \bibinfo{address}{Los Alamitos, CA, USA},
+  \bibinfo{pages}{14375--14385}.
+\newblock
+\urldef\tempurl%
+\url{https://openaccess.thecvf.com/content/CVPR2024/html/Guan_HallusionBench_An_Advanced_Diagnostic_Suite_for_Entangled_Language_Hallucination_and_CVPR_2024_paper.html}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Lu et~al\mbox{.}(2023)]%
+        {lu2023agnosia}
+\bibfield{author}{\bibinfo{person}{Jiaying Lu}, \bibinfo{person}{Jinmeng Rao},
+  \bibinfo{person}{Kezhen Chen}, \bibinfo{person}{Xiaoyuan Guo},
+  \bibinfo{person}{Yawen Zhang}, \bibinfo{person}{Baochen Sun},
+  \bibinfo{person}{Carl Yang}, {and} \bibinfo{person}{Jie Yang}.}
+  \bibinfo{year}{2023}\natexlab{}.
+\newblock \bibinfo{title}{Evaluation and Mitigation of Agnosia in Multimodal
+  Large Language Models}.
+\newblock
+\showeprint[arxiv]{2309.04041}~[cs.CV]
+\urldef\tempurl%
+\url{https://arxiv.org/abs/2309.04041}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Fu et~al\mbox{.}(2024)]%
+        {fu2024lookahead}
+\bibfield{author}{\bibinfo{person}{Yichao Fu}, \bibinfo{person}{Peter Bailis},
+  \bibinfo{person}{Ion Stoica}, {and} \bibinfo{person}{Hao Zhang}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Break the Sequential Dependency of {LLM} Inference
+  Using Lookahead Decoding}. In \bibinfo{booktitle}{\emph{Proceedings of the
+  International Conference on Machine Learning (ICML)}}.
+  \bibinfo{publisher}{PMLR}, \bibinfo{address}{Vienna, Austria},
+  \bibinfo{pages}{14060--14079}.
+\newblock
+\urldef\tempurl%
+\url{https://proceedings.mlr.press/v235/fu24a.html}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Gagrani et~al\mbox{.}(2024)]%
+        {gagrani2024speculative_mllm}
+\bibfield{author}{\bibinfo{person}{Mukul Gagrani}, \bibinfo{person}{Raghavv
+  Goel}, \bibinfo{person}{Wonseok Jeon}, \bibinfo{person}{Junyoung Park},
+  \bibinfo{person}{Mingu Lee}, {and} \bibinfo{person}{Christopher Lott}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{On Speculative Decoding for Multimodal Large
+  Language Models}. In \bibinfo{booktitle}{\emph{Proceedings of the IEEE/CVF
+  Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)}}.
+  \bibinfo{publisher}{IEEE}, \bibinfo{address}{Los Alamitos, CA, USA},
+  \bibinfo{pages}{8285--8289}.
+\newblock
+\urldef\tempurl%
+\url{https://openaccess.thecvf.com/content/CVPR2024W/ELVM/html/Gagrani_On_Speculative_Decoding_for_Multimodal_Large_Language_Models_CVPRW_2024_paper.html}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Gao et~al\mbox{.}(2024)]%
+        {gao2024cantor}
+\bibfield{author}{\bibinfo{person}{Timin Gao}, \bibinfo{person}{Peixian Chen},
+  \bibinfo{person}{Mengdan Zhang}, \bibinfo{person}{Chaoyou Lu},
+  \bibinfo{person}{Yunhang Chen}, \bibinfo{person}{Xiawu Zhong},
+  \bibinfo{person}{Yan Li}, \bibinfo{person}{Zijia Zeng},
+  \bibinfo{person}{Rongrong Ji}, {et~al\mbox{.}}}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{Cantor: Inspiring Multimodal Chain-of-Thought of
+  {MLLM}}. In \bibinfo{booktitle}{\emph{Proceedings of the ACM International
+  Conference on Multimedia}}. \bibinfo{publisher}{ACM}, \bibinfo{address}{New
+  York, NY, USA}, \bibinfo{numpages}{27}~pages.
+\newblock
+\urldef\tempurl%
+\url{https://arxiv.org/abs/2404.16033}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Cheng et~al\mbox{.}(2025)]%
+        {cheng2025think_more}
+\bibfield{author}{\bibinfo{person}{Xiaoxue Cheng}, \bibinfo{person}{Junyi Li},
+  \bibinfo{person}{Wayne~Xin Zhao}, {and} \bibinfo{person}{Ji-Rong Wen}.}
+  \bibinfo{year}{2025}\natexlab{}.
+\newblock \showarticletitle{Think More, Hallucinate Less: Mitigating
+  Hallucinations via Dual Process of Fast and Slow Thinking}. In
+  \bibinfo{booktitle}{\emph{Findings of the Association for Computational
+  Linguistics: ACL 2025}}. \bibinfo{publisher}{Association for Computational
+  Linguistics}, \bibinfo{address}{Vienna, Austria},
+  \bibinfo{pages}{7979--7990}.
+\newblock
+\urldef\tempurl%
+\url{https://aclanthology.org/2025.findings-acl.417/}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Liu et~al\mbox{.}(2024a)]%
+        {liu2023groundingdino}
+\bibfield{author}{\bibinfo{person}{Shilong Liu}, \bibinfo{person}{Zhaoyang
+  Zeng}, \bibinfo{person}{Tianhe Ren}, \bibinfo{person}{Feng Li},
+  \bibinfo{person}{Hao Zhang}, \bibinfo{person}{Jie Yang},
+  \bibinfo{person}{Chunyuan Li}, \bibinfo{person}{Jianwei Yang},
+  \bibinfo{person}{Hang Su}, \bibinfo{person}{Jun Zhu}, {and}
+  \bibinfo{person}{Lei Zhang}.} \bibinfo{year}{2024}\natexlab{a}.
+\newblock \showarticletitle{Grounding {DINO}: Marrying {DINO} with Grounded
+  Pre-Training for Open-Set Object Detection}. In
+  \bibinfo{booktitle}{\emph{Proceedings of the European Conference on Computer
+  Vision (ECCV)}}. \bibinfo{publisher}{Springer}, \bibinfo{address}{Cham,
+  Switzerland}, \bibinfo{pages}{38--55}.
+\newblock
+\urldef\tempurl%
+\url{https://link.springer.com/chapter/10.1007/978-3-031-72970-6_3}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Liu et~al\mbox{.}(2024b)]%
+        {liu2023mmbench}
+\bibfield{author}{\bibinfo{person}{Yuan Liu}, \bibinfo{person}{Haodong Duan},
+  \bibinfo{person}{Yuanhan Zhang}, \bibinfo{person}{Bo Li},
+  \bibinfo{person}{Songyang Zhang}, \bibinfo{person}{Wangbo Zhao},
+  \bibinfo{person}{Yike Yuan}, \bibinfo{person}{Jiaqi Wang},
+  \bibinfo{person}{Conghui He}, \bibinfo{person}{Ziwei Liu}, {et~al\mbox{.}}}
+  \bibinfo{year}{2024}\natexlab{b}.
+\newblock \showarticletitle{{MMBench}: Is Your Multi-modal Model an All-around
+  Player?}. In \bibinfo{booktitle}{\emph{Proceedings of the European Conference
+  on Computer Vision (ECCV)}}. \bibinfo{publisher}{Springer},
+  \bibinfo{address}{Cham, Switzerland}, \bibinfo{pages}{216--233}.
+\newblock
+\urldef\tempurl%
+\url{https://link.springer.com/chapter/10.1007/978-3-031-72904-1_13}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Chen et~al\mbox{.}(2024)]%
+        {chen2024halc}
+\bibfield{author}{\bibinfo{person}{Zhaorun Chen}, \bibinfo{person}{Zhuokai
+  Zhao}, \bibinfo{person}{Hongyin Luo}, \bibinfo{person}{Huaxiu Yao},
+  \bibinfo{person}{Bo Li}, {and} \bibinfo{person}{Jiawei Zhou}.}
+  \bibinfo{year}{2024}\natexlab{}.
+\newblock \showarticletitle{{HALC}: Object Hallucination Reduction via Adaptive
+  Focal-Contrast Decoding}. In \bibinfo{booktitle}{\emph{Proceedings of the
+  International Conference on Machine Learning (ICML)}}.
+  \bibinfo{publisher}{PMLR}, \bibinfo{address}{Vienna, Austria},
+  \bibinfo{pages}{7824--7846}.
+\newblock
+\urldef\tempurl%
+\url{https://proceedings.mlr.press/v235/chen24at.html}
+\showURL{%
+\tempurl}
+
+
+\end{thebibliography}

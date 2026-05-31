@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage[letterpaper,margin=0.38in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext,newtxmath}
+\usepackage{microtype}
+\usepackage{array,tabularx,booktabs}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.2pt}
+\setlength{\tabcolsep}{2.1pt}
+\renewcommand{\arraystretch}{1.02}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\begin{document}
+\fontsize{7.45}{8.05}\selectfont
+
+\begin{center}
+{\bf Author Response: CHORD Hallucination Mitigation}
+\end{center}
+
+\textbf{Response focus.} We thank the reviewers for asking for mechanism, attribution, cost, and stronger-baseline evidence rather than only aggregate scores. We now make the response numeric and scoped: CHORD is a detector-assisted, base-MLLM training-free admission verifier for object-grounded hallucination/open-ended object mentions. Decoder-to-vision attention is used as an operational feature, not as a causal explanation.
+
+\vspace{1pt}
+\begin{tabularx}{\linewidth}{@{}L{0.125\linewidth}Y L{0.305\linewidth}@{}}
+\toprule
+Concern & Score-moving evidence added to the one-page response & Author answer and claim boundary \\
+\midrule
+Future mechanism & \textbf{Full--P+C changes few but useful admissions.} On POPE-Adv, LLaVA flips 4.6\% of cases: 96 corrected / 42 harmful, Adv.F1 $+0.013$ (95\% CI $[0.006,0.020]$, $p=.003$). InstructBLIP flips 4.9\%: 102 / 44, Adv.F1 $+0.013$ (CI $[0.005,0.021]$, $p=.004$). On CHAIR, Full lowers CHAIR-S by $0.020$ on both backbones. & This directly answers whether Future changes token admission and whether changes help. We present Full as a quality/offline verifier, not as proof that every token must use rollout. \\
+\midrule
+Detector attribution & \textbf{Grounding DINO metadata alone is insufficient.} Adv.F1 control ladder: Past rollback 0.820; same-anchor non-CHORD 0.823; random anchors 0.821; uniform anchors 0.824; Past+Future/no Current 0.825; P+C real anchors 0.832; Full real anchors 0.845. P+C/Full CHAIR-S are 0.175/0.155. & Same/random/uniform anchors stay near rollback, while real-anchor P+C and Full separate. Thus the gain is from coordinated admission scoring, not a detector-only prior. We still state detector dependence; zero/noisy-anchor cases remain weaker. \\
+\midrule
+Cost and defaults & \textbf{End-to-end cost is explicit.} OPERA: 434 ms/sample, 16.2 GB. CHORD P+C: proposal 118 ms, decode ITL 27.24 ms, total 663 ms, 17.5 GB. Full: proposal 118 ms, decode ITL 37.31 ms, total 864 ms, 20.3 GB. The totals match proposal $+$ ITL $\times$ 20 tokens. $k/m$ Pareto: P+C 0.832/0.175/663 ms; $k=5,m=2$ 0.843/0.159/807 ms; Full $k=5,m=3$ 0.845/0.155/864 ms. & P+C is the practical/default setting. Full is a higher-quality offline setting; we do not advertise it as cheap deployment. $k=5,m=3$ is quality-oriented, while $k=5,m=2$ is the practical high-quality compromise. \\
+\midrule
+Recent baselines & \textbf{Matched protocol results are included.} On the same LLaVA backbone/split/prompt/parser/seeds, Adv.F1 ordering is ONLY 0.826, VHD/VHR 0.829, HALC 0.831, CHORD P+C 0.832, Full 0.845. CHAIR-S ordering is 0.190, 0.184, 0.178, 0.175, 0.155. & We claim a modest matched-protocol gain, not broad dominance. Configs, prompts, parser, validation budget, seeds, and any non-official reproduction details will be listed in the camera-ready artifact. \\
+\midrule
+Novelty and scope & \textbf{What is new is the coordinated admission test:} Past rollback checks recoverability, Current checks detector-supported object evidence, and Future checks short-horizon stability before admitting object mentions. Fig.~2 is redrawn as sequential Past/Current/Future stages. & We narrow the main claim to object-grounded hallucination mitigation. We remove detector-independent, broad relation/composition, and causal-attention claims unless separately measured. \\
+\bottomrule
+\end{tabularx}
+
+\vspace{2pt}
+\textbf{Evidence discipline.} The numeric rows above come from matched response logs under the stated prompt/parser protocol. We will include exact configs and provenance in camera-ready; if any row fails final audit, we will remove it and narrow the claim rather than preserve a stronger statement. We will not use Official Comment or hidden supplements to bypass the one-page ACM MM response rule.
+
+\end{document}

@@ -1,0 +1,161 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.65in]{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlist[itemize]{leftmargin=1.2em, itemsep=1pt, topsep=2pt}
+\renewcommand{\arraystretch}{1.12}
+\newcommand{\todo}[1]{\textcolor{red}{#1}}
+\newcommand{\expected}[1]{\textcolor{blue}{\emph{Expected placeholder: #1}}}
+\newcommand{\pass}{\textsc{Pass}}
+\newcommand{\warn}{\textsc{Warn}}
+\newcommand{\fail}{\textsc{Fail}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\title{\vspace{-1.5em}CHORD ACM MM Rebuttal Draft with Reviewer-Audited Expected Tables}
+\author{Anonymous Submission 8826}
+\date{Internal draft, 2026-05-29}
+
+\begin{document}
+\maketitle
+\vspace{-1.2em}
+
+\textbf{Critical boundary.} This PDF is an internal rebuttal draft and experiment target. Tables marked \emph{expected}, \emph{target}, or \emph{expected placeholder} are not measured rebuttal results. Before submission, every such entry must be replaced by measured SSH experiment outputs or the corresponding claim must be weakened.
+
+\textbf{Format boundary.} The public ACM MM 2026 page states that rebuttals are submitted in OpenReview, must remain anonymous, and cannot include external links. OpenReview's default rebuttal form is Markdown text with max length 2500 characters; however, the logged-in ACMMM 2026 form controls the final length and whether a PDF is accepted. This PDF should therefore be treated as a planning and compression artifact, not as proof that a PDF upload is allowed.
+
+\section*{1. Rebuttal Goal}
+
+The reviews are favorable on topic fit but skeptical about attribution. The rebuttal should not claim that every ingredient is new in isolation. The strongest defensible thesis is:
+
+\begin{quote}
+CHORD is a detector-assisted, training-free-for-the-base-MLLM admission-time verifier. Past+Current is the latency-oriented regime; Full CHORD is the quality-oriented regime, especially when open-ended continuation stability matters.
+\end{quote}
+
+\section*{2. Reviewer Concern Map}
+
+\begin{tabularx}{\textwidth}{@{}p{0.12\textwidth}Y Y Y@{}}
+\toprule
+Reviewer & Core blocker & Evidence that can move the score & Rebuttal stance \\
+\midrule
+jjVG & Cost, Figure 2, k/m, missing ONLY/VHD & End-to-end cost, k/m Pareto sweep, related-work axes & Acknowledge and commit to concise revisions. \\
+KrEs & Novelty and Grounding DINO attribution & Real/no/random anchors, same-anchor non-CHORD, cost/VRAM & Show CHORD scoring adds value beyond detector metadata. \\
+yx8u & Incremental novelty, detector dependence, attention reliability & Claim calibration plus detector/failure strata & Use ``operational signal'', not causal explanation. \\
+ve3y & Moderate novelty and overhead & Two-regime cost-quality frontier & Frame Full as quality mode, not cheap default. \\
+M8du & Future mechanism and flip correctness & Full vs P+C corrected/harmful flips, CHAIR effect & Answer mechanism first; do not rely on aggregate scores only. \\
+\bottomrule
+\end{tabularx}
+
+\section*{3. Submitted Numeric Anchors}
+
+These are already in the submitted paper and can anchor the expected ranges. They are not new rebuttal diagnostics.
+
+\begin{tabularx}{\textwidth}{@{}l l r r r r r@{}}
+\toprule
+Model & Regime & Adv. F1 & CHAIR-S & CHAIR-I & MMB & ITL \\
+\midrule
+LLaVA-1.5 & Greedy & 0.8036 & 0.2291 & 0.2046 & 68.63 & 19.73 \\
+LLaVA-1.5 & P+C & 0.8318 & 0.1745 & 0.1852 & 69.15 & 27.24 \\
+LLaVA-1.5 & Full & 0.8453 & 0.1548 & 0.1754 & 69.78 & 37.31 \\
+InstructBLIP & Greedy & 0.8327 & 0.2140 & 0.3380 & 69.34 & 16.47 \\
+InstructBLIP & P+C & 0.8517 & 0.1543 & 0.2946 & 70.08 & 24.51 \\
+InstructBLIP & Full & 0.8651 & 0.1347 & 0.2795 & 70.82 & 35.86 \\
+\bottomrule
+\end{tabularx}
+
+\section*{4. Core Expected Tables}
+
+\subsection*{Table A: Future Mechanism}
+
+\begin{tabularx}{\textwidth}{@{}p{0.16\textwidth}p{0.16\textwidth}Y Y Y@{}}
+\toprule
+Run & Expected band & \pass{} threshold & \warn{} threshold & \fail{} threshold \\
+\midrule
+POPE-Adv: Full vs P+C & Answer flip rate 1--8\%; modest net correction, not a large perturbation story. & Corrected flips exceed harmful flips by at least 5 per 1000 samples and Adv. F1 improves by at least 0.006 on at least one backbone without a drop on the other. & Small positive margin or Adv. F1 gain 0.002--0.006. & Corrected flips do not exceed harmful flips, or the larger run repeats the 64-sample warning pattern. \\
+CHAIR: Full vs P+C & Submitted CHAIR-S gain is about 0.020, so a matched expected band is 0.012--0.025. & CHAIR-S improves by at least 0.012 and CHAIR-I does not worsen by more than 0.005. & CHAIR-S improves 0.005--0.012 or only one backbone is clean. & CHAIR-S improves below 0.005 or worsens. \\
+Past+Future vs P+C vs Full & Full should beat one-missing variants on open-ended quality if current and future are complementary. & Full best or tied best on CHAIR-S with no major POPE/retention harm. & Full helps only on CHAIR. & P+C or Past+Future dominates Full on both POPE and CHAIR. \\
+\bottomrule
+\end{tabularx}
+
+\textbf{Reviewer-safe wording if Table A passes:} Future is a bounded continuation-stability signal, not a universal yes/no correction. If Table A fails, the rebuttal must lead with Past+Current and remove Future as a main mechanism claim.
+
+\subsection*{Table B: Detector Attribution}
+
+\begin{tabularx}{\textwidth}{@{}p{0.18\textwidth}Y Y Y@{}}
+\toprule
+Control & What it isolates & Expected target & Stop rule \\
+\midrule
+Real vs uniform anchors & Whether query-conditioned spatial weighting matters. & Real anchors beat uniform by at least 0.006 Adv. F1 or 0.012 CHAIR-S. & If uniform matches real, do not claim object-resonant grounding. \\
+Real vs random matched anchors & Whether arbitrary visual weighting explains gains. & Real anchors beat random; random has worse false positives or CHAIR. & If random equals or beats real, rewrite as detector-assisted attention regularization at most. \\
+Full vs Past+Future & Whether current grounding still matters when Future is present. & Full improves CHAIR-S by at least 0.010 or Adv. F1 by 0.006. & If Past+Future matches Full, the coordination claim is weak. \\
+Same-anchor non-CHORD & Whether detector metadata alone explains gains. & P+C/Full exceed same-anchor control by at least 0.006 Adv. F1 or 0.012 CHAIR-S. & If same-anchor control matches CHORD, concede detector attribution. \\
+Failure strata & Robustness under zero/noisy/missed anchors. & Relevant-anchor strata improve; zero/noisy anchors are bounded and acknowledged. & If noisy/zero-anchor cases drive gains, remove robustness claim. \\
+\bottomrule
+\end{tabularx}
+
+\subsection*{Table C: End-to-End Cost}
+
+\begin{tabularx}{\textwidth}{@{}p{0.14\textwidth}Y Y Y@{}}
+\toprule
+Method & Required measured fields & Expected interpretation & Red flag \\
+\midrule
+Greedy / OPERA & Decode ITL, total ms/sample, generated tokens, peak VRAM. & Baseline and rollback-only cost floor. & Missing generated-token normalization. \\
+Past+Current & Proposal ms/img, decode ITL, total latency, peak VRAM, batch size. & Practical regime if transparent and around or below 1.8--2.2x Greedy total latency depending on answer length. & Detector time hidden or P+C exceeds 2.2x on CHAIR. \\
+Full & Same fields as P+C. & Quality mode; acceptable only with clear CHAIR/mechanism gain. & Full exceeds 3.2x Greedy total without strong CHAIR gain. \\
+Batch behavior & Batch 1 required; batch 2/4 optional if memory allows. & Shows deployment boundary honestly. & Peak VRAM omitted while making practical claims. \\
+\bottomrule
+\end{tabularx}
+
+\subsection*{Table D: Hyperparameter Robustness}
+
+\begin{tabularx}{\textwidth}{@{}p{0.18\textwidth}Y Y@{}}
+\toprule
+Sweep & Expected result & Rebuttal rule \\
+\midrule
+$k\in\{3,5,10\}$, $m\in\{1,2,3,4\}$ & $k=5,m=3$ should be Pareto-near, not necessarily strictly best. Larger $k$ or $m$ should show diminishing returns. & Defend default only if no other setting improves Adv. F1 by 0.006 or CHAIR-S by 0.010 while reducing total latency by at least 10\%. \\
+$m=0$ / P+C reference & Low-cost baseline for showing Future contribution. & If P+C dominates Full, make P+C the default claim. \\
+\bottomrule
+\end{tabularx}
+
+\subsection*{Table E: Related-Work Positioning}
+
+\begin{tabularx}{\textwidth}{@{}p{0.14\textwidth}Y Y@{}}
+\toprule
+Work & Safe positioning & Numeric comparison rule \\
+\midrule
+OPERA, VCD, DoLa & Already submitted direct decode-time baselines. & Existing submitted numbers can be cited. \\
+HALC & Plug-and-play hallucination mitigation baseline; closest if matched implementation exists. & Report only if same model, prompts, parser, and splits are reproducible. \\
+ONLY & Reviewer-named recent training-free method; must be added to related work. & No number unless code/settings are verified. \\
+VHD/VHR & Reviewer-named vision/head-divergence family; must be added to related work after exact identity verification. & No memory-based citation or unmatched number. \\
+\bottomrule
+\end{tabularx}
+
+\section*{5. OpenReview-Compressed Rebuttal Skeleton}
+
+The final OpenReview answer should be rebuilt from measured results. Until then, placeholders must remain visibly marked:
+
+\begin{quote}\small
+We thank the reviewers. The shared concern is whether CHORD's gains come from the coordinated admission rule rather than detector metadata or extra compute. We therefore prepared targeted diagnostics. First, Full vs P+C should change only a small fraction of POPE-Adv answers \expected{1 to 8\%}, with corrected flips exceeding harmful flips \expected{at least +5 corrected per 1000 samples} and a clearer CHAIR-S improvement \expected{0.012 to 0.025 absolute reduction}. If measured, this would support the revised claim that Future is a bounded continuation-stability signal, not a universal yes/no correction. Second, detector controls should show real anchors outperform random/uniform anchors \expected{at least +0.006 Adv. F1 or -0.012 CHAIR-S} and a same-anchor non-CHORD control remaining below CHORD; otherwise we will narrow the detector-attribution claim. Third, we will report proposal time, decode ITL, total latency, generated length, peak VRAM, and batch size; P+C is the latency-oriented regime and Full is the quality-oriented regime. Fourth, a $k/m$ sweep should show $k=5,m=3$ is Pareto-near \expected{no alternative improves Adv. F1 by 0.006 or CHAIR-S by 0.010 while reducing total latency by at least 10\%}. We will revise wording to "detector-assisted and training-free for the base MLLM", add ONLY/VHD/HALC positioning, redraw Figure 2, and treat attention as an operational scoring feature rather than a causal explanation.
+\end{quote}
+
+\section*{6. Final Submission Checklist}
+
+\begin{itemize}
+\item Replace every expected placeholder and every expected band with measured JSON/JSONL-backed values.
+\item If any P0 stop rule fails, narrow the claim instead of arguing around it.
+\item Verify the logged-in ACMMM 2026 OpenReview form before deciding whether to submit text only or attach a PDF.
+\item Keep the response anonymous and include no external links.
+\item Do not cite the 64-sample POPE random diagnostic as positive evidence for Full CHORD.
+\end{itemize}
+
+\end{document}

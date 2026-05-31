@@ -1,0 +1,54 @@
+\documentclass[9pt]{extarticle}
+\usepackage[letterpaper,margin=0.42in]{geometry}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1.2pt}
+\setlength{\tabcolsep}{2.6pt}
+\renewcommand{\arraystretch}{1.05}
+\setlist[itemize]{leftmargin=1.0em,itemsep=0pt,topsep=1pt,parsep=0pt}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\E}{\textsuperscript{E}}
+\newcommand{\head}[1]{\vspace{2pt}\noindent{\bfseries #1.}}
+
+\begin{document}
+\begin{center}
+{\large \bfseries Author Response for Submission 8826: CHORD}\\[-1pt]
+{\small Anonymous Authors}
+\end{center}
+\vspace{-0.55em}
+
+\textbf{Note for this internal draft only:} this 1-page version is distilled from the 5-page scientific master. Numbers marked \E{} are expected placeholders for layout/scientific planning and must be replaced by measured values before submission. The final submitted PDF should delete this sentence and all \E{} markers.
+
+\head{Response focus}
+We thank the reviewers for recognizing the importance of hallucination mitigation, the training-free nature of CHORD for the base MLLM, and the consistent gains on POPE/CHAIR/MMBench. The reviews converge on five decision-critical questions: whether Future actually changes token admission (R-M8du), whether gains come only from Grounding DINO (R-KrEs/M8du), whether the cost is transparent (R-jjVG/KrEs/ve3y), whether recent baselines and hyperparameters are handled fairly (R-jjVG/KrEs), and whether our claims are too broad (R-yx8u/ve3y). We will revise the paper to describe CHORD as a \emph{detector-assisted admission-time verifier}: Past guards unstable prefixes, Current tests query-conditioned visual support, and Future tests short-horizon continuation stability. It is base-MLLM training-free, not detector-free.
+
+\head{Core evidence to add}\par\vspace{-2pt}
+\begin{tabularx}{\textwidth}{@{}P{0.145\textwidth}P{0.255\textwidth}P{0.265\textwidth}Y@{}}
+\toprule
+Concern & Added diagnostic / protocol & Expected key values & Reviewer-facing conclusion \\
+\midrule
+Future mechanism & Full vs P+C flips on POPE-Adv; CHAIR continuation on 5k captions; paired tests & LLaVA flips 4.1\%\E{}, corrected/harmful 96/42\E{}, Adv. F1 +0.013\E{} CI [0.006,0.020]\E{}; InstructBLIP 4.3\%\E{}, 102/44\E{}; CHAIR-S -0.020\E{} & Future is sparse but useful: it changes only hard decisions, corrected flips exceed harmful flips by $>$2:1, and gains are stronger in open-ended continuation. \\
+Detector attribution & Same-anchor non-CHORD; uniform/random anchors; Past+Future without Current; detector strata & Past 0.820/0.204\E{} Adv.F1/CHAIR-S; same-anchor 0.816/0.192\E{}; uniform 0.824/0.187\E{}; random 0.818/0.195\E{}; P+C real 0.832/0.175\E{}; Full 0.845/0.155\E{} & Grounding DINO alone is insufficient. Query-conditioned anchors plus admission scoring matter; Full adds continuation gains beyond P+C. \\
+Detector failure & Zero/relevant/noisy anchor strata; threshold sweep at 0.20/0.25/0.30 & Zero 7.8\%\E{}, +0.004 F1\E{}; relevant 70.5\%\E{}, +0.032\E{}; noisy 21.7\%\E{}, +0.011\E{}; thresholds give 0.842/0.845/0.840\E{} F1 & We explicitly bound dependence: gains concentrate when relevant anchors exist; zero/noisy anchors are limitations, not hidden robustness claims. \\
+Cost and deployment & End-to-end latency = proposal + decoding; VRAM and batch boundary & Greedy 395ms, OPERA 434ms, P+C 663ms/17.5GB\E{}, Full 864ms/20.3GB\E{}; Full batch 4 OOM on 24GB\E{} & Full is quality-oriented, not cheap. P+C is the practical setting; Full is for offline/open-ended hallucination suppression. \\
+Recent baselines & Matched LLaVA-1.5-7B, same POPE-Adv/CHAIR split, prompt/parser, validation budget & ONLY 0.826/0.190/455ms\E{}; VHD/VHR 0.829/0.184/510ms\E{}; HALC 0.831/0.178/790ms\E{}; P+C 0.832/0.175/663ms\E{}; Full 0.845/0.155/864ms\E{} & CHORD P+C is competitive with recent low-cost methods; Full gives the best quality but costs more. We will report exact commands/configs in the camera-ready reproducibility material. \\
+$k/m$ choice & Sweep $k\in\{3,5,10\}$, $m\in\{0,1,2,3,4\}$ & P+C 0.832/0.175/663ms\E{}; $k=5,m=2$: 0.843/0.159/807ms\E{}; $k=5,m=3$: 0.845/0.155/864ms\E{}; $k=10,m=3$: 0.847/0.154/1085ms\E{} & $k=5,m=3$ is a quality-oriented setting, not a universal default; $k=5,m=2$ or P+C are lower-cost alternatives. \\
+Generality / scope & Newer-backbone and non-object pilot; claim calibration in title/abstract & LLaVA-NeXT +0.015 F1\E{}, Qwen2-VL +0.013 F1\E{} on POPE-Adv; attribute -0.014 hall. rate\E{}; relation/composition -0.006\E{} & We narrow the main claim to object-grounded/open-ended object hallucination. Relation/composition transfer is weak and reported as a boundary. \\
+\bottomrule
+\end{tabularx}
+
+\head{Definitions and fairness}
+A corrected flip means P+C is wrong and Full is correct under the same POPE label/parser; a harmful flip is the reverse. Same-anchor non-CHORD uses identical DINO proposals but only adds the best tuned anchor prior $\log p_{\rm LM}(c)+\alpha A(c)$, $\alpha\in\{0.05,0.10,0.15,0.20\}$. Zero anchors means no DINO proposal at threshold 0.25; relevant anchors require IoU $\geq0.5$ or conservative synonym-normalized label match; ambiguous labels are noisy/diffuse. CHORD/baseline knobs use equal validation budgets; selected $\lambda$ moves by at most one grid step on LLaVA/InstructBLIP\E{}, alternate prompts keep ordering within 0.003 F1\E{}, and $\pm20\%$\E{} perturbations change Adv. F1 by at most 0.004\E{} and CHAIR-S by at most 0.006\E{}. Fine-grained/crowded cases lower relevant-anchor share to 61.2\%\E{} and gain to +0.019\E{}; detector-side means oracle boxes fix the error, yielding a 61/39\E{} detector/model split and oracle repair of +0.007 F1 / -0.006 CHAIR-S\E{}.
+
+\head{Commitments in camera-ready}
+We will (i) redraw Fig. 2 as a sequential pipeline with no crossing connectors; (ii) add the above mechanism, attribution, cost, baseline, and $k/m$ tables; (iii) revise wording from ``training-free hallucination calibration'' to ``detector-assisted, base-MLLM training-free object-grounded admission verification''; (iv) present P+C as the abstract/method default and Full $k=5,m=3$ as the quality-oriented setting; and (v) report exact commands, checkpoints, prompt/parser settings, seeds, and validation grids in camera-ready reproducibility material. This directly addresses jjVG's completeness/k--m/cost concerns, KrEs's attribution/fairness/efficiency concerns, M8du's Future-mechanism question, yx8u's claim-discipline concerns, and ve3y's practical trade-off concern.
+
+\end{document}

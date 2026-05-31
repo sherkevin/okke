@@ -1,0 +1,15 @@
+﻿{
+    "thread_id":  "019e6f2b-33a9-78e0-bdb7-eaa32981ae5c",
+    "thread_name":  "rebuttal role",
+    "source_file":  "C:\\Users\\shers\\.codex\\sessions\\2026\\05\\28\\rollout-2026-05-28T23-19-27-019e6f2b-33a9-78e0-bdb7-eaa32981ae5c.jsonl",
+    "synced_file":  "D:\\Shervin\\OneDrive\\Desktop\\breaking\\codex_chat_history\\raw\\019e6f2b-33a9-78e0-bdb7-eaa32981ae5c\\rollout-2026-05-28T23-19-27-019e6f2b-33a9-78e0-bdb7-eaa32981ae5c.jsonl",
+    "source_bytes":  29274113,
+    "synced_bytes":  29274113,
+    "source_last_write_utc":  "2026-05-31T14:04:18.4129494Z",
+    "synced_at_utc":  "2026-05-31T14:04:21.9386084+00:00",
+    "session_created_at":  "2026-05-28T15:19:27.828Z",
+    "cwd":  "D:\\Shervin\\OneDrive\\Desktop\\breaking",
+    "originator":  "Codex Desktop",
+    "mode":  "raw-jsonl",
+    "warning":  "Raw Codex session logs may contain prompts, tool outputs, file paths, and secrets. Keep this directory ignored unless you intentionally want to commit it."
+}

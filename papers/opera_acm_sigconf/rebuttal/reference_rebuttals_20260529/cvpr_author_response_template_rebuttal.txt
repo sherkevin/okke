@@ -1,0 +1,208 @@
+CVPR
+#*****
+
+CVPR
+#*****
+CVPR 2023 Submission #*****. CONFIDENTIAL REVIEW COPY. DO NOT DISTRIBUTE.
+
+LATEX Guidelines for Author Response
+001
+
+A. Introduction
+
+002
+003
+004
+
+027
+028
+029
+030
+
+After receiving paper reviews, authors may optionally submit a rebuttal to address the reviewers’ comments, which
+will be limited to a one page PDF file. Please follow the
+steps and style guidelines outlined below for submitting
+your author response.
+The author rebuttal is optional and, following similar
+guidelines to previous conferences, is meant to provide you
+with an opportunity to rebut factual errors or to supply additional information requested by the reviewers. It is NOT
+intended to add new contributions (theorems, algorithms,
+experiments) that were absent in the original submission
+and NOT specifically requested by the reviewers. You may
+optionally add a figure, graph, or proof to your rebuttal to
+better illustrate your answer to the reviewers’ comments.
+Per a passed 2018 PAMI-TC motion, reviewers should
+refrain from requesting significant additional experiments
+for the rebuttal or penalize for lack of additional experiments. Authors should refrain from including new experimental results in the rebuttal, especially when not specifically requested to do so by the reviewers. Authors may
+include figures with illustrations or comparison tables of results reported in the submission/supplemental material or in
+other papers.
+Just like the original submission, the rebuttal must maintain anonymity and cannot include external links that reveal
+the author identity or circumvent the length restriction. The
+rebuttal must comply with this template (the use of sections
+is not required, though it is recommended to structure the
+rebuttal for ease of reading).
+
+031
+
+A.1. Response length
+
+032
+
+038
+
+Author responses must be no longer than 1 page in length
+including any references and figures. Overlength responses
+will simply not be reviewed. This includes responses where
+the margins and formatting are deemed to have been significantly altered from those laid down by this style guide.
+Note that this LATEX guide already sets figure captions and
+references in a smaller font.
+
+039
+
+B. Formatting your Response
+
+040
+
+Make sure to update the paper title and paper ID in the
+appropriate place in the tex file.
+All text must be in a two-column format. The total allowable size of the text area is 6 78 inches (17.46 cm) wide by 8 87
+inches (22.54 cm) high. Columns are to be 3 14 inches (8.25
+5
+cm) wide, with a 16
+inch (0.8 cm) space between them. The
+top margin should begin 1 inch (2.54 cm) from the top edge
+of the page. The bottom margin should be 1 18 inches (2.86
+cm) from the bottom edge of the page for 8.5 × 11-inch pa-
+
+005
+006
+007
+008
+009
+010
+011
+012
+013
+014
+015
+016
+017
+018
+019
+020
+021
+022
+023
+024
+025
+026
+
+033
+034
+035
+036
+037
+
+041
+042
+043
+044
+045
+046
+047
+048
+
+Figure 1. Example of caption. It is set in Roman so that mathematics (always set in Roman: B sin A = A sin B) may be included
+without an ugly clash.
+
+per; for A4 paper, approximately 1 85 inches (4.13 cm) from
+the bottom edge of the page.
+Please number any displayed equations. It is important
+for readers to be able to refer to any particular equation.
+Wherever Times is specified, Times Roman may also be
+used. Main text should be in 10-point Times, single-spaced.
+Section headings should be in 10 or 12 point Times. All
+paragraphs should be indented 1 pica (approx. 16 inch or
+0.422 cm). Figure and table captions should be 9-point Roman type as in Fig. 1.
+List and number all bibliographical references in 9-point
+Times, single-spaced, at the end of your response. When
+referenced in the text, enclose the citation number in square
+brackets, for example [1]. Where appropriate, include the
+name(s) of editors of referenced books.
+To avoid ambiguities, it is best if the numbering for equations, figures, tables, and references in the author response
+does not overlap with that in the main paper (the reviewer
+may wonder if you talk about Fig. 1 in the author response
+or in the paper). See LATEX template for a workaround.
+
+064
+065
+066
+067
+068
+
+B.1. Illustrations, graphs, and photographs
+
+069
+
+All graphics should be centered. Please ensure that any
+point you wish to make is resolvable in a printed copy of
+the response. Resize fonts in figures to match the font in the
+body text, and choose line widths which render effectively
+in print. Readers (and reviewers), even of an electronic
+copy, may choose to print your response in order to read
+it. You cannot insist that they do otherwise, and therefore
+must not assume that they can zoom in to see tiny details on
+a graphic.
+When placing figures in LATEX, it is almost always best to
+use \includegraphics, and to specify the figure width
+as a multiple of the line width as in the example below
+
+070
+071
+072
+
+\usepackage{graphicx} ...
+\includegraphics[width=0.8\linewidth]
+{myfile.pdf}
+
+082
+083
+084
+
+049
+050
+051
+052
+053
+054
+055
+056
+057
+058
+059
+060
+061
+062
+063
+
+073
+074
+075
+076
+077
+078
+079
+080
+081
+
+References
+
+085
+
+[1] FirstName Alpher and FirstName Gamow. Can a computer
+frobnicate? In CVPR, pages 234–778, 2005. 1
+
+086
+087
+
+

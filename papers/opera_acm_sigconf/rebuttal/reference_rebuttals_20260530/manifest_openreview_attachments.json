@@ -1,0 +1,49 @@
+[
+  {
+    "name": "openreview_global_response_concept_extraction_Gyl4D5wvrR.pdf",
+    "url": "https://openreview.net/attachment?id=Gyl4D5wvrR&name=pdf",
+    "status": 200,
+    "contentType": "application/pdf",
+    "byteLength": 552271,
+    "saved": "D:\\Shervin\\OneDrive\\Desktop\\breaking\\papers\\opera_acm_sigconf\\rebuttal\\reference_rebuttals_20260530\\openreview_global_response_concept_extraction_Gyl4D5wvrR.pdf",
+    "sha256": "6014902566E5395BECAF3850C41E4BE2D99980ECBD71C822AA9E426A4F70BCB3",
+    "bytes_saved": 552271
+  },
+  {
+    "name": "openreview_author_rebuttal_zopo_NYZMBEc8nl.pdf",
+    "url": "https://openreview.net/attachment?id=NYZMBEc8nl&name=pdf",
+    "status": 200,
+    "contentType": "application/pdf",
+    "byteLength": 485720,
+    "saved": "D:\\Shervin\\OneDrive\\Desktop\\breaking\\papers\\opera_acm_sigconf\\rebuttal\\reference_rebuttals_20260530\\openreview_author_rebuttal_zopo_NYZMBEc8nl.pdf",
+    "sha256": "47610C41F089F1D17B918270DB864A2C152D9A5D2C1FF6760F740B633DB4DD10",
+    "bytes_saved": 485720
+  },
+  {
+    "name": "openreview_adaptir_additional_figures_rebuttal_SAF3Td4LW4.pdf",
+    "url": "https://openreview.net/attachment?id=SAF3Td4LW4&name=pdf",
+    "status": 200,
+    "contentType": "application/pdf",
+    "byteLength": 808762,
+    "saved": "D:\\Shervin\\OneDrive\\Desktop\\breaking\\papers\\opera_acm_sigconf\\rebuttal\\reference_rebuttals_20260530\\openreview_adaptir_additional_figures_rebuttal_SAF3Td4LW4.pdf",
+    "sha256": "40F38D856B2EFE801E783D6929C83BFCB2C3642A3B61C429B9F3088926AC87F7",
+    "bytes_saved": 808762
+  },
+  {
+    "name": "openreview_guidelines_author_response_Yc6QvczVnT.pdf",
+    "url": "https://openreview.net/attachment?id=Yc6QvczVnT&name=pdf",
+    "status": 200,
+    "contentType": "application/pdf",
+    "byteLength": 287014,
+    "saved": "D:\\Shervin\\OneDrive\\Desktop\\breaking\\papers\\opera_acm_sigconf\\rebuttal\\reference_rebuttals_20260530\\openreview_guidelines_author_response_Yc6QvczVnT.pdf",
+    "sha256": "B089C28A6F5444400616F3729077BC4640591495678BFAE5F3B4549375B684C3",
+    "bytes_saved": 287014
+  },
+  {
+    "name": "openreview_author_response_summary_revisions_Q1trQFKh8Q.pdf",
+    "url": "https://openreview.net/attachment?id=Q1trQFKh8Q&name=changes_made",
+    "status": 403,
+    "contentType": "text/html",
+    "byteLength": 12692
+  }
+]

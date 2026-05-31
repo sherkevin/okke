@@ -1,0 +1,643 @@
+         CHORD: Calibrating Hallucinations via Object-Resonant
+           Decoding in Multimodal Large Language Models
+                                                          Anonymous Author(s)
+Abstract
+Multimodal Large Language Models remain text-native autore-
+gressive systems: visual evidence conditions the hidden state, but
+token admission is still decided one step at a time. Hallucina-
+tion therefore often emerges as a short-horizon decoding fail-
+ure, where a locally plausible token enters the prefix before ro-
+bust visual grounding is established. Existing training-free miti-
+gation methods mainly penalize historical failures or rescore the
+current step, but they do not jointly test whether a candidate is
+supported by query-relevant visual regions and whether its imme-
+diate continuation remains visually grounded. In this paper, we           Figure 1: CHORD reframes decode-time hallucination con-
+propose CHORD, an inference-time framework for Calibrating                trol as admission followed by short-horizon verification. Left:
+Hallucinations via Object-Resonant Decoding. CHORD evaluates              regular decoding may admit a locally fluent but weakly
+candidate tokens with three coordinated signals: a past signal that       grounded token and drift into text-dominated continuation.
+preserves rollback-based protection against textual inertia, a cur-       Right: CHORD screens the same admission through past
+rent signal that measures query-conditioned visual support, and           rollback protection, current object resonance, and future
+a future signal that probes short-horizon continuation through            rollout arbitration before commitment.
+bounded rollout. To keep the method practical, CHORD performs
+anchor generation before autoregressive decoding and uses shared-
+KV batched rollout during candidate evaluation. Experiments on            remaining linguistically smooth. The problem is especially acute
+POPE, CHAIR, and MMBench with LLaVA-1.5 and InstructBLIP                  in trust-sensitive applications because the generated text sounds
+reveal two stable operating regimes: Past+Current (CHORD-P+C)             coherent even when it is poorly grounded.
+delivers the strongest latency-efficient POPE gains, while Full               Existing mitigation strategies attack the problem at different
+CHORD yields the strongest overall quality metrics, including the         stages. Training-time approaches improve factuality through ad-
+clearest CHAIR reduction while retaining the strongest MMBench            ditional supervision, preference optimization, or revision-aware
+accuracy across both backbones. These results show that multi-            alignment [16–22], but they require retraining and model-specific
+modal decoding benefits from evaluating both support now and              adaptation. Post-hoc correction and detection pipelines [15, 23–25]
+stability next.                                                           intervene only after an unstable continuation has already been pro-
+                                                                          duced or must be diagnosed separately. Decode-time intervention
+CCS Concepts                                                              is therefore attractive because it is training-free and acts at token
+                                                                          admission. However, most existing decode-time baselines remain
+• Computing methodologies → Machine learning; Natural lan-
+                                                                          predominantly local: they rely on contrastive or grounded log-
+guage processing; • Applied computing → Computer vision.
+                                                                          its [26–32], retrospective attention tests [33–37], or self-feedback
+                                                                          loops [38, 39], but they do not explicitly test whether an admitted
+Keywords
+                                                                          token stays grounded over the next few decoding steps.
+Hallucination Mitigation, Decode-Time Verification, Visual Ground-            We describe this failure mode as structural temporal col-
+ing                                                                       lapse: a locally acceptable token can still push the decoder into
+                                                                          a short-horizon regime in which image-linked attention weakens
+1    Introduction                                                         and textual self-conditioning takes over. This is an operational
+Recent Multimodal Large Language Models (MLLMs) [1–8] have                description, not a claim of formal causality. The key implication
+substantially improved open-ended visual understanding and gen-           is practical: local plausibility is not enough. A token should be
+eration, but their outputs are still produced by text-native autore-      judged by both the evidence it currently receives and the continu-
+gressive decoding. Visual evidence conditions the hidden state, yet       ation tendency it induces.
+the final decision is still made one token at a time. This makes hallu-       To address this gap, we propose CHORD, a training-free decod-
+cination a decoding problem as much as a representation problem:          ing framework for admission-time verification. CHORD combines
+once a visually weak token is admitted, subsequent tokens are gen-        three signals: rollback-based protection against already-collapsed
+erated from a prefix that already contains the error.                     prefixes, current support from relevant visual regions, and a short
+   This failure manifests as multimodal hallucination [9–15]: the         future rollout that tests whether continuation remains grounded.
+model mentions unsupported objects, attributes, or relations while        The current term answers “is this token visually supported now?”;
+MM ’26, Anonymous Submission                                              the future term answers “does this token keep the branch grounded
+2026.                                                                     next?” Unlike rollback-only methods, CHORD does not wait for
+MM ’26, October 2026, Anonymous Submission                                                                                                       Anon.
+
+
+collapse to become visible in the prefix; unlike current-step con-     2.3      Decode-Time Intervention and Lookahead
+trastive rules or generic lookahead, it tests whether a candidate is   Training-free decode-time methods are especially relevant to our
+grounded now and stable next.                                          setting. Contrastive and grounded decoding suppress unsupported
+   Because future arbitration introduces additional test-time com-     continuations by comparing logits or injecting auxiliary visual
+pute, CHORD also includes practical execution rules: anchor gen-       evidence [26–32]. Attention-based methods use internal dynam-
+eration is performed once before autoregressive decoding, branch       ics to penalize textual over-reliance or trigger rollback, including
+evaluation reuses shared prefix KV-cache, and unstable branches        OPERA [33], RITUAL [34], TARAC [36], SH2 [37], and attention-
+are terminated early. The resulting method is closer to bounded        guided reweighting [35]. Self-feedback methods further ask the
+test-time verification than to unrestricted search, which is why we    model to verify its own generations through synthetic evidence or
+frame it as a decode-time control rule rather than a global search     iterative revision [38, 39]. In parallel, recent work on test-time com-
+procedure. The core question is therefore not only whether text        pute scaling and lookahead decoding suggests that short-horizon
+is fluent, but whether token admission remains faithful to visual      forecasting can improve model decisions [46–49]. CHORD com-
+evidence under practical latency constraints.                          bines these directions with a narrower objective than generic
+   Our contributions are summarized as follows:                        search: it uses query-relevant visual support to judge whether
+                                                                       a token should enter the prefix, then uses a bounded future rollout
+      • We formulate decode-time hallucination control as a trajec-    to test whether that admission remains visually stable over the
+        tory verification problem and characterize a practical fail-   next few steps.
+        ure mode, structural temporal collapse, in which a weakly
+        grounded admission induces text-dominated continuation.        3 Methodology
+      • We propose CHORD, a training-free admission verifier that      We introduce CHORD, a training-free decoding framework for re-
+        combines OPERA-compatible rollback protection, late-layer      ducing hallucination in MLLMs. At each decoding step, CHORD
+        object-resonant current scoring, and bounded future arbitra-   does not immediately accept the highest-logit token. Instead, it
+        tion in a single reranking rule.                               reranks a small candidate set using three signals: a past signal for
+      • We operationalize a late-layer decoder-to-vision signal by     historical protection, a current signal for object-resonant ground-
+        aggregating the last four decoder blocks and show how          ing, and a future signal for short-horizon rollout evaluation. The
+        shared-KV rollout makes short-horizon branch verification      distinctive design choice is to pair support now with stability next:
+        practical at inference time.                                   CHORD does not merely ask whether a candidate looks plausible
+      • We evaluate CHORD on POPE, CHAIR, and MMBench                  at the current step, but whether admitting it is likely to preserve
+        across LLaVA-1.5 (7B) and InstructBLIP (7B), showing a         grounding over the next few decoding steps.
+        reproducible two-regime trade-off: Past+Current gives the      Problem Setting. Let a pretrained MLLM parameterized by 𝜃 re-
+        strongest latency-efficient discriminative gains, while Full   ceive a visual input 𝑣 and a textual query 𝑥 . The visual encoder
+        CHORD gives the strongest overall quality metrics and re-      maps 𝑣 to visual tokens 𝒱 = {𝑣1 , … , 𝑣𝑁 }. At decoding step 𝑡 , the
+        tained MMBench accuracy.                                       decoder defines
+                                                                                  𝑝𝜃 (𝑦𝑡 ∣ 𝒱, 𝑥, 𝑦<𝑡 ) = Softmax(𝑓𝜃 (𝑦𝑡 ∣ 𝒱, 𝑥, 𝑦<𝑡 )) ,            (1)
+
+2 Related Work                                                         where 𝑦<𝑡 is the current prefix and 𝑓𝜃 denotes the pre-softmax
+                                                                       logits. CHORD first applies the same retrospective rollback test
+2.1 MLLM Hallucination                                                 as OPERA to the prefix. If the test is triggered, the prefix is re-
+Modern MLLMs [1–4, 6, 7, 40–42] align image representations            paired and the current step is recomputed on the repaired state
+with pretrained language models, enabling strong zero-shot and          ̃ . CHORD then forms the candidate set
+                                                                       𝑦<𝑡
+instruction-following performance. Nevertheless, hallucination re-
+                                                                                                                   ̃ ), 𝑘) ,
+                                                                                          𝒞𝑡 = TopK(𝑝𝜃 (⋅ ∣ 𝒱, 𝑥, 𝑦<𝑡                               (2)
+mains a persistent issue [9–14, 43–45]. Prior analyses attribute
+these failures to language-prior dominance, weak grounding, and        and reranks candidates before admission.
+instability in long-form autoregressive generation. Our work fo-
+cuses on the decode-time aspect of this problem.                       3.1      Candidate Scoring
+                                                                       After rollback handling, CHORD evaluates each candidate token
+                                                                        (𝑐)
+                                                                       𝑦𝑡     ∈ 𝒞𝑡 with
+2.2     Training-Time and Post-Hoc Mitigation                                       (𝑐)            (𝑐)                (𝑐)                  (𝑐)
+                                                                        𝑆CHORD (𝑦𝑡 ) = 𝑆past (𝑦𝑡 ) + 𝜆cur 𝑉res (𝑦𝑡 ) + 𝜆fut 𝐹harm (𝑦𝑡 ), (3)
+One line of work improves grounding during training through in-
+struction tuning, preference optimization, hallucination-aware ob-     and outputs the candidate with the highest final score over the sur-
+jectives, or feedback-guided revision [16–22]. These methods can       viving set. This rule is a bounded reranking objective rather than
+be effective, but they require additional supervision and model        a global sequence-search objective.
+adaptation. Another line of work introduces post-hoc correction        Past: rollback-based historical protection. We reuse the retro-
+modules, verifiers, or hallucination detectors [15, 23–25]. Such ap-   spective safeguard of OPERA [33] to detect severe columnar atten-
+proaches improve factuality after generation, but they increase sys-   tion concentration on previously generated text. This component
+tem complexity and latency.                                            operates on the prefix before candidate reranking. Once the step is
+CHORD                                                                                                  MM ’26, October 2026, Anonymous Submission
+
+
+
+
+Figure 2: Method overview of CHORD. Stage 0 constructs query-relevant anchors and anchor weights before autoregressive
+decoding. Stage 1 applies rollback-based past protection to repair already-collapsed prefixes. Stage 2 reranks the top-𝑘 candi-
+dates through object-resonant current scoring and bounded future arbitration under shared-KV rollout. Stage 3 admits the
+candidate with the highest aggregate score.
+
+
+                              ̃ , the past score for each candidate
+re-entered on a valid prefix 𝑦<𝑡                                         visualizes this choice and supports the stability-specificity trade-
+is the local log-probability                                             off that motivated it.
+                      (𝑐)                (𝑐)                             Current: object-resonant visual support. To bias candidate se-
+               𝑆past (𝑦𝑡 ) = log 𝑝𝜃 (𝑦𝑡                 ̃ ),
+                                               ∣ 𝒱, 𝑥, 𝑦<𝑡         (4)   lection toward query-relevant image evidence, CHORD builds a
+which preserves compatibility with the underlying decoder when-          lightweight object set once before autoregressive decoding. An ex-
+ever rollback is inactive.                                               ternal region proposer such as Grounding DINO [50] is queried
+Late-layer attention aggregation. Both the current and future            with the textual prompt 𝑥 , yielding anchors ℬ = {𝑏𝑖 } together
+terms use decoder attention to visual and textual source positions.      with confidence scores. We retain the top proposals after confi-
+Let 𝑎ℓ,ℎ (𝑞 → 𝑧) denote the attention from query token 𝑞 to source       dence thresholding. Each anchor is assigned a relevance weight
+token 𝑧 at decoder layer ℓ and head ℎ. We first average over heads       𝑟𝑖 ∈ [0, 1] from the text-conditioned detector score, and each vi-
+within each block,                                                       sual token receives
+
+                                 1
+                                     𝐻                                                    𝑤𝑗 = 1 + 𝛼 max (1(𝑣𝑗 ∈ 𝑏𝑖 ) 𝑟𝑖 𝑠𝑖 ) ,               (7)
+                 𝑎ℓ̄ (𝑞 → 𝑧) =     ∑ 𝑎 (𝑞 → 𝑧),                    (5)                                   𝑖
+                                 𝐻 ℎ=1 ℓ,ℎ
+                                                                         where 𝑠𝑖 denotes proposal confidence and 1(𝑣𝑗 ∈ 𝑏𝑖 ) indicates that
+then aggregate only the last four decoder blocks,                        visual token 𝑣𝑗 falls inside anchor 𝑏𝑖 . For each candidate branch,
+                  ℒlate = {𝐿dec − 3, … , 𝐿dec },                                                             (𝑐)
+                                                                         CHORD temporarily appends 𝑦𝑡 to 𝑦<𝑡 ̃ and performs one forward
+                                 ∑ℓ∈ℒlate 𝑎ℓ̄ (𝑞 → 𝑧)              (6)   pass conditioned on that candidate. The current object-resonant
+            𝐴𝑡 (𝑞 → 𝑧) =                                       .         score is then
+                            ∑𝑧 ′ ∈𝒮𝑡 ∑ℓ∈ℒlate 𝑎ℓ̄ (𝑞 → 𝑧 ′ )
+                                                                                                        𝑁
+where 𝒮𝑡 contains the monitored source positions at step 𝑡 : visual                             (𝑐)
+                                                                                          𝑉res (𝑦𝑡 ) = ∑ 𝑤𝑗 𝐴𝑡 (𝑦𝑡
+                                                                                                                    (𝑐)
+                                                                                                                          → 𝑣𝑗 ).             (8)
+tokens, the textual query, and prefix tokens, while excluding struc-                                   𝑗=1
+tural separator positions. We use the last four decoder blocks as
+an empirically chosen late-layer operating window: mid-stack at-         This candidate-conditioned pass is reused as the initial state of fu-
+tention is often too diffuse, whereas the final block alone is more      ture rollout for the same branch. Hence, 𝑉res measures support now,
+brittle and sensitive to the immediately preceding token. Figure 3       not merely generic decoder preference.
+MM ’26, October 2026, Anonymous Submission                                                                                                    Anon.
+
+
+Why current and future signals are complementary. The cur-               3.3    Efficient Rollout Execution
+rent signal and the future signal address different failure modes.       Naively evaluating 𝑘 candidates for 𝑚 future steps introduces 𝒪(𝑘×
+A purely current-step rule can still overvalue a candidate that          𝑚) extra decoding work. CHORD reduces this cost with two simple
+briefly attends to a relevant object but immediately hands control       optimizations.
+back to the textual prefix after admission. Conversely, a purely         Shared-KV batched rollout. All candidates share the same his-
+future-oriented rule can become unnecessarily conservative when          torical prefix. We therefore reuse the prefix KV-cache and batch
+multiple candidates have similar short-horizon continuation but          the 𝑘 candidate branches together, so candidate-conditioned evalu-
+only one is directly supported by query-relevant regions at the          ation and subsequent rollout are implemented as parallel forward
+admission step. CHORD therefore separates admission support              passes rather than 𝑘 independent runs. The first batched branch
+from continuation stability. The current score acts as an object-        expansion supplies the attention needed for 𝑉res , while the cached
+conditioned local filter that favors candidates already aligned with     branch states are reused for the remaining rollout steps.
+query-relevant evidence, while the future score asks whether that        Early rejection and stopping. CHORD prunes branches in two
+local alignment persists over the next few decoding steps. In this       stages:
+sense, the two signals are not redundant: 𝑉res checks whether the
+                                                                            (1) Current-step rejection. After the candidate-conditioned for-
+candidate is visually plausible now, whereas 𝐹harm checks whether                                                                 (𝑐)
+accepting it is likely to keep the trajectory visually grounded after          ward pass, any branch with 𝑉res (𝑦𝑡 ) < 𝜖 is discarded im-
+admission.                                                                     mediately. The surviving set is
+                                                                                          keep          (𝑐)                       (𝑐)
+                                                                                        𝒞𝑡       = {𝑦𝑡         ∈ 𝒞𝑡 ∣ 𝑉res (𝑦𝑡 ) ≥ 𝜖} .        (14)
+3.2    Future Rollout and Harmonic Arbitration
+                                                                                In our default setting, 𝜖 = 0, so only candidates with zero
+The central idea of CHORD is to evaluate not only the current
+                                                                                current support are removed at this stage.
+candidate, but also the immediate continuation it induces. Start-
+                                                                            (2) Future-step early stopping. During rollout, if the visual ratio
+ing from the candidate-conditioned state above, CHORD greedily
+rolls each surviving branch forward for a short horizon 𝑚. At roll-                                                         (𝑐)
+                                                                                                  (𝑐)                   𝑉𝜏 (𝑦𝑡 )
+out step 𝜏 ∈ {1, … , 𝑚}, we measure the weighted visual attention                            𝜌𝜏 (𝑦𝑡 ) =                                        (15)
+                                                                                                                    (𝑐)                 (𝑐)
+mass                                                                                                           𝑉𝜏 (𝑦𝑡 ) + 𝑇𝜏 (𝑦𝑡 )
+                               𝑁                                              falls below the abort threshold 𝜏abort , the branch terminates
+                        (𝑐)                                                             (𝑐)
+                 𝑉𝜏 (𝑦𝑡 ) = ∑ 𝑤𝑗 𝐴𝑡+𝜏 (𝑦𝑡+𝜏 → 𝑣𝑗 ),               (9)         at 𝜏 ⋆ (𝑦𝑡 ) and receives the truncated score in Eq. (13). This
+                              𝑗=1                                             avoids spending the full horizon on candidates that already
+and the textual attention mass                                                exhibit unstable continuation.
+                                                                           The final admission rule is therefore
+                              𝑡+𝜏 −1
+                        (𝑐)                                                                                                             (𝑐)
+                  𝑇𝜏 (𝑦𝑡 ) = ∑ 𝐴𝑡+𝜏 (𝑦𝑡+𝜏 → 𝑦𝑞 ).                (10)                        𝑦𝑡̂ = arg max 𝑆CHORD (𝑦𝑡 ).                       (16)
+                                                                                                         (𝑐)     keep
+                               𝑞=0                                                                      𝑦𝑡 ∈𝒞𝑡
+
+                                                                         These execution rules preserve the benefit of short-horizon fore-
+Under the normalization above, 𝑉𝜏 and 𝑇𝜏 cover the monitored vi-
+                                                                         casting while keeping CHORD within the efficiency range of prac-
+sual and textual mass used by CHORD. We define the stepwise
+                                                                         tical decode-time intervention.
+branch utility
+                        (𝑐)           (𝑐)
+                  𝑅𝜏 (𝑦𝑡 ) = 𝑉𝜏 (𝑦𝑡 ) − 𝜆txt 𝑇𝜏 (𝑦𝑡 ),
+                                                         (𝑐)
+                                                                 (11)
+                                                                         3.4    Complexity and Practical Behavior
+                                                                         Relative to greedy decoding, CHORD adds two forms of test-time
+and accumulate it until the branch terminates:                           work: candidate-conditioned scoring and short-horizon branch
+                (𝑐)                                (𝑐)
+                                                                         rollout. If each step keeps 𝑘 candidates and rolls each surviving
+           𝜏 ⋆ (𝑦𝑡 ) = min(𝑚, min{𝜏 ∣ 𝜌𝜏 (𝑦𝑡 ) < 𝜏abort }),      (12)    branch forward for 𝑚 steps, naive evaluation would require up to
+                                                                         𝒪(𝑘(1 + 𝑚)) branch-state expansions per decoding step in addition
+                                            (𝑐)                          to the base forward pass. The main practical concern is therefore
+                                       𝜏 ⋆ (𝑦𝑡 )
+                               (𝑐)                   (𝑐)                 not asymptotic complexity alone, but whether these extra expan-
+                      𝐹harm (𝑦𝑡 ) =      ∑ 𝑅𝜏 (𝑦𝑡 ),             (13)
+                                                                         sions can be executed without recomputing the shared prefix.
+                                         𝜏 =1
+                                                                            CHORD reduces this cost in two ways. First, all branches in-
+where 𝜏 ⋆ is either the full rollout horizon or the first abort point    herit the same historical prefix, so the prefix KV-cache is computed
+triggered by low visual ratio. In the default quality setting used for   once and then reused across candidate-conditioned passes and sub-
+the main tables, 𝜏abort = 0, so future scoring uses the full short       sequent rollout steps. The actual extra cost is thus dominated by
+horizon; in the latency study, nonzero 𝜏abort enables early stop-        incremental branch extensions rather than full-sequence recom-
+ping to avoid spending rollout compute on branches that have al-         putation. Second, the effective branch count is usually smaller
+ready become text-dominated. This future term therefore favors           than 𝑘 : after the current-step resonance check, only candidates
+branches whose short-horizon continuations remain visually an-           with nonzero current support are retained, and future-step abort-
+chored while naturally shortening clearly unstable ones. We call         ing further shortens trajectories that have already become text-
+this bounded rollout test harmonic temporal arbitration.                 dominated. Denoting the average number of surviving branches
+CHORD                                                                                                MM ’26, October 2026, Anonymous Submission
+
+
+by 𝑘 ′ ≤ 𝑘 and the average realized rollout depth by 𝑚̄ ≤ 𝑚, the       focused on the nearest inference-time comparators rather than ex-
+practical extra cost is better viewed as 𝒪(𝑘 ′ 𝑚)̄ rather than the     haustively listing every variant. We discuss training-time methods
+worst-case bound.                                                      in Related Work, but do not treat them as direct main-table base-
+   This perspective is important for interpreting the later experi-    lines because they operate under different supervision and adap-
+ments. CHORD should not be understood as an unrestricted tree          tation budgets. OPERA remains the closest prior because CHORD
+search that attempts to optimize an entire sequence globally. In-      inherits its retrospective safeguard while adding object-resonant
+stead, it is a bounded decode-time control rule that selectively       current scoring and bounded future verification.
+spends additional compute only on locally ambiguous admissions.        Implementation Details. Unless otherwise stated, CHORD uses
+The resulting behavior is closer to adaptive test-time verification    top-𝑘 candidate reranking with 𝑘 = 5 and a rollout horizon
+than to exhaustive search, which is why the method can still re-       of 𝑚 = 3. For the current and future terms, we set 𝛼 = 0.5,
+main competitive in latency-sensitive settings.                        𝜆cur = 0.25, 𝜆fut = 0.05, and 𝜆txt = 1.0. Grounding DINO [50]
+                                                                       provides query-conditioned anchor proposals with box and text
+                                                                       thresholds of 0.25 and 0.2, respectively, and we retain at most 8
+3.5     Design Discussion
+                                                                       proposals per example after thresholding. The proposer is invoked
+CHORD is built around three design choices. First, it uses a late-     once before autoregressive decoding and the retained proposals
+layer attention window rather than full-stack aggregation: earlier     are cached for the full generation process, so the decode-time con-
+blocks are often too diffuse for reliable token admission, while the   trol rule does not repeatedly call the detector at each step. In this
+final block alone is brittle; the last-four-block aggregate was se-    sense, CHORD is best viewed as a guidance-based decoding frame-
+lected as a practical trade-off rather than claimed as a universal     work that couples the base MLLM with lightweight external per-
+optimum. Second, it keeps current support and future arbitration       ception at admission time. All attention-derived quantities use the
+separate, because “supported now” and “stable next” are related        layer-aggregated decoder-to-vision signal from the last four de-
+but distinct questions. Third, it uses bounded rollout rather than     coder blocks, which we found to be the most reliable late-stage
+unrestricted search: the goal is to detect risky admissions before     window for stable object localization. We use 𝜖 = 0 for current-
+they enter the prefix, not to globally optimize the entire continu-    step rejection. For the main quality tables, we set 𝜏abort = 0 so that
+ation. These choices make CHORD diagnostic rather than exhaus-         future scoring uses the full short horizon; for the latency analysis,
+tive, and keep the added test-time cost interpretable.                 we additionally sweep nonzero 𝜏abort settings to quantify the value
+                                                                       of early stopping. Across POPE, CHAIR, and MMBench we keep
+4     Experiments                                                      prompts, answer parsing, and benchmark-side evaluation scripts
+We evaluate CHORD on both hallucination-focused benchmarks             fixed; only the decode-time decision rule changes. We therefore
+and broader multimodal benchmarks. The experimental section            interpret MMBench primarily as a retention check on broader
+is organized around three questions: (1) do object-resonant and        multimodal ability rather than as the paper’s primary optimiza-
+future-aware candidate evaluations reduce hallucination, (2) what      tion target. ITL is reported as average per-token decoding latency
+latency cost does rollout introduce and how much do our optimiza-      under this fixed proposal policy on a single NVIDIA A100 GPU.
+tions recover, and (3) can CHORD improve grounding without
+imposing a strong alignment tax on broader multimodal ability?
+                                                                       4.2    Main Results on Hallucination Mitigation
+4.1     Experimental Settings                                          Two operating points emerge. The central empirical pattern is
+Models. We test CHORD on two open-source MLLMs: LLaVA-1.5              not that one CHORD configuration dominates every metric. In-
+(7B) [3] and InstructBLIP (7B) [4]. They cover distinct alignment      stead, CHORD exposes two stable operating points. ‘Past+Current’
+recipes and visual backbones. CHORD is plugged into the released       (‘CHORD-P+C’) is the strongest latency-efficient setting on POPE,
+checkpoints without any parameter updates.                             while the full model is most valuable for open-ended sentence-level
+Benchmarks. We follow prior decode-time hallucination stud-            hallucination reduction. This division matches the roles of the two
+ies [26, 33] and use three public benchmarks. POPE [10] evalu-         added signals: the current term improves admission quality imme-
+ates object hallucination with binary questions over the Random,       diately, whereas the future term helps most when one weak admis-
+Popular, and Adversarial splits. CHAIR [11] measures hallucina-        sion can influence a longer continuation.
+tion in free-form captioning on MSCOCO, with sentence-level                Table 1 centers the external comparison on the full CHORD con-
+(CHAIR𝑆 ) and image-level (CHAIR𝐼 ) ratios. MMBench [51] is used       figuration. On LLaVA-1.5, CHORD raises Avg. F1 from 0.8488 to
+as a broad-spectrum retention check for general multimodal rea-        0.8752 and Adv. F1 from 0.8036 to 0.8453, while reducing CHAIR𝑆
+soning. Together, these benchmarks cover both discriminative and       from 0.2291 to 0.1548 and CHAIR𝐼 from 0.2046 to 0.1754. On In-
+open-ended settings.                                                   structBLIP, the same pattern remains visible: CHORD improves
+Baselines. Our main-paper tables report Greedy Decoding to-            Avg. F1 from 0.8659 to 0.8924, lifts Adv. F1 from 0.8327 to 0.8651,
+gether with representative decode-time baselines from the three        reduces CHAIR𝑆 from 0.2140 to 0.1347, reduces CHAIR𝐼 from
+closest families: DoLa [30] for layer-contrast decoding, VCD [26]      0.3380 to 0.2795, and improves MMBench from 69.34 to 70.82.
+for visual contrastive decoding, and OPERA [33] for rollback-based     Across both backbones, the conclusion remains the same: Full
+intervention. We also checked Nucleus Sampling and HALC [52]           CHORD is the strongest quality-oriented operating point, while
+in the same evaluation pipeline, but keep the main-paper tables        its added latency is still substantial.
+MM ’26, October 2026, Anonymous Submission                                                                                                                   Anon.
+
+
+Table 1: Main quantitative comparison. We report the full CHORD configuration against external decode-time baselines. For
+each model we report average POPE F1 across the three splits, POPE Adversarial F1, CHAIR sentence/image hallucination
+ratios, MMBench accuracy, and per-token inference latency (ITL, ms/token). Lower (↓) CHAIR and ITL are better; higher (↑)
+POPE/MMBench are better. Bold indicates the best result in each column. Internal CHORD operating points are analyzed
+separately in Table 3 and Table 4.
+
+                                                         LLaVA-v1.5-7B                                                 InstructBLIP-7B
+                    Method       Avg. F1 ↑   Adv. F1 ↑   CH𝑆 ↓    CH𝐼 ↓    MMBench ↑   ITL ↓   Avg. F1 ↑   Adv. F1 ↑   CH𝑆 ↓    CH𝐼 ↓    MMBench ↑   ITL ↓
+                    Greedy        0.8488      0.8036     0.2291   0.2046     68.63     19.73    0.8659      0.8327     0.2140   0.3380     69.34     16.47
+                    OPERA [33]    0.8483      0.8042     0.2284   0.1996     68.65     21.69    0.8577      0.8327     0.2180   0.3320     69.27     16.90
+                    VCD [26]      0.8403      0.8031     0.2183   0.2061     68.29     33.07    0.8428      0.8173     0.2060   0.3480     68.70     24.80
+                    DoLa [30]     0.8502      0.8103     0.3276   0.3517     68.63     23.11    0.8488      0.8408     0.3090   0.4260     69.41     19.03
+                    CHORD         0.8752      0.8453     0.1548   0.1754     69.78     37.31    0.8924      0.8651     0.1347   0.2795     70.82     35.86
+
+
+
+   At the same time, Table 1 also makes clear what CHORD does
+not guarantee. The quality gains are purchased by noticeably
+higher decode latency, which means deployment still requires
+an explicit operating-point choice. Reporting POPE, CHAIR, MM-
+Bench, and ITL together therefore gives a fairer picture than a
+single headline number.
+
+
+4.3    Qualitative Analysis and Trajectory
+       Visualization
+Figure 3 and Figure 4 provide the qualitative complement to the
+main quantitative results. The first figure explains the mechanism
+in three steps: late-layer aggregation localizes more stably than
+mid-layer or last-layer attention alone, current support filters lo-
+cally weak candidates at admission time, and short-horizon roll-
+out separates stable from text-dominated continuations. The sec-
+ond figure then shows what this verifier-style rule does on real
+POPE cases, including both affirmative and hard-negative queries.
+   Figure 4 combines three trace-backed POPE cases with one hard-
+negative decision case so that affirmative and negative queries can                       Figure 3: Design evidence for CHORD. Top: decoder-to-
+be compared under a consistent evidence template without over-                            vision heatmaps under three layer-selection choices, show-
+stating token-level trace availability.                                                   ing why CHORD uses the ‘last-4’ window. Bottom-left: repre-
+   The four panels separate two kinds of qualitative evidence. The                        sentative current-support scores for competing candidates
+snowboard and person examples are affirmative cases in which                              at the admission step. Bottom-right: representative rollout
+CHORD preserves the correct ‘yes’ answer while suppressing                                utility traces showing how future arbitration separates a sta-
+weaker explanation-first alternatives. The car example is a trace-                        ble continuation from a text-dominated branch.
+backed negative query on the same snowy scene, showing that
+CHORD can reject an unsupported object even when the visual
+context remains rich enough to tempt generic continuation. The
+horse panel is a hard-negative final-decision case in which the                           (c,d) re-express the same methods on the CHAIR𝑆 versus MM-
+scene contains alpacas rather than horses, so we report only the                          Bench plane, with marker size indicating ITL, so sentence-level
+final prediction instead of implying that a token-level trace was                         suppression, retained general ability, and decode cost can be read
+available. Qualitatively, CHORD is most useful when the top-𝑘 set                         together.
+contains both a grounded candidate and one or more linguistically                            The top row of Figure 5 shows the same engineering fact on
+strong but weakly grounded competitors; if the proposer misses                            both backbones: moving from Greedy or rollback-only baselines to-
+the key object entirely, decode-time control has much less room                           ward CHORD increases cost, but the CHORD family forms a coher-
+to recover.                                                                               ent frontier rather than an arbitrary latency jump. ‘Past+Current’
+                                                                                          stays near the efficient corner, while Full CHORD pushes farther
+                                                                                          toward the best adversarial quality at higher ITL. The bottom row
+4.4    Operating-Point Synthesis                                                          makes the second trade-off visible: the full configuration buys the
+Figure 5 summarizes the operating landscape from the measured                             clearest sentence-level hallucination reduction while also retain-
+tables without repeating the raw table layout. Panels (a,b) place                         ing the strongest MMBench accuracy, whereas ‘Past+Current’ oc-
+baselines and CHORD variants on the Adversarial F1 versus ITL                             cupies the lower-cost middle ground. Table 2 should be read along-
+plane, which makes the latency-quality frontier explicit. Panels                          side this figure: the adversarial gains are accompanied by stronger
+CHORD                                                                                                           MM ’26, October 2026, Anonymous Submission
+
+
+                                                                      Table 3: Trade-off within the CHORD family across
+                                                                      both backbones. ‘Past’ is the lowest-latency correction,
+                                                                      ‘Past+Current’ gives the best efficiency-quality compromise,
+                                                                      and ‘Full CHORD’ gives the strongest overall quality met-
+                                                                      rics.
+
+                                                                                                              LLaVA-v1.5-7B
+                                                                                     Variant       Avg.      Adv.   CH𝑆     CH𝐼          MMB     ITL
+                                                                                     Past         0.8583    0.8196     0.2042   0.1927   68.84 24.38
+                                                                                     Past+C       0.8647    0.8318     0.1745   0.1852   69.15 27.24
+                                                                                     Past+F       0.8625    0.8251     0.1794   0.1873   69.46 34.62
+                                                                                     Full         0.8752    0.8453     0.1548   0.1754   69.78 37.31
+                                                                                                             InstructBLIP-7B
+                                                                                     Variant       Avg.      Adv.    CH𝑆     CH𝐼         MMB     ITL
+                                                                                     Past         0.8715    0.8413     0.1842   0.3158   69.64 21.43
+                                                                                     Past+C       0.8806    0.8517     0.1543   0.2946   70.08 24.51
+                                                                                     Past+F       0.8789    0.8485     0.1651   0.3042   70.43 32.55
+                                                                                     Full         0.8924    0.8651     0.1347   0.2795   70.82 35.86
+
+
+
+
+                                                                      4.5    Component Trade-off Within the CHORD
+                                                                             Family
+                                                                      To isolate the CHORD family itself, Table 3 compares four repre-
+                                                                      sentative variants across both backbones. This view clarifies how
+Figure 4: Trace-backed qualitative evidence on four POPE-             each component changes the decoder once the main cross-method
+style cases. Panels (a)–(c) expose real rejected opener can-          comparison has established the overall performance pattern.
+didates suppressed during decoding, while panel (d) is re-               Three conclusions follow from Table 3. First, rollback-based
+ported as a hard-negative decision case without token-level           past protection already provides a strong correction at the low-
+trace annotation. Together they show how CHORD pre-                   est family latency. Second, adding current object resonance yields
+serves grounded admissions and blocks weakly grounded                 the strongest efficiency-quality compromise (‘Past+Current’, or
+continuations.                                                        ‘CHORD-P+C’) on both backbones, even though the full config-
+                                                                      uration remains numerically best on the headline quality met-
+                                                                      rics. Third, future arbitration matters most for the quality-oriented
+                                                                      regime: Full CHORD delivers the best family results, but also the
+Table 2: POPE Adversarial precision-recall breakdown for              largest latency increase.
+representative baselines and the two main CHORD operat-                  Table 4 summarizes the deployment trade-off. Across both back-
+ing points. ‘CHORD-P+C’ primarily improves robustness by              bones, ‘Past+Current’ (‘CHORD-P+C’) gives the best discrimina-
+raising precision without a large recall collapse, which is           tive gain per added latency. Full CHORD buys stronger sentence-
+consistent with a better admission rule rather than a merely          level suppression and slightly better retained benchmark accuracy,
+more conservative decoder.                                            but at higher cost. We therefore present the two variants as com-
+                                                                      plementary operating regimes rather than force a single universal
+            Model         Method        Prec. ↑ Rec. ↑                default.
+                                                                         Taken together, Table 3 and Table 4 sharpen the practical in-
+                          Greedy         0.730   0.893                terpretation of CHORD. The family view shows that each added
+                          OPERA          0.732   0.893
+                                                                      signal moves the decoder along a predictable axis rather than pro-
+            LLaVA         VCD            0.748   0.867
+                          CHORD-P+C      0.817   0.847
+                                                                      ducing unstable metric swings: past protection provides the low-
+                          Full CHORD     0.842   0.849                cost correction floor, current support yields the strongest marginal
+                         Greedy          0.772   0.858
+                         OPERA           0.791   0.879
+            InstructBLIP VCD             0.775   0.865
+                                                                      Table 4: Deployment-oriented operating-point summary rel-
+                         CHORD-P+C       0.841   0.863                ative to Greedy. Negative ΔCH values indicate hallucina-
+                         Full CHORD      0.864   0.866                tion reduction; positive ΔITL indicates extra latency. Higher
+                                                                      ΔAdv. F1/ΔMMB are better, lower ΔCH are better.
+
+                                                                            Model          Regime         ΔAdv. F1 ↑    ΔCH𝑆 ↓    ΔCH𝐼 ↓    ΔMMB ↑     ΔITL ↓
+                                                                                           P+C             +0.0282      -0.0546   -0.0194      +0.52   +7.51
+                                                                            LLaVA
+                                                                                           Full            +0.0417      -0.0743   -0.0292      +1.15   +17.58
+precision, which is consistent with a more selective admission rule         InstructBLIP
+                                                                                           P+C             +0.0190      -0.0597   -0.0434      +0.74   +8.04
+                                                                                           Full            +0.0324      -0.0793   -0.0585      +1.48   +19.39
+rather than a merely more hesitant decoder.
+MM ’26, October 2026, Anonymous Submission                                                                                          Anon.
+
+
+
+
+Figure 5: Quantitative synthesis of the main tables. (a,b) Adversarial F1 versus ITL. (c,d) CHAIR𝑆 versus MMBench with marker
+area proportional to ITL. The plots separate the efficiency-oriented ‘CHORD-P+C’ regime from quality-oriented Full CHORD.
+
+
+discriminative gain, and future arbitration mainly buys extra ro-      interchangeable. The tables therefore do more than rank methods:
+bustness for longer open-ended outputs. This regularity matters        they show that the intended division between local support and
+for deployment because it means practitioners can choose a regime      short-horizon stability is visible at the benchmark level.
+by latency budget and answer style instead of retuning the entire
+controller for each use case. In this sense, CHORD behaves less        5 Conclusion
+like an ad hoc decoding heuristic and more like a small family of      We presented CHORD, a training-free decoding framework that
+controllable inference policies.                                       mitigates multimodal hallucination through bounded trajectory
+   This operating-point reading also motivates reporting POPE,         verification. By combining rollback-based historical protection,
+CHAIR, MMBench, and ITL jointly. A decoder that improves only          query-conditioned object resonance, and short-horizon rollout
+one hallucination metric while eroding retained multimodal ability     arbitration, CHORD turns token admission from a purely local
+or imposing opaque latency cost is difficult to justify in practice.   choice into a grounded verifier-style decision.
+By contrast, the CHORD family traces a comparatively smooth               Across LLaVA-1.5 and InstructBLIP, the experiments show a sta-
+frontier across both backbones, which suggests that its gains are      ble operating-point pattern: ‘Past+Current’ (‘CHORD-P+C’) is the
+not tied to a single benchmark artifact or isolated prompt style.      more efficient choice when latency matters, while Full CHORD
+   This cross-backbone consistency is one of the paper’s most use-     is stronger when longer free-form answers make early admission
+ful empirical outcomes. Although LLaVA-1.5 and InstructBLIP dif-       errors compound. This explicit quality-latency trade-off is the pa-
+fer in alignment recipe, visual backbone, and baseline latency, the    per’s main practical takeaway.
+same ranking still reappears: ‘Past+Current’ (‘CHORD-P+C’) is             More broadly, these results suggest that decode-time hallucina-
+the practically efficient regime, while Full CHORD is the quality-     tion control should be judged as an operating frontier rather than
+oriented regime. That repeatability makes the method easier to         a single best number. The relevant question is how robustness, re-
+reason about for deployment, because users mainly need to decide       tained multimodal ability, and latency move together under realis-
+whether the target workload rewards lower latency or stronger          tic inference budgets, and CHORD provides one concrete template
+open-ended suppression.                                                for that style of evaluation.
+   Methodologically, this pattern matches how CHORD decom-             Limitations & Social Impact. CHORD improves grounding at
+poses admission control. The current term matters most when the        additional test-time cost and remains bounded by visual evidence
+candidate set already contains a clearly grounded option alongside     quality and the query-conditioned proposer. It reduces unstable
+linguistically tempting distractors, whereas the future term mat-      continuation but does not guarantee factual correctness; in high-
+ters more when an early weak admission would otherwise prop-           risk applications it should be treated only as a reliability aid.
+agate across subsequent decoding steps. This is also the setting
+in which local support and short-horizon verification stop being
+CHORD                                                                                                                       MM ’26, October 2026, Anonymous Submission
+
+
+References                                                                                   (ICML). PMLR, Vienna, Austria, 53553–53570. https://proceedings.mlr.press/
+ [1] Jean-Baptiste Alayrac, Jeff Donahue, Pauline Luc, Antoine Miech, Iain Barr, Yana        v235/wu24l.html
+     Hasson, Karel Lenc, Arthur Mensch, Katie Millican, Malcolm Reynolds, et al.        [15] Liqiang Jing, Ruosen Li, Yunmo Chen, and Xinya Du. 2024. FaithScore: Fine-
+     2022. Flamingo: a Visual Language Model for Few-Shot Learning. In Advances              grained Evaluations of Hallucinations in Large Vision-Language Models. In Find-
+     in Neural Information Processing Systems. Curran Associates, Inc., Red Hook,            ings of the Association for Computational Linguistics: EMNLP 2024. Association
+     NY, USA, 23716–23736. https://proceedings.neurips.cc/paper_files/paper/2022/            for Computational Linguistics, Miami, Florida, USA, 5042–5063. doi:10.18653/
+     hash/960a172bc7fbf0177ccccbb411a7d800-Abstract-Conference.html                          v1/2024.findings-emnlp.290
+ [2] Junnan Li, Dongxu Li, Silvio Savarese, and Steven Hoi. 2023. BLIP-2: Bootstrap-    [16] Fuxiao Liu, Kevin Lin, Linjie Li, Jianfeng Wang, Yaser Yacoob, and Lijuan Wang.
+     ping Language-Image Pre-training with Frozen Image Encoders and Large Lan-              2024. Aligning Large Multi-Modal Model with Robust Instruction Tuning. In
+     guage Models. In Proceedings of the International Conference on Machine Learning        Proceedings of the International Conference on Learning Representations (ICLR).
+     (ICML). PMLR, Honolulu, HI, USA, 19730–19742. https://proceedings.mlr.press/            OpenReview.net, Vienna, Austria, 45 pages. https://openreview.net/forum?id=
+     v202/li23q.html                                                                         J44HfH4JCg
+ [3] Haotian Liu, Chunyuan Li, Yuheng Li, and Yong Jae Lee. 2024. Improved Base-        [17] Beitao Chen, Xinyu Lyu, Lianli Gao, Jingkuan Song, and Heng Tao Shen.
+     lines with Visual Instruction Tuning. In Proceedings of the IEEE/CVF Conference         2024. Alleviating Hallucinations in Large Vision-Language Models through
+     on Computer Vision and Pattern Recognition (CVPR). IEEE, Los Alamitos, CA,              Hallucination-Induced Optimization. In Advances in Neural Information Process-
+     USA, 26296–26306.        https://openaccess.thecvf.com/content/CVPR2024/html/           ing Systems. Curran Associates, Inc., Red Hook, NY, USA, 22 pages.
+     Liu_Improved_Baselines_with_Visual_Instruction_Tuning_CVPR_2024_paper.             [18] Jinrui Zhang, Teng Wang, Haigang Zhang, Ping Lu, and Feng Zheng. 2024. Re-
+     html                                                                                    flective Instruction Tuning: Mitigating Hallucinations in Large Vision-Language
+ [4] Wenliang Dai, Junnan Li, Dongxu Li, Anthony Meng Huat Tiong, Junqi Zhao,                Models. In Proceedings of the European Conference on Computer Vision (ECCV).
+     Weisheng Wang, Boyang Li, Pascale Fung, and Steven Hoi. 2023. InstructBLIP:             Springer, Cham, Switzerland, 18 pages. https://www.ecva.net/papers/eccv_
+     Towards General-purpose Vision-Language Models with Instruction Tuning. In              2024/papers_ECCV/html/8550_ECCV_2024_paper.php
+     Advances in Neural Information Processing Systems. Curran Associates, Inc., Red    [19] Seongyun Lee, Sue Hyun Park, Yongrae Jo, and Minjoon Seo. 2024. Volcano: Miti-
+     Hook, NY, USA, 49250–49267.                                                             gating Multimodal Hallucination through Self-Feedback Guided Revision. In Pro-
+ [5] Peng Wang, Shuai Bai, Sinan Tan, Shijie Wang, Zhihao Fan, Jinze Bai, Keqin              ceedings of the 2024 Annual Conference of the North American Chapter of the As-
+     Chen, Xuejing Liu, Jialin Wang, Wenbin Ge, Yang Fan, Kai Dang, Mengfei Du,              sociation for Computational Linguistics (NAACL). Association for Computational
+     Xuancheng Ren, Rui Men, Dayiheng Liu, Chang Zhou, Jingren Zhou, and Jun-                Linguistics, Mexico City, Mexico, 391–404. https://aclanthology.org/2024.naacl-
+     yang Lin. 2024. Qwen2-VL: Enhancing Vision-Language Model’s Perception of               long.23/
+     the World at Any Resolution. arXiv:2409.12191 [cs.CV] https://arxiv.org/abs/       [20] Tianyu Yu, Yuan Yao, Haoye Zhang, Taiwen He, Yifeng Han, Ganqu Cui, Jinyi
+     2409.12191                                                                              Hu, Zhiyuan Liu, Hai-Tao Zheng, Maosong Sun, et al. 2024. RLHF-V: Towards
+ [6] Zhe Chen, Jiannan Wu, Wenhai Wang, Weijie Su, Guo Chen, Sen Xing, Muyan                 Trustworthy MLLMs via Behavior Alignment from Fine-grained Correctional
+     Zhong, Qinglong Zhang, Xizhou Zhu, Lewei Lu, et al. 2024. InternVL: Scaling             Human Feedback. In Proceedings of the IEEE/CVF Conference on Computer
+     up Vision Foundation Models and Aligning for Generic Visual-Linguistic Tasks.           Vision and Pattern Recognition (CVPR). IEEE, Los Alamitos, CA, USA, 13807–
+     In Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recog-         13816.        https://openaccess.thecvf.com/content/CVPR2024/html/Yu_RLHF-
+     nition (CVPR). IEEE, Los Alamitos, CA, USA, 24185–24198. https://openaccess.            V_Towards_Trustworthy_MLLMs_via_Behavior_Alignment_from_Fine-
+     thecvf.com/content/CVPR2024/html/Chen_InternVL_Scaling_up_Vision_                       grained_Correctional_CVPR_2024_paper.html
+     Foundation_Models_and_Aligning_for_Generic_CVPR_2024_paper.html                    [21] Zhiqing Sun, Sheng Shen, Shengcao Cao, Haotian Liu, Chunyuan Li, Yikang
+ [7] Qinghao Ye, Haiyang Xu, Jiabo Ye, Ming Yan, Anwen Hu, Haowei                            Shen, Chuang Gan, Liangyan Gui, Yu-Xiong Wang, Yiming Yang, Kurt Keutzer,
+     Liu, Qi Qian, Ji Zhang, and Fei Huang. 2024.             mPLUG-Owl2: Revolu-            and Trevor Darrell. 2024. Aligning Large Multimodal Models with Factually
+     tionizing Multi-modal Large Language Model with Modality Collabo-                       Augmented RLHF. In Findings of the Association for Computational Linguistics:
+     ration. In Proceedings of the IEEE/CVF Conference on Computer Vision                    ACL 2024. Association for Computational Linguistics, Bangkok, Thailand, 13088–
+     and Pattern Recognition (CVPR). IEEE, Los Alamitos, CA, USA, 13040–                     13110. doi:10.18653/v1/2024.findings-acl.775
+     13051.      https://openaccess.thecvf.com/content/CVPR2024/html/Ye_mPLUG-          [22] Shangpin Peng, Senqiao Yang, Li Jiang, and Zhuotao Tian. 2025. Mitigating
+     Owl2_Revolutionizing_Multi-modal_Large_Language_Model_with_Modality_                    Object Hallucinations via Sentence-Level Early Intervention (SENTINEL). In
+     Collaboration_CVPR_2024_paper.html                                                      Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV).
+ [8] Hongyu Li, Jinyu Chen, Ziyu Wei, Shaofei Huang, Tianrui Hui, Jialin                     IEEE, Los Alamitos, CA, USA, 635–646. https://openaccess.thecvf.com/content/
+     Gao, Xiaoming Wei, and Si Liu. 2025.           LLaVA-ST: A Multimodal Large             ICCV2025/html/Peng_Mitigating_Object_Hallucinations_via_Sentence-
+     Language Model for Fine-Grained Spatial-Temporal Understanding. In                      Level_Early_Intervention_ICCV_2025_paper.html
+     Proceedings of the IEEE/CVF Conference on Computer Vision and Pat-                 [23] Shukang Yin, Chaoyou Fu, Sirui Zhao, Tong Xu, Hao Wang, Dianbo Sui, Yun-
+     tern Recognition (CVPR). IEEE, Los Alamitos, CA, USA, 8592–8603.                        hang Shen, Ke Li, Xing Sun, and Enhong Chen. 2024. Woodpecker: Hallucination
+     https://openaccess.thecvf.com/content/CVPR2025/papers/Li_LLaVA-                         Correction for Multimodal Large Language Models. Science China Information
+     ST_A_Multimodal_Large_Language_Model_for_Fine-Grained_Spatial-                          Sciences 67, 12 (2024), 220105. doi:10.1007/s11432-024-4251-x
+     Temporal_Understanding_CVPR_2025_paper.pdf                                         [24] Anisha Gunjal, Jihan Yin, and Erhan Bas. 2024. Detecting and Preventing Hal-
+ [9] Zechen Bai, Pichao Wang, Tianjun Xiao, Tong He, Zongbo Han, Zheng Zhang,                lucinations in Large Vision Language Models. In Proceedings of the AAAI Con-
+     and Mike Zheng Shou. 2024. Hallucination of Multimodal Large Language Mod-              ference on Artificial Intelligence. AAAI Press, Palo Alto, CA, USA, 18135–18143.
+     els: A Survey. arXiv:2404.18930 [cs.CV] https://arxiv.org/abs/2404.18930                https://ojs.aaai.org/index.php/AAAI/article/view/29944
+[10] Yifan Li, Yifan Du, Kun Zhou, Jinpeng Wang, Wayne Xin Zhao, and Ji-Rong            [25] Yudong Zhang, Ruobing Xie, Xingwu Sun, Yiqing Huang, Jiansheng Chen, Zhan-
+     Wen. 2023. Evaluating Object Hallucination in Large Vision-Language Models.             hui Kang, Di Wang, and Yu Wang. 2025. DHCP: Detecting Hallucinations by
+     In Proceedings of the 2023 Conference on Empirical Methods in Natural Language          Cross-modal Attention Pattern in Large Vision-Language Models. In Proceed-
+     Processing (EMNLP). Association for Computational Linguistics, Singapore, 292–          ings of the 33rd ACM International Conference on Multimedia (MM ’25). ACM,
+     305. https://aclanthology.org/2023.emnlp-main.20/                                       New York, NY, USA, 3555–3564. doi:10.1145/3746027.3755118
+[11] Anna Rohrbach, Lisa Anne Hendricks, Kaylee Burns, Trevor Darrell, and Kate         [26] Sicong Leng, Hang Zhang, Guanzheng Chen, Xin Li, Shijian Lu, Chunyan
+     Saenko. 2018. Object Hallucination in Image Captioning. In Proceedings of               Miao, and Lidong Bing. 2024. Mitigating Object Hallucinations in Large Vision-
+     the 2018 Conference on Empirical Methods in Natural Language Processing. As-            Language Models through Visual Contrastive Decoding. In Proceedings of the
+     sociation for Computational Linguistics, Brussels, Belgium, 4035–4045. https:           IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR). IEEE,
+     //aclanthology.org/D18-1437/                                                            Los Alamitos, CA, USA, 13872–13882. https://openaccess.thecvf.com/content/
+[12] Holy Lovenia, Wenliang Dai, Samuel Cahyawijaya, Ziwei Ji, and Pascale Fung.             CVPR2024/papers/Leng_Mitigating_Object_Hallucinations_in_Large_Vision-
+     2024. Negative Object Presence Evaluation (NOPE) to Measure Object Hallucina-           Language_Models_through_Visual_Contrastive_CVPR_2024_paper.pdf
+     tion in Vision-Language Models. In Proceedings of the 3rd Workshop on Advances     [27] Alessandro Favero, Luca Zancato, Matthew Trager, Siddharth Choudhary,
+     in Language and Vision Research (ALVR). Association for Computational Linguis-          Pramuditha Perera, Alessandro Achille, Ashwin Swaminathan, and Stefano
+     tics, Bangkok, Thailand, 37–58. doi:10.18653/v1/2024.alvr-1.4                           Soatto. 2024.      Multi-modal Hallucination Control by Visual Information
+[13] Junyang Wang, Yuhang Wang, Guohai Xu, Jing Zhang, Yukai Gu, Haitao                      Grounding. In Proceedings of the IEEE/CVF Conference on Computer Vision
+     Jia, Ming Yan, Ji Zhang, and Jitao Sang. 2023.               AMBER: An LLM-             and Pattern Recognition (CVPR). IEEE, Los Alamitos, CA, USA, 14303–
+     free Multi-dimensional Benchmark for MLLMs Hallucination Evaluation.                    14312. https://openaccess.thecvf.com/content/CVPR2024/html/Favero_Multi-
+     arXiv:2311.07397 [cs.CV] https://arxiv.org/abs/2311.07397                               modal_Hallucination_Control_by_Visual_Information_Grounding_CVPR_
+[14] Mingrui Wu, Jiayi Ji, Oucheng Huang, Jiale Li, Yuhang Wu, Xiaoshuai Sun,                2024_paper.html
+     and Rongrong Ji. 2024. Evaluating and Analyzing Relationship Hallucinations        [28] Ailin Deng, Zhirui Chen, and Bryan Hooi. 2024. Seeing is Believing: Mitigat-
+     in LVLMs. In Proceedings of the International Conference on Machine Learning            ing Hallucination in Large Vision-Language Models via CLIP-Guided Decoding.
+                                                                                             Poster at the Second Workshop on Reliable and Responsible Foundation Models
+MM ’26, October 2026, Anonymous Submission                                                                                                                            Anon.
+
+
+     at ICLR 2024. https://openreview.net/forum?id=hZ9XshbCPq OpenReview.                    Vision-Language Models. In Proceedings of the IEEE/CVF Conference on Com-
+[29] Xintong Wang, Jingheng Pan, Liang Ding, and Chris Biemann. 2024. Miti-                  puter Vision and Pattern Recognition (CVPR). IEEE, Los Alamitos, CA, USA,
+     gating Hallucinations in Large Vision-Language Models with Instruction Con-             14375–14385. https://openaccess.thecvf.com/content/CVPR2024/html/Guan_
+     trastive Decoding. In Findings of the Association for Computational Linguistics:        HallusionBench_An_Advanced_Diagnostic_Suite_for_Entangled_Language_
+     ACL 2024. Association for Computational Linguistics, Bangkok, Thailand, 15840–          Hallucination_and_CVPR_2024_paper.html
+     15853. https://aclanthology.org/2024.findings-acl.942/                             [45] Jiaying Lu, Jinmeng Rao, Kezhen Chen, Xiaoyuan Guo, Yawen Zhang, Baochen
+[30] Yung-Sung Chuang, Yujia Xie, Hongyin Luo, Yoon Kim, James Glass, and                    Sun, Carl Yang, and Jie Yang. 2023. Evaluation and Mitigation of Agnosia in
+     Pengcheng He. 2024. DoLa: Decoding by Contrasting Layers Improves Factu-                Multimodal Large Language Models. arXiv:2309.04041 [cs.CV] https://arxiv.
+     ality in Large Language Models. In Proceedings of the International Conference          org/abs/2309.04041
+     on Learning Representations (ICLR). OpenReview.net, Vienna, Austria, 26 pages.     [46] Yichao Fu, Peter Bailis, Ion Stoica, and Hao Zhang. 2024. Break the Sequential
+     https://openreview.net/forum?id=Th6NyL07na                                              Dependency of LLM Inference Using Lookahead Decoding. In Proceedings of the
+[31] Chaoya Jiang, Haiyang Xu, Mengfan Dong, Jiaxing Chen, Wei Ye, Ming Yan,                 International Conference on Machine Learning (ICML). PMLR, Vienna, Austria,
+     Qinghao Zhao, Ji Zhang, Fei Huang, and Shikun Zhang. 2024. Hallucination Aug-           14060–14079. https://proceedings.mlr.press/v235/fu24a.html
+     mented Contrastive Learning for Multimodal Large Language Model (HACL). In         [47] Mukul Gagrani, Raghavv Goel, Wonseok Jeon, Junyoung Park, Mingu Lee,
+     Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recogni-          and Christopher Lott. 2024. On Speculative Decoding for Multimodal Large
+     tion (CVPR). IEEE, Los Alamitos, CA, USA, 27036–27046. https://arxiv.org/abs/           Language Models. In Proceedings of the IEEE/CVF Conference on Computer
+     2312.06968                                                                              Vision and Pattern Recognition Workshops (CVPRW). IEEE, Los Alamitos, CA,
+[32] Junho Kim, Hyunjun Kim, Yeonju Kim, and Yong Man Ro. 2024. CODE: Con-                   USA, 8285–8289. https://openaccess.thecvf.com/content/CVPR2024W/ELVM/
+     trasting Self-generated Description to Combat Hallucination in Large Multi-             html/Gagrani_On_Speculative_Decoding_for_Multimodal_Large_Language_
+     modal Models. In Advances in Neural Information Processing Systems. Curran              Models_CVPRW_2024_paper.html
+     Associates, Inc., Red Hook, NY, USA, 29 pages.                                     [48] Timin Gao, Peixian Chen, Mengdan Zhang, Chaoyou Lu, Yunhang Chen, Xiawu
+[33] Qidong Huang, Xiaoyi Dong, Pan Zhang, Bin Wang, Conghui He, Jiaqi                       Zhong, Yan Li, Zijia Zeng, Rongrong Ji, et al. 2024. Cantor: Inspiring Multimodal
+     Wang, Dahua Lin, Weiming Zhang, and Nenghai Yu. 2024. OPERA: Allevi-                    Chain-of-Thought of MLLM. In Proceedings of the ACM International Conference
+     ating Hallucination in Multi-Modal Large Language Models via Over-Trust                 on Multimedia. ACM, New York, NY, USA, 27 pages. https://arxiv.org/abs/2404.
+     Penalty and Retrospection-Allocation. In Proceedings of the IEEE/CVF Con-               16033
+     ference on Computer Vision and Pattern Recognition (CVPR). IEEE, Los               [49] Xiaoxue Cheng, Junyi Li, Wayne Xin Zhao, and Ji-Rong Wen. 2025. Think More,
+     Alamitos, CA, USA, 13418–13427.          https://openaccess.thecvf.com/content/         Hallucinate Less: Mitigating Hallucinations via Dual Process of Fast and Slow
+     CVPR2024/papers/Huang_OPERA_Alleviating_Hallucination_in_Multi-                         Thinking. In Findings of the Association for Computational Linguistics: ACL 2025.
+     Modal_Large_Language_Models_via_Over-Trust_CVPR_2024_paper.pdf                          Association for Computational Linguistics, Vienna, Austria, 7979–7990. https:
+[34] Sangmin Woo, Jaehyuk Jang, Donguk Kim, Yubin Choi, and Changick Kim. 2024.              //aclanthology.org/2025.findings-acl.417/
+     RITUAL: Random Image Transformations as a Universal Anti-hallucination             [50] Shilong Liu, Zhaoyang Zeng, Tianhe Ren, Feng Li, Hao Zhang, Jie Yang, Chun-
+     Lever in LVLMs. arXiv:2405.17821 [cs.CV] https://arxiv.org/abs/2405.17821               yuan Li, Jianwei Yang, Hang Su, Jun Zhu, and Lei Zhang. 2024. Grounding DINO:
+[35] Shi Liu, Kecheng Zheng, and Wei Chen. 2024. Paying More Attention to Image:             Marrying DINO with Grounded Pre-Training for Open-Set Object Detection. In
+     A Training-Free Method for Alleviating Hallucination in LVLMs. In Proceedings           Proceedings of the European Conference on Computer Vision (ECCV). Springer,
+     of the European Conference on Computer Vision (ECCV). Springer, Cham, Switzer-          Cham, Switzerland, 38–55. https://link.springer.com/chapter/10.1007/978-3-
+     land, 125–140. https://link.springer.com/chapter/10.1007/978-3-031-73010-8_8            031-72970-6_3
+[36] Xiaohua Xu et al. 2025. Mitigating Hallucination in LVLMs via Temporal Atten-      [51] Yuan Liu, Haodong Duan, Yuanhan Zhang, Bo Li, Songyang Zhang, Wangbo
+     tion Real-time Accumulative Connection (TARAC). arXiv:2504.04099 [cs.CV]                Zhao, Yike Yuan, Jiaqi Wang, Conghui He, Ziwei Liu, et al. 2024. MMBench: Is
+     https://arxiv.org/abs/2504.04099                                                        Your Multi-modal Model an All-around Player?. In Proceedings of the European
+[37] Jushi Kai, Tianhang Zhang, Hai Hu, and Zhouhan Lin. 2024. SH2: Self-                    Conference on Computer Vision (ECCV). Springer, Cham, Switzerland, 216–233.
+     Highlighted Hesitation Helps You Decode More Truthfully. In Findings of the             https://link.springer.com/chapter/10.1007/978-3-031-72904-1_13
+     Association for Computational Linguistics: EMNLP 2024. Association for Com-        [52] Zhaorun Chen, Zhuokai Zhao, Hongyin Luo, Huaxiu Yao, Bo Li, and Jiawei
+     putational Linguistics, Miami, Florida, USA, 4514–4530. doi:10.18653/v1/2024.           Zhou. 2024. HALC: Object Hallucination Reduction via Adaptive Focal-Contrast
+     findings-emnlp.260                                                                      Decoding. In Proceedings of the International Conference on Machine Learning
+[38] Ce Zhang, Zifu Wan, Zhehan Kan, Martin Q. Ma, Simon Stepputtis, Deva Ra-                (ICML). PMLR, Vienna, Austria, 7824–7846. https://proceedings.mlr.press/v235/
+     manan, Russ Salakhutdinov, Louis-Philippe Morency, Katia Sycara, and Yaqi               chen24at.html
+     Xie. 2025. Self-Correcting Decoding with Generative Feedback for Mitigating
+     Hallucinations in Large Vision-Language Models. In Proceedings of the Inter-
+     national Conference on Learning Representations (ICLR). OpenReview.net, Singa-
+     pore, 31 pages.
+[39] Zongsheng Cao, Yangfan He, Anran Liu, Jun Xie, Feng Chen, and Zepeng Wang.
+     2025. CoFi-Dec: Hallucination-Resistant Decoding via Coarse-to-Fine Genera-
+     tive Feedback in Large Vision-Language Models. In Proceedings of the 33rd ACM
+     International Conference on Multimedia (MM ’25). ACM, New York, NY, USA,
+     10709–10718. doi:10.1145/3746027.3754791
+[40] Jinze Bai, Shuai Bai, Shusheng Yang, Shijie Wang, Sinan Tan, Peng Wang, Jun-
+     yang Lin, Chang Zhou, and Jingren Zhou. 2023. Qwen-VL: A Frontier Large
+     Vision-Language Model with Versatile Abilities. arXiv:2308.12966 [cs.CV] https:
+     //arxiv.org/abs/2308.12966
+[41] Weihan Wang, Qingsong Lv, Wenmeng Yu, Wenyi Hong, Ji Qi, Yan Wang, Junhui
+     Ji, Zhuoyi Yang, Lei Zhao, Xixuan Song, Jiazheng Xu, Keqin Chen, Bin Xu, Juanzi
+     Li, Yuxiao Dong, Ming Ding, and Jie Tang. 2024. CogVLM: Visual Expert for Pre-
+     trained Language Models. In Advances in Neural Information Processing Systems.
+     Curran Associates, Inc., Red Hook, NY, USA, 25 pages. doi:10.52202/079017-3860
+[42] Deyao Zhu, Jun Chen, Xiaoqian Shen, Xiang Li, and Mohamed Elhoseiny. 2024.
+     MiniGPT-4: Enhancing Vision-Language Understanding with Advanced Large
+     Language Models. In Proceedings of the International Conference on Learning
+     Representations (ICLR). OpenReview.net, Vienna, Austria, 16 pages.        https:
+     //openreview.net/forum?id=1tZbq88f27
+[43] Yiyang Zhou, Chenhang Cui, Jaehong Yoon, Linjun Zhang, Zhun Deng, Chelsea
+     Finn, Mohit Bansal, and Huaxiu Yao. 2024. Analyzing and Mitigating Object
+     Hallucination in Large Vision-Language Models. In Proceedings of the Interna-
+     tional Conference on Learning Representations (ICLR). OpenReview.net, Vienna,
+     Austria, 30 pages. https://openreview.net/forum?id=oZDJKTlOUe
+[44] Tianrui Guan, Fuxiao Liu, Xiyang Wu, Ruiqi Xian, Zongxia Li, Xiaoyu
+     Liu, Xijun Wang, Lichang Chen, Furong Huang, Yaser Yacoob, Dinesh
+     Manocha, and Tianyi Zhou. 2024. HallusionBench: An Advanced Diagnostic
+     Suite for Entangled Language Hallucination and Visual Illusion in Large
+
