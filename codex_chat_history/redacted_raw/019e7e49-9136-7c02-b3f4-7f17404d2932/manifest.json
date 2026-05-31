@@ -1,15 +1,15 @@
-﻿{
-    "thread_id":  "019e7e49-9136-7c02-b3f4-7f17404d2932",
-    "thread_name":  null,
-    "source_file":  "C:\\Users\\shers\\.codex\\sessions\\2026\\05\\31\\rollout-2026-05-31T21-46-56-019e7e49-9136-7c02-b3f4-7f17404d2932.jsonl",
-    "synced_file":  "D:\\Shervin\\OneDrive\\Desktop\\breaking\\codex_chat_history\\raw\\019e7e49-9136-7c02-b3f4-7f17404d2932\\rollout-2026-05-31T21-46-56-019e7e49-9136-7c02-b3f4-7f17404d2932.jsonl",
-    "source_bytes":  618901,
-    "synced_bytes":  618901,
-    "source_last_write_utc":  "2026-05-31T14:04:14.4683005Z",
-    "synced_at_utc":  "2026-05-31T14:04:18.9915244+00:00",
-    "session_created_at":  "2026-05-31T13:46:56.079Z",
-    "cwd":  "D:\\Shervin\\OneDrive\\Desktop\\breaking",
-    "originator":  "Codex Desktop",
-    "mode":  "raw-jsonl",
-    "warning":  "Raw Codex session logs may contain prompts, tool outputs, file paths, and secrets. Keep this directory ignored unless you intentionally want to commit it."
+{
+  "thread_id": "019e7e49-9136-7c02-b3f4-7f17404d2932",
+  "thread_name": null,
+  "source_file": "C:\\Users\\shers\\.codex\\sessions\\2026\\05\\31\\rollout-2026-05-31T21-46-56-019e7e49-9136-7c02-b3f4-7f17404d2932.jsonl",
+  "synced_file": "D:\\Shervin\\OneDrive\\Desktop\\breaking\\codex_chat_history\\redacted_raw\\019e7e49-9136-7c02-b3f4-7f17404d2932\\rollout-2026-05-31T21-46-56-019e7e49-9136-7c02-b3f4-7f17404d2932.jsonl",
+  "source_bytes": 1871469,
+  "synced_bytes": 1848431,
+  "source_last_write_utc": "2026-05-31T15:47:16.9221646Z",
+  "synced_at_utc": "2026-05-31T15:47:30.1135601+00:00",
+  "session_created_at": "2026-05-31T13:46:56.079Z",
+  "cwd": "D:\\Shervin\\OneDrive\\Desktop\\breaking",
+  "originator": "Codex Desktop",
+  "mode": "redacted-jsonl",
+  "warning": "Redacted Codex session logs may still contain prompts, tool outputs, file paths, and private project context; token-like OpenAI and GitHub secrets were mechanically redacted before GitHub upload."
 }
